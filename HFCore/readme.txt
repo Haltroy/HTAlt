@@ -34,7 +34,7 @@ TODO:
 -Fix TabControl
 -Redesign Switch Control
 
-This Project is used in these Haltroy projects also:
+This Project is used in these Haltroy projects:
 -Korot (Desktop)
 -Playtroy
 -Kolme Utilities (Shutdown)

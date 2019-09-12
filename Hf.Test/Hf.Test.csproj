@@ -71,7 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HF\HF.csproj">
+    <ProjectReference Include="..\HFCore\HF.csproj">
       <Project>{EC777E43-5DDB-481C-9A70-07B4AB6AF769}</Project>
       <Name>HF</Name>
     </ProjectReference>
