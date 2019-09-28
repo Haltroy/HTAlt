@@ -17,22 +17,20 @@ namespace HaltroyFramework
         }
         public void PrintInfoToConsole()
         {
-            Console.WriteLine(PrintInfo()
-                + Environment.NewLine
-                + "Please check for latest version of this product in our GitHub page for more stability."
-                + Environment.NewLine
-                + "If you are not the developer,then ignore this message."
-                + Environment.NewLine
-                + "------------------");
+            if (Properties.Settings.Default.isInfoGiven == false)
+            {
+                Properties.Settings.Default.isInfoGiven = true;
+                Console.WriteLine(PrintInfo());
+            }
         }
         public string PrintInfo()
         {
-            return ProductName()
+            return "------------------" 
                 + Environment.NewLine
-                + "version "
+                + ProductName()
+                + " v"
                 + HFVersion().ToString()
-                + Environment.NewLine
-                + "by " + Developer()
+                + " by Haltroy"
                 + Environment.NewLine
                 + HFWebsite()
                 + Environment.NewLine

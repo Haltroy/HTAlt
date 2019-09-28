@@ -11,6 +11,17 @@ namespace HaltroyFramework
     public partial class HaltroyMsgBox : Form
     {
         Color BackgroundColor;
+        static int LinesCountIndexOf(string s)
+        {
+            int count = 0;
+            int position = 0;
+            while ((position = s.IndexOf('\n', position)) != -1)
+            {
+                count++;
+                position++;         // Skip this occurrence!
+            }
+            return count;
+        }
         public HaltroyMsgBox(string title,
                       string message,
                       Icon icon,
@@ -19,7 +30,9 @@ namespace HaltroyFramework
                       string YesButtonText = "Yes",
                       string NoButtonText = "No",
                       string OKBUttonText = "OK",
-                      string CancelButtonText = "Cancel")
+                      string CancelButtonText = "Cancel",
+                      int windowWidth = 390,
+                      int windowHeight = 140)
         {
             InitializeComponent();
             Startup startup = new Startup();
@@ -27,6 +40,9 @@ namespace HaltroyFramework
             BackgroundColor = BackColor ?? Color.White;
             this.Text = title;
             this.label1.Text = message;
+            if (windowWidth != 390) { if (!(windowWidth < this.MinimumSize.Width)) { this.Width = windowWidth; } }
+            if (windowHeight != 140) { if (!(windowHeight < this.MinimumSize.Height)) { this.Height = windowHeight; } } else { this.Height = (15 * LinesCountIndexOf(message)) + 123; }
+            this.MaximumSize = new Size(Screen.FromHandle(this.Handle).WorkingArea.Width, Screen.FromHandle(this.Handle).WorkingArea.Height);
             if (msgbutton == MessageBoxButtons.OK)
             {
                 btYes.Visible = false;
@@ -64,6 +80,16 @@ namespace HaltroyFramework
                 btYes.Enabled = true;
                 btNo.Enabled = true;
                 btCancel.Enabled = true;
+                btOK.Visible = false;
+                btOK.Enabled = false;
+            }else
+            {
+                btYes.Visible = false;
+                btNo.Visible = false;
+                btCancel.Visible = false;
+                btYes.Enabled = false;
+                btNo.Enabled = false;
+                btCancel.Enabled = false;
                 btOK.Visible = false;
                 btOK.Enabled = false;
             }
