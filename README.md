@@ -6,4 +6,3 @@ A library which is used in Haltroy apps like Korot and Playtroy.
 
 
 [Haltroy's Website](http://haltroy.com "Haltroy's Website")
-"# HaltroyFramework" 
