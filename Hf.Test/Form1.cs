@@ -222,5 +222,24 @@ namespace Hf.Test
             ibWidth.Value = 400;
             ibHeight.Value = 150;
         }
+        bool draggable;
+        bool fullscreenmode;
+        private void button7_Click(object sender, EventArgs e)
+        {
+            frmHTF newform = new frmHTF();
+            newform.EnableDrag = draggable;
+            newform.FullScreenMode = fullscreenmode;
+            newform.Show();
+        }
+
+        private void haltroySwitch2_CheckedChanged(object sender, EventArgs e)
+        {
+            draggable = haltroySwitch2.Checked;
+        }
+
+        private void haltroySwitch3_CheckedChanged(object sender, EventArgs e)
+        {
+            fullscreenmode = haltroySwitch3.Checked;
+        }
     }
 }

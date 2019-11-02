@@ -351,3 +351,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+Hf.Test/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+Hf.Test/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Hf.Test/obj/Debug/Hf.Test.csproj.CoreCompileInputs.cache
+Hf.Test/obj/Debug/Hf.Test.csprojAssemblyReference.cache

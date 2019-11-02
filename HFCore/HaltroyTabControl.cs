@@ -21,22 +21,22 @@ namespace HaltroyFramework
         };
 
         private bool enableReposition = false;
-        private TabPage donotmoveorremovethistab1 = null;
-        private TabPage donotmoveorremovethistab2 = null;
+        private TabPage lockedFirstTab = null;
+        private TabPage lockedLastTab = null;
         /// <summary>
         ///     The color of the active tab header
         /// </summary>
-        private Color activeColor = Color.FromArgb(0, 122, 204);
+        private Color activeColor = Color.DodgerBlue;
 
         /// <summary>
         ///     The color of the background of the Tab
         /// </summary>
-        private Color backTabColor = Color.FromArgb(28, 28, 28);
+        private Color backTabColor = Color.Black;
 
         /// <summary>
         ///     The color of the border of the control
         /// </summary>
-        private Color borderColor = Color.FromArgb(30, 30, 30);
+        private Color borderColor = Color.Black;
 
         /// <summary>
         ///     Message for the user before losing
@@ -51,7 +51,7 @@ namespace HaltroyFramework
         /// <summary>
         ///     The color of the horizontal line which is under the headers of the tab pages
         /// </summary>
-        private Color horizLineColor = Color.FromArgb(0, 122, 204);
+        private Color horizLineColor = Color.DodgerBlue;
 
         /// <summary>
         ///     A random page will be used to store a tab that will be deplaced in the run-time
@@ -61,7 +61,7 @@ namespace HaltroyFramework
         /// <summary>
         ///     The color of the text
         /// </summary>
-        private Color textColor = Color.FromArgb(255, 255, 255);
+        private Color textColor = Color.LightGray;
         
         ///<summary>
         /// Shows closing buttons
@@ -71,7 +71,7 @@ namespace HaltroyFramework
         /// <summary>
         /// Selected tab text color
         /// </summary>
-        public Color theselectedTextColor = Color.FromArgb(255, 255, 255);
+        public Color theselectedTextColor = Color.White;
         /// <summary>
         ///     Init
         /// </summary>
@@ -115,17 +115,17 @@ namespace HaltroyFramework
             }
         }
 
-        [Category("Frozen Tab"), Browsable(true), Description("Tab that cannot be removed or moved.")]
+        [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and will be always be at the start.")]
         public TabPage DoNotRemoveThisTab1
         {
             get
             {
-                return this.donotmoveorremovethistab1;
+                return this.lockedFirstTab;
             }
 
             set
             {
-                this.donotmoveorremovethistab1 = value;
+                this.lockedFirstTab = value;
             }
         }
 
@@ -142,17 +142,17 @@ namespace HaltroyFramework
             }
         }
 
-        [Category("Frozen Tab"), Browsable(true), Description("Tab that cannot be removed or moved.")]
-        public TabPage DoNotRemoveThisTab2
+        [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and always will be at the end.")]
+        public TabPage LockedLastTab
         {
             get
             {
-                return this.donotmoveorremovethistab2;
+                return this.lockedLastTab;
             }
 
             set
             {
-                this.donotmoveorremovethistab2 = value;
+                this.lockedLastTab = value;
             }
         }
 
@@ -273,8 +273,8 @@ namespace HaltroyFramework
 
                 if (!ReferenceEquals(pointedTab, draggedTab))
                 {
-                    if (draggedTab == donotmoveorremovethistab1|| pointedTab == donotmoveorremovethistab1) { }
-                    else if (draggedTab == donotmoveorremovethistab2 || pointedTab == donotmoveorremovethistab2) { }
+                    if (draggedTab == lockedFirstTab|| pointedTab == lockedFirstTab) { }
+                    else if (draggedTab == lockedLastTab || pointedTab == lockedLastTab) { }
                     else
                     {
                         this.ReplaceTabPages(draggedTab, pointedTab);
@@ -314,7 +314,7 @@ namespace HaltroyFramework
                         HaltroyMsgBox mesaj = new HaltroyMsgBox(this.Parent.Text, this.ClosingMessage, null, MessageBoxButtons.YesNo, this.backTabColor);
                         if (DialogResult.Yes == mesaj.ShowDialog())
                         {
-                            if (this.SelectedTab == donotmoveorremovethistab1 || this.SelectedTab == donotmoveorremovethistab2) { }
+                            if (this.SelectedTab == lockedFirstTab || this.SelectedTab == lockedLastTab) { }
                             else {
                                
                                 this.TabPages[i].Controls.Clear();
@@ -334,10 +334,10 @@ namespace HaltroyFramework
                     }
                     else
                     {
-                        if (i == this.TabPages.IndexOf(donotmoveorremovethistab1) || i == this.TabPages.IndexOf(donotmoveorremovethistab2)) { }
+                        if (i == this.TabPages.IndexOf(lockedFirstTab) || i == this.TabPages.IndexOf(lockedLastTab)) { }
                         else
                         {
-                            if (this.SelectedTab == donotmoveorremovethistab1) { } else if(this.SelectedTab == donotmoveorremovethistab2) { }
+                            if (this.SelectedTab == lockedFirstTab) { } else if(this.SelectedTab == lockedLastTab) { }
                             else{
                                 this.TabPages.RemoveAt(i);
                                 if(i == 0) { this.SelectedIndex = i; } else { 
@@ -449,8 +449,8 @@ namespace HaltroyFramework
                     // Draws the closing button
                     if (this.ShowClosingButton)
                     {
-                        if (this.SelectedTab == donotmoveorremovethistab1) { }
-                        else if (this.SelectedTab == donotmoveorremovethistab2) { }
+                        if (this.SelectedTab == lockedFirstTab) { }
+                        else if (this.SelectedTab == lockedLastTab) { }
                         else
                         {
                             e.Graphics.DrawString("X", Font, ClosingColorBrush, HeaderSize.Right - 17, 3);
@@ -530,11 +530,11 @@ namespace HaltroyFramework
 
                 this.TabPages[DestinationIndex] = Source;
                 this.TabPages[SourceIndex] = Destination;
-                if (Source == donotmoveorremovethistab1 || DestinationIndex == 0)
+                if (Source == lockedFirstTab || DestinationIndex == 0)
                 {
                     Source.TabIndex = 0;
                 }
-                else if (Source == donotmoveorremovethistab2 || DestinationIndex == this.TabCount - 1)
+                else if (Source == lockedLastTab || DestinationIndex == this.TabCount - 1)
                 {
                     Source.TabIndex = this.TabCount - 1;
                 }

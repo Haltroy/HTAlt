@@ -29,11 +29,11 @@ and bugs can be visible.If you spot an one
 then please create an issue on GitHub.
 
 To use HaltroyFramework, plase make sure you
-have at least .Net Framework 2.0 installed
+have at least .Net Framework 4.5 installed
 on your machine.Newer versions are supported.
 
 Users of your projects are also need to have
-at least .Net Framework 2.0 or newer.
+at least .Net Framework 4.5 or newer.
 
 If you are using this then please take screenshot
 and send this to Haltroy (in any social media) 
@@ -52,17 +52,12 @@ Current Features:
 -MessageBox
 -InputBox
 -Switch Control
+-HaltroyForms
 
 TODO:
--New Feature : HaltroyForms
 -Fix TabControl
 -Redesign Switch Control
 
 This Project is used in these Haltroy projects:
 -Korot (Desktop)
 -Playtroy
--Kolme Utilities (Shutdown)
--Kolme Notepad (Shutdown)
--Kolme Images (Shutdown)
--TroyLoad (Currently Korot/Playtroy Installer)
--Mazze (not realased to public)

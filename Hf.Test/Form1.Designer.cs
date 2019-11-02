@@ -30,6 +30,12 @@
         {
             this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.htsHeight = new HaltroyFramework.HaltroySlider();
+            this.htsWidth = new HaltroyFramework.HaltroySlider();
+            this.lbHeight = new System.Windows.Forms.Label();
+            this.lbWidth = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.lResult = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cbButtons = new System.Windows.Forms.ComboBox();
@@ -86,12 +92,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.htsHeight = new HaltroyFramework.HaltroySlider();
-            this.htsWidth = new HaltroyFramework.HaltroySlider();
-            this.lbHeight = new System.Windows.Forms.Label();
-            this.lbWidth = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.haltroySwitch2 = new HaltroyFramework.HaltroySwitch();
+            this.label21 = new System.Windows.Forms.Label();
+            this.haltroySwitch3 = new HaltroyFramework.HaltroySwitch();
+            this.label24 = new System.Windows.Forms.Label();
             this.haltroyTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -99,34 +105,36 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOverlayColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibBackColor)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // haltroyTabControl1
             // 
-            this.haltroyTabControl1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.haltroyTabControl1.ActiveColor = System.Drawing.Color.DodgerBlue;
             this.haltroyTabControl1.AllowDrop = true;
-            this.haltroyTabControl1.BackTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.haltroyTabControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.haltroyTabControl1.BackTabColor = System.Drawing.Color.Black;
+            this.haltroyTabControl1.BorderColor = System.Drawing.Color.Black;
             this.haltroyTabControl1.ClosingMessage = null;
             this.haltroyTabControl1.Controls.Add(this.tabPage1);
             this.haltroyTabControl1.Controls.Add(this.tabPage2);
             this.haltroyTabControl1.Controls.Add(this.tabPage3);
+            this.haltroyTabControl1.Controls.Add(this.tabPage4);
             this.haltroyTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.haltroyTabControl1.DoNotRemoveThisTab1 = null;
-            this.haltroyTabControl1.DoNotRemoveThisTab2 = null;
             this.haltroyTabControl1.EnableRepositioning = false;
-            this.haltroyTabControl1.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.haltroyTabControl1.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.haltroyTabControl1.HeaderColor = System.Drawing.Color.Black;
+            this.haltroyTabControl1.HorizontalLineColor = System.Drawing.Color.DodgerBlue;
             this.haltroyTabControl1.ItemSize = new System.Drawing.Size(240, 16);
             this.haltroyTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.haltroyTabControl1.LockedLastTab = null;
             this.haltroyTabControl1.Name = "haltroyTabControl1";
             this.haltroyTabControl1.SelectedIndex = 0;
-            this.haltroyTabControl1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.haltroyTabControl1.SelectedTextColor = System.Drawing.Color.LightGray;
             this.haltroyTabControl1.ShowClosingButton = false;
             this.haltroyTabControl1.ShowClosingMessage = false;
             this.haltroyTabControl1.Size = new System.Drawing.Size(800, 450);
             this.haltroyTabControl1.TabIndex = 0;
-            this.haltroyTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.haltroyTabControl1.TextColor = System.Drawing.Color.White;
             // 
             // tabPage1
             // 
@@ -167,6 +175,76 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "MessageBox";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // htsHeight
+            // 
+            this.htsHeight.BackColor = System.Drawing.Color.White;
+            this.htsHeight.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.htsHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.htsHeight.ForeColor = System.Drawing.Color.Black;
+            this.htsHeight.LargeChange = ((uint)(5u));
+            this.htsHeight.Location = new System.Drawing.Point(313, 323);
+            this.htsHeight.Name = "htsHeight";
+            this.htsHeight.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
+            this.htsHeight.Size = new System.Drawing.Size(268, 21);
+            this.htsHeight.SmallChange = ((uint)(1u));
+            this.htsHeight.TabIndex = 31;
+            this.htsHeight.Text = "haltroySlider2";
+            this.htsHeight.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
+            this.htsHeight.ThumbSize = new System.Drawing.Size(16, 16);
+            // 
+            // htsWidth
+            // 
+            this.htsWidth.BackColor = System.Drawing.Color.White;
+            this.htsWidth.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.htsWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.htsWidth.ForeColor = System.Drawing.Color.Black;
+            this.htsWidth.LargeChange = ((uint)(5u));
+            this.htsWidth.Location = new System.Drawing.Point(313, 283);
+            this.htsWidth.Name = "htsWidth";
+            this.htsWidth.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
+            this.htsWidth.Size = new System.Drawing.Size(268, 21);
+            this.htsWidth.SmallChange = ((uint)(1u));
+            this.htsWidth.TabIndex = 32;
+            this.htsWidth.Text = "haltroySlider2";
+            this.htsWidth.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
+            this.htsWidth.ThumbSize = new System.Drawing.Size(16, 16);
+            // 
+            // lbHeight
+            // 
+            this.lbHeight.AutoSize = true;
+            this.lbHeight.Location = new System.Drawing.Point(537, 307);
+            this.lbHeight.Name = "lbHeight";
+            this.lbHeight.Size = new System.Drawing.Size(48, 13);
+            this.lbHeight.TabIndex = 27;
+            this.lbHeight.Text = "<height>";
+            // 
+            // lbWidth
+            // 
+            this.lbWidth.AutoSize = true;
+            this.lbWidth.Location = new System.Drawing.Point(537, 267);
+            this.lbWidth.Name = "lbWidth";
+            this.lbWidth.Size = new System.Drawing.Size(44, 13);
+            this.lbWidth.TabIndex = 28;
+            this.lbWidth.Text = "<width>";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(310, 307);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(80, 13);
+            this.label25.TabIndex = 29;
+            this.label25.Text = "WindowHeight:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(310, 267);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(77, 13);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "WindowWidth:";
             // 
             // lResult
             // 
@@ -738,75 +816,70 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
-            // htsHeight
+            // tabPage4
             // 
-            this.htsHeight.BackColor = System.Drawing.Color.White;
-            this.htsHeight.BorderRoundRectSize = new System.Drawing.Size(8, 8);
-            this.htsHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.htsHeight.ForeColor = System.Drawing.Color.Black;
-            this.htsHeight.LargeChange = ((uint)(5u));
-            this.htsHeight.Location = new System.Drawing.Point(313, 323);
-            this.htsHeight.Name = "htsHeight";
-            this.htsHeight.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
-            this.htsHeight.Size = new System.Drawing.Size(268, 21);
-            this.htsHeight.SmallChange = ((uint)(1u));
-            this.htsHeight.TabIndex = 31;
-            this.htsHeight.Text = "haltroySlider2";
-            this.htsHeight.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
-            this.htsHeight.ThumbSize = new System.Drawing.Size(16, 16);
+            this.tabPage4.Controls.Add(this.label24);
+            this.tabPage4.Controls.Add(this.haltroySwitch3);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.haltroySwitch2);
+            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Location = new System.Drawing.Point(4, 20);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(792, 426);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Forms";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // htsWidth
+            // button7
             // 
-            this.htsWidth.BackColor = System.Drawing.Color.White;
-            this.htsWidth.BorderRoundRectSize = new System.Drawing.Size(8, 8);
-            this.htsWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.htsWidth.ForeColor = System.Drawing.Color.Black;
-            this.htsWidth.LargeChange = ((uint)(5u));
-            this.htsWidth.Location = new System.Drawing.Point(313, 283);
-            this.htsWidth.Name = "htsWidth";
-            this.htsWidth.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
-            this.htsWidth.Size = new System.Drawing.Size(268, 21);
-            this.htsWidth.SmallChange = ((uint)(1u));
-            this.htsWidth.TabIndex = 32;
-            this.htsWidth.Text = "haltroySlider2";
-            this.htsWidth.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
-            this.htsWidth.ThumbSize = new System.Drawing.Size(16, 16);
+            this.button7.Location = new System.Drawing.Point(8, 6);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(128, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Spawn a HaltroyForm";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // lbHeight
+            // haltroySwitch2
             // 
-            this.lbHeight.AutoSize = true;
-            this.lbHeight.Location = new System.Drawing.Point(537, 307);
-            this.lbHeight.Name = "lbHeight";
-            this.lbHeight.Size = new System.Drawing.Size(48, 13);
-            this.lbHeight.TabIndex = 27;
-            this.lbHeight.Text = "<height>";
+            this.haltroySwitch2.Location = new System.Drawing.Point(9, 36);
+            this.haltroySwitch2.Name = "haltroySwitch2";
+            this.haltroySwitch2.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch2.OnFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch2.Size = new System.Drawing.Size(50, 19);
+            this.haltroySwitch2.TabIndex = 1;
+            this.haltroySwitch2.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch2_CheckedChanged);
             // 
-            // lbWidth
+            // label21
             // 
-            this.lbWidth.AutoSize = true;
-            this.lbWidth.Location = new System.Drawing.Point(537, 267);
-            this.lbWidth.Name = "lbWidth";
-            this.lbWidth.Size = new System.Drawing.Size(44, 13);
-            this.lbWidth.TabIndex = 28;
-            this.lbWidth.Text = "<width>";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(66, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(56, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Draggable";
+            this.label21.Click += new System.EventHandler(this.haltroySwitch2_CheckedChanged);
             // 
-            // label25
+            // haltroySwitch3
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(310, 307);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(80, 13);
-            this.label25.TabIndex = 29;
-            this.label25.Text = "WindowHeight:";
+            this.haltroySwitch3.Location = new System.Drawing.Point(9, 61);
+            this.haltroySwitch3.Name = "haltroySwitch3";
+            this.haltroySwitch3.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch3.OnFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch3.Size = new System.Drawing.Size(50, 19);
+            this.haltroySwitch3.TabIndex = 1;
+            this.haltroySwitch3.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch3_CheckedChanged);
             // 
-            // label26
+            // label24
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(310, 267);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 13);
-            this.label26.TabIndex = 30;
-            this.label26.Text = "WindowWidth:";
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(66, 65);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(90, 13);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Full Screen Mode";
+            this.label24.Click += new System.EventHandler(this.haltroySwitch3_CheckedChanged);
             // 
             // Form1
             // 
@@ -827,6 +900,8 @@
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ibOverlayColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ibBackColor)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -897,6 +972,12 @@
         private System.Windows.Forms.Label lbWidth;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label24;
+        private HaltroyFramework.HaltroySwitch haltroySwitch3;
+        private System.Windows.Forms.Label label21;
+        private HaltroyFramework.HaltroySwitch haltroySwitch2;
     }
 }
 
