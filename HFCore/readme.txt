@@ -22,6 +22,12 @@
 -----------------------o+sN
 ------------------------yN
 
+Please take screenshot of this screen with HT logo
+and send this to Haltroy (in any social media) 
+if you want to get a free shoutout.
+
+The social media links are located bottom of the website.
+http://haltroy.com
 
 Thanks for using the HaltroyFramework.
 Note that this project is still in development
@@ -35,12 +41,6 @@ on your machine.Newer versions are supported.
 Users of your projects are also need to have
 at least .Net Framework 4.5 or newer.
 
-If you are using this then please take screenshot
-and send this to Haltroy (in any social media) 
-if you want to get a free shoutout.
-
-The social media links are located bottom of the website.
-http://haltroy.com
 
 All features can be previewed using Hf.Test project in the
 HaltroyFramework GitHub solution.
@@ -49,10 +49,10 @@ Current Features:
 -Tab Control
 -Slider Control
 -ListView Control
--MessageBox
--InputBox
 -Switch Control
--HaltroyForms
+-HaltroyForms Form Type
+-MessageBox Form
+-InputBox Form
 
 TODO:
 -Fix TabControl

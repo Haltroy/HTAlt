@@ -116,7 +116,7 @@ namespace HaltroyFramework
         }
 
         [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and will be always be at the start.")]
-        public TabPage DoNotRemoveThisTab1
+        public TabPage LockedFirstTab
         {
             get
             {
