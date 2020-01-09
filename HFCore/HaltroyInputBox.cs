@@ -19,7 +19,7 @@ namespace HaltroyFramework
             while ((position = s.IndexOf('\n', position)) != -1)
             {
                 count++;
-                position++;         // Skip this occurrence!
+                position++; 
             }
             return count;
         }
@@ -40,7 +40,7 @@ namespace HaltroyFramework
             label1.Text = description;
             this.Icon = icon;
             if (windowWidth != 400) { if (!(windowWidth < this.MinimumSize.Width)) { this.Width = windowWidth; } }
-            if (windowHeight != 150 ) { if (!(windowHeight < this.MinimumSize.Height)) { this.Height = windowHeight; }} else { this.Height = (15 * LinesCountIndexOf(description)) + 123; }
+            if (windowHeight != 150 ) { if (!(windowHeight < this.MinimumSize.Height)) { this.Height = windowHeight; }} else { this.Height = (15 * LinesCountIndexOf(description)) + 70; }
             this.MaximumSize = new Size(Screen.FromHandle(this.Handle).WorkingArea.Width, Screen.FromHandle(this.Handle).WorkingArea.Height);
             textBox1.Text = defaultValue;
             BackgroundColor = _BackColor ?? Color.White;

@@ -42,6 +42,12 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\..\HaltroyEasyTabs\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\HaltroyEasyTabs\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\PresentationCore.dll</HintPath>
     </Reference>
@@ -60,6 +66,22 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Win32Interop.Dwmapi, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Win32Interop.Dwmapi.1.0.1\lib\Win32Interop.Dwmapi.dll</HintPath>
+    </Reference>
+    <Reference Include="Win32Interop.Gdi32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Win32Interop.Gdi32.1.0.1\lib\Win32Interop.Gdi32.dll</HintPath>
+    </Reference>
+    <Reference Include="Win32Interop.Kernel32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Win32Interop.Kernel32.1.0.1\lib\Win32Interop.Kernel32.dll</HintPath>
+    </Reference>
+    <Reference Include="Win32Interop.User32, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Win32Interop.User32.1.0.1\lib\Win32Interop.User32.dll</HintPath>
+    </Reference>
+    <Reference Include="Win32Interop.Uxtheme, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Win32Interop.Uxtheme.1.0.1\lib\Win32Interop.Uxtheme.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HaltroyForms.cs">
@@ -117,6 +139,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,6 +168,12 @@
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\KorotRight.png" />
+    <None Include="Resources\KorotLeft.png" />
+    <None Include="Resources\KorotClose.png" />
+    <None Include="Resources\KorotCenter.png" />
+    <None Include="Resources\KorotBackground.png" />
+    <None Include="Resources\KorotAdd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

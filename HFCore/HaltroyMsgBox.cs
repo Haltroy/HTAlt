@@ -18,7 +18,7 @@ namespace HaltroyFramework
             while ((position = s.IndexOf('\n', position)) != -1)
             {
                 count++;
-                position++;         // Skip this occurrence!
+                position++;
             }
             return count;
         }

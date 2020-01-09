@@ -49,7 +49,6 @@
             // 
             // btNo
             // 
-            this.btNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btNo.Location = new System.Drawing.Point(223, 66);
@@ -63,7 +62,6 @@
             // 
             // btCancel
             // 
-            this.btCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btCancel.Location = new System.Drawing.Point(142, 66);
@@ -77,7 +75,6 @@
             // 
             // btYes
             // 
-            this.btYes.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btYes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btYes.Location = new System.Drawing.Point(61, 66);
@@ -91,7 +88,6 @@
             // 
             // btOK
             // 
-            this.btOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btOK.Location = new System.Drawing.Point(61, 66);

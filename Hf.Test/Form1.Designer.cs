@@ -93,11 +93,11 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.haltroySwitch2 = new HaltroyFramework.HaltroySwitch();
-            this.label21 = new System.Windows.Forms.Label();
-            this.haltroySwitch3 = new HaltroyFramework.HaltroySwitch();
             this.label24 = new System.Windows.Forms.Label();
+            this.haltroySwitch3 = new HaltroyFramework.HaltroySwitch();
+            this.label21 = new System.Windows.Forms.Label();
+            this.haltroySwitch2 = new HaltroyFramework.HaltroySwitch();
+            this.button7 = new System.Windows.Forms.Button();
             this.haltroyTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -120,12 +120,12 @@
             this.haltroyTabControl1.Controls.Add(this.tabPage3);
             this.haltroyTabControl1.Controls.Add(this.tabPage4);
             this.haltroyTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.haltroyTabControl1.DoNotRemoveThisTab1 = null;
             this.haltroyTabControl1.EnableRepositioning = false;
             this.haltroyTabControl1.HeaderColor = System.Drawing.Color.Black;
             this.haltroyTabControl1.HorizontalLineColor = System.Drawing.Color.DodgerBlue;
             this.haltroyTabControl1.ItemSize = new System.Drawing.Size(240, 16);
             this.haltroyTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.haltroyTabControl1.LockedFirstTab = null;
             this.haltroyTabControl1.LockedLastTab = null;
             this.haltroyTabControl1.Name = "haltroyTabControl1";
             this.haltroyTabControl1.SelectedIndex = 0;
@@ -469,6 +469,7 @@
             this.haltroyListView1.Size = new System.Drawing.Size(786, 420);
             this.haltroyListView1.TabIndex = 0;
             this.haltroyListView1.UseCompatibleStateImageBehavior = false;
+            this.haltroyListView1.SelectedIndexChanged += new System.EventHandler(this.haltroyListView1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -480,7 +481,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(792, 426);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Slider & Switch";
+            this.tabPage2.Text = "Slider & Switch & Button";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // sliderValue
@@ -831,35 +832,15 @@
             this.tabPage4.Text = "Forms";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // label24
             // 
-            this.button7.Location = new System.Drawing.Point(8, 6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(128, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Spawn a HaltroyForm";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // haltroySwitch2
-            // 
-            this.haltroySwitch2.Location = new System.Drawing.Point(9, 36);
-            this.haltroySwitch2.Name = "haltroySwitch2";
-            this.haltroySwitch2.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.haltroySwitch2.OnFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.haltroySwitch2.Size = new System.Drawing.Size(50, 19);
-            this.haltroySwitch2.TabIndex = 1;
-            this.haltroySwitch2.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch2_CheckedChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(66, 39);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 13);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Draggable";
-            this.label21.Click += new System.EventHandler(this.haltroySwitch2_CheckedChanged);
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(66, 65);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(90, 13);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Full Screen Mode";
+            this.label24.Click += new System.EventHandler(this.haltroySwitch3_CheckedChanged);
             // 
             // haltroySwitch3
             // 
@@ -871,15 +852,35 @@
             this.haltroySwitch3.TabIndex = 1;
             this.haltroySwitch3.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch3_CheckedChanged);
             // 
-            // label24
+            // label21
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(66, 65);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(90, 13);
-            this.label24.TabIndex = 2;
-            this.label24.Text = "Full Screen Mode";
-            this.label24.Click += new System.EventHandler(this.haltroySwitch3_CheckedChanged);
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(66, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(56, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Draggable";
+            this.label21.Click += new System.EventHandler(this.haltroySwitch2_CheckedChanged);
+            // 
+            // haltroySwitch2
+            // 
+            this.haltroySwitch2.Location = new System.Drawing.Point(9, 36);
+            this.haltroySwitch2.Name = "haltroySwitch2";
+            this.haltroySwitch2.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch2.OnFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.haltroySwitch2.Size = new System.Drawing.Size(50, 19);
+            this.haltroySwitch2.TabIndex = 1;
+            this.haltroySwitch2.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch2_CheckedChanged);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(8, 6);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(128, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Spawn a HaltroyForm";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 

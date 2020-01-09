@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
-    class Startup
+   class Startup
     {
         string hfVersion;
         public Startup()

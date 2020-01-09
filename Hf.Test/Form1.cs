@@ -241,5 +241,10 @@ namespace Hf.Test
         {
             fullscreenmode = haltroySwitch3.Checked;
         }
+
+        private void haltroyListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
