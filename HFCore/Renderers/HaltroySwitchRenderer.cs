@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using HaltroyFramework;
 
 namespace HaltroyFramework
 {
@@ -11,66 +10,9 @@ namespace HaltroyFramework
 
         public HaltroySwitchRenderer()
         {
-            BorderColor = Color.FromArgb(255, 202, 202, 202);
-            LeftSideUpperColor1 = Color.FromArgb(255, 17, 123, 220);
-            LeftSideUpperColor2 = Color.FromArgb(255, 17, 123, 220);
-            LeftSideLowerColor1 = Color.FromArgb(255, 17, 123, 220); 
-            LeftSideLowerColor2 = Color.FromArgb(255, 17, 123, 220);
-            LeftSideUpperBorderColor = Color.FromArgb(150, 123, 157, 196);
-            LeftSideLowerBorderColor = Color.FromArgb(150, 123, 157, 196);
-            RightSideUpperColor1 = Color.FromArgb(255, 229, 229, 229);
-            RightSideUpperColor2 = Color.FromArgb(255, 229, 229, 229);
-            RightSideLowerColor1 = Color.FromArgb(255, 232, 232, 232);
-            RightSideLowerColor2 = Color.FromArgb(255, 232, 232, 232);
-            RightSideUpperBorderColor = Color.FromArgb(150, 175, 175, 175);
-            RightSideLowerBorderColor = Color.FromArgb(150, 175, 175, 175);
-            ButtonShadowColor = Color.Transparent;
-            ButtonNormalOuterBorderColor = Color.FromArgb(255, 149, 172, 194);
-            ButtonNormalInnerBorderColor = Color.FromArgb(255, 235, 235, 235);
-            ButtonNormalSurfaceColor1 = Color.FromArgb(255, 251, 250, 251);
-            ButtonNormalSurfaceColor2 = Color.FromArgb(255, 251, 250, 251);
-            ButtonHoverOuterBorderColor = Color.FromArgb(255, 223, 223, 223);
-            ButtonHoverInnerBorderColor = Color.FromArgb(255, 223, 223, 223);
-            ButtonHoverSurfaceColor1 = Color.FromArgb(255, 239, 238, 239);
-            ButtonHoverSurfaceColor2 = Color.FromArgb(255, 239, 238, 239);
-            ButtonPressedOuterBorderColor = Color.FromArgb(255, 176, 176, 176);
-            ButtonPressedInnerBorderColor = Color.FromArgb(255, 176, 176, 176);
-            ButtonPressedSurfaceColor1 = Color.FromArgb(255, 187, 187, 187);
-            ButtonPressedSurfaceColor2 = Color.FromArgb(255, 187, 187, 187);
         }
 
         #endregion Constructor
-
-        #region Public Properties
-
-        public Color BorderColor { get; set; }
-        public Color LeftSideUpperColor1 { get; set; }
-        public Color LeftSideUpperColor2 { get; set; }
-        public Color LeftSideLowerColor1 { get; set; }
-        public Color LeftSideLowerColor2 { get; set; }
-        public Color LeftSideUpperBorderColor { get; set; }
-        public Color LeftSideLowerBorderColor { get; set; }
-        public Color RightSideUpperColor1 { get; set; }
-        public Color RightSideUpperColor2 { get; set; }
-        public Color RightSideLowerColor1 { get; set; }
-        public Color RightSideLowerColor2 { get; set; }
-        public Color RightSideUpperBorderColor { get; set; }
-        public Color RightSideLowerBorderColor { get; set; }
-        public Color ButtonShadowColor { get; set; }
-        public Color ButtonNormalOuterBorderColor { get; set; }
-        public Color ButtonNormalInnerBorderColor { get; set; }
-        public Color ButtonNormalSurfaceColor1 { get; set; }
-        public Color ButtonNormalSurfaceColor2 { get; set; }
-        public Color ButtonHoverOuterBorderColor { get; set; }
-        public Color ButtonHoverInnerBorderColor { get; set; }
-        public Color ButtonHoverSurfaceColor1 { get; set; }
-        public Color ButtonHoverSurfaceColor2 { get; set; }
-        public Color ButtonPressedOuterBorderColor { get; set; }
-        public Color ButtonPressedInnerBorderColor { get; set; }
-        public Color ButtonPressedSurfaceColor1 { get; set; }
-        public Color ButtonPressedSurfaceColor2 { get; set; }
-
-        #endregion Public Properties
 
         #region Render Method Implementations
 
@@ -88,7 +30,7 @@ namespace HaltroyFramework
 
             //Draw upper gradient field
             int gradientRectWidth = leftRectangle.Width + buttonWidth / 2;
-            int upperGradientRectHeight = (int)((double)0.8*(double)(leftRectangle.Height - 2));
+            int upperGradientRectHeight = (int)(0.8 * (leftRectangle.Height - 2));
 
             Rectangle controlRectangle = new Rectangle(0, 0, HaltroySwitch.Width, HaltroySwitch.Height);
             GraphicsPath controlClipPath = GetControlClipPath(controlRectangle);
@@ -105,10 +47,9 @@ namespace HaltroyFramework
                 upperGradientPath.AddLine(upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height);
                 upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height);
 
-                Color upperColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? LeftSideUpperColor1 : LeftSideUpperColor1;
-                Color upperColor2 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? LeftSideUpperColor2 : LeftSideUpperColor2;
+                Color upperColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? HaltroySwitch.OverlayColor : HaltroySwitch.OverlayColor;
 
-                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor2, LinearGradientMode.Vertical))
+                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor1, LinearGradientMode.Vertical))
                 {
                     g.FillPath(upperGradientBrush, upperGradientPath);
                 }
@@ -117,7 +58,7 @@ namespace HaltroyFramework
             g.ResetClip();
 
             //Draw lower gradient field
-            int lowerGradientRectHeight = (int)Math.Ceiling((double)0.5 * (double)(leftRectangle.Height - 2));
+            int lowerGradientRectHeight = (int)Math.Ceiling(0.5 * (leftRectangle.Height - 2));
 
             Rectangle lowerGradientRectangle = new Rectangle(leftRectangle.X, leftRectangle.Y + (leftRectangle.Height / 2), gradientRectWidth, lowerGradientRectHeight);
 
@@ -126,16 +67,15 @@ namespace HaltroyFramework
 
             using (GraphicsPath lowerGradientPath = new GraphicsPath())
             {
-                lowerGradientPath.AddArc(1, lowerGradientRectangle.Y, (int) (0.75*(HaltroySwitch.Height - 1)), HaltroySwitch.Height - 1, 215, 45); //Arc from side to top
-                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth/2, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y);
+                lowerGradientPath.AddArc(1, lowerGradientRectangle.Y, (int)(0.75 * (HaltroySwitch.Height - 1)), HaltroySwitch.Height - 1, 215, 45); //Arc from side to top
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth / 2, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y);
                 lowerGradientPath.AddLine(lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
-                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth/4, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth / 4, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
                 lowerGradientPath.AddArc(1, 1, HaltroySwitch.Height - 1, HaltroySwitch.Height - 1, 90, 70); //Arc from side to bottom
 
-                Color lowerColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? LeftSideLowerColor1 : LeftSideLowerColor1;
-                Color lowerColor2 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? LeftSideLowerColor2 : LeftSideLowerColor2;
+                Color lowerColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? HaltroySwitch.OverlayColor : HaltroySwitch.OverlayColor;
 
-                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor2, LinearGradientMode.Vertical))
+                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor1, LinearGradientMode.Vertical))
                 {
                     g.FillPath(lowerGradientBrush, lowerGradientPath);
                 }
@@ -149,23 +89,23 @@ namespace HaltroyFramework
             g.SetClip(controlClipPath);
 
             //Draw upper inside border
-            Color upperBordercolor = LeftSideUpperBorderColor;
+            Color upperBorderColor = HaltroySwitch.BorderColor;
 
-          //  if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-            //    upperBordercolor = upperBordercolor;
+            //  if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //    upperHaltroySwitch.BorderColor = upperHaltroySwitch.BorderColor;
 
-            using (Pen upperBorderPen = new Pen(upperBordercolor))
+            using (Pen upperBorderPen = new Pen(upperBorderColor))
             {
                 g.DrawLine(upperBorderPen, leftRectangle.X, leftRectangle.Y + 1, leftRectangle.X + leftRectangle.Width + (buttonWidth / 2), leftRectangle.Y + 1);
             }
 
             //Draw lower inside border
-            Color lowerBordercolor = LeftSideLowerBorderColor;
+            Color lowerBorderColor = HaltroySwitch.BorderColor;
 
-        //    if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-          //      lowerBordercolor = lowerBordercolor;
+            //    if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //      lowerHaltroySwitch.BorderColor = lowerHaltroySwitch.BorderColor;
 
-            using (Pen lowerBorderPen = new Pen(lowerBordercolor))
+            using (Pen lowerBorderPen = new Pen(lowerBorderColor))
             {
                 g.DrawLine(lowerBorderPen, leftRectangle.X, leftRectangle.Y + leftRectangle.Height - 1, leftRectangle.X + leftRectangle.Width + (buttonWidth / 2), leftRectangle.Y + leftRectangle.Height - 1);
             }
@@ -191,37 +131,45 @@ namespace HaltroyFramework
 
                         if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (((float)fullRectangle.Width - (float)resizedImageSize.Width) / 2));
+                            imageXPos = (int)(fullRectangle.X + ((fullRectangle.Width - resizedImageSize.Width) / 2));
                         }
                         else if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Near)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (float)fullRectangle.Width - (float)resizedImageSize.Width);
+                            imageXPos = (int)(fullRectangle.X + fullRectangle.Width - resizedImageSize.Width);
                         }
 
-                        imageRectangle = new Rectangle(imageXPos, (int)((float)fullRectangle.Y + (((float)fullRectangle.Height - (float)resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
+                        imageRectangle = new Rectangle(imageXPos, (int)(fullRectangle.Y + ((fullRectangle.Height - resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
 
                         if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle, 0, 0, HaltroySwitch.OnSideImage.Width, HaltroySwitch.OnSideImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                        }
                         else
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle);
+                        }
                     }
                     else
                     {
                         if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (((float)fullRectangle.Width - (float)imageSize.Width) / 2));
+                            imageXPos = (int)(fullRectangle.X + ((fullRectangle.Width - imageSize.Width) / 2));
                         }
                         else if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Near)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (float)fullRectangle.Width - (float)imageSize.Width);
+                            imageXPos = (int)(fullRectangle.X + fullRectangle.Width - imageSize.Width);
                         }
 
-                        imageRectangle = new Rectangle(imageXPos, (int)((float)fullRectangle.Y + (((float)fullRectangle.Height - (float)imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
+                        imageRectangle = new Rectangle(imageXPos, (int)(fullRectangle.Y + ((fullRectangle.Height - imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
 
                         if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle, 0, 0, HaltroySwitch.OnSideImage.Width, HaltroySwitch.OnSideImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                        }
                         else
+                        {
                             g.DrawImageUnscaled(HaltroySwitch.OnSideImage, imageRectangle);
+                        }
                     }
                 }
                 else if (!string.IsNullOrEmpty(HaltroySwitch.OnText))
@@ -232,19 +180,19 @@ namespace HaltroyFramework
 
                     if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                     {
-                        textXPos = (float)fullRectangle.X + (((float)fullRectangle.Width - (float)textSize.Width) / 2);
+                        textXPos = fullRectangle.X + ((fullRectangle.Width - textSize.Width) / 2);
                     }
                     else if (HaltroySwitch.OnSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Near)
                     {
-                        textXPos = (float)fullRectangle.X + (float)fullRectangle.Width - (float)textSize.Width;
+                        textXPos = fullRectangle.X + fullRectangle.Width - textSize.Width;
                     }
 
-                    RectangleF textRectangle = new RectangleF(textXPos, (float)fullRectangle.Y + (((float)fullRectangle.Height - (float)textSize.Height) / 2), textSize.Width, textSize.Height);
+                    RectangleF textRectangle = new RectangleF(textXPos, fullRectangle.Y + ((fullRectangle.Height - textSize.Height) / 2), textSize.Width, textSize.Height);
 
                     Color textForeColor = HaltroySwitch.OnForeColor;
 
                     //if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-                      //  textForeColor = textForeColor;
+                    //  textForeColor = textForeColor;
 
                     using (Brush textBrush = new SolidBrush(textForeColor))
                     {
@@ -268,8 +216,8 @@ namespace HaltroyFramework
 
             //Draw upper gradient field
             int gradientRectWidth = rightRectangle.Width + buttonRectangle.Width / 2;
-            int upperGradientRectHeight = (int)((double)0.8 * (double)(rightRectangle.Height - 2));
-            
+            int upperGradientRectHeight = (int)(0.8 * (rightRectangle.Height - 2));
+
             Rectangle upperGradientRectangle = new Rectangle(rightRectangle.X - buttonRectangle.Width / 2, rightRectangle.Y + 1, gradientRectWidth - 1, upperGradientRectHeight - 1);
 
             g.SetClip(controlClipPath);
@@ -282,10 +230,9 @@ namespace HaltroyFramework
                 upperGradientPath.AddLine(upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height);
                 upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X, upperGradientRectangle.Y);
 
-                Color upperColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? RightSideUpperColor1 : RightSideUpperColor1;
-                Color upperColor2 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? RightSideUpperColor2 : RightSideUpperColor2;
+                Color upperColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? HaltroySwitch.BackColor : HaltroySwitch.BackColor;
 
-                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor2, LinearGradientMode.Vertical))
+                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor1, LinearGradientMode.Vertical))
                 {
                     g.FillPath(upperGradientBrush, upperGradientPath);
                 }
@@ -294,8 +241,8 @@ namespace HaltroyFramework
             g.ResetClip();
 
             //Draw lower gradient field
-            int lowerGradientRectHeight = (int)Math.Ceiling((double)0.5 * (double)(rightRectangle.Height - 2));
-            
+            int lowerGradientRectHeight = (int)Math.Ceiling(0.5 * (rightRectangle.Height - 2));
+
             Rectangle lowerGradientRectangle = new Rectangle(rightRectangle.X - buttonRectangle.Width / 2, rightRectangle.Y + (rightRectangle.Height / 2), gradientRectWidth - 1, lowerGradientRectHeight);
 
             g.SetClip(controlClipPath);
@@ -309,10 +256,9 @@ namespace HaltroyFramework
                 lowerGradientPath.AddLine(lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
                 lowerGradientPath.AddLine(lowerGradientRectangle.X, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X, lowerGradientRectangle.Y);
 
-                Color lowerColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? RightSideLowerColor1 : RightSideLowerColor1;
-                Color lowerColor2 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? RightSideLowerColor2 : RightSideLowerColor2;
+                Color lowerColor1 = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? HaltroySwitch.BackColor : HaltroySwitch.BackColor;
 
-                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor2, LinearGradientMode.Vertical))
+                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor1, LinearGradientMode.Vertical))
                 {
                     g.FillPath(lowerGradientBrush, lowerGradientPath);
                 }
@@ -326,23 +272,23 @@ namespace HaltroyFramework
             g.SetClip(controlClipPath);
 
             //Draw upper inside border
-            Color upperBordercolor = RightSideUpperBorderColor;
+            Color upperBorderColor = HaltroySwitch.BorderColor;
 
-           // if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-                //upperBordercolor = upperBordercolor;
+            // if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //upperHaltroySwitch.BorderColor = upperHaltroySwitch.BorderColor;
 
-            using (Pen upperBorderPen = new Pen(upperBordercolor))
+            using (Pen upperBorderPen = new Pen(upperBorderColor))
             {
                 g.DrawLine(upperBorderPen, rightRectangle.X - (buttonRectangle.Width / 2), rightRectangle.Y + 1, rightRectangle.X + rightRectangle.Width, rightRectangle.Y + 1);
             }
 
             //Draw lower inside border
-            Color lowerBordercolor = RightSideLowerBorderColor;
+            Color lowerBorderColor = HaltroySwitch.BorderColor;
 
-          //  if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-            //    lowerBordercolor = lowerBordercolor;
+            //  if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //    lowerHaltroySwitch.BorderColor = lowerHaltroySwitch.BorderColor;
 
-            using (Pen lowerBorderPen = new Pen(lowerBordercolor))
+            using (Pen lowerBorderPen = new Pen(lowerBorderColor))
             {
                 g.DrawLine(lowerBorderPen, rightRectangle.X - (buttonRectangle.Width / 2), rightRectangle.Y + rightRectangle.Height - 1, rightRectangle.X + rightRectangle.Width, rightRectangle.Y + rightRectangle.Height - 1);
             }
@@ -368,37 +314,45 @@ namespace HaltroyFramework
 
                         if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (((float)fullRectangle.Width - (float)resizedImageSize.Width) / 2));
+                            imageXPos = (int)(fullRectangle.X + ((fullRectangle.Width - resizedImageSize.Width) / 2));
                         }
                         else if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Far)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (float)fullRectangle.Width - (float)resizedImageSize.Width);
+                            imageXPos = (int)(fullRectangle.X + fullRectangle.Width - resizedImageSize.Width);
                         }
 
-                        imageRectangle = new Rectangle(imageXPos, (int)((float)fullRectangle.Y + (((float)fullRectangle.Height - (float)resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
+                        imageRectangle = new Rectangle(imageXPos, (int)(fullRectangle.Y + ((fullRectangle.Height - resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
 
                         if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle, 0, 0, HaltroySwitch.OnSideImage.Width, HaltroySwitch.OnSideImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                        }
                         else
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle);
+                        }
                     }
                     else
                     {
                         if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (((float)fullRectangle.Width - (float)imageSize.Width) / 2));
+                            imageXPos = (int)(fullRectangle.X + ((fullRectangle.Width - imageSize.Width) / 2));
                         }
                         else if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Far)
                         {
-                            imageXPos = (int)((float)fullRectangle.X + (float)fullRectangle.Width - (float)imageSize.Width);
+                            imageXPos = (int)(fullRectangle.X + fullRectangle.Width - imageSize.Width);
                         }
 
-                        imageRectangle = new Rectangle(imageXPos, (int)((float)fullRectangle.Y + (((float)fullRectangle.Height - (float)imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
+                        imageRectangle = new Rectangle(imageXPos, (int)(fullRectangle.Y + ((fullRectangle.Height - imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
 
                         if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                        {
                             g.DrawImage(HaltroySwitch.OnSideImage, imageRectangle, 0, 0, HaltroySwitch.OnSideImage.Width, HaltroySwitch.OnSideImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                        }
                         else
+                        {
                             g.DrawImageUnscaled(HaltroySwitch.OffSideImage, imageRectangle);
+                        }
                     }
                 }
                 else if (!string.IsNullOrEmpty(HaltroySwitch.OffText))
@@ -409,19 +363,19 @@ namespace HaltroyFramework
 
                     if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Center)
                     {
-                        textXPos = (float)fullRectangle.X + (((float)fullRectangle.Width - (float)textSize.Width) / 2);
+                        textXPos = fullRectangle.X + ((fullRectangle.Width - textSize.Width) / 2);
                     }
                     else if (HaltroySwitch.OffSideAlignment == HaltroySwitch.HaltroySwitchAlignment.Far)
                     {
-                        textXPos = (float)fullRectangle.X + (float)fullRectangle.Width - (float)textSize.Width;
+                        textXPos = fullRectangle.X + fullRectangle.Width - textSize.Width;
                     }
 
-                    RectangleF textRectangle = new RectangleF(textXPos, (float)fullRectangle.Y + (((float)fullRectangle.Height - (float)textSize.Height) / 2), textSize.Width, textSize.Height);
+                    RectangleF textRectangle = new RectangleF(textXPos, fullRectangle.Y + ((fullRectangle.Height - textSize.Height) / 2), textSize.Width, textSize.Height);
 
                     Color textForeColor = HaltroySwitch.OffForeColor;
 
-                //    if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-                  //      textForeColor = textForeColor;
+                    //    if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                    //      textForeColor = textForeColor;
 
                     using (Brush textBrush = new SolidBrush(textForeColor))
                     {
@@ -436,9 +390,13 @@ namespace HaltroyFramework
         public override void RenderButton(Graphics g, Rectangle buttonRectangle)
         {
             if (HaltroySwitch.IsButtonOnLeftSide)
+            {
                 buttonRectangle.X += 1;
+            }
             else if (HaltroySwitch.IsButtonOnRightSide)
+            {
                 buttonRectangle.X -= 1;
+            }
 
             g.SmoothingMode = SmoothingMode.HighQuality;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -461,27 +419,24 @@ namespace HaltroyFramework
 
             g.SetClip(shadowClipRectangle);
 
-            Color buttonShadowColor = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? ButtonShadowColor : ButtonShadowColor;
-
-            using (Pen buttonShadowPen = new Pen(buttonShadowColor))
-            {
-                g.DrawEllipse(buttonShadowPen, buttonRectangle);
-            }
-
             g.ResetClip();
 
             buttonRectangle.Inflate(-1, -1);
 
             //Draw outer button border
-            Color buttonOuterBorderColor = ButtonNormalOuterBorderColor;
+            Color buttonOuterBorderColor = HaltroySwitch.BorderColor;
 
             if (HaltroySwitch.IsButtonPressed)
-                buttonOuterBorderColor = ButtonPressedOuterBorderColor;
+            {
+                buttonOuterBorderColor = HaltroySwitch.BorderColor;
+            }
             else if (HaltroySwitch.IsButtonHovered)
-                buttonOuterBorderColor = ButtonHoverOuterBorderColor;
+            {
+                buttonOuterBorderColor = HaltroySwitch.BorderColor;
+            }
 
-           // if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-            //    buttonOuterBorderColor = buttonOuterBorderColor;
+            // if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //    buttonOuterHaltroySwitch.BorderColor = buttonOuterHaltroySwitch.BorderColor;
 
             using (Brush outerBorderBrush = new SolidBrush(buttonOuterBorderColor))
             {
@@ -491,15 +446,19 @@ namespace HaltroyFramework
             //Draw inner button border
             buttonRectangle.Inflate(-1, -1);
 
-            Color buttonInnerBorderColor = ButtonNormalInnerBorderColor;
+            Color buttonInnerBorderColor = HaltroySwitch.BorderColor;
 
             if (HaltroySwitch.IsButtonPressed)
-                buttonInnerBorderColor = ButtonPressedInnerBorderColor;
+            {
+                buttonInnerBorderColor = HaltroySwitch.BorderColor;
+            }
             else if (HaltroySwitch.IsButtonHovered)
-                buttonInnerBorderColor = ButtonHoverInnerBorderColor;
+            {
+                buttonInnerBorderColor = HaltroySwitch.BorderColor;
+            }
 
-         //   if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-           //     buttonInnerBorderColor = buttonInnerBorderColor;
+            //   if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //     buttonInnerHaltroySwitch.BorderColor = buttonInnerHaltroySwitch.BorderColor;
 
             using (Brush innerBorderBrush = new SolidBrush(buttonInnerBorderColor))
             {
@@ -509,25 +468,33 @@ namespace HaltroyFramework
             //Draw button surface
             buttonRectangle.Inflate(-1, -1);
 
-            Color buttonUpperSurfaceColor = ButtonNormalSurfaceColor1;
+            Color buttonUpperSurfaceColor = HaltroySwitch.ButtonColor;
 
             if (HaltroySwitch.IsButtonPressed)
-                buttonUpperSurfaceColor = ButtonPressedSurfaceColor1;
+            {
+                buttonUpperSurfaceColor = HaltroySwitch.ButtonPressedColor;
+            }
             else if (HaltroySwitch.IsButtonHovered)
-                buttonUpperSurfaceColor = ButtonHoverSurfaceColor1;
+            {
+                buttonUpperSurfaceColor = HaltroySwitch.ButtonHoverColor;
+            }
 
-      //      if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-        //        buttonUpperSurfaceColor = buttonUpperSurfaceColor;
+            //      if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //        buttonUpperSurfaceColor = buttonUpperSurfaceColor;
 
-            Color buttonLowerSurfaceColor = ButtonNormalSurfaceColor2;
+            Color buttonLowerSurfaceColor = HaltroySwitch.ButtonColor;
 
             if (HaltroySwitch.IsButtonPressed)
-                buttonLowerSurfaceColor = ButtonPressedSurfaceColor2;
+            {
+                buttonLowerSurfaceColor = HaltroySwitch.ButtonPressedColor;
+            }
             else if (HaltroySwitch.IsButtonHovered)
-                buttonLowerSurfaceColor = ButtonHoverSurfaceColor2;
+            {
+                buttonLowerSurfaceColor = HaltroySwitch.ButtonHoverColor;
+            }
 
-       //     if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-         //       buttonLowerSurfaceColor = buttonLowerSurfaceColor;
+            //     if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+            //       buttonLowerSurfaceColor = buttonLowerSurfaceColor;
 
             using (Brush buttonSurfaceBrush = new LinearGradientBrush(buttonRectangle, buttonUpperSurfaceColor, buttonLowerSurfaceColor, LinearGradientMode.Vertical))
             {
@@ -542,7 +509,7 @@ namespace HaltroyFramework
 
             using (GraphicsPath borderPath = GetControlClipPath(controlRectangle))
             {
-                Color controlBorderColor = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? BorderColor : BorderColor;
+                Color controlBorderColor = (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled) ? HaltroySwitch.BorderColor : HaltroySwitch.BorderColor;
 
                 using (Pen borderPen = new Pen(controlBorderColor))
                 {
@@ -576,37 +543,45 @@ namespace HaltroyFramework
 
                     if (alignment == HaltroySwitch.HaltroySwitchButtonAlignment.Center)
                     {
-                        imageXPos = (int)((float)buttonRectangle.X + (((float)buttonRectangle.Width - (float)resizedImageSize.Width) / 2));
+                        imageXPos = (int)(buttonRectangle.X + ((buttonRectangle.Width - (float)resizedImageSize.Width) / 2));
                     }
                     else if (alignment == HaltroySwitch.HaltroySwitchButtonAlignment.Right)
                     {
-                        imageXPos = (int)((float)buttonRectangle.X + (float)buttonRectangle.Width - (float)resizedImageSize.Width);
+                        imageXPos = (int)(buttonRectangle.X + (float)buttonRectangle.Width - resizedImageSize.Width);
                     }
 
-                    imageRectangle = new Rectangle(imageXPos, (int)((float)buttonRectangle.Y + (((float)buttonRectangle.Height - (float)resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
+                    imageRectangle = new Rectangle(imageXPos, (int)(buttonRectangle.Y + ((buttonRectangle.Height - (float)resizedImageSize.Height) / 2)), resizedImageSize.Width, resizedImageSize.Height);
 
                     if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
-                        g.DrawImage(buttonImage, imageRectangle, 0,0, buttonImage.Width, buttonImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                    {
+                        g.DrawImage(buttonImage, imageRectangle, 0, 0, buttonImage.Width, buttonImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                    }
                     else
+                    {
                         g.DrawImage(buttonImage, imageRectangle);
+                    }
                 }
                 else
                 {
                     if (alignment == HaltroySwitch.HaltroySwitchButtonAlignment.Center)
                     {
-                        imageXPos = (int)((float)buttonRectangle.X + (((float)buttonRectangle.Width - (float)imageSize.Width) / 2));
+                        imageXPos = (int)(buttonRectangle.X + ((buttonRectangle.Width - (float)imageSize.Width) / 2));
                     }
                     else if (alignment == HaltroySwitch.HaltroySwitchButtonAlignment.Right)
                     {
-                        imageXPos = (int)((float)buttonRectangle.X + (float)buttonRectangle.Width - (float)imageSize.Width);
+                        imageXPos = (int)(buttonRectangle.X + (float)buttonRectangle.Width - imageSize.Width);
                     }
 
-                    imageRectangle = new Rectangle(imageXPos, (int)((float)buttonRectangle.Y + (((float)buttonRectangle.Height - (float)imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
+                    imageRectangle = new Rectangle(imageXPos, (int)(buttonRectangle.Y + ((buttonRectangle.Height - (float)imageSize.Height) / 2)), imageSize.Width, imageSize.Height);
 
                     if (!HaltroySwitch.Enabled && HaltroySwitch.GrayWhenDisabled)
+                    {
                         g.DrawImage(buttonImage, imageRectangle, 0, 0, buttonImage.Width, buttonImage.Height, GraphicsUnit.Pixel, ImageHelper.GetGrayscaleAttributes());
+                    }
                     else
+                    {
                         g.DrawImageUnscaled(buttonImage, imageRectangle);
+                    }
                 }
 
                 g.ResetClip();
@@ -654,7 +629,7 @@ namespace HaltroyFramework
             Rectangle buttonRect = new Rectangle(HaltroySwitch.ButtonValue, 1, buttonWidth, buttonWidth);
             return buttonRect;
         }
-        
+
         #endregion Helper Method Implementations
     }
 }

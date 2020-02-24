@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Management;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace HaltroyFramework
@@ -70,14 +61,19 @@ namespace HaltroyFramework
             | WS_SYSMENU | WS_THICKFRAME;
 
                 if (this.DesignMode)
+                {
                     cp.Style = cp.Style | WS_CHILDWINDOW;
+                }
 
                 int ClassFlags = CS_DBLCLKS;
                 int OSVER = Environment.OSVersion.Version.Major * 10;
                 OSVER += Environment.OSVersion.Version.Minor;
 
                 if (OSVER >= 51)
+                {
                     ClassFlags = ClassFlags | CS_DROPSHADOW;
+                }
+
                 cp.ClassStyle = ClassFlags;
 
                 return cp;
@@ -112,7 +108,8 @@ namespace HaltroyFramework
                 if (useFullScreen)
                 {
                     this.MaximizedBounds = Screen.FromHandle(this.Handle).Bounds;
-                } else
+                }
+                else
                 {
                     this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
                 }
@@ -136,28 +133,16 @@ namespace HaltroyFramework
         [Category("HaltroyForms"), Browsable(true), Description("Maximizes to entire screen on duble-click if enabled.Miximizes to Working Area if disabled.")]
         public bool FullScreenMode
         {
-            get
-            {
-                return this.useFullScreen;
-            }
+            get => this.useFullScreen;
 
-            set
-            {
-                this.useFullScreen = value;
-            }
+            set => this.useFullScreen = value;
         }
         [Category("HaltroyForms"), Browsable(true), Description("Enables dragging.")]
         public bool EnableDrag
         {
-            get
-            {
-                return this.draggable;
-            }
+            get => this.draggable;
 
-            set
-            {
-                this.draggable = value;
-            }
+            set => this.draggable = value;
         }
         public HaltroyForms()
         {

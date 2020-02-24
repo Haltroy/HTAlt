@@ -14,17 +14,14 @@ namespace HaltroyFramework
         #region Constructor
 
         protected HaltroySwitchRendererBase()
-        {}
+        { }
 
         internal void SetHaltroySwitch(HaltroySwitch HaltroySwitch)
         {
             _HaltroySwitch = HaltroySwitch;
         }
 
-        internal HaltroySwitch HaltroySwitch
-        {
-            get { return _HaltroySwitch; }
-        }
+        internal HaltroySwitch HaltroySwitch => _HaltroySwitch;
 
         #endregion Constructor
 
@@ -33,7 +30,9 @@ namespace HaltroyFramework
         public void RenderBackground(PaintEventArgs e)
         {
             if (_HaltroySwitch == null)
+            {
                 return;
+            }
 
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
@@ -46,7 +45,9 @@ namespace HaltroyFramework
         public void RenderControl(PaintEventArgs e)
         {
             if (_HaltroySwitch == null)
+            {
                 return;
+            }
 
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
@@ -58,7 +59,9 @@ namespace HaltroyFramework
                 Rectangle leftRectangle = new Rectangle(0, 0, buttonRectangle.X, HaltroySwitch.Height);
 
                 if (leftRectangle.Width > 0)
+                {
                     RenderLeftToggleField(e.Graphics, leftRectangle, totalToggleFieldWidth);
+                }
             }
 
             if (buttonRectangle.X + buttonRectangle.Width < e.ClipRectangle.Width)
@@ -66,7 +69,9 @@ namespace HaltroyFramework
                 Rectangle rightRectangle = new Rectangle(buttonRectangle.X + buttonRectangle.Width, 0, HaltroySwitch.Width - buttonRectangle.X - buttonRectangle.Width, HaltroySwitch.Height);
 
                 if (rightRectangle.Width > 0)
+                {
                     RenderRightToggleField(e.Graphics, rightRectangle, totalToggleFieldWidth);
+                }
             }
 
             RenderButton(e.Graphics, buttonRectangle);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
@@ -62,7 +60,7 @@ namespace HaltroyFramework
         ///     The color of the text
         /// </summary>
         private Color textColor = Color.LightGray;
-        
+
         ///<summary>
         /// Shows closing buttons
         /// </summary> 
@@ -90,84 +88,48 @@ namespace HaltroyFramework
         [Category("Style"), Browsable(true), Description("The color of the selected page")]
         public Color ActiveColor
         {
-            get
-            {
-                return this.activeColor;
-            }
+            get => this.activeColor;
 
-            set
-            {
-                this.activeColor = value;
-            }
+            set => this.activeColor = value;
         }
 
         [Category("Style"), Browsable(true), Description("The color of the background of the tab")]
         public Color BackTabColor
         {
-            get
-            {
-                return this.backTabColor;
-            }
+            get => this.backTabColor;
 
-            set
-            {
-                this.backTabColor = value;
-            }
+            set => this.backTabColor = value;
         }
 
         [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and will be always be at the start.")]
         public TabPage LockedFirstTab
         {
-            get
-            {
-                return this.lockedFirstTab;
-            }
+            get => this.lockedFirstTab;
 
-            set
-            {
-                this.lockedFirstTab = value;
-            }
+            set => this.lockedFirstTab = value;
         }
 
-        [Category("Misc"),Browsable(true),Description("Enables repositioning the tab pages on runtime.")]
+        [Category("Misc"), Browsable(true), Description("Enables repositioning the tab pages on runtime.")]
         public bool EnableRepositioning
         {
-            get
-            {
-                return this.enableReposition;
-            }
-            set
-            {
-                this.enableReposition = value;
-            }
+            get => this.enableReposition;
+            set => this.enableReposition = value;
         }
 
         [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and always will be at the end.")]
         public TabPage LockedLastTab
         {
-            get
-            {
-                return this.lockedLastTab;
-            }
+            get => this.lockedLastTab;
 
-            set
-            {
-                this.lockedLastTab = value;
-            }
+            set => this.lockedLastTab = value;
         }
 
         [Category("Style"), Browsable(true), Description("The color of the border of the control")]
         public Color BorderColor
         {
-            get
-            {
-                return this.borderColor;
-            }
+            get => this.borderColor;
 
-            set
-            {
-                this.borderColor = value;
-            }
+            set => this.borderColor = value;
         }
 
         /// <summary>
@@ -176,43 +138,25 @@ namespace HaltroyFramework
         [Category("Options"), Browsable(true), Description("The message that will be shown before closing.")]
         public string ClosingMessage
         {
-            get
-            {
-                return this.closingMessage;
-            }
+            get => this.closingMessage;
 
-            set
-            {
-                this.closingMessage = value;
-            }
+            set => this.closingMessage = value;
         }
 
         [Category("Style"), Browsable(true), Description("The color of the header.")]
         public Color HeaderColor
         {
-            get
-            {
-                return this.headerColor;
-            }
+            get => this.headerColor;
 
-            set
-            {
-                this.headerColor = value;
-            }
+            set => this.headerColor = value;
         }
         [Category("Style"), Browsable(true),
          Description("The color of the horizontal line which is located under the headers of the pages.")]
         public Color HorizontalLineColor
         {
-            get
-            {
-                return this.horizLineColor;
-            }
+            get => this.horizLineColor;
 
-            set
-            {
-                this.horizLineColor = value;
-            }
+            set => this.horizLineColor = value;
         }
 
         /// <summary>
@@ -222,31 +166,19 @@ namespace HaltroyFramework
         public bool ShowClosingMessage { get; set; }
 
         [Category("Style"), Browsable(true), Description("The color of the title of the page")]
-        public Color SelectedTextColor 
+        public Color SelectedTextColor
         {
-            get
-            {
-                return this.theselectedTextColor;
-            }
+            get => this.theselectedTextColor;
 
-            set
-            {
-                this.theselectedTextColor = value;
-            }
+            set => this.theselectedTextColor = value;
         }
 
         [Category("Style"), Browsable(true), Description("The color of the title of the page")]
         public Color TextColor
         {
-            get
-            {
-                return this.textColor;
-            }
+            get => this.textColor;
 
-            set
-            {
-                this.textColor = value;
-            }
+            set => this.textColor = value;
         }
 
         /// <summary>
@@ -273,7 +205,7 @@ namespace HaltroyFramework
 
                 if (!ReferenceEquals(pointedTab, draggedTab))
                 {
-                    if (draggedTab == lockedFirstTab|| pointedTab == lockedFirstTab) { }
+                    if (draggedTab == lockedFirstTab || pointedTab == lockedFirstTab) { }
                     else if (draggedTab == lockedLastTab || pointedTab == lockedLastTab) { }
                     else
                     {
@@ -315,8 +247,9 @@ namespace HaltroyFramework
                         if (DialogResult.Yes == mesaj.ShowDialog())
                         {
                             if (this.SelectedTab == lockedFirstTab || this.SelectedTab == lockedLastTab) { }
-                            else {
-                               
+                            else
+                            {
+
                                 this.TabPages[i].Controls.Clear();
                                 this.TabPages[i].Dispose();
                                 try
@@ -337,11 +270,15 @@ namespace HaltroyFramework
                         if (i == this.TabPages.IndexOf(lockedFirstTab) || i == this.TabPages.IndexOf(lockedLastTab)) { }
                         else
                         {
-                            if (this.SelectedTab == lockedFirstTab) { } else if(this.SelectedTab == lockedLastTab) { }
-                            else{
+                            if (this.SelectedTab == lockedFirstTab) { }
+                            else if (this.SelectedTab == lockedLastTab) { }
+                            else
+                            {
                                 this.TabPages.RemoveAt(i);
-                                if(i == 0) { this.SelectedIndex = i; } else { 
-                                this.SelectedIndex = i - 1;
+                                if (i == 0) { this.SelectedIndex = i; }
+                                else
+                                {
+                                    this.SelectedIndex = i - 1;
                                 }
                             }
                         }
@@ -396,7 +333,7 @@ namespace HaltroyFramework
             Drawer.SmoothingMode = SmoothingMode.HighQuality;
             Drawer.PixelOffsetMode = PixelOffsetMode.HighQuality;
             Drawer.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-                Drawer.Clear(this.headerColor);
+            Drawer.Clear(this.headerColor);
             try
             {
                 SelectedTab.BorderStyle = BorderStyle.None;
@@ -416,7 +353,7 @@ namespace HaltroyFramework
 
                 if (i == SelectedIndex)
                 {
-                        Drawer.FillRectangle(new SolidBrush(this.headerColor), HeaderSize);
+                    Drawer.FillRectangle(new SolidBrush(this.headerColor), HeaderSize);
 
                     // Draws the back of the color when it is selected
                     Drawer.FillRectangle(
@@ -433,7 +370,8 @@ namespace HaltroyFramework
                         new SolidBrush(this.theselectedTextColor),
                       HeaderSize,
                         this.CenterSringFormat);
-                    }else
+                    }
+                    else
                     {
                         Drawer.DrawImage(
                             ImageList.Images[TabPages[i].ImageKey],
@@ -445,7 +383,7 @@ namespace HaltroyFramework
                       new Rectangle(HeaderSize.X + HeaderSize.Height, HeaderSize.Y, HeaderSize.Width + HeaderSize.Height, HeaderSize.Height),
                         this.CenterSringFormat);
                     }
-                    
+
                     // Draws the closing button
                     if (this.ShowClosingButton)
                     {
@@ -455,11 +393,11 @@ namespace HaltroyFramework
                         {
                             e.Graphics.DrawString("X", Font, ClosingColorBrush, HeaderSize.Right - 17, 3);
                         }
-                        }
+                    }
                 }
                 else
                 {
- 
+
                     Drawer.FillRectangle(new SolidBrush(this.headerColor), HeaderSize);
                     if (ImageList == null || ImageList.Images[TabPages[i].ImageKey] == null)
                     {
@@ -470,12 +408,12 @@ namespace HaltroyFramework
    HeaderSize,
    this.CenterSringFormat);
                     }
-                       else
+                    else
                     {
                         Drawer.DrawImage(
                             ImageList.Images[TabPages[i].ImageKey],
-                            new Rectangle(HeaderSize.X,HeaderSize.Y,HeaderSize.Height,HeaderSize.Height));
-                                    
+                            new Rectangle(HeaderSize.X, HeaderSize.Y, HeaderSize.Height, HeaderSize.Height));
+
                         Drawer.DrawString(
                         TabPages[i].Text,
                         Font,
@@ -483,7 +421,7 @@ namespace HaltroyFramework
                         new Rectangle(HeaderSize.X + HeaderSize.Height, HeaderSize.Y, HeaderSize.Width + HeaderSize.Height, HeaderSize.Height),
                         this.CenterSringFormat);
                     }
-                    
+
                 }
             }
 
@@ -491,8 +429,8 @@ namespace HaltroyFramework
             Drawer.DrawLine(new Pen(this.horizLineColor, 2), new Point(0, 19), new Point(Width, 19));
 
             // Draws the background of the tab control
-                Brush backbrush = new SolidBrush(this.backTabColor);
-                Drawer.FillRectangle(backbrush, new Rectangle(0, 20, Width, Height - 20));
+            Brush backbrush = new SolidBrush(this.backTabColor);
+            Drawer.FillRectangle(backbrush, new Rectangle(0, 20, Width, Height - 20));
 
             // Draws the border of the TabControl
             Drawer.DrawRectangle(new Pen(this.borderColor, 2), new Rectangle(0, 0, Width, Height));
@@ -554,6 +492,6 @@ namespace HaltroyFramework
             }
         }
 
-      
+
     }
 }

@@ -3,12 +3,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-/**********************************************************************************/
-/*                          HaltroySwitch - Version  1.0                           */
-/**********************************************************************************/
-/*                                                                                */
-/**********************************************************************************/
-
 
 namespace HaltroyFramework
 {
@@ -24,19 +18,6 @@ namespace HaltroyFramework
         #endregion Delegate and Event declarations
 
         #region Enums
-
-        public enum HaltroySwitchStyle
-        {
-            Metro,
-            Android,
-            IOS5,
-            BrushedMetal,
-            OSX,
-            Carbon,
-            Iphone,
-            Fancy,
-            Modern
-        }
 
         public enum HaltroySwitchAlignment
         {
@@ -58,8 +39,6 @@ namespace HaltroyFramework
 
         private readonly Timer _animationTimer = new Timer();
         private HaltroySwitchRendererBase _renderer;
-
-        private HaltroySwitchStyle _style = HaltroySwitchStyle.Metro;
         private bool _checked = false;
         private bool _moving = false;
         private bool _animating = false;
@@ -93,6 +72,12 @@ namespace HaltroyFramework
         private Image _buttonImage = null;
 
         private string _offText = "";
+        private Color _overlayColor = Color.DodgerBlue;
+        private Color _borderColor = Color.LightGray;
+        private Color _backColor = Color.White;
+        private Color _buttonColor = Color.FromArgb(255, 235, 235, 235);
+        private Color _buttonHoverColor = Color.FromArgb(255, 215, 215, 215);
+        private Color _buttonPressedColor = Color.FromArgb(255, 195, 195, 195);
         private Color _offForeColor = Color.Black;
         private Font _offFont;
         private Image _offSideImage = null;
@@ -142,14 +127,16 @@ namespace HaltroyFramework
             _renderer = renderer;
 
             if (_renderer != null)
+            {
                 Refresh();
+            }
         }
 
         #endregion Constructor Etc.
 
         #region Public Properties
 
-        
+
 
         [Bindable(true)]
         [DefaultValue(false)]
@@ -157,7 +144,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the Checked value of the HaltroySwitch")]
         public bool Checked
         {
-            get { return _checked; }
+            get => _checked;
             set
             {
                 if (value != _checked)
@@ -188,29 +175,17 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the user can change the value of the button or not")]
         public bool AllowUserChange
         {
-            get { return _allowUserChange; }
-            set { _allowUserChange = value; }
+            get => _allowUserChange;
+            set => _allowUserChange = value;
         }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string CheckedString
-        {
-            get
-            {
-                return Checked ? (string.IsNullOrEmpty(OnText) ? "ON" : OnText) : (string.IsNullOrEmpty(OffText) ? "OFF" : OffText);
-            }
-        }
+        public string CheckedString => Checked ? (string.IsNullOrEmpty(OnText) ? "ON" : OnText) : (string.IsNullOrEmpty(OffText) ? "OFF" : OffText);
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Rectangle ButtonRectangle
-        {
-            get
-            {
-                return _renderer.GetButtonRectangle();
-            }
-        }
+        public Rectangle ButtonRectangle => _renderer.GetButtonRectangle();
 
         [Bindable(false)]
         [DefaultValue(true)]
@@ -218,7 +193,7 @@ namespace HaltroyFramework
         [Description("Gets or sets if the HaltroySwitch should be grayed out when disabled")]
         public bool GrayWhenDisabled
         {
-            get { return _grayWhenDisabled; }
+            get => _grayWhenDisabled;
             set
             {
                 if (value != _grayWhenDisabled)
@@ -226,7 +201,9 @@ namespace HaltroyFramework
                     _grayWhenDisabled = value;
 
                     if (!Enabled)
+                    {
                         Refresh();
+                    }
                 }
             }
         }
@@ -237,8 +214,8 @@ namespace HaltroyFramework
         [Description("Gets or sets if the HaltroySwitch should toggle when the button is clicked")]
         public bool ToggleOnButtonClick
         {
-            get { return _toggleOnButtonClick; }
-            set { _toggleOnButtonClick = value; }
+            get => _toggleOnButtonClick;
+            set => _toggleOnButtonClick = value;
         }
 
         [Bindable(false)]
@@ -247,8 +224,8 @@ namespace HaltroyFramework
         [Description("Gets or sets if the HaltroySwitch should toggle when the track besides the button is clicked")]
         public bool ToggleOnSideClick
         {
-            get { return _toggleOnSideClick; }
-            set { _toggleOnSideClick = value; }
+            get => _toggleOnSideClick;
+            set => _toggleOnSideClick = value;
         }
 
         [Bindable(false)]
@@ -257,17 +234,112 @@ namespace HaltroyFramework
         [Description("Gets or sets how much the button need to be on the other side (in peercept) before it snaps")]
         public int ThresholdPercentage
         {
-            get { return _thresholdPercentage; }
-            set { _thresholdPercentage = value; }
+            get => _thresholdPercentage;
+            set => _thresholdPercentage = value;
         }
-
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "DodgerBlue")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color when Checked = true")]
+        public Color OverlayColor
+        {
+            get => _overlayColor;
+            set
+            {
+                if (value != _overlayColor)
+                {
+                    _overlayColor = value;
+                    Refresh();
+                }
+            }
+        }
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "White")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color when Checked = false")]
+        public override Color BackColor
+        {
+            get => _backColor;
+            set
+            {
+                if (value != _backColor)
+                {
+                    _backColor = value;
+                    Refresh();
+                }
+            }
+        }
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "LightGray")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color when Checked = false")]
+        public Color BorderColor
+        {
+            get => _borderColor;
+            set
+            {
+                if (value != _borderColor)
+                {
+                    _borderColor = value;
+                    Refresh();
+                }
+            }
+        }
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "255, 235, 235, 235")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color of button.")]
+        public Color ButtonColor
+        {
+            get => _buttonColor;
+            set
+            {
+                if (value != _buttonColor)
+                {
+                    _buttonColor = value;
+                    Refresh();
+                }
+            }
+        }
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "255, 215, 215, 215")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color of button when hovered.")]
+        public Color ButtonHoverColor
+        {
+            get => _buttonHoverColor;
+            set
+            {
+                if (value != _buttonHoverColor)
+                {
+                    _buttonHoverColor = value;
+                    Refresh();
+                }
+            }
+        }
+        [Bindable(false)]
+        [DefaultValue(typeof(Color), "255, 195, 195, 195")]
+        [Category("Appearance")]
+        [Description("Gets or sets the back color of button when pressed.")]
+        public Color ButtonPressedColor
+        {
+            get => _buttonPressedColor;
+            set
+            {
+                if (value != _buttonPressedColor)
+                {
+                    _buttonPressedColor = value;
+                    Refresh();
+                }
+            }
+        }
         [Bindable(false)]
         [DefaultValue(typeof(Color), "Black")]
         [Category("Appearance")]
         [Description("Gets or sets the forecolor of the text when Checked=false")]
         public Color OffForeColor
         {
-            get { return _offForeColor; }
+            get => _offForeColor;
             set
             {
                 if (value != _offForeColor)
@@ -278,13 +350,14 @@ namespace HaltroyFramework
             }
         }
 
+
         [Bindable(false)]
         [DefaultValue(typeof(Font), "Microsoft Sans Serif, 8.25pt")]
         [Category("Appearance")]
         [Description("Gets or sets the font of the text when Checked=false")]
         public Font OffFont
         {
-            get { return _offFont; }
+            get => _offFont;
             set
             {
                 if (!value.Equals(_offFont))
@@ -301,7 +374,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the text when Checked=true")]
         public string OffText
         {
-            get { return _offText; }
+            get => _offText;
             set
             {
                 if (value != _offText)
@@ -318,7 +391,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the side image when Checked=false - Note: Settings the OffSideImage overrules the OffText property. Only the image will be shown")]
         public Image OffSideImage
         {
-            get { return _offSideImage; }
+            get => _offSideImage;
             set
             {
                 if (value != _offSideImage)
@@ -335,7 +408,7 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the side image visible when Checked=false should be scaled to fit")]
         public bool OffSideScaleImageToFit
         {
-            get { return _offSideScaleImage; }
+            get => _offSideScaleImage;
             set
             {
                 if (value != _offSideScaleImage)
@@ -352,7 +425,7 @@ namespace HaltroyFramework
         [Description("Gets or sets how the text or side image visible when Checked=false should be aligned")]
         public HaltroySwitchAlignment OffSideAlignment
         {
-            get { return _offSideAlignment; }
+            get => _offSideAlignment;
             set
             {
                 if (value != _offSideAlignment)
@@ -369,7 +442,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the button image when Checked=false and ButtonImage is not set")]
         public Image OffButtonImage
         {
-            get { return _offButtonImage; }
+            get => _offButtonImage;
             set
             {
                 if (value != _offButtonImage)
@@ -386,7 +459,7 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the button image visible when Checked=false should be scaled to fit")]
         public bool OffButtonScaleImageToFit
         {
-            get { return _offButtonScaleImage; }
+            get => _offButtonScaleImage;
             set
             {
                 if (value != _offButtonScaleImage)
@@ -403,7 +476,7 @@ namespace HaltroyFramework
         [Description("Gets or sets how the button image visible when Checked=false should be aligned")]
         public HaltroySwitchButtonAlignment OffButtonAlignment
         {
-            get { return _offButtonAlignment; }
+            get => _offButtonAlignment;
             set
             {
                 if (value != _offButtonAlignment)
@@ -420,7 +493,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the forecolor of the text when Checked=true")]
         public Color OnForeColor
         {
-            get { return _onForeColor; }
+            get => _onForeColor;
             set
             {
                 if (value != _onForeColor)
@@ -437,7 +510,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the font of the text when Checked=true")]
         public Font OnFont
         {
-            get { return _onFont; }
+            get => _onFont;
             set
             {
                 if (!value.Equals(_onFont))
@@ -454,7 +527,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the text when Checked=true")]
         public string OnText
         {
-            get { return _onText; }
+            get => _onText;
             set
             {
                 if (value != _onText)
@@ -471,7 +544,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the side image visible when Checked=true - Note: Settings the OnSideImage overrules the OnText property. Only the image will be shown.")]
         public Image OnSideImage
         {
-            get { return _onSideImage; }
+            get => _onSideImage;
             set
             {
                 if (value != _onSideImage)
@@ -488,7 +561,7 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the side image visible when Checked=true should be scaled to fit")]
         public bool OnSideScaleImageToFit
         {
-            get { return _onSideScaleImage; }
+            get => _onSideScaleImage;
             set
             {
                 if (value != _onSideScaleImage)
@@ -505,7 +578,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the button image")]
         public Image ButtonImage
         {
-            get { return _buttonImage; }
+            get => _buttonImage;
             set
             {
                 if (value != _buttonImage)
@@ -522,7 +595,7 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the button image should be scaled to fit")]
         public bool ButtonScaleImageToFit
         {
-            get { return _buttonScaleImage; }
+            get => _buttonScaleImage;
             set
             {
                 if (value != _buttonScaleImage)
@@ -539,7 +612,7 @@ namespace HaltroyFramework
         [Description("Gets or sets how the button image should be aligned")]
         public HaltroySwitchButtonAlignment ButtonAlignment
         {
-            get { return _buttonAlignment; }
+            get => _buttonAlignment;
             set
             {
                 if (value != _buttonAlignment)
@@ -556,7 +629,7 @@ namespace HaltroyFramework
         [Description("Gets or sets how the text or side image visible when Checked=true should be aligned")]
         public HaltroySwitchAlignment OnSideAlignment
         {
-            get { return _onSideAlignment; }
+            get => _onSideAlignment;
             set
             {
                 if (value != _onSideAlignment)
@@ -566,14 +639,14 @@ namespace HaltroyFramework
                 }
             }
         }
-        
+
         [Bindable(false)]
         [DefaultValue(null)]
         [Category("Appearance")]
         [Description("Gets or sets the button image visible when Checked=true and ButtonImage is not set")]
         public Image OnButtonImage
         {
-            get { return _onButtonImage; }
+            get => _onButtonImage;
             set
             {
                 if (value != _onButtonImage)
@@ -590,7 +663,7 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the button image visible when Checked=true should be scaled to fit")]
         public bool OnButtonScaleImageToFit
         {
-            get { return _onButtonScaleImage; }
+            get => _onButtonScaleImage;
             set
             {
                 if (value != _onButtonScaleImage)
@@ -607,7 +680,7 @@ namespace HaltroyFramework
         [Description("Gets or sets how the button image visible when Checked=true should be aligned")]
         public HaltroySwitchButtonAlignment OnButtonAlignment
         {
-            get { return _onButtonAlignment; }
+            get => _onButtonAlignment;
             set
             {
                 if (value != _onButtonAlignment)
@@ -624,8 +697,8 @@ namespace HaltroyFramework
         [Description("Gets or sets whether the toggle change should be animated or not")]
         public bool UseAnimation
         {
-            get { return _useAnimation; }
-            set { _useAnimation = value; }
+            get => _useAnimation;
+            set => _useAnimation = value;
         }
 
         [Bindable(false)]
@@ -634,7 +707,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the interval in ms between animation frames")]
         public int AnimationInterval
         {
-            get { return _animationInterval; }
+            get => _animationInterval;
             set
             {
                 if (value <= 0)
@@ -652,7 +725,7 @@ namespace HaltroyFramework
         [Description("Gets or sets the step in pixes the button shouldbe moved between each animation interval")]
         public int AnimationStep
         {
-            get { return _animationStep; }
+            get => _animationStep;
             set
             {
                 if (value <= 0)
@@ -670,24 +743,24 @@ namespace HaltroyFramework
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text
         {
-            get { return ""; }
-            set { base.Text = ""; }
+            get => "";
+            set => base.Text = "";
         }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Color ForeColor
         {
-            get { return Color.Black; }
-            set { base.ForeColor = Color.Black; }
+            get => Color.Black;
+            set => base.ForeColor = Color.Black;
         }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Font Font
         {
-            get { return base.Font; }
-            set { base.Font = new Font(base.Font, FontStyle.Regular); }
+            get => base.Font;
+            set => base.Font = new Font(base.Font, FontStyle.Regular);
         }
 
         #endregion Hidden Base Properties
@@ -698,45 +771,27 @@ namespace HaltroyFramework
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonHovered
-        {
-            get { return _isButtonHovered && !_isButtonPressed; }
-        }
+        internal bool IsButtonHovered => _isButtonHovered && !_isButtonPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonPressed
-        {
-            get { return _isButtonPressed; }
-        }
+        internal bool IsButtonPressed => _isButtonPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsLeftSideHovered
-        {
-            get { return _isLeftFieldHovered && !_isLeftFieldPressed; }
-        }
+        internal bool IsLeftSideHovered => _isLeftFieldHovered && !_isLeftFieldPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsLeftSidePressed
-        {
-            get { return _isLeftFieldPressed; }
-        }
+        internal bool IsLeftSidePressed => _isLeftFieldPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsRightSideHovered
-        {
-            get { return _isRightFieldHovered && !_isRightFieldPressed; }
-        }
+        internal bool IsRightSideHovered => _isRightFieldHovered && !_isRightFieldPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsRightSidePressed
-        {
-            get { return _isRightFieldPressed; }
-        }
+        internal bool IsRightSidePressed => _isRightFieldPressed;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -745,11 +800,17 @@ namespace HaltroyFramework
             get
             {
                 if (_animating || _moving)
+                {
                     return _buttonValue;
+                }
                 else if (_checked)
+                {
                     return Width - _renderer.GetButtonWidth();
+                }
                 else
+                {
                     return 0;
+                }
             }
             set
             {
@@ -763,47 +824,29 @@ namespace HaltroyFramework
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonOnLeftSide
-        {
-            get { return (ButtonValue <= 0); }
-        }
+        internal bool IsButtonOnLeftSide => (ButtonValue <= 0);
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonOnRightSide
-        {
-            get { return (ButtonValue >= (Width - _renderer.GetButtonWidth())); }
-        }
+        internal bool IsButtonOnRightSide => (ButtonValue >= (Width - _renderer.GetButtonWidth()));
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonMovingLeft
-        {
-            get { return (_animating && !IsButtonOnLeftSide && _animationResult == false); }
-        }
+        internal bool IsButtonMovingLeft => (_animating && !IsButtonOnLeftSide && _animationResult == false);
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonMovingRight
-        {
-            get { return (_animating && !IsButtonOnRightSide && _animationResult == true); }
-        }
+        internal bool IsButtonMovingRight => (_animating && !IsButtonOnRightSide && _animationResult == true);
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool AnimationResult
-        {
-            get { return _animationResult; }
-        }
+        internal bool AnimationResult => _animationResult;
 
         #endregion Private Properties
 
         #region Overridden Control Methods
 
-        protected override Size DefaultSize
-        {
-            get { return new Size(50, 19); }
-        }
+        protected override Size DefaultSize => new Size(50, 19);
 
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
@@ -812,7 +855,9 @@ namespace HaltroyFramework
             base.OnPaintBackground(pevent);
 
             if (_renderer != null)
+            {
                 _renderer.RenderBackground(pevent);
+            }
         }
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -821,7 +866,9 @@ namespace HaltroyFramework
             base.OnPaint(e);
 
             if (_renderer != null)
+            {
                 _renderer.RenderControl(e);
+            }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -836,10 +883,14 @@ namespace HaltroyFramework
                 int val = _xValue + (e.Location.X - _xOffset);
 
                 if (val < 0)
+                {
                     val = 0;
+                }
 
                 if (val > Width - buttonWidth)
+                {
                     val = Width - buttonWidth;
+                }
 
                 ButtonValue = val;
                 Refresh();
@@ -874,11 +925,13 @@ namespace HaltroyFramework
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (_animating || !AllowUserChange)
+            {
                 return;
+            }
 
             int buttonWidth = _renderer.GetButtonWidth();
             Rectangle buttonRectangle = _renderer.GetButtonRectangle(buttonWidth);
-            
+
             _savedButtonValue = ButtonValue;
 
             if (buttonRectangle.Contains(e.Location))
@@ -914,7 +967,9 @@ namespace HaltroyFramework
         protected override void OnMouseUp(MouseEventArgs e)
         {
             if (_animating || !AllowUserChange)
+            {
                 return;
+            }
 
             int buttonWidth = _renderer.GetButtonWidth();
 
@@ -927,7 +982,7 @@ namespace HaltroyFramework
 
             if (_moving)
             {
-                int percentage = (int)((100*(double)ButtonValue)/((double) Width - (double) buttonWidth));
+                int percentage = (int)((100 * (double)ButtonValue) / (Width - (double)buttonWidth));
 
                 if (_checked)
                 {
@@ -1024,7 +1079,7 @@ namespace HaltroyFramework
                 int buttonWidth = _renderer.GetButtonWidth();
                 _animationTarget = Width - buttonWidth;
             }
-            
+
             base.OnSizeChanged(e);
         }
 
@@ -1035,7 +1090,9 @@ namespace HaltroyFramework
         private void SetValueInternal(bool checkedValue)
         {
             if (checkedValue == _checked)
+            {
                 return;
+            }
 
             while (_animating)
             {
@@ -1057,7 +1114,7 @@ namespace HaltroyFramework
             }
             else
             {
-                AnimationComplete();       
+                AnimationComplete();
             }
         }
 
@@ -1073,7 +1130,9 @@ namespace HaltroyFramework
                 newButtonValue = ButtonValue + _animationStep;
 
                 if (newButtonValue > _animationTarget)
+                {
                     newButtonValue = _animationTarget;
+                }
 
                 ButtonValue = newButtonValue;
 
@@ -1084,7 +1143,9 @@ namespace HaltroyFramework
                 newButtonValue = ButtonValue - _animationStep;
 
                 if (newButtonValue < _animationTarget)
+                {
                     newButtonValue = _animationTarget;
+                }
 
                 ButtonValue = newButtonValue;
 
@@ -1092,9 +1153,13 @@ namespace HaltroyFramework
             }
 
             if (animationDone)
+            {
                 AnimationComplete();
+            }
             else
+            {
                 _animationTimer.Enabled = true;
+            }
         }
 
         private void AnimationComplete()
@@ -1113,10 +1178,14 @@ namespace HaltroyFramework
             Refresh();
 
             if (CheckedChanged != null)
+            {
                 CheckedChanged(this, new EventArgs());
+            }
 
             if (_lastMouseEventArgs != null)
+            {
                 OnMouseMove(_lastMouseEventArgs);
+            }
 
             _lastMouseEventArgs = null;
         }

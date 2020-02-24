@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.htsHeight = new HaltroyFramework.HaltroySlider();
@@ -61,6 +62,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.haltroyListView1 = new HaltroyFramework.HaltroyListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.haltroyListView2 = new HaltroyFramework.HaltroyListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sliderValue = new System.Windows.Forms.Label();
             this.haltroySwitch1 = new HaltroyFramework.HaltroySwitch();
             this.haltroySlider1 = new HaltroyFramework.HaltroySlider();
@@ -463,9 +468,12 @@
             // haltroyListView1
             // 
             this.haltroyListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.haltroyListView1.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyListView1.HeaderForeColor = System.Drawing.Color.Black;
             this.haltroyListView1.HideSelection = false;
             this.haltroyListView1.Location = new System.Drawing.Point(3, 3);
             this.haltroyListView1.Name = "haltroyListView1";
+            this.haltroyListView1.OwnerDraw = true;
             this.haltroyListView1.Size = new System.Drawing.Size(786, 420);
             this.haltroyListView1.TabIndex = 0;
             this.haltroyListView1.UseCompatibleStateImageBehavior = false;
@@ -473,6 +481,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.haltroyListView2);
             this.tabPage2.Controls.Add(this.sliderValue);
             this.tabPage2.Controls.Add(this.haltroySwitch1);
             this.tabPage2.Controls.Add(this.haltroySlider1);
@@ -481,8 +490,47 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(792, 426);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Slider & Switch & Button";
+            this.tabPage2.Text = "Slider & Switch & ListView";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // haltroyListView2
+            // 
+            this.haltroyListView2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.haltroyListView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.haltroyListView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.haltroyListView2.ForeColor = System.Drawing.SystemColors.Menu;
+            this.haltroyListView2.HeaderBackColor = System.Drawing.Color.Black;
+            this.haltroyListView2.HeaderForeColor = System.Drawing.Color.White;
+            this.haltroyListView2.HideSelection = false;
+            this.haltroyListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
+            this.haltroyListView2.Name = "haltroyListView2";
+            this.haltroyListView2.OwnerDraw = true;
+            this.haltroyListView2.Size = new System.Drawing.Size(777, 335);
+            this.haltroyListView2.TabIndex = 3;
+            this.haltroyListView2.UseCompatibleStateImageBehavior = false;
+            this.haltroyListView2.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Test";
+            this.columnHeader1.Width = 122;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Test";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 203;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Test";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 451;
             // 
             // sliderValue
             // 
@@ -495,6 +543,7 @@
             // 
             // haltroySwitch1
             // 
+            this.haltroySwitch1.Checked = true;
             this.haltroySwitch1.Location = new System.Drawing.Point(8, 60);
             this.haltroySwitch1.Name = "haltroySwitch1";
             this.haltroySwitch1.OffFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -979,6 +1028,10 @@
         private HaltroyFramework.HaltroySwitch haltroySwitch3;
         private System.Windows.Forms.Label label21;
         private HaltroyFramework.HaltroySwitch haltroySwitch2;
+        private HaltroyFramework.HaltroyListView haltroyListView2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 

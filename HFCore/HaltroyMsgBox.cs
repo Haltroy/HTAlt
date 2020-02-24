@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HaltroyFramework
@@ -53,7 +49,9 @@ namespace HaltroyFramework
                 btCancel.Enabled = false;
                 btOK.Visible = true;
                 btOK.Enabled = true;
-            }else if (msgbutton == MessageBoxButtons.OKCancel) {
+            }
+            else if (msgbutton == MessageBoxButtons.OKCancel)
+            {
                 btYes.Visible = false;
                 btNo.Visible = false;
                 btCancel.Visible = true;
@@ -63,7 +61,8 @@ namespace HaltroyFramework
                 btOK.Visible = true;
                 btOK.Enabled = true;
             }
-            else if (msgbutton == MessageBoxButtons.YesNo) {
+            else if (msgbutton == MessageBoxButtons.YesNo)
+            {
                 btYes.Visible = true;
                 btNo.Visible = true;
                 btCancel.Visible = false;
@@ -73,7 +72,8 @@ namespace HaltroyFramework
                 btOK.Visible = false;
                 btOK.Enabled = false;
             }
-            else if (msgbutton == MessageBoxButtons.YesNoCancel) {
+            else if (msgbutton == MessageBoxButtons.YesNoCancel)
+            {
                 btYes.Visible = true;
                 btNo.Visible = true;
                 btCancel.Visible = true;
@@ -82,7 +82,8 @@ namespace HaltroyFramework
                 btCancel.Enabled = true;
                 btOK.Visible = false;
                 btOK.Enabled = false;
-            }else
+            }
+            else
             {
                 btYes.Visible = false;
                 btNo.Visible = false;
@@ -125,7 +126,7 @@ namespace HaltroyFramework
         }
         private void msgkts_Load(object sender, EventArgs e)
         {
-            this.ForeColor = Brightness(BackgroundColor)< 130 ? Color.White : Color.Black;
+            this.ForeColor = Brightness(BackgroundColor) < 130 ? Color.White : Color.Black;
             this.BackColor = BackgroundColor;
         }
 

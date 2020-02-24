@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
-   class Startup
+    class Startup
     {
         string hfVersion;
         public Startup()
@@ -25,7 +22,7 @@ namespace HaltroyFramework
         }
         public string PrintInfo()
         {
-            return "------------------" 
+            return "------------------"
                 + Environment.NewLine
                 + ProductName()
                 + " v"

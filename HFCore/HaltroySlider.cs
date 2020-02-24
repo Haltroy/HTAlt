@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
-    
+
     /// <summary>
     /// Encapsulates control that visualy displays certain integer value and allows user to change it within desired range. It imitates <see cref="System.Windows.Forms.TrackBar"/> as far as mouse usage is concerned.
     /// </summary>
@@ -48,10 +48,7 @@ namespace HaltroyFramework
         /// </summary>
         /// <value>The thumb rect.</value>
         [Browsable(false)]
-        public Rectangle ThumbRect
-        {
-            get { return thumbRect; }
-        }
+        public Rectangle ThumbRect => thumbRect;
 
         private Size _thumbSize = new Size(16, 16);
 
@@ -65,7 +62,7 @@ namespace HaltroyFramework
         [DefaultValue(16)]
         public Size ThumbSize
         {
-            get { return _thumbSize; }
+            get => _thumbSize;
             set
             {
                 int h = value.Height;
@@ -75,8 +72,10 @@ namespace HaltroyFramework
                     _thumbSize = new Size(w, h);
                 }
                 else
+                {
                     throw new ArgumentOutOfRangeException(
-                        "TrackSize has to be greather than zero and lower than half of Slider width");                 
+                        "TrackSize has to be greather than zero and lower than half of Slider width");
+                }
 
                 Invalidate();
             }
@@ -93,7 +92,7 @@ namespace HaltroyFramework
         [DefaultValue(typeof(GraphicsPath), "null")]
         public GraphicsPath ThumbCustomShape
         {
-            get { return _thumbCustomShape; }
+            get => _thumbCustomShape;
             set
             {
                 _thumbCustomShape = value;
@@ -114,12 +113,20 @@ namespace HaltroyFramework
         [DefaultValue(typeof(Size), "16; 16")]
         public Size ThumbRoundRectSize
         {
-            get { return _thumbRoundRectSize; }
+            get => _thumbRoundRectSize;
             set
             {
                 int h = value.Height, w = value.Width;
-                if (h <= 0) h = 1;
-                if (w <= 0) w = 1;
+                if (h <= 0)
+                {
+                    h = 1;
+                }
+
+                if (w <= 0)
+                {
+                    w = 1;
+                }
+
                 _thumbRoundRectSize = new Size(w, h);
                 Invalidate();
             }
@@ -135,12 +142,20 @@ namespace HaltroyFramework
         [DefaultValue(typeof(Size), "8; 8")]
         public Size BorderRoundRectSize
         {
-            get { return _borderRoundRectSize; }
+            get => _borderRoundRectSize;
             set
             {
                 int h = value.Height, w = value.Width;
-                if (h <= 0) h = 1;
-                if (w <= 0) w = 1;
+                if (h <= 0)
+                {
+                    h = 1;
+                }
+
+                if (w <= 0)
+                {
+                    w = 1;
+                }
+
                 _borderRoundRectSize = new Size(w, h);
                 Invalidate();
             }
@@ -156,7 +171,7 @@ namespace HaltroyFramework
         [DefaultValue(true)]
         public bool DrawSemitransparentThumb
         {
-            get { return _drawSemitransparentThumb; }
+            get => _drawSemitransparentThumb;
             set
             {
                 _drawSemitransparentThumb = value;
@@ -175,13 +190,18 @@ namespace HaltroyFramework
         [DefaultValue(null)]
         public Image ThumbImage
         {
-            get { return _thumbImage; }
+            get => _thumbImage;
             set
             {
                 if (value != null)
+                {
                     _thumbImage = value;
+                }
                 else
+                {
                     _thumbImage = null;
+                }
+
                 Invalidate();
             }
         }
@@ -201,14 +221,14 @@ namespace HaltroyFramework
         [DefaultValue(Orientation.Horizontal)]
         public Orientation Orientation
         {
-            get { return _barOrientation; }
+            get => _barOrientation;
             set
             {
                 if (_barOrientation != value)
                 {
                     _barOrientation = value;
                     // Switch from horizontal to vertical (design mode)
-					// Comment these lines if problems in Run mode
+                    // Comment these lines if problems in Run mode
                     if (this.DesignMode)
                     {
                         int temp = Width;
@@ -231,7 +251,7 @@ namespace HaltroyFramework
         [DefaultValue(false)]
         public bool DrawFocusRectangle
         {
-            get { return _drawFocusRectangle; }
+            get => _drawFocusRectangle;
             set
             {
                 _drawFocusRectangle = value;
@@ -249,7 +269,7 @@ namespace HaltroyFramework
         [DefaultValue(true)]
         public bool MouseEffects
         {
-            get { return _mouseEffects; }
+            get => _mouseEffects;
             set
             {
                 _mouseEffects = value;
@@ -273,16 +293,23 @@ namespace HaltroyFramework
         [DefaultValue(30)]
         public int Value
         {
-            get { return _trackerValue; }
+            get => _trackerValue;
             set
             {
                 if (value >= _minimum & value <= _maximum)
                 {
                     _trackerValue = value;
-                    if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                    if (ValueChanged != null)
+                    {
+                        ValueChanged(this, new EventArgs());
+                    }
+
                     Invalidate();
                 }
-                else throw new ArgumentOutOfRangeException("Value is outside appropriate range (min, max)");
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Value is outside appropriate range (min, max)");
+                }
             }
         }
 
@@ -297,7 +324,7 @@ namespace HaltroyFramework
         [DefaultValue(0)]
         public int Minimum
         {
-            get { return _minimum; }
+            get => _minimum;
             set
             {
                 if (value < _maximum)
@@ -306,11 +333,17 @@ namespace HaltroyFramework
                     if (_trackerValue < _minimum)
                     {
                         _trackerValue = _minimum;
-                        if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                        if (ValueChanged != null)
+                        {
+                            ValueChanged(this, new EventArgs());
+                        }
                     }
                     Invalidate();
                 }
-                else throw new ArgumentOutOfRangeException("Minimal value is greather than maximal one");
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Minimal value is greather than maximal one");
+                }
             }
         }
 
@@ -325,7 +358,7 @@ namespace HaltroyFramework
         [DefaultValue(100)]
         public int Maximum
         {
-            get { return _maximum; }
+            get => _maximum;
             set
             {
                 if (value > _minimum)
@@ -334,7 +367,10 @@ namespace HaltroyFramework
                     if (_trackerValue > _maximum)
                     {
                         _trackerValue = _maximum;
-                        if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                        if (ValueChanged != null)
+                        {
+                            ValueChanged(this, new EventArgs());
+                        }
                     }
                     Invalidate();
                 }
@@ -352,8 +388,8 @@ namespace HaltroyFramework
         [DefaultValue(1)]
         public uint SmallChange
         {
-            get { return _smallChange; }
-            set { _smallChange = value; }
+            get => _smallChange;
+            set => _smallChange = value;
         }
 
         private uint _largeChange = 5;
@@ -366,10 +402,10 @@ namespace HaltroyFramework
         [DefaultValue(5)]
         public uint LargeChange
         {
-            get { return _largeChange; }
-            set { _largeChange = value; }
+            get => _largeChange;
+            set => _largeChange = value;
         }
-           
+
         private int _mouseWheelBarPartitions = 10;
         /// <summary>
         /// Gets or sets the mouse wheel bar partitions.
@@ -381,12 +417,17 @@ namespace HaltroyFramework
         [DefaultValue(10)]
         public int MouseWheelBarPartitions
         {
-            get { return _mouseWheelBarPartitions; }
+            get => _mouseWheelBarPartitions;
             set
             {
                 if (value > 0)
+                {
                     _mouseWheelBarPartitions = value;
-                else throw new ArgumentOutOfRangeException("MouseWheelBarPartitions has to be greather than zero");
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("MouseWheelBarPartitions has to be greather than zero");
+                }
             }
         }
 
@@ -405,7 +446,7 @@ namespace HaltroyFramework
         [Category("HaltroySlider")]
         public Color OverlayColor
         {
-            get { return _overlayColor; }
+            get => _overlayColor;
             set
             {
                 _overlayColor = value;
@@ -419,10 +460,10 @@ namespace HaltroyFramework
         #endregion
 
 
-        
 
 
-        
+
+
 
         #endregion
 
@@ -430,7 +471,7 @@ namespace HaltroyFramework
 
 
 
-        
+
 
 
         #region Constructors
@@ -448,7 +489,7 @@ namespace HaltroyFramework
                      ControlStyles.ResizeRedraw | ControlStyles.Selectable |
                      ControlStyles.SupportsTransparentBackColor | ControlStyles.UserMouse |
                      ControlStyles.UserPaint, true);
-            
+
             // Default backcolor
             BackColor = Color.White;
             ForeColor = Color.Black;
@@ -480,40 +521,40 @@ namespace HaltroyFramework
         {
             if (!Enabled)
             {
-                Color[] desaturatedColors = DesaturateColors(BackColor,BackColor, _overlayColor,
-                                                             ForeColor, 
-                                                             _overlayColor, _overlayColor, 
+                Color[] desaturatedColors = DesaturateColors(BackColor, BackColor, _overlayColor,
+                                                             ForeColor,
+                                                             _overlayColor, _overlayColor,
                                                              ForeColor, ForeColor,
                                                              _overlayColor);
-                DrawHaltroySlider(e, 
-                                    desaturatedColors[0], desaturatedColors[1], desaturatedColors[2], 
-                                    desaturatedColors[3], 
-                                    desaturatedColors[4], desaturatedColors[5], 
-                                    desaturatedColors[6], desaturatedColors[7], 
+                DrawHaltroySlider(e,
+                                    desaturatedColors[0], desaturatedColors[1], desaturatedColors[2],
+                                    desaturatedColors[3],
+                                    desaturatedColors[4], desaturatedColors[5],
+                                    desaturatedColors[6], desaturatedColors[7],
                                     desaturatedColors[8]);
             }
             else
             {
                 if (_mouseEffects && mouseInRegion)
                 {
-                    Color[] lightenedColors = LightenColors(BackColor,BackColor, _overlayColor,
+                    Color[] lightenedColors = LightenColors(BackColor, BackColor, _overlayColor,
                                                             ForeColor,
-                                                            _overlayColor, _overlayColor, 
+                                                            _overlayColor, _overlayColor,
                                                             ForeColor, ForeColor,
                                                             _overlayColor);
-                    DrawHaltroySlider(e, 
-                        lightenedColors[0], lightenedColors[1], lightenedColors[2], 
-                        lightenedColors[3], 
-                        lightenedColors[4], lightenedColors[5], 
-                        lightenedColors[6], lightenedColors[7], 
+                    DrawHaltroySlider(e,
+                        lightenedColors[0], lightenedColors[1], lightenedColors[2],
+                        lightenedColors[3],
+                        lightenedColors[4], lightenedColors[5],
+                        lightenedColors[6], lightenedColors[7],
                         lightenedColors[8]);
                 }
                 else
                 {
-                    DrawHaltroySlider(e, 
-                                    BackColor,BackColor, _overlayColor,
+                    DrawHaltroySlider(e,
+                                    BackColor, BackColor, _overlayColor,
                                     ForeColor,
-                                    _overlayColor, _overlayColor, 
+                                    _overlayColor, _overlayColor,
                                     ForeColor, ForeColor,
                                     _overlayColor);
                 }
@@ -530,10 +571,10 @@ namespace HaltroyFramework
         /// <param name="barInnerColorPaint">The bar inner color paint.</param>
         /// <param name="barPenColorPaint">The bar pen color paint.</param>
         /// <param name="elapsedInnerColorPaint">The elapsed inner color paint.</param>
-        private void DrawHaltroySlider(PaintEventArgs e, 
-            Color thumbOuterColorPaint, Color thumbInnerColorPaint, Color thumbPenColorPaint, 
+        private void DrawHaltroySlider(PaintEventArgs e,
+            Color thumbOuterColorPaint, Color thumbInnerColorPaint, Color thumbPenColorPaint,
             Color barInnerColorPaint,
-            Color ElapsedTopPenColorPaint, Color ElapsedBottomPenColorPaint, 
+            Color ElapsedTopPenColorPaint, Color ElapsedBottomPenColorPaint,
             Color barTopPenColorPaint, Color barBottomPenColorPaint,
             Color elapsedInnerColorPaint)
         {
@@ -546,12 +587,12 @@ namespace HaltroyFramework
                     if (_thumbImage != null)
                     {
                         int TrackX = (((_trackerValue - _minimum) * (ClientRectangle.Width - _thumbImage.Width)) / (_maximum - _minimum));
-                        thumbRect = new Rectangle(TrackX, ClientRectangle.Height/2 - _thumbImage.Height/2, _thumbImage.Width, _thumbImage.Height);
+                        thumbRect = new Rectangle(TrackX, ClientRectangle.Height / 2 - _thumbImage.Height / 2, _thumbImage.Width, _thumbImage.Height);
                     }
                     else
                     {
-                        int TrackX = (((_trackerValue - _minimum) * (ClientRectangle.Width - _thumbSize.Width)) / (_maximum - _minimum));                        
-                        thumbRect = new Rectangle(TrackX, ClientRectangle.Y + ClientRectangle.Height/2 - _thumbSize.Height/2 , _thumbSize.Width, _thumbSize.Height);
+                        int TrackX = (((_trackerValue - _minimum) * (ClientRectangle.Width - _thumbSize.Width)) / (_maximum - _minimum));
+                        thumbRect = new Rectangle(TrackX, ClientRectangle.Y + ClientRectangle.Height / 2 - _thumbSize.Height / 2, _thumbSize.Width, _thumbSize.Height);
                     }
                     #endregion
                 }
@@ -559,14 +600,14 @@ namespace HaltroyFramework
                 {
                     #region vertical
                     if (_thumbImage != null)
-                    {                        
+                    {
                         int TrackY = (((_maximum - (_trackerValue)) * (ClientRectangle.Height - _thumbImage.Height)) / (_maximum - _minimum));
-                        thumbRect = new Rectangle(ClientRectangle.Width/2 - _thumbImage.Width/2, TrackY, _thumbImage.Width, _thumbImage.Height);
+                        thumbRect = new Rectangle(ClientRectangle.Width / 2 - _thumbImage.Width / 2, TrackY, _thumbImage.Width, _thumbImage.Height);
                     }
                     else
-                    {                        
+                    {
                         int TrackY = (((_maximum - (_trackerValue)) * (ClientRectangle.Height - _thumbSize.Height)) / (_maximum - _minimum));
-                        thumbRect = new Rectangle(ClientRectangle.X + ClientRectangle.Width/2 - _thumbSize.Width/2, TrackY, _thumbSize.Width, _thumbSize.Height);
+                        thumbRect = new Rectangle(ClientRectangle.X + ClientRectangle.Width / 2 - _thumbSize.Width / 2, TrackY, _thumbSize.Width, _thumbSize.Height);
                     }
                     #endregion
                 }
@@ -588,7 +629,7 @@ namespace HaltroyFramework
                     barHalfRect.Height /= 2;
 
                     gradientOrientation = LinearGradientMode.Vertical;
-                    
+
 
                     thumbHalfRect.Height /= 2;
                     elapsedRect = barRect;
@@ -601,21 +642,23 @@ namespace HaltroyFramework
                     barRect.Inflate(-barRect.Width / 3, -1);
                     barHalfRect = barRect;
                     barHalfRect.Width /= 2;
-                   
+
                     gradientOrientation = LinearGradientMode.Vertical;
 
                     thumbHalfRect.Width /= 2;
-                    elapsedRect = barRect;                    
+                    elapsedRect = barRect;
                     elapsedRect.Height = barRect.Height - (thumbRect.Top + ThumbSize.Height / 2);
-                    elapsedRect.Y = 1 + thumbRect.Top + ThumbSize.Height/2;
+                    elapsedRect.Y = 1 + thumbRect.Top + ThumbSize.Height / 2;
 
                     #endregion
                 }
-                
+
                 //get thumb shape path 
                 GraphicsPath thumbPath;
                 if (_thumbCustomShape == null)
+                {
                     thumbPath = CreateRoundRectPath(thumbRect, _thumbRoundRectSize);
+                }
                 else
                 {
                     thumbPath = _thumbCustomShape;
@@ -633,11 +676,11 @@ namespace HaltroyFramework
                 // draw the line on the whole lenght of the control
                 if (_barOrientation == Orientation.Horizontal)
                 {
-                    e.Graphics.DrawLine(new Pen(barInnerColorPaint, 1f), barRect.X, barRect.Y + barRect.Height/2, barRect.X + barRect.Width, barRect.Y + barRect.Height / 2);
+                    e.Graphics.DrawLine(new Pen(barInnerColorPaint, 1f), barRect.X, barRect.Y + barRect.Height / 2, barRect.X + barRect.Width, barRect.Y + barRect.Height / 2);
                 }
                 else
                 {
-                    e.Graphics.DrawLine(new Pen(barInnerColorPaint, 1f), barRect.X + barRect.Width/2, barRect.Y, barRect.X + barRect.Width/2 , barRect.Y + barRect.Height);
+                    e.Graphics.DrawLine(new Pen(barInnerColorPaint, 1f), barRect.X + barRect.Width / 2, barRect.Y, barRect.X + barRect.Width / 2, barRect.Y + barRect.Height);
                 }
                 #endregion
 
@@ -658,7 +701,7 @@ namespace HaltroyFramework
 
 
                 #region draw external contours
-                
+
                 //draw external bar band 
                 // 2 lines: top and bottom
                 if (_barOrientation == Orientation.Horizontal)
@@ -677,20 +720,20 @@ namespace HaltroyFramework
 
 
                     // Left vertical (dark)
-                    e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X, barRect.Y -1 + barRect.Height/2, barRect.X, barRect.Y + barRect.Height/2 + 1);
+                    e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X, barRect.Y - 1 + barRect.Height / 2, barRect.X, barRect.Y + barRect.Height / 2 + 1);
 
                     // Right vertical (light)                        
-                    e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X + barRect.Width, barRect.Y - 1 + barRect.Height/2, barRect.X + barRect.Width, barRect.Y + 1 + barRect.Height/2);
+                    e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X + barRect.Width, barRect.Y - 1 + barRect.Height / 2, barRect.X + barRect.Width, barRect.Y + 1 + barRect.Height / 2);
                     #endregion
                 }
                 else
                 {
                     #region vertical
                     // Elapsed top
-                    e.Graphics.DrawLine(new Pen(ElapsedTopPenColorPaint, 1f), barRect.X -1 + barRect.Width/2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height);
+                    e.Graphics.DrawLine(new Pen(ElapsedTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height);
 
                     // Elapsed bottom
-                    e.Graphics.DrawLine(new Pen(ElapsedBottomPenColorPaint, 1f), barRect.X + 1 + barRect.Width / 2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X + 1 + barRect.Width/2, barRect.Y + barRect.Height);
+                    e.Graphics.DrawLine(new Pen(ElapsedBottomPenColorPaint, 1f), barRect.X + 1 + barRect.Width / 2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X + 1 + barRect.Width / 2, barRect.Y + barRect.Height);
 
 
                     // Remain top
@@ -702,17 +745,17 @@ namespace HaltroyFramework
 
 
                     // top horizontal (dark) 
-                    e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width/2, barRect.Y, barRect.X + 1 + barRect.Width/2, barRect.Y);
+                    e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y, barRect.X + 1 + barRect.Width / 2, barRect.Y);
 
                     // bottom horizontal (light)
-                    e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X - 1 + barRect.Width/2, barRect.Y + barRect.Height, barRect.X + 1 + barRect.Width/2, barRect.Y + barRect.Height);
+                    e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height, barRect.X + 1 + barRect.Width / 2, barRect.Y + barRect.Height);
                     #endregion
 
                 }
-                    
+
                 #endregion draw contours
 
-                
+
 
                 #region draw thumb
 
@@ -731,12 +774,12 @@ namespace HaltroyFramework
                 }
                 else
                 {
-                    lgbThumb = new LinearGradientBrush(thumbHalfRect, newthumbOuterColorPaint, newthumbInnerColorPaint, gradientOrientation);                    
+                    lgbThumb = new LinearGradientBrush(thumbHalfRect, newthumbOuterColorPaint, newthumbInnerColorPaint, gradientOrientation);
                 }
                 using (lgbThumb)
                 {
                     lgbThumb.WrapMode = WrapMode.TileFlipXY;
-                    
+
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     e.Graphics.FillPath(lgbThumb, thumbPath);
 
@@ -744,7 +787,10 @@ namespace HaltroyFramework
                     Color newThumbPenColor = thumbPenColorPaint;
 
                     if (_mouseEffects && (Capture || mouseInThumbRegion))
+                    {
                         newThumbPenColor = ControlPaint.Dark(newThumbPenColor);
+                    }
+
                     using (Pen thumbPen = new Pen(newThumbPenColor))
                     {
 
@@ -756,7 +802,7 @@ namespace HaltroyFramework
 
                             e.Graphics.DrawImage(bmp, thumbRect, srceRect, GraphicsUnit.Pixel);
                             bmp.Dispose();
-                            
+
                         }
                         else
                         {
@@ -771,6 +817,7 @@ namespace HaltroyFramework
                 #region draw focusing rectangle
                 //draw focusing rectangle
                 if (Focused & _drawFocusRectangle)
+                {
                     using (Pen p = new Pen(Color.FromArgb(200, ElapsedTopPenColorPaint)))
                     {
                         p.DashStyle = DashStyle.Dot;
@@ -778,17 +825,18 @@ namespace HaltroyFramework
                         r.Width -= 2;
                         r.Height--;
                         r.X++;
-                                               
+
                         using (GraphicsPath gpBorder = CreateRoundRectPath(r, _borderRoundRectSize))
                         {
                             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                             e.Graphics.DrawPath(p, gpBorder);
                         }
                     }
+                }
                 #endregion draw focusing rectangle
 
 
-                
+
 
 
             }
@@ -849,8 +897,16 @@ namespace HaltroyFramework
             if (e.Button == MouseButtons.Left)
             {
                 Capture = true;
-                if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.ThumbTrack, _trackerValue));
-                if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                if (Scroll != null)
+                {
+                    Scroll(this, new ScrollEventArgs(ScrollEventType.ThumbTrack, _trackerValue));
+                }
+
+                if (ValueChanged != null)
+                {
+                    ValueChanged(this, new EventArgs());
+                }
+
                 OnMouseMove(e);
             }
         }
@@ -872,11 +928,11 @@ namespace HaltroyFramework
                 int p = _barOrientation == Orientation.Horizontal ? pt.X : pt.Y;
                 int margin = _thumbSize.Height >> 1;
                 p -= margin;
-                float coef = (float)(_maximum - _minimum) /
+                float coef = (_maximum - _minimum) /
                              (float)
                              ((_barOrientation == Orientation.Horizontal ? ClientSize.Width : ClientSize.Height) - 2 * margin);
 
-                
+
                 _trackerValue = _barOrientation == Orientation.Horizontal ? (int)(p * coef + _minimum) : (_maximum - (int)(p * coef));
 
 
@@ -891,8 +947,15 @@ namespace HaltroyFramework
                     set = ScrollEventType.Last;
                 }
 
-                if (Scroll != null) Scroll(this, new ScrollEventArgs(set, _trackerValue));
-                if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                if (Scroll != null)
+                {
+                    Scroll(this, new ScrollEventArgs(set, _trackerValue));
+                }
+
+                if (ValueChanged != null)
+                {
+                    ValueChanged(this, new EventArgs());
+                }
             }
             Invalidate();
         }
@@ -906,8 +969,16 @@ namespace HaltroyFramework
             base.OnMouseUp(e);
             Capture = false;
             mouseInThumbRegion = IsPointInRect(e.Location, thumbRect);
-            if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.EndScroll, _trackerValue));
-            if (ValueChanged != null) ValueChanged(this, new EventArgs());
+            if (Scroll != null)
+            {
+                Scroll(this, new ScrollEventArgs(ScrollEventType.EndScroll, _trackerValue));
+            }
+
+            if (ValueChanged != null)
+            {
+                ValueChanged(this, new EventArgs());
+            }
+
             Invalidate();
         }
 
@@ -961,12 +1032,20 @@ namespace HaltroyFramework
                 case Keys.Down:
                 case Keys.Left:
                     SetProperValue(Value - (int)_smallChange);
-                    if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.SmallDecrement, Value));
+                    if (Scroll != null)
+                    {
+                        Scroll(this, new ScrollEventArgs(ScrollEventType.SmallDecrement, Value));
+                    }
+
                     break;
                 case Keys.Up:
                 case Keys.Right:
                     SetProperValue(Value + (int)_smallChange);
-                    if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.SmallIncrement, Value));
+                    if (Scroll != null)
+                    {
+                        Scroll(this, new ScrollEventArgs(ScrollEventType.SmallIncrement, Value));
+                    }
+
                     break;
                 case Keys.Home:
                     Value = _minimum;
@@ -976,15 +1055,31 @@ namespace HaltroyFramework
                     break;
                 case Keys.PageDown:
                     SetProperValue(Value - (int)_largeChange);
-                    if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.LargeDecrement, Value));
+                    if (Scroll != null)
+                    {
+                        Scroll(this, new ScrollEventArgs(ScrollEventType.LargeDecrement, Value));
+                    }
+
                     break;
                 case Keys.PageUp:
                     SetProperValue(Value + (int)_largeChange);
-                    if (Scroll != null) Scroll(this, new ScrollEventArgs(ScrollEventType.LargeIncrement, Value));
+                    if (Scroll != null)
+                    {
+                        Scroll(this, new ScrollEventArgs(ScrollEventType.LargeIncrement, Value));
+                    }
+
                     break;
             }
-            if (Scroll != null && Value == _minimum) Scroll(this, new ScrollEventArgs(ScrollEventType.First, Value));
-            if (Scroll != null && Value == _maximum) Scroll(this, new ScrollEventArgs(ScrollEventType.Last, Value));
+            if (Scroll != null && Value == _minimum)
+            {
+                Scroll(this, new ScrollEventArgs(ScrollEventType.First, Value));
+            }
+
+            if (Scroll != null && Value == _maximum)
+            {
+                Scroll(this, new ScrollEventArgs(ScrollEventType.Last, Value));
+            }
+
             Point pt = PointToClient(Cursor.Position);
             OnMouseMove(new MouseEventArgs(MouseButtons.None, 0, pt.X, pt.Y, 0));
         }
@@ -999,7 +1094,9 @@ namespace HaltroyFramework
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (keyData == Keys.Tab | ModifierKeys == Keys.Shift)
+            {
                 return base.ProcessDialogKey(keyData);
+            }
             else
             {
                 OnKeyDown(new KeyEventArgs(keyData));
@@ -1073,9 +1170,18 @@ namespace HaltroyFramework
         /// <param name="val">The value.</param>
         private void SetProperValue(int val)
         {
-            if (val < _minimum) Value = _minimum;
-            else if (val > _maximum) Value = _maximum;
-            else Value = val;
+            if (val < _minimum)
+            {
+                Value = _minimum;
+            }
+            else if (val > _maximum)
+            {
+                Value = _maximum;
+            }
+            else
+            {
+                Value = val;
+            }
         }
 
         /// <summary>
@@ -1089,8 +1195,13 @@ namespace HaltroyFramework
         private static bool IsPointInRect(Point pt, Rectangle rect)
         {
             if (pt.X > rect.Left & pt.X < rect.Right & pt.Y > rect.Top & pt.Y < rect.Bottom)
+            {
                 return true;
-            else return false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion
