@@ -1,4 +1,25 @@
-﻿namespace HaltroyFramework
+﻿//MIT License
+//
+//Copyright (c) 2020 Eren "Haltroy" Kanat
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+namespace HaltroyFramework
 {
     partial class HaltroyMsgBox
     {
@@ -33,7 +54,8 @@
             this.btNo = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.btYes = new System.Windows.Forms.Button();
-            this.btOK = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -49,11 +71,13 @@
             // 
             // btNo
             // 
+            this.btNo.AutoSize = true;
+            this.btNo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btNo.Location = new System.Drawing.Point(223, 66);
+            this.btNo.Location = new System.Drawing.Point(238, 3);
             this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(75, 23);
+            this.btNo.Size = new System.Drawing.Size(33, 25);
             this.btNo.TabIndex = 0;
             this.btNo.Text = "No";
             this.btNo.UseVisualStyleBackColor = true;
@@ -62,11 +86,13 @@
             // 
             // btCancel
             // 
+            this.btCancel.AutoSize = true;
+            this.btCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btCancel.Location = new System.Drawing.Point(142, 66);
+            this.btCancel.Location = new System.Drawing.Point(277, 3);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(75, 23);
+            this.btCancel.Size = new System.Drawing.Size(52, 25);
             this.btCancel.TabIndex = 0;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
@@ -75,28 +101,31 @@
             // 
             // btYes
             // 
+            this.btYes.AutoSize = true;
+            this.btYes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btYes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btYes.Location = new System.Drawing.Point(61, 66);
+            this.btYes.Location = new System.Drawing.Point(335, 3);
             this.btYes.Name = "btYes";
-            this.btYes.Size = new System.Drawing.Size(75, 23);
+            this.btYes.Size = new System.Drawing.Size(37, 25);
             this.btYes.TabIndex = 0;
             this.btYes.Text = "Yes";
             this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Visible = false;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
-            // btOK
+            // flowLayoutPanel1
             // 
-            this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btOK.Location = new System.Drawing.Point(61, 66);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 0;
-            this.btOK.Text = "OK";
-            this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Controls.Add(this.btYes);
+            this.flowLayoutPanel1.Controls.Add(this.btCancel);
+            this.flowLayoutPanel1.Controls.Add(this.btNo);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-2, 69);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(375, 31);
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // HaltroyMsgBox
             // 
@@ -104,10 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(370, 99);
-            this.Controls.Add(this.btOK);
-            this.Controls.Add(this.btNo);
-            this.Controls.Add(this.btCancel);
-            this.Controls.Add(this.btYes);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -116,6 +142,8 @@
             this.Name = "HaltroyMsgBox";
             this.Text = "title";
             this.Load += new System.EventHandler(this.msgkts_Load);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -126,6 +154,6 @@
         internal System.Windows.Forms.Button btNo;
         internal System.Windows.Forms.Button btCancel;
         internal System.Windows.Forms.Button btYes;
-        internal System.Windows.Forms.Button btOK;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

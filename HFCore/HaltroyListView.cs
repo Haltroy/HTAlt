@@ -1,3 +1,24 @@
+//MIT License
+//
+//Copyright (c) 2020 Eren "Haltroy" Kanat
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -63,6 +84,7 @@ namespace HaltroyFramework
             DrawSubItem += this_DrawSubItem;
             DrawColumnHeader += this_DrawColumnHeaders;
             ColumnWidthChanged += this_ColumnWidthChanged;
+            
         }
 
         /// <summary>
@@ -79,6 +101,7 @@ namespace HaltroyFramework
         }
         private Color headerBackColor = Color.FromArgb(255, 235, 235, 235);
         private Color headerForeColor = Color.Black;
+        private Color overlayColor = Color.DodgerBlue;
 
         [Category("Style"), Browsable(true), Description("The back color of the headers.")]
         public Color HeaderBackColor
@@ -110,6 +133,21 @@ namespace HaltroyFramework
                 this.headerForeColor = value;
             }
         }
+        [Category("Style"), Browsable(true), Description("The overlay color.")]
+        public Color OverlayColor
+        {
+            get
+            {
+                OwnerDraw = true;
+                return this.overlayColor;
+            }
+
+            set
+            {
+                OwnerDraw = true;
+                this.overlayColor = value;
+            }
+        }
         private void this_DrawColumnHeaders(object sender, DrawListViewColumnHeaderEventArgs e)
         {
             OwnerDraw = true;
@@ -133,10 +171,10 @@ namespace HaltroyFramework
                 e.Graphics.DrawString(e.Header.Text, e.Font,
                         new SolidBrush(headerForeColor), e.Bounds, sf);
                 // Draw the header lines.
-                e.Graphics.DrawLine(new Pen(new SolidBrush(headerForeColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(headerForeColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X, e.Bounds.Y + e.Bounds.Height);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(headerForeColor), 2), e.Bounds.X + e.Bounds.Width, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(headerForeColor), 2), e.Bounds.X, e.Bounds.Y + e.Bounds.Height, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X + e.Bounds.Width, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y + e.Bounds.Height, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
             }
         }
         private void this_DrawItem(object sender, DrawListViewItemEventArgs e)

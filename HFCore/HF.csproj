@@ -160,7 +160,6 @@
     <None Include="Images\ScrollBarArrowDown.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ht logo green curved.ico" />
     <Content Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -168,12 +167,6 @@
     <Content Include="readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\KorotRight.png" />
-    <None Include="Resources\KorotLeft.png" />
-    <None Include="Resources\KorotClose.png" />
-    <None Include="Resources\KorotCenter.png" />
-    <None Include="Resources\KorotBackground.png" />
-    <None Include="Resources\KorotAdd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
