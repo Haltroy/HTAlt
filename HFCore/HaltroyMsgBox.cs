@@ -63,20 +63,20 @@ namespace HaltroyFramework
             this.MaximumSize = new Size(Screen.FromHandle(this.Handle).WorkingArea.Width, Screen.FromHandle(this.Handle).WorkingArea.Height);
             if (msgbutton == MessageBoxButtons.OK)
             {
-                btYes.Visible = false;
+                btYes.Visible = true;
                 btNo.Visible = false;
                 btCancel.Visible = false;
-                btYes.Enabled = false;
+                btYes.Enabled = true;
                 btNo.Enabled = false;
                 btCancel.Enabled = false;
                 useOK = true;
             }
             else if (msgbutton == MessageBoxButtons.OKCancel)
             {
-                btYes.Visible = false;
+                btYes.Visible = true;
                 btNo.Visible = false;
                 btCancel.Visible = true;
-                btYes.Enabled = false;
+                btYes.Enabled = true;
                 btNo.Enabled = false;
                 btCancel.Enabled = true;
                 useOK = true;
@@ -167,16 +167,18 @@ namespace HaltroyFramework
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-        
+
         private void msgkts_Load(object sender, EventArgs e)
         {
-            this.ForeColor = isBright(BackgroundColor) ? Color.White : Color.Black;
+            this.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             this.BackColor = BackgroundColor;
             btCancel.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btCancel.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             btYes.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btYes.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             btNo.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btNo.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             flowLayoutPanel1.BackColor = BackgroundColor;
-
         }
 
         private void btOK_Click(object sender, EventArgs e)

@@ -84,7 +84,7 @@ namespace HaltroyFramework
             DrawSubItem += this_DrawSubItem;
             DrawColumnHeader += this_DrawColumnHeaders;
             ColumnWidthChanged += this_ColumnWidthChanged;
-            
+
         }
 
         /// <summary>

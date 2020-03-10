@@ -115,31 +115,35 @@
             // 
             // haltroyTabControl1
             // 
-            this.haltroyTabControl1.ActiveColor = System.Drawing.Color.DodgerBlue;
             this.haltroyTabControl1.AllowDrop = true;
-            this.haltroyTabControl1.BackTabColor = System.Drawing.Color.Black;
-            this.haltroyTabControl1.BorderColor = System.Drawing.Color.Black;
-            this.haltroyTabControl1.ClosingMessage = null;
+            this.haltroyTabControl1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.haltroyTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.haltroyTabControl1.Controls.Add(this.tabPage1);
             this.haltroyTabControl1.Controls.Add(this.tabPage2);
             this.haltroyTabControl1.Controls.Add(this.tabPage3);
             this.haltroyTabControl1.Controls.Add(this.tabPage4);
+            this.haltroyTabControl1.DisableClose = false;
+            this.haltroyTabControl1.DisableDragging = false;
             this.haltroyTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.haltroyTabControl1.EnableRepositioning = false;
-            this.haltroyTabControl1.HeaderColor = System.Drawing.Color.Black;
-            this.haltroyTabControl1.HorizontalLineColor = System.Drawing.Color.DodgerBlue;
+            this.haltroyTabControl1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.haltroyTabControl1.HoverTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(176)))), ((int)(((byte)(239)))));
+            this.haltroyTabControl1.HoverTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.haltroyTabControl1.HoverUnselectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
             this.haltroyTabControl1.ItemSize = new System.Drawing.Size(240, 16);
             this.haltroyTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.haltroyTabControl1.LockedFirstTab = null;
-            this.haltroyTabControl1.LockedLastTab = null;
             this.haltroyTabControl1.Name = "haltroyTabControl1";
+            this.haltroyTabControl1.Padding = new System.Drawing.Point(14, 4);
             this.haltroyTabControl1.SelectedIndex = 0;
-            this.haltroyTabControl1.SelectedTextColor = System.Drawing.Color.LightGray;
-            this.haltroyTabControl1.ShowClosingButton = false;
-            this.haltroyTabControl1.ShowClosingMessage = false;
+            this.haltroyTabControl1.SelectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.haltroyTabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.haltroyTabControl1.Size = new System.Drawing.Size(800, 450);
             this.haltroyTabControl1.TabIndex = 0;
-            this.haltroyTabControl1.TextColor = System.Drawing.Color.White;
+            this.haltroyTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.haltroyTabControl1.UnderBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.haltroyTabControl1.UnselectedBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.haltroyTabControl1.UnselectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.haltroyTabControl1.UpDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.haltroyTabControl1.UpDownTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(112)))));
             // 
             // tabPage1
             // 
@@ -220,7 +224,7 @@
             this.lbHeight.AutoSize = true;
             this.lbHeight.Location = new System.Drawing.Point(537, 307);
             this.lbHeight.Name = "lbHeight";
-            this.lbHeight.Size = new System.Drawing.Size(48, 13);
+            this.lbHeight.Size = new System.Drawing.Size(57, 15);
             this.lbHeight.TabIndex = 27;
             this.lbHeight.Text = "<height>";
             // 
@@ -229,7 +233,7 @@
             this.lbWidth.AutoSize = true;
             this.lbWidth.Location = new System.Drawing.Point(537, 267);
             this.lbWidth.Name = "lbWidth";
-            this.lbWidth.Size = new System.Drawing.Size(44, 13);
+            this.lbWidth.Size = new System.Drawing.Size(53, 15);
             this.lbWidth.TabIndex = 28;
             this.lbWidth.Text = "<width>";
             // 
@@ -238,7 +242,7 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(310, 307);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(80, 13);
+            this.label25.Size = new System.Drawing.Size(90, 15);
             this.label25.TabIndex = 29;
             this.label25.Text = "WindowHeight:";
             // 
@@ -247,7 +251,7 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(310, 267);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 13);
+            this.label26.Size = new System.Drawing.Size(86, 15);
             this.label26.TabIndex = 30;
             this.label26.Text = "WindowWidth:";
             // 
@@ -256,7 +260,7 @@
             this.lResult.AutoSize = true;
             this.lResult.Location = new System.Drawing.Point(612, 49);
             this.lResult.Name = "lResult";
-            this.lResult.Size = new System.Drawing.Size(59, 13);
+            this.lResult.Size = new System.Drawing.Size(69, 15);
             this.lResult.TabIndex = 8;
             this.lResult.Text = "<no result>";
             this.lResult.Visible = false;
@@ -266,7 +270,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(612, 36);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.Size = new System.Drawing.Size(42, 15);
             this.label10.TabIndex = 8;
             this.label10.Text = "Result:";
             this.label10.Visible = false;
@@ -282,7 +286,7 @@
             "OKCancel"});
             this.cbButtons.Location = new System.Drawing.Point(312, 31);
             this.cbButtons.Name = "cbButtons";
-            this.cbButtons.Size = new System.Drawing.Size(268, 21);
+            this.cbButtons.Size = new System.Drawing.Size(268, 23);
             this.cbButtons.TabIndex = 7;
             this.cbButtons.Text = "Nothing";
             this.cbButtons.SelectedIndexChanged += new System.EventHandler(this.CbButtons_SelectedIndexChanged);
@@ -291,7 +295,7 @@
             // 
             this.pbBackColor.BackColor = System.Drawing.Color.White;
             this.pbBackColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbBackColor.Location = new System.Drawing.Point(369, 93);
+            this.pbBackColor.Location = new System.Drawing.Point(371, 93);
             this.pbBackColor.Name = "pbBackColor";
             this.pbBackColor.Size = new System.Drawing.Size(15, 15);
             this.pbBackColor.TabIndex = 6;
@@ -303,7 +307,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(309, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.Size = new System.Drawing.Size(64, 15);
             this.label5.TabIndex = 5;
             this.label5.Text = "BackColor:";
             // 
@@ -312,7 +316,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(309, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(33, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "Icon:";
             // 
@@ -329,14 +333,14 @@
             // 
             this.tbIcon.Location = new System.Drawing.Point(312, 70);
             this.tbIcon.Name = "tbIcon";
-            this.tbIcon.Size = new System.Drawing.Size(236, 20);
+            this.tbIcon.Size = new System.Drawing.Size(236, 23);
             this.tbIcon.TabIndex = 3;
             // 
             // tbCancel
             // 
             this.tbCancel.Location = new System.Drawing.Point(313, 244);
             this.tbCancel.Name = "tbCancel";
-            this.tbCancel.Size = new System.Drawing.Size(268, 20);
+            this.tbCancel.Size = new System.Drawing.Size(268, 23);
             this.tbCancel.TabIndex = 3;
             this.tbCancel.Text = "Cancel";
             // 
@@ -344,7 +348,7 @@
             // 
             this.tbOK.Location = new System.Drawing.Point(312, 205);
             this.tbOK.Name = "tbOK";
-            this.tbOK.Size = new System.Drawing.Size(268, 20);
+            this.tbOK.Size = new System.Drawing.Size(268, 23);
             this.tbOK.TabIndex = 3;
             this.tbOK.Text = "OK";
             // 
@@ -352,7 +356,7 @@
             // 
             this.tbNo.Location = new System.Drawing.Point(313, 166);
             this.tbNo.Name = "tbNo";
-            this.tbNo.Size = new System.Drawing.Size(268, 20);
+            this.tbNo.Size = new System.Drawing.Size(268, 23);
             this.tbNo.TabIndex = 3;
             this.tbNo.Text = "No";
             // 
@@ -361,7 +365,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(310, 228);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(101, 13);
+            this.label9.Size = new System.Drawing.Size(109, 15);
             this.label9.TabIndex = 2;
             this.label9.Text = "Cancel Button Text:";
             // 
@@ -369,7 +373,7 @@
             // 
             this.tbYes.Location = new System.Drawing.Point(312, 127);
             this.tbYes.Name = "tbYes";
-            this.tbYes.Size = new System.Drawing.Size(268, 20);
+            this.tbYes.Size = new System.Drawing.Size(268, 23);
             this.tbYes.TabIndex = 3;
             this.tbYes.Text = "Yes";
             // 
@@ -378,7 +382,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(309, 189);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.Size = new System.Drawing.Size(89, 15);
             this.label8.TabIndex = 2;
             this.label8.Text = "OK Button Text:";
             // 
@@ -386,7 +390,7 @@
             // 
             this.tbTitle.Location = new System.Drawing.Point(21, 31);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(268, 20);
+            this.tbTitle.Size = new System.Drawing.Size(268, 23);
             this.tbTitle.TabIndex = 3;
             this.tbTitle.Text = "Hi";
             // 
@@ -395,7 +399,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(310, 150);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 13);
+            this.label7.Size = new System.Drawing.Size(89, 15);
             this.label7.TabIndex = 2;
             this.label7.Text = "No Button Text:";
             // 
@@ -404,7 +408,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(56, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Message:";
             // 
@@ -413,7 +417,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(309, 111);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.Size = new System.Drawing.Size(90, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "Yes Button Text:";
             // 
@@ -422,7 +426,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(306, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.Size = new System.Drawing.Size(117, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "MessageBoxButtons:";
             // 
@@ -431,7 +435,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.Size = new System.Drawing.Size(32, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Title:";
             // 
@@ -439,7 +443,7 @@
             // 
             this.button2.Location = new System.Drawing.Point(693, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(96, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Show Dialog";
             this.button2.UseVisualStyleBackColor = true;
@@ -473,6 +477,7 @@
             this.haltroyListView1.HideSelection = false;
             this.haltroyListView1.Location = new System.Drawing.Point(3, 3);
             this.haltroyListView1.Name = "haltroyListView1";
+            this.haltroyListView1.OverlayColor = System.Drawing.Color.DodgerBlue;
             this.haltroyListView1.OwnerDraw = true;
             this.haltroyListView1.Size = new System.Drawing.Size(786, 420);
             this.haltroyListView1.TabIndex = 0;
@@ -509,6 +514,7 @@
             listViewItem1});
             this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
             this.haltroyListView2.Name = "haltroyListView2";
+            this.haltroyListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
             this.haltroyListView2.OwnerDraw = true;
             this.haltroyListView2.Size = new System.Drawing.Size(777, 335);
             this.haltroyListView2.TabIndex = 3;
@@ -537,7 +543,7 @@
             this.sliderValue.AutoSize = true;
             this.sliderValue.Location = new System.Drawing.Point(5, 35);
             this.sliderValue.Name = "sliderValue";
-            this.sliderValue.Size = new System.Drawing.Size(45, 13);
+            this.sliderValue.Size = new System.Drawing.Size(51, 15);
             this.sliderValue.TabIndex = 2;
             this.sliderValue.Text = "<value>";
             // 
@@ -647,7 +653,7 @@
             this.ibResult.AutoSize = true;
             this.ibResult.Location = new System.Drawing.Point(611, 51);
             this.ibResult.Name = "ibResult";
-            this.ibResult.Size = new System.Drawing.Size(59, 13);
+            this.ibResult.Size = new System.Drawing.Size(69, 15);
             this.ibResult.TabIndex = 25;
             this.ibResult.Text = "<no result>";
             this.ibResult.Visible = false;
@@ -657,7 +663,7 @@
             this.ibResultTitle.AutoSize = true;
             this.ibResultTitle.Location = new System.Drawing.Point(611, 38);
             this.ibResultTitle.Name = "ibResultTitle";
-            this.ibResultTitle.Size = new System.Drawing.Size(40, 13);
+            this.ibResultTitle.Size = new System.Drawing.Size(42, 15);
             this.ibResultTitle.TabIndex = 24;
             this.ibResultTitle.Text = "Result:";
             this.ibResultTitle.Visible = false;
@@ -666,7 +672,7 @@
             // 
             this.ibOverlayColor.BackColor = System.Drawing.Color.DodgerBlue;
             this.ibOverlayColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ibOverlayColor.Location = new System.Drawing.Point(477, 121);
+            this.ibOverlayColor.Location = new System.Drawing.Point(482, 121);
             this.ibOverlayColor.Name = "ibOverlayColor";
             this.ibOverlayColor.Size = new System.Drawing.Size(15, 15);
             this.ibOverlayColor.TabIndex = 23;
@@ -687,7 +693,7 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(405, 121);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(70, 13);
+            this.label23.Size = new System.Drawing.Size(79, 15);
             this.label23.TabIndex = 22;
             this.label23.Text = "OverlayColor:";
             // 
@@ -696,7 +702,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(313, 121);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 13);
+            this.label13.Size = new System.Drawing.Size(64, 15);
             this.label13.TabIndex = 22;
             this.label13.Text = "BackColor:";
             // 
@@ -705,7 +711,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(313, 72);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(31, 13);
+            this.label14.Size = new System.Drawing.Size(33, 15);
             this.label14.TabIndex = 21;
             this.label14.Text = "Icon:";
             // 
@@ -722,14 +728,14 @@
             // 
             this.ibIcon.Location = new System.Drawing.Point(316, 88);
             this.ibIcon.Name = "ibIcon";
-            this.ibIcon.Size = new System.Drawing.Size(236, 20);
+            this.ibIcon.Size = new System.Drawing.Size(236, 23);
             this.ibIcon.TabIndex = 18;
             // 
             // ibCancel
             // 
             this.ibCancel.Location = new System.Drawing.Point(316, 217);
             this.ibCancel.Name = "ibCancel";
-            this.ibCancel.Size = new System.Drawing.Size(268, 20);
+            this.ibCancel.Size = new System.Drawing.Size(268, 23);
             this.ibCancel.TabIndex = 20;
             this.ibCancel.Text = "Cancel";
             // 
@@ -737,14 +743,14 @@
             // 
             this.ibDefault.Location = new System.Drawing.Point(316, 34);
             this.ibDefault.Name = "ibDefault";
-            this.ibDefault.Size = new System.Drawing.Size(268, 20);
+            this.ibDefault.Size = new System.Drawing.Size(268, 23);
             this.ibDefault.TabIndex = 17;
             // 
             // ibOK
             // 
             this.ibOK.Location = new System.Drawing.Point(316, 171);
             this.ibOK.Name = "ibOK";
-            this.ibOK.Size = new System.Drawing.Size(268, 20);
+            this.ibOK.Size = new System.Drawing.Size(268, 23);
             this.ibOK.TabIndex = 17;
             this.ibOK.Text = "OK";
             // 
@@ -753,7 +759,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(313, 201);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(101, 13);
+            this.label15.Size = new System.Drawing.Size(109, 15);
             this.label15.TabIndex = 15;
             this.label15.Text = "Cancel Button Text:";
             // 
@@ -762,7 +768,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(540, 294);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(48, 13);
+            this.label20.Size = new System.Drawing.Size(57, 15);
             this.label20.TabIndex = 14;
             this.label20.Text = "<height>";
             // 
@@ -771,7 +777,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(540, 254);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.Size = new System.Drawing.Size(53, 15);
             this.label12.TabIndex = 14;
             this.label12.Text = "<width>";
             // 
@@ -780,7 +786,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(313, 294);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(80, 13);
+            this.label19.Size = new System.Drawing.Size(90, 15);
             this.label19.TabIndex = 14;
             this.label19.Text = "WindowHeight:";
             // 
@@ -789,7 +795,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(313, 254);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.Size = new System.Drawing.Size(86, 15);
             this.label11.TabIndex = 14;
             this.label11.Text = "WindowWidth:";
             // 
@@ -798,7 +804,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(313, 18);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(74, 13);
+            this.label22.Size = new System.Drawing.Size(79, 15);
             this.label22.TabIndex = 14;
             this.label22.Text = "Default Value:";
             // 
@@ -807,7 +813,7 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(313, 155);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(83, 13);
+            this.label16.Size = new System.Drawing.Size(89, 15);
             this.label16.TabIndex = 14;
             this.label16.Text = "OK Button Text:";
             // 
@@ -815,7 +821,7 @@
             // 
             this.ibTitle.Location = new System.Drawing.Point(20, 33);
             this.ibTitle.Name = "ibTitle";
-            this.ibTitle.Size = new System.Drawing.Size(268, 20);
+            this.ibTitle.Size = new System.Drawing.Size(268, 23);
             this.ibTitle.TabIndex = 16;
             this.ibTitle.Text = "Hi";
             // 
@@ -824,7 +830,7 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(17, 72);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 13);
+            this.label17.Size = new System.Drawing.Size(70, 15);
             this.label17.TabIndex = 13;
             this.label17.Text = "Description:";
             // 
@@ -833,7 +839,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(17, 17);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 13);
+            this.label18.Size = new System.Drawing.Size(32, 15);
             this.label18.TabIndex = 12;
             this.label18.Text = "Title:";
             // 
@@ -886,7 +892,7 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(66, 65);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(90, 13);
+            this.label24.Size = new System.Drawing.Size(98, 15);
             this.label24.TabIndex = 2;
             this.label24.Text = "Full Screen Mode";
             this.label24.Click += new System.EventHandler(this.haltroySwitch3_CheckedChanged);
@@ -906,7 +912,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(66, 39);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 13);
+            this.label21.Size = new System.Drawing.Size(61, 15);
             this.label21.TabIndex = 2;
             this.label21.Text = "Draggable";
             this.label21.Click += new System.EventHandler(this.haltroySwitch2_CheckedChanged);
@@ -925,7 +931,7 @@
             // 
             this.button7.Location = new System.Drawing.Point(8, 6);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(128, 23);
+            this.button7.Size = new System.Drawing.Size(187, 23);
             this.button7.TabIndex = 0;
             this.button7.Text = "Spawn a HaltroyForm";
             this.button7.UseVisualStyleBackColor = true;

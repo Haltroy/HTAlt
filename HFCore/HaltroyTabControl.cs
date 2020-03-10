@@ -19,500 +19,660 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
-
     public class HaltroyTabControl : TabControl
     {
-        /// <summary>
-        ///     Format of the title of the TabPage
-        /// </summary>
-        private readonly StringFormat CenterSringFormat = new StringFormat
+        private Color backgroundColor = Color.FromArgb(45, 45, 48);
+        private Color selectedTabColor = Color.FromArgb(0, 122, 204);
+        private Color unselectedTabColor = Color.FromArgb(63, 63, 70);
+        private Color hoverTabColor = Color.FromArgb(28, 151, 234);
+        private Color hoverTabButtonColor = Color.FromArgb(82, 176, 239);
+        private Color hoverUnselectedTabButtonColor = Color.FromArgb(85, 85, 85);
+        private Color selectedTabButtonColor = Color.FromArgb(28, 151, 234);
+        private Color unselectedBorderTabLineColor = Color.FromArgb(63, 63, 70);
+        private Color borderTabLineColor = Color.FromArgb(0, 122, 204);
+        private Color underBorderTabLineColor = Color.FromArgb(67, 67, 70);
+        private Color textColor = Color.FromArgb(255, 255, 255);
+        private Color upDownBackColor = Color.FromArgb(63, 63, 70);
+        private Color upDownTextColor = Color.FromArgb(109, 109, 112);
+        [Category("HaltroyTabControl"), Browsable(true), Description("The back color.")]
+        public Color BackgroundColor
         {
-            Alignment = StringAlignment.Near,
-            LineAlignment = StringAlignment.Center
-        };
+            get => this.backgroundColor;
 
-        private bool enableReposition = false;
-        private TabPage lockedFirstTab = null;
-        private TabPage lockedLastTab = null;
-        /// <summary>
-        ///     The color of the active tab header
-        /// </summary>
-        private Color activeColor = Color.DodgerBlue;
-
-        /// <summary>
-        ///     The color of the background of the Tab
-        /// </summary>
-        private Color backTabColor = Color.Black;
-
-        /// <summary>
-        ///     The color of the border of the control
-        /// </summary>
-        private Color borderColor = Color.Black;
-
-        /// <summary>
-        ///     Message for the user before losing
-        /// </summary>
-        private string closingMessage;
-
-        /// <summary>
-        ///     The color of the tab header
-        /// </summary>
-        private Color headerColor = Color.FromArgb(45, 45, 48);
-
-        /// <summary>
-        ///     The color of the horizontal line which is under the headers of the tab pages
-        /// </summary>
-        private Color horizLineColor = Color.DodgerBlue;
-
-        /// <summary>
-        ///     A random page will be used to store a tab that will be deplaced in the run-time
-        /// </summary>
-        private TabPage predraggedTab;
-
-        /// <summary>
-        ///     The color of the text
-        /// </summary>
-        private Color textColor = Color.LightGray;
-
-        ///<summary>
-        /// Shows closing buttons
-        /// </summary> 
-        public bool ShowClosingButton { get; set; }
-
-        /// <summary>
-        /// Selected tab text color
-        /// </summary>
-        public Color theselectedTextColor = Color.White;
-        /// <summary>
-        ///     Init
-        /// </summary>
-        public HaltroyTabControl()
-        {
-            Startup startup = new Startup();
-            SetStyle(
-                ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.ResizeRedraw
-                | ControlStyles.OptimizedDoubleBuffer,
-                true);
-            DoubleBuffered = true;
-            SizeMode = TabSizeMode.Normal;
-            ItemSize = new Size(240, 16);
-            AllowDrop = true;
+            set => this.backgroundColor = value;
         }
-        [Category("Style"), Browsable(true), Description("The color of the selected page")]
-        public Color ActiveColor
+        [Category("HaltroyTabControl"), Browsable(true), Description("The color of the selected tab.")]
+        public Color SelectedTabColor
         {
-            get => this.activeColor;
+            get => this.selectedTabColor;
 
-            set => this.activeColor = value;
+            set => this.selectedTabColor = value;
         }
-
-        [Category("Style"), Browsable(true), Description("The color of the background of the tab")]
-        public Color BackTabColor
+        [Category("HaltroyTabControl"), Browsable(true), Description("The color of the unselected tab.")]
+        public Color UnselectedTabColor
         {
-            get => this.backTabColor;
+            get => this.unselectedTabColor;
 
-            set => this.backTabColor = value;
+            set => this.unselectedTabColor = value;
         }
-
-        [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and will be always be at the start.")]
-        public TabPage LockedFirstTab
+        [Category("HaltroyTabControl"), Browsable(true), Description("The color of the tab when hovered.")]
+        public Color HoverTabColor
         {
-            get => this.lockedFirstTab;
+            get => this.hoverTabColor;
 
-            set => this.lockedFirstTab = value;
+            set => this.hoverTabColor = value;
         }
-
-        [Category("Misc"), Browsable(true), Description("Enables repositioning the tab pages on runtime.")]
-        public bool EnableRepositioning
+        [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered tab.")]
+        public Color HoverTabButtonColor
         {
-            get => this.enableReposition;
-            set => this.enableReposition = value;
-        }
+            get => this.hoverTabButtonColor;
 
-        [Category("Locked Tab"), Browsable(true), Description("Tab that cannot be removed or moved and always will be at the end.")]
-        public TabPage LockedLastTab
+            set => this.hoverTabButtonColor = value;
+        }
+        [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered unselected tab.")]
+        public Color HoverUnselectedTabButtonColor
         {
-            get => this.lockedLastTab;
+            get => this.hoverUnselectedTabButtonColor;
 
-            set => this.lockedLastTab = value;
+            set => this.hoverUnselectedTabButtonColor = value;
         }
-
-        [Category("Style"), Browsable(true), Description("The color of the border of the control")]
-        public Color BorderColor
+        [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the selected tab.")]
+        public Color SelectedTabButtonColor
         {
-            get => this.borderColor;
+            get => this.selectedTabButtonColor;
 
-            set => this.borderColor = value;
+            set => this.selectedTabButtonColor = value;
         }
-
-        /// <summary>
-        ///     The message that will be shown before closing.
-        /// </summary>
-        [Category("Options"), Browsable(true), Description("The message that will be shown before closing.")]
-        public string ClosingMessage
+        [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the unselected tab.")]
+        public Color UnselectedBorderTabLineColor
         {
-            get => this.closingMessage;
+            get => this.unselectedBorderTabLineColor;
 
-            set => this.closingMessage = value;
+            set => this.unselectedBorderTabLineColor = value;
         }
-
-        [Category("Style"), Browsable(true), Description("The color of the header.")]
-        public Color HeaderColor
+        [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the tab.")]
+        public Color BorderTabLineColor
         {
-            get => this.headerColor;
+            get => this.borderTabLineColor;
 
-            set => this.headerColor = value;
+            set => this.borderTabLineColor = value;
         }
-        [Category("Style"), Browsable(true),
-         Description("The color of the horizontal line which is located under the headers of the pages.")]
-        public Color HorizontalLineColor
+        [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the under tab.")]
+        public Color UnderBorderTabLineColor
         {
-            get => this.horizLineColor;
+            get => this.underBorderTabLineColor;
 
-            set => this.horizLineColor = value;
+            set => this.underBorderTabLineColor = value;
         }
-
-        /// <summary>
-        ///     Show a Yes/No message before closing?
-        /// </summary>
-        [Category("Options"), Browsable(true), Description("Show a Yes/No message before closing?")]
-        public bool ShowClosingMessage { get; set; }
-
-        [Category("Style"), Browsable(true), Description("The color of the title of the page")]
-        public Color SelectedTextColor
-        {
-            get => this.theselectedTextColor;
-
-            set => this.theselectedTextColor = value;
-        }
-
-        [Category("Style"), Browsable(true), Description("The color of the title of the page")]
+        [Category("HaltroyTabControl"), Browsable(true), Description("The text color.")]
         public Color TextColor
         {
             get => this.textColor;
 
             set => this.textColor = value;
         }
+        [Category("HaltroyTabControl"), Browsable(true), Description("The back color of up down.")]
+        public Color UpDownBackColor
+        {
+            get => this.upDownBackColor;
 
-        /// <summary>
-        ///     Sets the Tabs on the top
-        /// </summary>
+            set => this.upDownBackColor = value;
+        }
+        [Category("HaltroyTabControl"), Browsable(true), Description("The text color of up down.")]
+        public Color UpDownTextColor
+        {
+            get => this.upDownTextColor;
+
+            set => this.upDownTextColor = value;
+        }
+        [Category("HaltroyTabControl"), Browsable(true), Description("This option disables closing tabs.")]
+        public bool DisableClose { get; set; }
+        [Category("HaltroyTabControl"), Browsable(true), Description("This option disables dragging tabs.")]
+        public bool DisableDragging { get; set; }
+
+        private StringFormat CenterSF;
+        private TabPage predraggedTab;
+        private int hoveringTabIndex;
+
+        private SubClass scUpDown = null;
+        private bool bUpDown = false;
+        private bool hasFocus = false;
+
+        public HaltroyTabControl()
+        {
+            base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.DoubleBuffered = true;
+            this.CenterSF = new StringFormat
+            {
+                Alignment = StringAlignment.Near,
+                LineAlignment = StringAlignment.Center
+            };
+
+            this.Padding = new Point(14, 4);
+            this.AllowDrop = true;
+            this.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+        }
+
         protected override void CreateHandle()
         {
             base.CreateHandle();
-            Alignment = TabAlignment.Top;
+            base.Alignment = TabAlignment.Top;
         }
 
-        /// <summary>
-        ///     Drags the selected tab
-        /// </summary>
-        /// <param name="drgevent"></param>
-        protected override void OnDragOver(DragEventArgs drgevent)
-        {
-            var draggedTab = (TabPage)drgevent.Data.GetData(typeof(TabPage));
-            var pointedTab = getPointedTab();
-
-            if (ReferenceEquals(draggedTab, predraggedTab) && pointedTab != null)
-            {
-                drgevent.Effect = DragDropEffects.Move;
-
-                if (!ReferenceEquals(pointedTab, draggedTab))
-                {
-                    if (draggedTab == lockedFirstTab || pointedTab == lockedFirstTab) { }
-                    else if (draggedTab == lockedLastTab || pointedTab == lockedLastTab) { }
-                    else
-                    {
-                        this.ReplaceTabPages(draggedTab, pointedTab);
-                    }
-                }
-            }
-
-            base.OnDragOver(drgevent);
-        }
-
-        /// <summary>
-        ///     Handles the selected tab|closes the selected page if wanted.
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            predraggedTab = getPointedTab();
-            var p = e.Location;
-            if (!this.ShowClosingButton)
+            var mouseRect = new Rectangle(e.X, e.Y, 1, 1);
+            var hoveringTabs = Enumerable.Range(0, this.TabCount).Where(i => this.GetTabRect(i).IntersectsWith(mouseRect));
+
+            if (hoveringTabs.Any())
             {
-            }
-            else
-            {
-                for (var i = 0; i < this.TabCount; i++)
+                var tabIndex = hoveringTabs.First();
+                var tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
+                var tabExitRectangle = new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15);
+
+                if (tabExitRectangle.Contains(this.PointToClient(Cursor.Position)))
                 {
-                    var r = this.GetTabRect(i);
-                    r.Offset(r.Width - 15, 2);
-                    r.Width = 10;
-                    r.Height = 10;
-                    if (!r.Contains(p))
+                    if (!DisableClose)
                     {
-                        continue;
-                    }
-
-                    if (this.ShowClosingMessage)
-                    {
-                        HaltroyMsgBox mesaj = new HaltroyMsgBox(this.Parent.Text, this.ClosingMessage, null, MessageBoxButtons.YesNo, this.backTabColor);
-                        if (DialogResult.Yes == mesaj.ShowDialog())
-                        {
-                            if (this.SelectedTab == lockedFirstTab || this.SelectedTab == lockedLastTab) { }
-                            else
-                            {
-
-                                this.TabPages[i].Controls.Clear();
-                                this.TabPages[i].Dispose();
-                                try
-                                {
-                                    this.TabPages.RemoveAt(i);
-                                    if (i == 0) { this.SelectedIndex = i; }
-                                    else
-                                    {
-                                        this.SelectedIndex = i - 1;
-                                    }
-                                }
-                                catch { } //ignored , possibly double click
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (i == this.TabPages.IndexOf(lockedFirstTab) || i == this.TabPages.IndexOf(lockedLastTab)) { }
-                        else
-                        {
-                            if (this.SelectedTab == lockedFirstTab) { }
-                            else if (this.SelectedTab == lockedLastTab) { }
-                            else
-                            {
-                                this.TabPages.RemoveAt(i);
-                                if (i == 0) { this.SelectedIndex = i; }
-                                else
-                                {
-                                    this.SelectedIndex = i - 1;
-                                }
-                            }
-                        }
+                        this.TabPages.Remove(this.TabPages[tabIndex]);
+                        return;
                     }
                 }
             }
 
+            this.predraggedTab = this.getPointedTab();
             base.OnMouseDown(e);
         }
 
-        /// <summary>
-        ///     Holds the selected page until it sets down
-        /// </summary>
-        /// <param name="e"></param>
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            this.predraggedTab = null;
+            base.OnMouseUp(e);
+        }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && predraggedTab != null)
+            if (this.SelectedIndex == -1)
             {
-                if (enableReposition)
-                {
-                    this.DoDragDrop(predraggedTab, DragDropEffects.Move);
-                }
+                base.OnMouseMove(e);
+                return;
+            }
+
+            // check whether they are hovering over a tab button
+            var tabIndex = this.SelectedIndex;
+            var tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
+
+            var mouseRect = new Rectangle(e.X, e.Y, 1, 1);
+            var hoveringTabs = Enumerable.Range(0, this.TabCount).Where(i => this.GetTabRect(i).IntersectsWith(mouseRect));
+
+            if (hoveringTabs.Any())
+            {
+                hoveringTabIndex = hoveringTabs.First();
+            }
+
+            if (e.Button == MouseButtons.Left && this.predraggedTab != null)
+            {
+                base.DoDragDrop(this.predraggedTab, DragDropEffects.Move);
+            }
+
+            if (e.Y < 25) // purely for performance reasons, only necessary for hovering button states
+            {
+                this.Invalidate();
             }
 
             base.OnMouseMove(e);
         }
 
-        /// <summary>
-        ///     Abandons the selected tab
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseUp(MouseEventArgs e)
+        protected override void OnLeave(EventArgs e)
         {
-            predraggedTab = null;
-            base.OnMouseUp(e);
+            if (hoveringTabIndex != -1)
+            {
+                hoveringTabIndex = -1;
+                this.Invalidate();
+            }
+
+            base.OnLeave(e);
         }
 
-        Color InvertMeAColour(Color ColourToInvert)
+        protected override void OnMouseLeave(EventArgs e)
         {
-            return Color.FromArgb(255 - ColourToInvert.R,
-              255 - ColourToInvert.G, 255 - ColourToInvert.B);
+            if (hoveringTabIndex != -1)
+            {
+                hoveringTabIndex = -1;
+                this.Invalidate();
+            }
+
+            base.OnMouseLeave(e);
         }
-        /// <summary>
-        ///     Draws the control
-        /// </summary>
-        /// <param name="e"></param>
+
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
-            var Drawer = g;
 
-            Drawer.SmoothingMode = SmoothingMode.HighQuality;
-            Drawer.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            Drawer.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-            Drawer.Clear(this.headerColor);
-            try
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            g.Clear(this.backgroundColor);
+
+            g.DrawLine(new Pen(new SolidBrush(this.FindForm() == Form.ActiveForm ? this.borderTabLineColor : this.unselectedBorderTabLineColor), 2), new Point(0, 22), new Point(base.Width, 22));
+            g.FillRectangle(new SolidBrush(this.underBorderTabLineColor), 0, 23, base.Width, 1);
+
+            // ugly way to check whether the parent form has focus or not
+            if (!hasFocus && this.FindForm() == Form.ActiveForm)
             {
-                SelectedTab.BorderStyle = BorderStyle.None;
+                this.Invalidate(new Rectangle(0, 21, base.Width, 24));
+                hasFocus = true;
             }
-            catch
+            else if (hasFocus && this.FindForm() != Form.ActiveForm)
             {
-                // ignored
+                this.Invalidate(new Rectangle(0, 21, base.Width, 24));
+                hasFocus = false;
             }
 
-            for (var i = 0; i <= TabCount - 1; i++)
+            for (var i = 0; i < this.TabCount; i++)
             {
-                var Header = new Rectangle(
-                    new Point(GetTabRect(i).Location.X + 2, GetTabRect(i).Location.Y),
-                    new Size(GetTabRect(i).Width, GetTabRect(i).Height));
-                var HeaderSize = new Rectangle(Header.Location, new Size(Header.Width, Header.Height));
-                Brush ClosingColorBrush = new SolidBrush(InvertMeAColour(this.activeColor));
+                var tabBase = new Rectangle(new Point(base.GetTabRect(i).Location.X + 2, base.GetTabRect(i).Location.Y), new Size(base.GetTabRect(i).Width, base.GetTabRect(i).Height));
+                var tabSize = new Rectangle(tabBase.Location, new Size(tabBase.Width, tabBase.Height - 4));
 
-                if (i == SelectedIndex)
+                // draw tab highlights
+                if (this.FindForm() != Form.ActiveForm && base.SelectedIndex == i) // unselected selected tab
                 {
-                    Drawer.FillRectangle(new SolidBrush(this.headerColor), HeaderSize);
+                    g.FillRectangle(new SolidBrush(this.unselectedTabColor), tabSize);
+                }
+                else if (base.SelectedIndex == i) // selected tab
+                {
+                    g.FillRectangle(new SolidBrush(this.selectedTabColor), tabSize);
+                }
+                else if (hoveringTabIndex == i) // hovering tab
+                {
+                    g.FillRectangle(new SolidBrush(this.hoverTabColor), tabSize);
+                }
+                else // unselected tab
+                {
+                    g.FillRectangle(new SolidBrush(this.backgroundColor), tabSize);
+                }
 
-                    // Draws the back of the color when it is selected
-                    Drawer.FillRectangle(
-                        new SolidBrush(this.activeColor),
-                        new Rectangle(Header.X - 5, Header.Y - 3, Header.Width, Header.Height + 5));
-
-                    //Draws the Icon of the tab(if exists) and draws the text right next to it
-                    //If image is null then draw text alone without shifthing.
-                    if (ImageList == null || ImageList.Images[TabPages[i].ImageKey] == null)
+                // if current selected tab
+                if (base.SelectedIndex == i)
+                {
+                    if (!DisableClose)
                     {
-                        Drawer.DrawString(
-                        TabPages[i].Text,
-                        Font,
-                        new SolidBrush(this.theselectedTextColor),
-                      HeaderSize,
-                        this.CenterSringFormat);
-                    }
-                    else
-                    {
-                        Drawer.DrawImage(
-                            ImageList.Images[TabPages[i].ImageKey],
-                            new Rectangle(HeaderSize.X, HeaderSize.Y, HeaderSize.Height, HeaderSize.Height));
-                        Drawer.DrawString(
-                        TabPages[i].Text,
-                        Font,
-                        new SolidBrush(this.theselectedTextColor),
-                      new Rectangle(HeaderSize.X + HeaderSize.Height, HeaderSize.Y, HeaderSize.Width + HeaderSize.Height, HeaderSize.Height),
-                        this.CenterSringFormat);
-                    }
-
-                    // Draws the closing button
-                    if (this.ShowClosingButton)
-                    {
-                        if (this.SelectedTab == lockedFirstTab) { }
-                        else if (this.SelectedTab == lockedLastTab) { }
-                        else
+                        // hovering over selected tab button
+                        if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(this.PointToClient(Cursor.Position)))
                         {
-                            e.Graphics.DrawString("X", Font, ClosingColorBrush, HeaderSize.Right - 17, 3);
+                            g.FillRectangle(new SolidBrush(this.FindForm() == Form.ActiveForm ? this.selectedTabButtonColor : this.hoverUnselectedTabButtonColor),
+                                new RectangleF((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15));
+                        }
+
+                        g.TextContrast = 0;
+
+                        g.DrawString("×", new Font(this.Font.FontFamily, 15f), new SolidBrush(this.textColor),
+                            new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), this.CenterSF);
+                    }
+                }
+                else
+                {
+                    // if hovering over a tab
+                    if (hoveringTabIndex == i)
+                    {
+                        if (!DisableClose)
+                        {
+                            // hovering over hovered tab button
+                            if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(this.PointToClient(Cursor.Position)))
+                            {
+                                g.FillRectangle(new SolidBrush(this.hoverTabButtonColor),
+                                    new RectangleF((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15));
+                            }
+
+                            g.TextContrast = 0;
+                            g.DrawString("×", new Font(this.Font.FontFamily, 15f), new SolidBrush(this.textColor),
+                                new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), this.CenterSF);
                         }
                     }
                 }
-                else
-                {
 
-                    Drawer.FillRectangle(new SolidBrush(this.headerColor), HeaderSize);
-                    if (ImageList == null || ImageList.Images[TabPages[i].ImageKey] == null)
-                    {
-                        Drawer.DrawString(
-   TabPages[i].Text,
-   Font,
-   new SolidBrush(this.textColor),
-   HeaderSize,
-   this.CenterSringFormat);
-                    }
-                    else
-                    {
-                        Drawer.DrawImage(
-                            ImageList.Images[TabPages[i].ImageKey],
-                            new Rectangle(HeaderSize.X, HeaderSize.Y, HeaderSize.Height, HeaderSize.Height));
-
-                        Drawer.DrawString(
-                        TabPages[i].Text,
-                        Font,
-                        new SolidBrush(this.textColor),
-                        new Rectangle(HeaderSize.X + HeaderSize.Height, HeaderSize.Y, HeaderSize.Width + HeaderSize.Height, HeaderSize.Height),
-                        this.CenterSringFormat);
-                    }
-
-                }
+                g.TextContrast = 12;
+                g.DrawString(base.TabPages[i].Text, new Font(this.Font.FontFamily, this.Font.Size), new SolidBrush(this.textColor),
+                    new Rectangle(tabBase.Location.X + 3, tabBase.Location.Y - 1, tabBase.Width, tabBase.Height + 1), this.CenterSF);
             }
 
-            // Draws the horizontal line
-            Drawer.DrawLine(new Pen(this.horizLineColor, 2), new Point(0, 19), new Point(Width, 19));
-
-            // Draws the background of the tab control
-            Brush backbrush = new SolidBrush(this.backTabColor);
-            Drawer.FillRectangle(backbrush, new Rectangle(0, 20, Width, Height - 20));
-
-            // Draws the border of the TabControl
-            Drawer.DrawRectangle(new Pen(this.borderColor, 2), new Rectangle(0, 0, Width, Height));
-            Drawer.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            if (this.SelectedIndex != -1)
+            {
+                base.SelectedTab.BorderStyle = BorderStyle.None;
+            }
         }
 
-        /// <summary>
-        ///     Gets the pointed tab
-        /// </summary>
-        /// <returns></returns>
+        protected override void OnDragOver(DragEventArgs drgevent)
+        {
+            var draggedTab = (TabPage)drgevent.Data.GetData(typeof(TabPage));
+            var pointedTab = this.getPointedTab();
+            if (!DisableDragging)
+            {
+                if (draggedTab == this.predraggedTab && pointedTab != null)
+                {
+                    drgevent.Effect = DragDropEffects.Move;
+
+                    if (pointedTab != draggedTab)
+                    {
+                        this.swapTabPages(draggedTab, pointedTab);
+                    }
+                }
+            }
+            base.OnDragOver(drgevent);
+        }
+
         private TabPage getPointedTab()
         {
-            for (var i = 0; i <= this.TabPages.Count - 1; i++)
+            checked
             {
-                if (this.GetTabRect(i).Contains(this.PointToClient(Cursor.Position)))
+                for (var i = 0; i <= base.TabPages.Count - 1; i++)
                 {
-                    return this.TabPages[i];
+                    if (base.GetTabRect(i).Contains(base.PointToClient(Cursor.Position)))
+                    {
+                        return base.TabPages[i];
+                    }
                 }
+                return null;
             }
-
-            return null;
         }
 
-        /// <summary>
-        ///     Swaps the two tabs
-        /// </summary>
-        /// <param name="Source"></param>
-        /// <param name="Destination"></param>
-        private void ReplaceTabPages(TabPage Source, TabPage Destination)
+        private void swapTabPages(TabPage src, TabPage dst)
         {
-            if (enableReposition)
+            if (!DisableDragging)
             {
-                var SourceIndex = this.TabPages.IndexOf(Source);
-                var DestinationIndex = this.TabPages.IndexOf(Destination);
+                var srci = base.TabPages.IndexOf(src);
+                var dsti = base.TabPages.IndexOf(dst);
+                base.TabPages[dsti] = src;
+                base.TabPages[srci] = dst;
 
-                this.TabPages[DestinationIndex] = Source;
-                this.TabPages[SourceIndex] = Destination;
-                if (Source == lockedFirstTab || DestinationIndex == 0)
+                base.SelectedIndex = (base.SelectedIndex == srci) ? dsti : srci;
+            }
+            this.Refresh();
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+
+            FindUpDown();
+        }
+
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            FindUpDown();
+            UpdateUpDown();
+
+            base.OnControlAdded(e);
+        }
+
+        protected override void OnControlRemoved(ControlEventArgs e)
+        {
+            FindUpDown();
+            UpdateUpDown();
+
+            base.OnControlRemoved(e);
+        }
+
+        private void FindUpDown()
+        {
+            var bFound = false;
+            var pWnd = Win32.GetWindow(this.Handle, Win32.GW_CHILD);
+
+            while (pWnd != IntPtr.Zero)
+            {
+                var className = new char[33];
+                var length = Win32.GetClassName(pWnd, className, 32);
+                var s = new string(className, 0, length);
+
+                if (s == "msctls_updown32")
                 {
-                    Source.TabIndex = 0;
-                }
-                else if (Source == lockedLastTab || DestinationIndex == this.TabCount - 1)
-                {
-                    Source.TabIndex = this.TabCount - 1;
+                    bFound = true;
+
+                    if (!bUpDown)
+                    {
+                        this.scUpDown = new SubClass(pWnd, true);
+                        this.scUpDown.SubClassedWndProc += new SubClass.SubClassWndProcEventHandler(scUpDown_SubClassedWndProc);
+
+                        bUpDown = true;
+                    }
+                    break;
                 }
 
-                else
-                {
-                    if (this.SelectedIndex == SourceIndex)
-                    {
-                        this.SelectedIndex = DestinationIndex;
-                    }
-                    else if (this.SelectedIndex == DestinationIndex)
-                    {
-                        this.SelectedIndex = SourceIndex;
-                    }
-                }
-                this.Refresh();
+                pWnd = Win32.GetWindow(pWnd, Win32.GW_HWNDNEXT);
+            }
+
+            if ((!bFound) && (bUpDown))
+            {
+                bUpDown = false;
             }
         }
 
+        private void UpdateUpDown()
+        {
+            if (bUpDown)
+            {
+                if (Win32.IsWindowVisible(scUpDown.Handle))
+                {
+                    var rect = new Rectangle();
 
+                    Win32.GetClientRect(scUpDown.Handle, ref rect);
+                    Win32.InvalidateRect(scUpDown.Handle, ref rect, true);
+                }
+            }
+        }
+
+        private int scUpDown_SubClassedWndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case Win32.WM_PAINT:
+                    {
+                        var hDC = Win32.GetWindowDC(scUpDown.Handle);
+                        var g = Graphics.FromHdc(hDC);
+
+                        DrawIcons(g);
+
+                        g.Dispose();
+                        Win32.ReleaseDC(scUpDown.Handle, hDC);
+                        m.Result = IntPtr.Zero;
+
+                        var rect = new Rectangle();
+
+                        Win32.GetClientRect(scUpDown.Handle, ref rect);
+                        Win32.ValidateRect(scUpDown.Handle, ref rect);
+                    }
+                    return 1;
+            }
+
+            return 0;
+        }
+
+        internal void DrawIcons(Graphics g)
+        {
+            var TabControlArea = this.ClientRectangle;
+            var r0 = new Rectangle();
+            Win32.GetClientRect(scUpDown.Handle, ref r0);
+
+            Brush br = new SolidBrush(upDownBackColor);
+            g.FillRectangle(br, r0);
+            br.Dispose();
+
+            g.DrawString("◀", new Font(this.Font.FontFamily, 12f),
+                new SolidBrush(upDownTextColor), r0);
+
+            g.DrawString("▶", new Font(this.Font.FontFamily, 12f),
+                new SolidBrush(upDownTextColor),
+                new Rectangle(r0.X + 20, r0.Y, r0.Width, r0.Height));
+        }
+    }
+
+    internal static class Win32
+    {
+        public const int GW_HWNDFIRST = 0;
+        public const int GW_HWNDLAST = 1;
+        public const int GW_HWNDNEXT = 2;
+        public const int GW_HWNDPREV = 3;
+        public const int GW_OWNER = 4;
+        public const int GW_CHILD = 5;
+
+        public const int WM_NCCALCSIZE = 0x83;
+        public const int WM_WINDOWPOSCHANGING = 0x46;
+        public const int WM_PAINT = 0xF;
+        public const int WM_CREATE = 0x1;
+        public const int WM_NCCREATE = 0x81;
+        public const int WM_NCPAINT = 0x85;
+        public const int WM_PRINT = 0x317;
+        public const int WM_DESTROY = 0x2;
+        public const int WM_SHOWWINDOW = 0x18;
+        public const int WM_SHARED_MENU = 0x1E2;
+        public const int HC_ACTION = 0;
+        public const int WH_CALLWNDPROC = 4;
+        public const int GWL_WNDPROC = -4;
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr GetWindowDC(IntPtr handle);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr ReleaseDC(IntPtr handle, IntPtr hDC);
+
+        [DllImport("Gdi32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr CreateCompatibleDC(IntPtr hdc);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern int GetClassName(IntPtr hwnd, char[] className, int maxCount);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern IntPtr GetWindow(IntPtr hwnd, int uCmd);
+
+        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        public static extern bool IsWindowVisible(IntPtr hwnd);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern int GetClientRect(IntPtr hwnd, ref RECT lpRect);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern int GetClientRect(IntPtr hwnd, [In, Out] ref Rectangle rect);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern bool MoveWindow(IntPtr hwnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern bool UpdateWindow(IntPtr hwnd);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern bool InvalidateRect(IntPtr hwnd, ref Rectangle rect, bool bErase);
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        public static extern bool ValidateRect(IntPtr hwnd, ref Rectangle rect);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        internal static extern bool GetWindowRect(IntPtr hWnd, [In, Out] ref Rectangle rect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPOS
+        {
+            public IntPtr hwnd;
+            public IntPtr hwndAfter;
+            public int x;
+            public int y;
+            public int cx;
+            public int cy;
+            public uint flags;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NCCALCSIZE_PARAMS
+        {
+            public RECT rgc;
+            public WINDOWPOS wndpos;
+        }
+    }
+
+    internal class SubClass : NativeWindow
+    {
+        public delegate int SubClassWndProcEventHandler(ref System.Windows.Forms.Message m);
+        public event SubClassWndProcEventHandler SubClassedWndProc;
+        private bool IsSubClassed = false;
+
+        public SubClass(IntPtr Handle, bool _SubClass)
+        {
+            base.AssignHandle(Handle);
+            this.IsSubClassed = _SubClass;
+        }
+
+        public bool SubClassed
+        {
+            get => this.IsSubClassed;
+            set => this.IsSubClassed = value;
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (this.IsSubClassed)
+            {
+                if (OnSubClassedWndProc(ref m) != 0)
+                {
+                    return;
+                }
+            }
+            base.WndProc(ref m);
+        }
+
+        public void CallDefaultWndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+        }
+
+        public int HiWord(int Number)
+        {
+            return ((Number >> 16) & 0xffff);
+        }
+
+        public int LoWord(int Number)
+        {
+            return (Number & 0xffff);
+        }
+
+        public int MakeLong(int LoWord, int HiWord)
+        {
+            return (HiWord << 16) | (LoWord & 0xffff);
+        }
+
+        public IntPtr MakeLParam(int LoWord, int HiWord)
+        {
+            return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
+        }
+
+        private int OnSubClassedWndProc(ref Message m)
+        {
+            if (SubClassedWndProc != null)
+            {
+                return this.SubClassedWndProc(ref m);
+            }
+
+            return 0;
+        }
     }
 }

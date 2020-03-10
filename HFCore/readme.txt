@@ -25,9 +25,8 @@
 Please take screenshot of this screen with HT logo
 and send this to Haltroy (in any social media) 
 if you want to get a free shoutout.
-
 The social media links are located bottom of the website.
-http://haltroy.com
+https://haltroy.com
 
 Thanks for using the HaltroyFramework.
 Note that this project is still in development
@@ -41,9 +40,8 @@ on your machine.Newer versions are supported.
 Users of your projects are also need to have
 at least .Net Framework 4.5 or newer.
 
-
 All features can be previewed using Hf.Test project in the
-HaltroyFramework GitHub solution.
+HaltroyFramework solution (available in GitHub).
 
 Current Features:
 -Tab Control
@@ -53,10 +51,6 @@ Current Features:
 -HaltroyForms Form Type
 -MessageBox Form
 -InputBox Form
-
-TODO:
--Fix TabControl
--Redesign Switch Control
 
 This Project is used in these Haltroy projects:
 -Korot (Desktop)

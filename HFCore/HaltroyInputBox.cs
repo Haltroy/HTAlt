@@ -106,11 +106,11 @@ namespace HaltroyFramework
         #endregion
         private void CustomInputBox_Load(object sender, EventArgs e)
         {
-            this.ForeColor = isBright(BackgroundColor) ? Color.White : Color.Black;
+            this.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             this.BackColor = BackgroundColor;
-            button1.ForeColor = isBright(BackgroundColor) ? Color.White : Color.Black;
-            button2.ForeColor = isBright(BackgroundColor) ? Color.White : Color.Black;
-            textBox1.ForeColor = isBright(BackgroundColor) ? Color.White : Color.Black;
+            button1.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
+            button2.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
+            textBox1.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             textBox1.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
         }
 
