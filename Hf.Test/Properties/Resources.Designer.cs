@@ -59,5 +59,15 @@ namespace Hf.Test.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap ht_logo_2020 {
+            get {
+                object obj = ResourceManager.GetObject("ht-logo-2020", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

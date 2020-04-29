@@ -1,44 +1,21 @@
-﻿
---NddddddN      Nddddddddddddddddddddddddddddddd
---Ns++++++d      y+++++++++++++++++++++++++++++y
-----s++++++h      y+++++++++++++++++++++++++++s
------s++++++h      yooooooooooooo+++++++ooooos
-------y++++++h                  Ns++++++sN
--------y++++++y     yssssssd    Ns++++++o
---------y++++++y     Ny++++++h   h+++++oN
----------y++++++y     y++++++d    h+++sN
-----------y++++++s    ds+++++++d   doy
------------h++++++ydyo++++++++++d   N
-------------h++++++++++++++++++++d
--------------h++++++++++oydh++++++h
---------------h+++++++hN    d+++++s
----------------h++++++sN     d+++h
-----------------d++++++oN     do
------------------do+++++oN
-------------------d++++++oN
---------------------o+++++o
----------------------++++++o
-----------------------o+++oN
------------------------o+sN
-------------------------yN
-
-Please take screenshot of this screen with HT logo
-and send this to Haltroy (in any social media) 
+﻿Please take screenshot of this screen
+and send this to me (in any social media) 
 if you want to get a free shoutout.
 The social media links are located bottom of the website.
 https://haltroy.com
 
 Thanks for using the HaltroyFramework.
-Note that this project is still in development
-and bugs can be visible.If you spot an one
-then please create an issue on GitHub.
+Note that this project is still in development.
+If you have problems then please create an 
+issue on GitHub so I can fix it.
 
-To use HaltroyFramework, plase make sure you
+To use HaltroyFramework, please make sure you
 have at least .Net Framework 4.5 installed
-on your machine.Newer versions are supported.
+on your machine. Newer versions are supported.
 
 Users of your projects are also need to have
-at least .Net Framework 4.5 or newer.
+at least .Net Framework 4.5 or newer installed
+on their machine too.
 
 All features can be previewed using Hf.Test project in the
 HaltroyFramework solution (available in GitHub).
@@ -46,6 +23,7 @@ HaltroyFramework solution (available in GitHub).
 Current Features:
 -Tab Control
 -Slider Control
+-Button Control
 -ListView Control
 -Switch Control
 -HaltroyForms Form Type

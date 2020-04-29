@@ -32,29 +32,11 @@ namespace HaltroyFramework
     {
         #region Delegate and Event declarations
 
-        public delegate void CheckedChangedDelegate(Object sender, EventArgs e);
+        public delegate void CheckedChangedDelegate(object sender, EventArgs e);
         [Description("Raised when the HaltroySwitch has changed state")]
         public event CheckedChangedDelegate CheckedChanged;
 
         #endregion Delegate and Event declarations
-
-        #region Enums
-
-        public enum HaltroySwitchAlignment
-        {
-            Near,
-            Center,
-            Far
-        }
-
-        public enum HaltroySwitchButtonAlignment
-        {
-            Left,
-            Center,
-            Right
-        }
-
-        #endregion Enums
 
         #region Private Members
 
@@ -89,34 +71,12 @@ namespace HaltroyFramework
         private MouseEventArgs _lastMouseEventArgs = null;
 
         private bool _buttonScaleImage;
-        private HaltroySwitchButtonAlignment _buttonAlignment = HaltroySwitchButtonAlignment.Center;
-        private Image _buttonImage = null;
-
-        private string _offText = "";
         private Color _overlayColor = Color.DodgerBlue;
         private Color _borderColor = Color.LightGray;
         private Color _backColor = Color.White;
         private Color _buttonColor = Color.FromArgb(255, 235, 235, 235);
         private Color _buttonHoverColor = Color.FromArgb(255, 215, 215, 215);
         private Color _buttonPressedColor = Color.FromArgb(255, 195, 195, 195);
-        private Color _offForeColor = Color.Black;
-        private Font _offFont;
-        private Image _offSideImage = null;
-        private bool _offSideScaleImage;
-        private HaltroySwitchAlignment _offSideAlignment = HaltroySwitchAlignment.Center;
-        private Image _offButtonImage = null;
-        private bool _offButtonScaleImage;
-        private HaltroySwitchButtonAlignment _offButtonAlignment = HaltroySwitchButtonAlignment.Center;
-
-        private string _onText = "";
-        private Color _onForeColor = Color.Black;
-        private Font _onFont;
-        private Image _onSideImage = null;
-        private bool _onSideScaleImage;
-        private HaltroySwitchAlignment _onSideAlignment = HaltroySwitchAlignment.Center;
-        private Image _onButtonImage = null;
-        private bool _onButtonScaleImage;
-        private HaltroySwitchButtonAlignment _onButtonAlignment = HaltroySwitchButtonAlignment.Center;
 
         #endregion Private Members
 
@@ -131,9 +91,6 @@ namespace HaltroyFramework
                         ControlStyles.UserPaint |
                         ControlStyles.OptimizedDoubleBuffer |
                         ControlStyles.DoubleBuffer, true);
-
-            OnFont = base.Font;
-            OffFont = base.Font;
 
             SetRenderer(new HaltroySwitchRenderer());
 
@@ -199,11 +156,6 @@ namespace HaltroyFramework
             get => _allowUserChange;
             set => _allowUserChange = value;
         }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string CheckedString => Checked ? (string.IsNullOrEmpty(OnText) ? "ON" : OnText) : (string.IsNullOrEmpty(OffText) ? "OFF" : OffText);
-
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle ButtonRectangle => _renderer.GetButtonRectangle();
@@ -355,262 +307,6 @@ namespace HaltroyFramework
             }
         }
         [Bindable(false)]
-        [DefaultValue(typeof(Color), "Black")]
-        [Category("Appearance")]
-        [Description("Gets or sets the forecolor of the text when Checked=false")]
-        public Color OffForeColor
-        {
-            get => _offForeColor;
-            set
-            {
-                if (value != _offForeColor)
-                {
-                    _offForeColor = value;
-                    Refresh();
-                }
-            }
-        }
-
-
-        [Bindable(false)]
-        [DefaultValue(typeof(Font), "Microsoft Sans Serif, 8.25pt")]
-        [Category("Appearance")]
-        [Description("Gets or sets the font of the text when Checked=false")]
-        public Font OffFont
-        {
-            get => _offFont;
-            set
-            {
-                if (!value.Equals(_offFont))
-                {
-                    _offFont = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue("")]
-        [Category("Appearance")]
-        [Description("Gets or sets the text when Checked=true")]
-        public string OffText
-        {
-            get => _offText;
-            set
-            {
-                if (value != _offText)
-                {
-                    _offText = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Gets or sets the side image when Checked=false - Note: Settings the OffSideImage overrules the OffText property. Only the image will be shown")]
-        public Image OffSideImage
-        {
-            get => _offSideImage;
-            set
-            {
-                if (value != _offSideImage)
-                {
-                    _offSideImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(false)]
-        [Category("Behavior")]
-        [Description("Gets or sets whether the side image visible when Checked=false should be scaled to fit")]
-        public bool OffSideScaleImageToFit
-        {
-            get => _offSideScaleImage;
-            set
-            {
-                if (value != _offSideScaleImage)
-                {
-                    _offSideScaleImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(HaltroySwitchAlignment), "Center")]
-        [Category("Appearance")]
-        [Description("Gets or sets how the text or side image visible when Checked=false should be aligned")]
-        public HaltroySwitchAlignment OffSideAlignment
-        {
-            get => _offSideAlignment;
-            set
-            {
-                if (value != _offSideAlignment)
-                {
-                    _offSideAlignment = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Gets or sets the button image when Checked=false and ButtonImage is not set")]
-        public Image OffButtonImage
-        {
-            get => _offButtonImage;
-            set
-            {
-                if (value != _offButtonImage)
-                {
-                    _offButtonImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(false)]
-        [Category("Behavior")]
-        [Description("Gets or sets whether the button image visible when Checked=false should be scaled to fit")]
-        public bool OffButtonScaleImageToFit
-        {
-            get => _offButtonScaleImage;
-            set
-            {
-                if (value != _offButtonScaleImage)
-                {
-                    _offButtonScaleImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(HaltroySwitchButtonAlignment), "Center")]
-        [Category("Appearance")]
-        [Description("Gets or sets how the button image visible when Checked=false should be aligned")]
-        public HaltroySwitchButtonAlignment OffButtonAlignment
-        {
-            get => _offButtonAlignment;
-            set
-            {
-                if (value != _offButtonAlignment)
-                {
-                    _offButtonAlignment = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(Color), "Black")]
-        [Category("Appearance")]
-        [Description("Gets or sets the forecolor of the text when Checked=true")]
-        public Color OnForeColor
-        {
-            get => _onForeColor;
-            set
-            {
-                if (value != _onForeColor)
-                {
-                    _onForeColor = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(Font), "Microsoft Sans Serif, 8,25pt")]
-        [Category("Appearance")]
-        [Description("Gets or sets the font of the text when Checked=true")]
-        public Font OnFont
-        {
-            get => _onFont;
-            set
-            {
-                if (!value.Equals(_onFont))
-                {
-                    _onFont = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue("")]
-        [Category("Appearance")]
-        [Description("Gets or sets the text when Checked=true")]
-        public string OnText
-        {
-            get => _onText;
-            set
-            {
-                if (value != _onText)
-                {
-                    _onText = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Gets or sets the side image visible when Checked=true - Note: Settings the OnSideImage overrules the OnText property. Only the image will be shown.")]
-        public Image OnSideImage
-        {
-            get => _onSideImage;
-            set
-            {
-                if (value != _onSideImage)
-                {
-                    _onSideImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(false)]
-        [Category("Behavior")]
-        [Description("Gets or sets whether the side image visible when Checked=true should be scaled to fit")]
-        public bool OnSideScaleImageToFit
-        {
-            get => _onSideScaleImage;
-            set
-            {
-                if (value != _onSideScaleImage)
-                {
-                    _onSideScaleImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Gets or sets the button image")]
-        public Image ButtonImage
-        {
-            get => _buttonImage;
-            set
-            {
-                if (value != _buttonImage)
-                {
-                    _buttonImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
         [DefaultValue(false)]
         [Category("Behavior")]
         [Description("Gets or sets whether the button image should be scaled to fit")]
@@ -626,92 +322,6 @@ namespace HaltroyFramework
                 }
             }
         }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(HaltroySwitchButtonAlignment), "Center")]
-        [Category("Appearance")]
-        [Description("Gets or sets how the button image should be aligned")]
-        public HaltroySwitchButtonAlignment ButtonAlignment
-        {
-            get => _buttonAlignment;
-            set
-            {
-                if (value != _buttonAlignment)
-                {
-                    _buttonAlignment = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(HaltroySwitchAlignment), "Center")]
-        [Category("Appearance")]
-        [Description("Gets or sets how the text or side image visible when Checked=true should be aligned")]
-        public HaltroySwitchAlignment OnSideAlignment
-        {
-            get => _onSideAlignment;
-            set
-            {
-                if (value != _onSideAlignment)
-                {
-                    _onSideAlignment = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Gets or sets the button image visible when Checked=true and ButtonImage is not set")]
-        public Image OnButtonImage
-        {
-            get => _onButtonImage;
-            set
-            {
-                if (value != _onButtonImage)
-                {
-                    _onButtonImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(false)]
-        [Category("Behavior")]
-        [Description("Gets or sets whether the button image visible when Checked=true should be scaled to fit")]
-        public bool OnButtonScaleImageToFit
-        {
-            get => _onButtonScaleImage;
-            set
-            {
-                if (value != _onButtonScaleImage)
-                {
-                    _onButtonScaleImage = value;
-                    Refresh();
-                }
-            }
-        }
-
-        [Bindable(false)]
-        [DefaultValue(typeof(HaltroySwitchButtonAlignment), "Center")]
-        [Category("Appearance")]
-        [Description("Gets or sets how the button image visible when Checked=true should be aligned")]
-        public HaltroySwitchButtonAlignment OnButtonAlignment
-        {
-            get => _onButtonAlignment;
-            set
-            {
-                if (value != _onButtonAlignment)
-                {
-                    _onButtonAlignment = value;
-                    Refresh();
-                }
-            }
-        }
-
         [Bindable(false)]
         [DefaultValue(true)]
         [Category("Behavior")]

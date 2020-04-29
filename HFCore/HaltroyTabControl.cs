@@ -48,100 +48,100 @@ namespace HaltroyFramework
         [Category("HaltroyTabControl"), Browsable(true), Description("The back color.")]
         public Color BackgroundColor
         {
-            get => this.backgroundColor;
+            get => backgroundColor;
 
-            set => this.backgroundColor = value;
+            set => backgroundColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the selected tab.")]
         public Color SelectedTabColor
         {
-            get => this.selectedTabColor;
+            get => selectedTabColor;
 
-            set => this.selectedTabColor = value;
+            set => selectedTabColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the unselected tab.")]
         public Color UnselectedTabColor
         {
-            get => this.unselectedTabColor;
+            get => unselectedTabColor;
 
-            set => this.unselectedTabColor = value;
+            set => unselectedTabColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the tab when hovered.")]
         public Color HoverTabColor
         {
-            get => this.hoverTabColor;
+            get => hoverTabColor;
 
-            set => this.hoverTabColor = value;
+            set => hoverTabColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered tab.")]
         public Color HoverTabButtonColor
         {
-            get => this.hoverTabButtonColor;
+            get => hoverTabButtonColor;
 
-            set => this.hoverTabButtonColor = value;
+            set => hoverTabButtonColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered unselected tab.")]
         public Color HoverUnselectedTabButtonColor
         {
-            get => this.hoverUnselectedTabButtonColor;
+            get => hoverUnselectedTabButtonColor;
 
-            set => this.hoverUnselectedTabButtonColor = value;
+            set => hoverUnselectedTabButtonColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the selected tab.")]
         public Color SelectedTabButtonColor
         {
-            get => this.selectedTabButtonColor;
+            get => selectedTabButtonColor;
 
-            set => this.selectedTabButtonColor = value;
+            set => selectedTabButtonColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the unselected tab.")]
         public Color UnselectedBorderTabLineColor
         {
-            get => this.unselectedBorderTabLineColor;
+            get => unselectedBorderTabLineColor;
 
-            set => this.unselectedBorderTabLineColor = value;
+            set => unselectedBorderTabLineColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the tab.")]
         public Color BorderTabLineColor
         {
-            get => this.borderTabLineColor;
+            get => borderTabLineColor;
 
-            set => this.borderTabLineColor = value;
+            set => borderTabLineColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the under tab.")]
         public Color UnderBorderTabLineColor
         {
-            get => this.underBorderTabLineColor;
+            get => underBorderTabLineColor;
 
-            set => this.underBorderTabLineColor = value;
+            set => underBorderTabLineColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The text color.")]
         public Color TextColor
         {
-            get => this.textColor;
+            get => textColor;
 
-            set => this.textColor = value;
+            set => textColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The back color of up down.")]
         public Color UpDownBackColor
         {
-            get => this.upDownBackColor;
+            get => upDownBackColor;
 
-            set => this.upDownBackColor = value;
+            set => upDownBackColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("The text color of up down.")]
         public Color UpDownTextColor
         {
-            get => this.upDownTextColor;
+            get => upDownTextColor;
 
-            set => this.upDownTextColor = value;
+            set => upDownTextColor = value;
         }
         [Category("HaltroyTabControl"), Browsable(true), Description("This option disables closing tabs.")]
         public bool DisableClose { get; set; }
         [Category("HaltroyTabControl"), Browsable(true), Description("This option disables dragging tabs.")]
         public bool DisableDragging { get; set; }
 
-        private StringFormat CenterSF;
+        private readonly StringFormat CenterSF;
         private TabPage predraggedTab;
         private int hoveringTabIndex;
 
@@ -152,16 +152,16 @@ namespace HaltroyFramework
         public HaltroyTabControl()
         {
             base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-            this.DoubleBuffered = true;
-            this.CenterSF = new StringFormat
+            DoubleBuffered = true;
+            CenterSF = new StringFormat
             {
                 Alignment = StringAlignment.Near,
                 LineAlignment = StringAlignment.Center
             };
 
-            this.Padding = new Point(14, 4);
-            this.AllowDrop = true;
-            this.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+            Padding = new Point(14, 4);
+            AllowDrop = true;
+            Font = new Font("Segoe UI", 9f, FontStyle.Regular);
         }
 
         protected override void CreateHandle()
@@ -172,63 +172,63 @@ namespace HaltroyFramework
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            var mouseRect = new Rectangle(e.X, e.Y, 1, 1);
-            var hoveringTabs = Enumerable.Range(0, this.TabCount).Where(i => this.GetTabRect(i).IntersectsWith(mouseRect));
+            Rectangle mouseRect = new Rectangle(e.X, e.Y, 1, 1);
+            System.Collections.Generic.IEnumerable<int> hoveringTabs = Enumerable.Range(0, TabCount).Where(i => GetTabRect(i).IntersectsWith(mouseRect));
 
             if (hoveringTabs.Any())
             {
-                var tabIndex = hoveringTabs.First();
-                var tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
-                var tabExitRectangle = new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15);
+                int tabIndex = hoveringTabs.First();
+                Rectangle tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
+                Rectangle tabExitRectangle = new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15);
 
-                if (tabExitRectangle.Contains(this.PointToClient(Cursor.Position)))
+                if (tabExitRectangle.Contains(PointToClient(Cursor.Position)))
                 {
                     if (!DisableClose)
                     {
-                        this.TabPages.Remove(this.TabPages[tabIndex]);
+                        TabPages.Remove(TabPages[tabIndex]);
                         return;
                     }
                 }
             }
 
-            this.predraggedTab = this.getPointedTab();
+            predraggedTab = getPointedTab();
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            this.predraggedTab = null;
+            predraggedTab = null;
             base.OnMouseUp(e);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (this.SelectedIndex == -1)
+            if (SelectedIndex == -1)
             {
                 base.OnMouseMove(e);
                 return;
             }
 
             // check whether they are hovering over a tab button
-            var tabIndex = this.SelectedIndex;
-            var tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
+            int tabIndex = SelectedIndex;
+            Rectangle tabBase = new Rectangle(new Point(base.GetTabRect(tabIndex).Location.X + 2, base.GetTabRect(tabIndex).Location.Y), new Size(base.GetTabRect(tabIndex).Width, base.GetTabRect(tabIndex).Height));
 
-            var mouseRect = new Rectangle(e.X, e.Y, 1, 1);
-            var hoveringTabs = Enumerable.Range(0, this.TabCount).Where(i => this.GetTabRect(i).IntersectsWith(mouseRect));
+            Rectangle mouseRect = new Rectangle(e.X, e.Y, 1, 1);
+            System.Collections.Generic.IEnumerable<int> hoveringTabs = Enumerable.Range(0, TabCount).Where(i => GetTabRect(i).IntersectsWith(mouseRect));
 
             if (hoveringTabs.Any())
             {
                 hoveringTabIndex = hoveringTabs.First();
             }
 
-            if (e.Button == MouseButtons.Left && this.predraggedTab != null)
+            if (e.Button == MouseButtons.Left && predraggedTab != null)
             {
-                base.DoDragDrop(this.predraggedTab, DragDropEffects.Move);
+                base.DoDragDrop(predraggedTab, DragDropEffects.Move);
             }
 
             if (e.Y < 25) // purely for performance reasons, only necessary for hovering button states
             {
-                this.Invalidate();
+                Invalidate();
             }
 
             base.OnMouseMove(e);
@@ -239,7 +239,7 @@ namespace HaltroyFramework
             if (hoveringTabIndex != -1)
             {
                 hoveringTabIndex = -1;
-                this.Invalidate();
+                Invalidate();
             }
 
             base.OnLeave(e);
@@ -250,7 +250,7 @@ namespace HaltroyFramework
             if (hoveringTabIndex != -1)
             {
                 hoveringTabIndex = -1;
-                this.Invalidate();
+                Invalidate();
             }
 
             base.OnMouseLeave(e);
@@ -258,51 +258,51 @@ namespace HaltroyFramework
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            var g = e.Graphics;
+            Graphics g = e.Graphics;
 
             g.SmoothingMode = SmoothingMode.HighQuality;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-            g.Clear(this.backgroundColor);
+            g.Clear(backgroundColor);
 
-            g.DrawLine(new Pen(new SolidBrush(this.FindForm() == Form.ActiveForm ? this.borderTabLineColor : this.unselectedBorderTabLineColor), 2), new Point(0, 22), new Point(base.Width, 22));
-            g.FillRectangle(new SolidBrush(this.underBorderTabLineColor), 0, 23, base.Width, 1);
+            g.DrawLine(new Pen(new SolidBrush(FindForm() == Form.ActiveForm ? borderTabLineColor : unselectedBorderTabLineColor), 2), new Point(0, 22), new Point(base.Width, 22));
+            g.FillRectangle(new SolidBrush(underBorderTabLineColor), 0, 23, base.Width, 1);
 
             // ugly way to check whether the parent form has focus or not
-            if (!hasFocus && this.FindForm() == Form.ActiveForm)
+            if (!hasFocus && FindForm() == Form.ActiveForm)
             {
-                this.Invalidate(new Rectangle(0, 21, base.Width, 24));
+                Invalidate(new Rectangle(0, 21, base.Width, 24));
                 hasFocus = true;
             }
-            else if (hasFocus && this.FindForm() != Form.ActiveForm)
+            else if (hasFocus && FindForm() != Form.ActiveForm)
             {
-                this.Invalidate(new Rectangle(0, 21, base.Width, 24));
+                Invalidate(new Rectangle(0, 21, base.Width, 24));
                 hasFocus = false;
             }
 
-            for (var i = 0; i < this.TabCount; i++)
+            for (int i = 0; i < TabCount; i++)
             {
-                var tabBase = new Rectangle(new Point(base.GetTabRect(i).Location.X + 2, base.GetTabRect(i).Location.Y), new Size(base.GetTabRect(i).Width, base.GetTabRect(i).Height));
-                var tabSize = new Rectangle(tabBase.Location, new Size(tabBase.Width, tabBase.Height - 4));
+                Rectangle tabBase = new Rectangle(new Point(base.GetTabRect(i).Location.X + 2, base.GetTabRect(i).Location.Y), new Size(base.GetTabRect(i).Width, base.GetTabRect(i).Height));
+                Rectangle tabSize = new Rectangle(tabBase.Location, new Size(tabBase.Width, tabBase.Height - 4));
 
                 // draw tab highlights
-                if (this.FindForm() != Form.ActiveForm && base.SelectedIndex == i) // unselected selected tab
+                if (FindForm() != Form.ActiveForm && base.SelectedIndex == i) // unselected selected tab
                 {
-                    g.FillRectangle(new SolidBrush(this.unselectedTabColor), tabSize);
+                    g.FillRectangle(new SolidBrush(unselectedTabColor), tabSize);
                 }
                 else if (base.SelectedIndex == i) // selected tab
                 {
-                    g.FillRectangle(new SolidBrush(this.selectedTabColor), tabSize);
+                    g.FillRectangle(new SolidBrush(selectedTabColor), tabSize);
                 }
                 else if (hoveringTabIndex == i) // hovering tab
                 {
-                    g.FillRectangle(new SolidBrush(this.hoverTabColor), tabSize);
+                    g.FillRectangle(new SolidBrush(hoverTabColor), tabSize);
                 }
                 else // unselected tab
                 {
-                    g.FillRectangle(new SolidBrush(this.backgroundColor), tabSize);
+                    g.FillRectangle(new SolidBrush(backgroundColor), tabSize);
                 }
 
                 // if current selected tab
@@ -311,16 +311,16 @@ namespace HaltroyFramework
                     if (!DisableClose)
                     {
                         // hovering over selected tab button
-                        if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(this.PointToClient(Cursor.Position)))
+                        if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(PointToClient(Cursor.Position)))
                         {
-                            g.FillRectangle(new SolidBrush(this.FindForm() == Form.ActiveForm ? this.selectedTabButtonColor : this.hoverUnselectedTabButtonColor),
+                            g.FillRectangle(new SolidBrush(FindForm() == Form.ActiveForm ? selectedTabButtonColor : hoverUnselectedTabButtonColor),
                                 new RectangleF((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15));
                         }
 
                         g.TextContrast = 0;
 
-                        g.DrawString("×", new Font(this.Font.FontFamily, 15f), new SolidBrush(this.textColor),
-                            new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), this.CenterSF);
+                        g.DrawString("×", new Font(Font.FontFamily, 15f), new SolidBrush(textColor),
+                            new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), CenterSF);
                     }
                 }
                 else
@@ -331,25 +331,25 @@ namespace HaltroyFramework
                         if (!DisableClose)
                         {
                             // hovering over hovered tab button
-                            if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(this.PointToClient(Cursor.Position)))
+                            if (new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15).Contains(PointToClient(Cursor.Position)))
                             {
-                                g.FillRectangle(new SolidBrush(this.hoverTabButtonColor),
+                                g.FillRectangle(new SolidBrush(hoverTabButtonColor),
                                     new RectangleF((tabBase.Location.X + tabBase.Width) - (15 + 3), tabBase.Location.Y + 3, 15, 15));
                             }
 
                             g.TextContrast = 0;
-                            g.DrawString("×", new Font(this.Font.FontFamily, 15f), new SolidBrush(this.textColor),
-                                new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), this.CenterSF);
+                            g.DrawString("×", new Font(Font.FontFamily, 15f), new SolidBrush(textColor),
+                                new Rectangle((tabBase.Location.X + tabBase.Width) - (15 + 5), tabBase.Location.Y - 3, tabBase.Width, tabBase.Height), CenterSF);
                         }
                     }
                 }
 
                 g.TextContrast = 12;
-                g.DrawString(base.TabPages[i].Text, new Font(this.Font.FontFamily, this.Font.Size), new SolidBrush(this.textColor),
-                    new Rectangle(tabBase.Location.X + 3, tabBase.Location.Y - 1, tabBase.Width, tabBase.Height + 1), this.CenterSF);
+                g.DrawString(base.TabPages[i].Text, new Font(Font.FontFamily, Font.Size), new SolidBrush(textColor),
+                    new Rectangle(tabBase.Location.X + 3, tabBase.Location.Y - 1, tabBase.Width, tabBase.Height + 1), CenterSF);
             }
 
-            if (this.SelectedIndex != -1)
+            if (SelectedIndex != -1)
             {
                 base.SelectedTab.BorderStyle = BorderStyle.None;
             }
@@ -357,17 +357,17 @@ namespace HaltroyFramework
 
         protected override void OnDragOver(DragEventArgs drgevent)
         {
-            var draggedTab = (TabPage)drgevent.Data.GetData(typeof(TabPage));
-            var pointedTab = this.getPointedTab();
+            TabPage draggedTab = (TabPage)drgevent.Data.GetData(typeof(TabPage));
+            TabPage pointedTab = getPointedTab();
             if (!DisableDragging)
             {
-                if (draggedTab == this.predraggedTab && pointedTab != null)
+                if (draggedTab == predraggedTab && pointedTab != null)
                 {
                     drgevent.Effect = DragDropEffects.Move;
 
                     if (pointedTab != draggedTab)
                     {
-                        this.swapTabPages(draggedTab, pointedTab);
+                        swapTabPages(draggedTab, pointedTab);
                     }
                 }
             }
@@ -378,7 +378,7 @@ namespace HaltroyFramework
         {
             checked
             {
-                for (var i = 0; i <= base.TabPages.Count - 1; i++)
+                for (int i = 0; i <= base.TabPages.Count - 1; i++)
                 {
                     if (base.GetTabRect(i).Contains(base.PointToClient(Cursor.Position)))
                     {
@@ -393,14 +393,14 @@ namespace HaltroyFramework
         {
             if (!DisableDragging)
             {
-                var srci = base.TabPages.IndexOf(src);
-                var dsti = base.TabPages.IndexOf(dst);
+                int srci = base.TabPages.IndexOf(src);
+                int dsti = base.TabPages.IndexOf(dst);
                 base.TabPages[dsti] = src;
                 base.TabPages[srci] = dst;
 
                 base.SelectedIndex = (base.SelectedIndex == srci) ? dsti : srci;
             }
-            this.Refresh();
+            Refresh();
         }
 
         protected override void OnCreateControl()
@@ -428,14 +428,14 @@ namespace HaltroyFramework
 
         private void FindUpDown()
         {
-            var bFound = false;
-            var pWnd = Win32.GetWindow(this.Handle, Win32.GW_CHILD);
+            bool bFound = false;
+            IntPtr pWnd = Win32.GetWindow(Handle, Win32.GW_CHILD);
 
             while (pWnd != IntPtr.Zero)
             {
-                var className = new char[33];
-                var length = Win32.GetClassName(pWnd, className, 32);
-                var s = new string(className, 0, length);
+                char[] className = new char[33];
+                int length = Win32.GetClassName(pWnd, className, 32);
+                string s = new string(className, 0, length);
 
                 if (s == "msctls_updown32")
                 {
@@ -443,8 +443,8 @@ namespace HaltroyFramework
 
                     if (!bUpDown)
                     {
-                        this.scUpDown = new SubClass(pWnd, true);
-                        this.scUpDown.SubClassedWndProc += new SubClass.SubClassWndProcEventHandler(scUpDown_SubClassedWndProc);
+                        scUpDown = new SubClass(pWnd, true);
+                        scUpDown.SubClassedWndProc += new SubClass.SubClassWndProcEventHandler(scUpDown_SubClassedWndProc);
 
                         bUpDown = true;
                     }
@@ -466,7 +466,7 @@ namespace HaltroyFramework
             {
                 if (Win32.IsWindowVisible(scUpDown.Handle))
                 {
-                    var rect = new Rectangle();
+                    Rectangle rect = new Rectangle();
 
                     Win32.GetClientRect(scUpDown.Handle, ref rect);
                     Win32.InvalidateRect(scUpDown.Handle, ref rect, true);
@@ -480,8 +480,8 @@ namespace HaltroyFramework
             {
                 case Win32.WM_PAINT:
                     {
-                        var hDC = Win32.GetWindowDC(scUpDown.Handle);
-                        var g = Graphics.FromHdc(hDC);
+                        IntPtr hDC = Win32.GetWindowDC(scUpDown.Handle);
+                        Graphics g = Graphics.FromHdc(hDC);
 
                         DrawIcons(g);
 
@@ -489,7 +489,7 @@ namespace HaltroyFramework
                         Win32.ReleaseDC(scUpDown.Handle, hDC);
                         m.Result = IntPtr.Zero;
 
-                        var rect = new Rectangle();
+                        Rectangle rect = new Rectangle();
 
                         Win32.GetClientRect(scUpDown.Handle, ref rect);
                         Win32.ValidateRect(scUpDown.Handle, ref rect);
@@ -502,18 +502,18 @@ namespace HaltroyFramework
 
         internal void DrawIcons(Graphics g)
         {
-            var TabControlArea = this.ClientRectangle;
-            var r0 = new Rectangle();
+            Rectangle TabControlArea = ClientRectangle;
+            Rectangle r0 = new Rectangle();
             Win32.GetClientRect(scUpDown.Handle, ref r0);
 
             Brush br = new SolidBrush(upDownBackColor);
             g.FillRectangle(br, r0);
             br.Dispose();
 
-            g.DrawString("◀", new Font(this.Font.FontFamily, 12f),
+            g.DrawString("◀", new Font(Font.FontFamily, 12f),
                 new SolidBrush(upDownTextColor), r0);
 
-            g.DrawString("▶", new Font(this.Font.FontFamily, 12f),
+            g.DrawString("▶", new Font(Font.FontFamily, 12f),
                 new SolidBrush(upDownTextColor),
                 new Rectangle(r0.X + 20, r0.Y, r0.Width, r0.Height));
         }
@@ -619,18 +619,18 @@ namespace HaltroyFramework
         public SubClass(IntPtr Handle, bool _SubClass)
         {
             base.AssignHandle(Handle);
-            this.IsSubClassed = _SubClass;
+            IsSubClassed = _SubClass;
         }
 
         public bool SubClassed
         {
-            get => this.IsSubClassed;
-            set => this.IsSubClassed = value;
+            get => IsSubClassed;
+            set => IsSubClassed = value;
         }
 
         protected override void WndProc(ref Message m)
         {
-            if (this.IsSubClassed)
+            if (IsSubClassed)
             {
                 if (OnSubClassedWndProc(ref m) != 0)
                 {
@@ -669,7 +669,7 @@ namespace HaltroyFramework
         {
             if (SubClassedWndProc != null)
             {
-                return this.SubClassedWndProc(ref m);
+                return SubClassedWndProc(ref m);
             }
 
             return 0;

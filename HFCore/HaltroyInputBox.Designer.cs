@@ -49,11 +49,13 @@ namespace HaltroyFramework
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyInputBox));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -107,6 +109,11 @@ namespace HaltroyFramework
             this.textBox1.Size = new System.Drawing.Size(384, 20);
             this.textBox1.TabIndex = 2;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // HaltroyInputBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,7 +128,6 @@ namespace HaltroyFramework
             this.MinimumSize = new System.Drawing.Size(400, 150);
             this.Name = "HaltroyInputBox";
             this.Text = "<title>";
-            this.Load += new System.EventHandler(this.CustomInputBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,9 +135,10 @@ namespace HaltroyFramework
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        protected internal System.Windows.Forms.Label label1;
+        protected internal System.Windows.Forms.Button button1;
+        protected internal System.Windows.Forms.Button button2;
+        protected internal System.Windows.Forms.TextBox textBox1;
+        protected internal System.Windows.Forms.Timer timer1;
     }
 }

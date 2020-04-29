@@ -68,12 +68,12 @@ namespace HaltroyFramework
 
     public class HaltroyListView : System.Windows.Forms.ListView
     {
-        bool updating;
-        int itemnumber;
+        private bool updating;
+        private int itemnumber;
 
         #region Imported User32.DLL functions
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static public extern bool ValidateRect(IntPtr handle, ref RECT rect);
+        public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
         #endregion
 
         public HaltroyListView()
@@ -96,7 +96,7 @@ namespace HaltroyFramework
             OwnerDraw = true;
             updating = true;
             itemnumber = iIndex;
-            this.Update();
+            Update();
             updating = false;
         }
         private Color headerBackColor = Color.FromArgb(255, 235, 235, 235);
@@ -109,13 +109,13 @@ namespace HaltroyFramework
             get
             {
                 OwnerDraw = true;
-                return this.headerBackColor;
+                return headerBackColor;
             }
 
             set
             {
                 OwnerDraw = true;
-                this.headerBackColor = value;
+                headerBackColor = value;
             }
         }
         [Category("Style"), Browsable(true), Description("The text color of the headers.")]
@@ -124,13 +124,13 @@ namespace HaltroyFramework
             get
             {
                 OwnerDraw = true;
-                return this.headerForeColor;
+                return headerForeColor;
             }
 
             set
             {
                 OwnerDraw = true;
-                this.headerForeColor = value;
+                headerForeColor = value;
             }
         }
         [Category("Style"), Browsable(true), Description("The overlay color.")]
@@ -139,13 +139,13 @@ namespace HaltroyFramework
             get
             {
                 OwnerDraw = true;
-                return this.overlayColor;
+                return overlayColor;
             }
 
             set
             {
                 OwnerDraw = true;
-                this.overlayColor = value;
+                overlayColor = value;
             }
         }
         private void this_DrawColumnHeaders(object sender, DrawListViewColumnHeaderEventArgs e)
@@ -203,12 +203,12 @@ namespace HaltroyFramework
                 }
                 else if ((int)WM.WM_PAINT == messg.Msg)
                 {
-                    RECT vrect = this.GetWindowRECT();
+                    RECT vrect = GetWindowRECT();
                     // validate the entire window				
-                    ValidateRect(this.Handle, ref vrect);
+                    ValidateRect(Handle, ref vrect);
 
                     //Invalidate only the new item
-                    Invalidate(this.Items[itemnumber].Bounds);
+                    Invalidate(Items[itemnumber].Bounds);
                 }
 
             }
@@ -221,11 +221,13 @@ namespace HaltroyFramework
         // Get the listview's rectangle and return it as a RECT structure
         private RECT GetWindowRECT()
         {
-            RECT rect = new RECT();
-            rect.left = this.Left;
-            rect.right = this.Right;
-            rect.top = this.Top;
-            rect.bottom = this.Bottom;
+            RECT rect = new RECT
+            {
+                left = Left,
+                right = Right,
+                top = Top,
+                bottom = Bottom
+            };
             return rect;
         }
 

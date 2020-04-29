@@ -27,12 +27,12 @@ namespace HaltroyFramework
 {
     public partial class HaltroyForms : Form
     {
-        bool useFullScreen = false;
-        bool draggable = true;
+        private bool useFullScreen = false;
+        private bool draggable = true;
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private readonly System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -56,19 +56,19 @@ namespace HaltroyFramework
             {
                 // If this form is inherited, the IDE needs this style
                 // set so that it's coordinate system is correct.
-                const Int32 WS_CHILDWINDOW = 0x40000000;
+                const int WS_CHILDWINDOW = 0x40000000;
                 // The following two styles are used to clip child
                 // and sibling windows in Paint events.
-                const Int32 WS_CLIPCHILDREN = 0x2000000;
-                const Int32 WS_CLIPSIBLINGS = 0x4000000;
+                const int WS_CLIPCHILDREN = 0x2000000;
+                const int WS_CLIPSIBLINGS = 0x4000000;
                 // Add a Minimize button (or Minimize option in Window Menu).
-                const Int32 WS_MINIMIZEBOX = 0x20000;
+                const int WS_MINIMIZEBOX = 0x20000;
                 // Add a Maximum/Restore Button (or Options in Window Menu).
-                const Int32 WS_MAXIMIZEBOX = 0x10000;
+                const int WS_MAXIMIZEBOX = 0x10000;
                 // Window can be resized.
-                const Int32 WS_THICKFRAME = 0x40000;
+                const int WS_THICKFRAME = 0x40000;
                 // Add A Window Menu
-                const Int32 WS_SYSMENU = 0x80000;
+                const int WS_SYSMENU = 0x80000;
 
                 // Detect Double Clicks
                 const int CS_DBLCLKS = 0x8;
@@ -81,7 +81,7 @@ namespace HaltroyFramework
             | WS_MAXIMIZEBOX | WS_MINIMIZEBOX
             | WS_SYSMENU | WS_THICKFRAME;
 
-                if (this.DesignMode)
+                if (DesignMode)
                 {
                     cp.Style = cp.Style | WS_CHILDWINDOW;
                 }
@@ -120,21 +120,21 @@ namespace HaltroyFramework
         }
         protected void this_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized)
+            if (WindowState == FormWindowState.Maximized)
             {
-                this.WindowState = FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
             }
-            else if (this.WindowState == FormWindowState.Normal)
+            else if (WindowState == FormWindowState.Normal)
             {
                 if (useFullScreen)
                 {
-                    this.MaximizedBounds = Screen.FromHandle(this.Handle).Bounds;
+                    MaximizedBounds = Screen.FromHandle(Handle).Bounds;
                 }
                 else
                 {
-                    this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+                    MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
                 }
-                this.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized;
             }
         }
 
@@ -144,26 +144,33 @@ namespace HaltroyFramework
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.MouseDown += This_MouseDown;
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "HaltroyForms";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyForms));
+            SuspendLayout();
+            // 
+            // HaltroyForms
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
+            Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            Name = "HaltroyForms";
+            Text = "HaltroyForms";
+            ResumeLayout(false);
 
         }
         [Category("HaltroyForms"), Browsable(true), Description("Maximizes to entire screen on duble-click if enabled.Miximizes to Working Area if disabled.")]
         public bool FullScreenMode
         {
-            get => this.useFullScreen;
+            get => useFullScreen;
 
-            set => this.useFullScreen = value;
+            set => useFullScreen = value;
         }
         [Category("HaltroyForms"), Browsable(true), Description("Enables dragging.")]
         public bool EnableDrag
         {
-            get => this.draggable;
+            get => draggable;
 
-            set => this.draggable = value;
+            set => draggable = value;
         }
         public HaltroyForms()
         {

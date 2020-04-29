@@ -23,9 +23,9 @@ using System;
 
 namespace HaltroyFramework
 {
-    class Startup
+    internal class Startup
     {
-        string hfVersion;
+        private readonly string hfVersion;
         public Startup()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();

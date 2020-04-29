@@ -49,12 +49,14 @@ namespace HaltroyFramework
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyMsgBox));
             this.label1 = new System.Windows.Forms.Label();
             this.btNo = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.btYes = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +129,11 @@ namespace HaltroyFramework
             this.flowLayoutPanel1.Size = new System.Drawing.Size(375, 31);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // HaltroyMsgBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,5 +162,6 @@ namespace HaltroyFramework
         internal System.Windows.Forms.Button btCancel;
         internal System.Windows.Forms.Button btYes;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        protected internal System.Windows.Forms.Timer timer1;
     }
 }

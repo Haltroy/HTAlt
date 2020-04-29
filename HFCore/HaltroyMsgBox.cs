@@ -27,9 +27,15 @@ namespace HaltroyFramework
 {
     public partial class HaltroyMsgBox : Form
     {
-        Color BackgroundColor;
-        bool useOK = false;
-        static int LinesCountIndexOf(string s)
+        public Color BackgroundColor;
+        private bool useOK = false;
+        private readonly MessageBoxButtons msgbutton = MessageBoxButtons.OK;
+        public string YesButtonText = "Yes";
+        public string NoButtonText = "No";
+        public string OKBUttonText = "OK";
+        public string CancelButtonText = "Cancel";
+
+        private static int LinesCountIndexOf(string s)
         {
             int count = 0;
             int position = 0;
@@ -42,25 +48,74 @@ namespace HaltroyFramework
         }
         public HaltroyMsgBox(string title,
                       string message,
-                      Icon icon,
-                      MessageBoxButtons msgbutton = MessageBoxButtons.OK,
-                      Color? BackColor = null,
-                      string YesButtonText = "Yes",
-                      string NoButtonText = "No",
-                      string OKBUttonText = "OK",
-                      string CancelButtonText = "Cancel",
-                      int windowWidth = 390,
-                      int windowHeight = 140)
+                      MessageBoxButtons messageBoxButtons)
         {
+            msgbutton = messageBoxButtons;
             InitializeComponent();
             Startup startup = new Startup();
-            this.Icon = icon;
-            BackgroundColor = BackColor ?? Color.White;
-            this.Text = title;
-            this.label1.Text = message;
-            if (windowWidth != 390) { if (!(windowWidth < this.MinimumSize.Width)) { this.Width = windowWidth; } }
-            if (windowHeight != 140) { if (!(windowHeight < this.MinimumSize.Height)) { this.Height = windowHeight; } } else { this.Height = (15 * LinesCountIndexOf(message)) + 123; }
-            this.MaximumSize = new Size(Screen.FromHandle(this.Handle).WorkingArea.Width, Screen.FromHandle(this.Handle).WorkingArea.Height);
+            Text = title;
+            label1.Text = message;
+            Height = (15 * LinesCountIndexOf(message)) + 123;
+            MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
+        }
+
+        private void btYes_Click(object sender, EventArgs e)
+        {
+            DialogResult = useOK ? DialogResult.OK : DialogResult.Yes;
+            Close();
+        }
+
+        private void btNo_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+            Close();
+        }
+        #region "MathBox"
+        private static int Brightness(Color c)
+        {
+            return (int)Math.Sqrt(
+               c.R * c.R * .241 +
+               c.G * c.G * .691 +
+               c.B * c.B * .068);
+        }
+        public static bool isBright(Color c)
+        {
+            return Brightness(c) > 130;
+        }
+        public static int GerekiyorsaAzalt(int defaultint, int azaltma)
+        {
+            return defaultint > azaltma ? defaultint - azaltma : defaultint;
+        }
+        public static int GerekiyorsaArttır(int defaultint, int arttırma, int sınır)
+        {
+            return defaultint + arttırma > sınır ? defaultint : defaultint + arttırma;
+        }
+        public static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
+        {
+            if (isBright(baseColor))
+            {
+                return Color.FromArgb(shiftAlpha ? GerekiyorsaAzalt(baseColor.A, value) : baseColor.A,
+                                      GerekiyorsaAzalt(baseColor.R, value),
+                                      GerekiyorsaAzalt(baseColor.G, value),
+                                      GerekiyorsaAzalt(baseColor.B, value));
+            }
+            else
+            {
+                return Color.FromArgb(shiftAlpha ? GerekiyorsaArttır(baseColor.A, value, 255) : baseColor.A,
+                      GerekiyorsaArttır(baseColor.R, value, 255),
+                      GerekiyorsaArttır(baseColor.G, value, 255),
+                      GerekiyorsaArttır(baseColor.B, value, 255));
+            }
+        }
+        #endregion
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void msgkts_Load(object sender, EventArgs e)
+        {
             if (msgbutton == MessageBoxButtons.OK)
             {
                 btYes.Visible = true;
@@ -108,70 +163,21 @@ namespace HaltroyFramework
                 btNo.Enabled = false;
                 btCancel.Enabled = false;
             }
+        }
+
+        private void btOK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
             btYes.Text = useOK ? OKBUttonText : YesButtonText;
             btNo.Text = NoButtonText;
             btCancel.Text = CancelButtonText;
-        }
-
-        private void btYes_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = useOK ? DialogResult.OK : DialogResult.Yes;
-            this.Close();
-        }
-
-        private void btNo_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.No;
-            this.Close();
-        }
-        #region "MathBox"
-        private static int Brightness(Color c)
-        {
-            return (int)Math.Sqrt(
-               c.R * c.R * .241 +
-               c.G * c.G * .691 +
-               c.B * c.B * .068);
-        }
-        public static bool isBright(Color c)
-        {
-            return Brightness(c) > 130;
-        }
-        public static int GerekiyorsaAzalt(int defaultint, int azaltma)
-        {
-            return defaultint > azaltma ? defaultint - azaltma : defaultint;
-        }
-        public static int GerekiyorsaArttır(int defaultint, int arttırma, int sınır)
-        {
-            return defaultint + arttırma > sınır ? defaultint : defaultint + arttırma;
-        }
-        public static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
-        {
-            if (isBright(baseColor))
-            {
-                return Color.FromArgb(shiftAlpha ? GerekiyorsaAzalt(baseColor.A, value) : baseColor.A,
-                                      GerekiyorsaAzalt(baseColor.R, value),
-                                      GerekiyorsaAzalt(baseColor.G, value),
-                                      GerekiyorsaAzalt(baseColor.B, value));
-            }
-            else
-            {
-                return Color.FromArgb(shiftAlpha ? GerekiyorsaArttır(baseColor.A, value, 255) : baseColor.A,
-                      GerekiyorsaArttır(baseColor.R, value, 255),
-                      GerekiyorsaArttır(baseColor.G, value, 255),
-                      GerekiyorsaArttır(baseColor.B, value, 255));
-            }
-        }
-        #endregion
-        private void btCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void msgkts_Load(object sender, EventArgs e)
-        {
-            this.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
-            this.BackColor = BackgroundColor;
+            ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
+            BackColor = BackgroundColor;
             btCancel.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btCancel.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             btYes.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
@@ -179,12 +185,6 @@ namespace HaltroyFramework
             btNo.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btNo.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             flowLayoutPanel1.BackColor = BackgroundColor;
-        }
-
-        private void btOK_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
         }
     }
 }

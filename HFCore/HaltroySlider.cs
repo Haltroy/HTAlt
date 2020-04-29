@@ -250,7 +250,7 @@ namespace HaltroyFramework
                     _barOrientation = value;
                     // Switch from horizontal to vertical (design mode)
                     // Comment these lines if problems in Run mode
-                    if (this.DesignMode)
+                    if (DesignMode)
                     {
                         int temp = Width;
                         Width = Height;
@@ -518,7 +518,7 @@ namespace HaltroyFramework
 
             // Font
             //this.Font = new Font("Tahoma", 6.75f);
-            this.Font = new Font("Microsoft Sans Serif", 6f);
+            Font = new Font("Microsoft Sans Serif", 6f);
 
             Minimum = min;
             Maximum = max;
