@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
             this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lResult = new System.Windows.Forms.Label();
@@ -92,13 +92,18 @@
             this.haltroySwitch2 = new HaltroyFramework.HaltroySwitch();
             this.button7 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.haltroyButton2 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton3 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton4 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton1 = new HaltroyFramework.HaltroyButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.haltroyButton8 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton5 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton6 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton7 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton6 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton1 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton4 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton3 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton2 = new HaltroyFramework.HaltroyButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.haltroyButton9 = new HaltroyFramework.HaltroyButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.haltroyTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -108,6 +113,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ibBackColor)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // haltroyTabControl1
@@ -433,7 +440,7 @@
             this.haltroyListView2.HeaderForeColor = System.Drawing.Color.White;
             this.haltroyListView2.HideSelection = false;
             this.haltroyListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
             this.haltroyListView2.Name = "haltroyListView2";
             this.haltroyListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
@@ -776,6 +783,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label11);
+            this.tabPage5.Controls.Add(this.panel2);
+            this.tabPage5.Controls.Add(this.panel1);
             this.tabPage5.Controls.Add(this.haltroyButton5);
             this.tabPage5.Controls.Add(this.haltroyButton7);
             this.tabPage5.Controls.Add(this.haltroyButton6);
@@ -791,57 +801,27 @@
             this.tabPage5.Text = "Button";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // haltroyButton2
+            // panel1
             // 
-            this.haltroyButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton2.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton2.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton2.Location = new System.Drawing.Point(17, 34);
-            this.haltroyButton2.Name = "haltroyButton2";
-            this.haltroyButton2.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton2.TabIndex = 0;
-            this.haltroyButton2.Text = "haltroyButton1";
-            this.haltroyButton2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
-            this.haltroyButton2.UseVisualStyleBackColor = false;
+            this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Controls.Add(this.haltroyButton8);
+            this.panel1.Location = new System.Drawing.Point(52, 247);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(119, 67);
+            this.panel1.TabIndex = 1;
             // 
-            // haltroyButton3
+            // haltroyButton8
             // 
-            this.haltroyButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton3.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton3.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton3.Location = new System.Drawing.Point(159, 34);
-            this.haltroyButton3.Name = "haltroyButton3";
-            this.haltroyButton3.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton3.TabIndex = 0;
-            this.haltroyButton3.Text = "haltroyButton1";
-            this.haltroyButton3.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextAboveImage;
-            this.haltroyButton3.UseVisualStyleBackColor = false;
-            // 
-            // haltroyButton4
-            // 
-            this.haltroyButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton4.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton4.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton4.Location = new System.Drawing.Point(306, 34);
-            this.haltroyButton4.Name = "haltroyButton4";
-            this.haltroyButton4.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton4.TabIndex = 0;
-            this.haltroyButton4.Text = "haltroyButton1";
-            this.haltroyButton4.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
-            this.haltroyButton4.UseVisualStyleBackColor = false;
-            // 
-            // haltroyButton1
-            // 
-            this.haltroyButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton1.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton1.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton1.Location = new System.Drawing.Point(449, 34);
-            this.haltroyButton1.Name = "haltroyButton1";
-            this.haltroyButton1.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton1.TabIndex = 0;
-            this.haltroyButton1.Text = "haltroyButton1";
-            this.haltroyButton1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
-            this.haltroyButton1.UseVisualStyleBackColor = false;
+            this.haltroyButton8.BackColor = System.Drawing.Color.Transparent;
+            this.haltroyButton8.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton8.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton8.Location = new System.Drawing.Point(0, 3);
+            this.haltroyButton8.Name = "haltroyButton8";
+            this.haltroyButton8.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton8.TabIndex = 0;
+            this.haltroyButton8.Text = "haltroyButton1";
+            this.haltroyButton8.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
+            this.haltroyButton8.UseVisualStyleBackColor = false;
             // 
             // haltroyButton5
             // 
@@ -856,6 +836,19 @@
             this.haltroyButton5.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.None;
             this.haltroyButton5.UseVisualStyleBackColor = false;
             // 
+            // haltroyButton7
+            // 
+            this.haltroyButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyButton7.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton7.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton7.Location = new System.Drawing.Point(482, 148);
+            this.haltroyButton7.Name = "haltroyButton7";
+            this.haltroyButton7.Size = new System.Drawing.Size(60, 74);
+            this.haltroyButton7.TabIndex = 0;
+            this.haltroyButton7.Text = "haltroyButton1";
+            this.haltroyButton7.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
+            this.haltroyButton7.UseVisualStyleBackColor = false;
+            // 
             // haltroyButton6
             // 
             this.haltroyButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
@@ -869,18 +862,89 @@
             this.haltroyButton6.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
             this.haltroyButton6.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton7
+            // haltroyButton1
             // 
-            this.haltroyButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton7.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton7.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton7.Location = new System.Drawing.Point(482, 148);
-            this.haltroyButton7.Name = "haltroyButton7";
-            this.haltroyButton7.Size = new System.Drawing.Size(60, 74);
-            this.haltroyButton7.TabIndex = 0;
-            this.haltroyButton7.Text = "haltroyButton1";
-            this.haltroyButton7.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
-            this.haltroyButton7.UseVisualStyleBackColor = false;
+            this.haltroyButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyButton1.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton1.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton1.Location = new System.Drawing.Point(449, 34);
+            this.haltroyButton1.Name = "haltroyButton1";
+            this.haltroyButton1.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton1.TabIndex = 0;
+            this.haltroyButton1.Text = "haltroyButton1";
+            this.haltroyButton1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
+            this.haltroyButton1.UseVisualStyleBackColor = false;
+            // 
+            // haltroyButton4
+            // 
+            this.haltroyButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyButton4.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton4.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton4.Location = new System.Drawing.Point(306, 34);
+            this.haltroyButton4.Name = "haltroyButton4";
+            this.haltroyButton4.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton4.TabIndex = 0;
+            this.haltroyButton4.Text = "haltroyButton1";
+            this.haltroyButton4.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
+            this.haltroyButton4.UseVisualStyleBackColor = false;
+            // 
+            // haltroyButton3
+            // 
+            this.haltroyButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyButton3.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton3.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton3.Location = new System.Drawing.Point(159, 34);
+            this.haltroyButton3.Name = "haltroyButton3";
+            this.haltroyButton3.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton3.TabIndex = 0;
+            this.haltroyButton3.Text = "haltroyButton1";
+            this.haltroyButton3.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextAboveImage;
+            this.haltroyButton3.UseVisualStyleBackColor = false;
+            // 
+            // haltroyButton2
+            // 
+            this.haltroyButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.haltroyButton2.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton2.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton2.Location = new System.Drawing.Point(17, 34);
+            this.haltroyButton2.Name = "haltroyButton2";
+            this.haltroyButton2.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton2.TabIndex = 0;
+            this.haltroyButton2.Text = "haltroyButton1";
+            this.haltroyButton2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
+            this.haltroyButton2.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Controls.Add(this.haltroyButton9);
+            this.panel2.Location = new System.Drawing.Point(52, 323);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(126, 100);
+            this.panel2.TabIndex = 2;
+            // 
+            // haltroyButton9
+            // 
+            this.haltroyButton9.BackColor = System.Drawing.Color.Transparent;
+            this.haltroyButton9.ForeColor = System.Drawing.Color.Black;
+            this.haltroyButton9.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.haltroyButton9.Location = new System.Drawing.Point(0, 3);
+            this.haltroyButton9.Name = "haltroyButton9";
+            this.haltroyButton9.Size = new System.Drawing.Size(126, 33);
+            this.haltroyButton9.TabIndex = 0;
+            this.haltroyButton9.Text = "haltroyButton1";
+            this.haltroyButton9.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
+            this.haltroyButton9.UseVisualStyleBackColor = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(35, 228);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(165, 16);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Transparent BackColor Test";
             // 
             // Form1
             // 
@@ -903,6 +967,9 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -979,6 +1046,11 @@
         private HaltroyFramework.HaltroyButton haltroyButton4;
         private HaltroyFramework.HaltroyButton haltroyButton3;
         private HaltroyFramework.HaltroyButton haltroyButton2;
+        private System.Windows.Forms.Panel panel1;
+        private HaltroyFramework.HaltroyButton haltroyButton8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel2;
+        private HaltroyFramework.HaltroyButton haltroyButton9;
     }
 }
 

@@ -43,8 +43,6 @@ namespace HaltroyFramework
         public HaltroyButton()
         {
             Startup startup = new Startup();
-            BackColor = Color.FromArgb(255,235,235,235);
-            ForeColor = Color.Black;
             CurrentBackColor = BackColor;
         }
         
@@ -183,7 +181,11 @@ namespace HaltroyFramework
         protected override void OnPaint(PaintEventArgs pevent)
         {
             base.OnPaint(pevent);
-            pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
+            ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
+            if (BackColor != Color.Transparent)
+            {
+                pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
+            }
             if (tiRelation == ButtonTextImageRelation.None) { return; }
             else if ( tiRelation == ButtonTextImageRelation.JustText)
             {
