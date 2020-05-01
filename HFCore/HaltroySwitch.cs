@@ -22,6 +22,7 @@
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
@@ -41,7 +42,6 @@ namespace HaltroyFramework
         #region Private Members
 
         private readonly Timer _animationTimer = new Timer();
-        private HaltroySwitchRendererBase _renderer;
         private bool _checked = false;
         private bool _moving = false;
         private bool _animating = false;
@@ -92,22 +92,9 @@ namespace HaltroyFramework
                         ControlStyles.OptimizedDoubleBuffer |
                         ControlStyles.DoubleBuffer, true);
 
-            SetRenderer(new HaltroySwitchRenderer());
-
             _animationTimer.Enabled = false;
             _animationTimer.Interval = _animationInterval;
             _animationTimer.Tick += AnimationTimer_Tick;
-        }
-
-        public void SetRenderer(HaltroySwitchRendererBase renderer)
-        {
-            renderer.SetHaltroySwitch(this);
-            _renderer = renderer;
-
-            if (_renderer != null)
-            {
-                Refresh();
-            }
         }
 
         #endregion Constructor Etc.
@@ -134,7 +121,7 @@ namespace HaltroyFramework
 
                     if (value == true)
                     {
-                        int buttonWidth = _renderer.GetButtonWidth();
+                        int buttonWidth = GetButtonWidth();
                         _animationTarget = Width - buttonWidth;
                         BeginAnimation(true);
                     }
@@ -158,7 +145,7 @@ namespace HaltroyFramework
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Rectangle ButtonRectangle => _renderer.GetButtonRectangle();
+        public Rectangle ButtonRectangle => GetButtonRectangle();
 
         [Bindable(false)]
         [DefaultValue(true)]
@@ -436,7 +423,7 @@ namespace HaltroyFramework
                 }
                 else if (_checked)
                 {
-                    return Width - _renderer.GetButtonWidth();
+                    return Width - GetButtonWidth();
                 }
                 else
                 {
@@ -459,7 +446,7 @@ namespace HaltroyFramework
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        internal bool IsButtonOnRightSide => (ButtonValue >= (Width - _renderer.GetButtonWidth()));
+        internal bool IsButtonOnRightSide => (ButtonValue >= (Width - GetButtonWidth()));
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -484,30 +471,22 @@ namespace HaltroyFramework
             pevent.Graphics.ResetClip();
 
             base.OnPaintBackground(pevent);
-
-            if (_renderer != null)
-            {
-                _renderer.RenderBackground(pevent);
-            }
+            RenderBackground(pevent);
         }
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.ResetClip();
 
             base.OnPaint(e);
-
-            if (_renderer != null)
-            {
-                _renderer.RenderControl(e);
-            }
+            RenderControl(e);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             _lastMouseEventArgs = e;
 
-            int buttonWidth = _renderer.GetButtonWidth();
-            Rectangle buttonRectangle = _renderer.GetButtonRectangle(buttonWidth);
+            int buttonWidth = GetButtonWidth();
+            Rectangle buttonRectangle = GetButtonRectangle(buttonWidth);
 
             if (_moving)
             {
@@ -560,8 +539,8 @@ namespace HaltroyFramework
                 return;
             }
 
-            int buttonWidth = _renderer.GetButtonWidth();
-            Rectangle buttonRectangle = _renderer.GetButtonRectangle(buttonWidth);
+            int buttonWidth = GetButtonWidth();
+            Rectangle buttonRectangle = GetButtonRectangle(buttonWidth);
 
             _savedButtonValue = ButtonValue;
 
@@ -602,7 +581,7 @@ namespace HaltroyFramework
                 return;
             }
 
-            int buttonWidth = _renderer.GetButtonWidth();
+            int buttonWidth = GetButtonWidth();
 
             bool wasLeftSidePressed = IsLeftSidePressed;
             bool wasRightSidePressed = IsRightSidePressed;
@@ -707,7 +686,7 @@ namespace HaltroyFramework
         {
             if (_animationTarget > 0)
             {
-                int buttonWidth = _renderer.GetButtonWidth();
+                int buttonWidth = GetButtonWidth();
                 _animationTarget = Width - buttonWidth;
             }
 
@@ -822,5 +801,421 @@ namespace HaltroyFramework
         }
 
         #endregion Private Methods
+
+        #region "Renderer"
+
+        #region Render Methods
+
+        public void RenderBackground(PaintEventArgs e)
+        {
+            if (this == null)
+            {
+                return;
+            }
+
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            Rectangle controlRectangle = new Rectangle(0, 0, Width, Height);
+
+            FillBackground(e.Graphics, controlRectangle);
+        }
+
+        public void RenderControl(PaintEventArgs e)
+        {
+            if (this == null)
+            {
+                return;
+            }
+
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            Rectangle buttonRectangle = GetButtonRectangle();
+            int totalToggleFieldWidth = Width - buttonRectangle.Width;
+
+            if (buttonRectangle.X > 0)
+            {
+                Rectangle leftRectangle = new Rectangle(0, 0, buttonRectangle.X, Height);
+
+                if (leftRectangle.Width > 0)
+                {
+                    RenderLeftToggleField(e.Graphics, leftRectangle, totalToggleFieldWidth);
+                }
+            }
+
+            if (buttonRectangle.X + buttonRectangle.Width < e.ClipRectangle.Width)
+            {
+                Rectangle rightRectangle = new Rectangle(buttonRectangle.X + buttonRectangle.Width, 0, Width - buttonRectangle.X - buttonRectangle.Width, Height);
+
+                if (rightRectangle.Width > 0)
+                {
+                    RenderRightToggleField(e.Graphics, rightRectangle, totalToggleFieldWidth);
+                }
+            }
+
+            RenderButton(e.Graphics, buttonRectangle);
+        }
+
+        public void FillBackground(Graphics g, Rectangle controlRectangle)
+        {
+            Color backColor = (!Enabled && GrayWhenDisabled) ? BackColor : BackColor;
+
+            using (Brush backBrush = new SolidBrush(backColor))
+            {
+                g.FillRectangle(backBrush, controlRectangle);
+            }
+        }
+        public void RenderLeftToggleField(Graphics g, Rectangle leftRectangle, int totalToggleFieldWidth)
+        {
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+            int buttonWidth = GetButtonWidth();
+
+            //Draw upper gradient field
+            int gradientRectWidth = leftRectangle.Width + buttonWidth / 2;
+            int upperGradientRectHeight = (int)(0.8 * (leftRectangle.Height - 2));
+
+            Rectangle controlRectangle = new Rectangle(0, 0, Width, Height);
+            GraphicsPath controlClipPath = GetControlClipPath(controlRectangle);
+
+            Rectangle upperGradientRectangle = new Rectangle(leftRectangle.X, leftRectangle.Y + 1, gradientRectWidth, upperGradientRectHeight - 1);
+
+            g.SetClip(controlClipPath);
+            g.IntersectClip(upperGradientRectangle);
+
+            using (GraphicsPath upperGradientPath = new GraphicsPath())
+            {
+                upperGradientPath.AddArc(upperGradientRectangle.X, upperGradientRectangle.Y, Height, Height, 135, 135);
+                upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y);
+                upperGradientPath.AddLine(upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height);
+                upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height);
+
+                Color upperColor1 = (!Enabled && GrayWhenDisabled) ? OverlayColor : OverlayColor;
+
+                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor1, LinearGradientMode.Vertical))
+                {
+                    g.FillPath(upperGradientBrush, upperGradientPath);
+                }
+            }
+
+            g.ResetClip();
+
+            //Draw lower gradient field
+            int lowerGradientRectHeight = (int)Math.Ceiling(0.5 * (leftRectangle.Height - 2));
+
+            Rectangle lowerGradientRectangle = new Rectangle(leftRectangle.X, leftRectangle.Y + (leftRectangle.Height / 2), gradientRectWidth, lowerGradientRectHeight);
+
+            g.SetClip(controlClipPath);
+            g.IntersectClip(lowerGradientRectangle);
+
+            using (GraphicsPath lowerGradientPath = new GraphicsPath())
+            {
+                lowerGradientPath.AddArc(1, lowerGradientRectangle.Y, (int)(0.75 * (Height - 1)), Height - 1, 215, 45); //Arc from side to top
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth / 2, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y);
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + buttonWidth / 4, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
+                lowerGradientPath.AddArc(1, 1, Height - 1, Height - 1, 90, 70); //Arc from side to bottom
+
+                Color lowerColor1 = (!Enabled && GrayWhenDisabled) ? OverlayColor : OverlayColor;
+
+                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor1, LinearGradientMode.Vertical))
+                {
+                    g.FillPath(lowerGradientBrush, lowerGradientPath);
+                }
+            }
+
+            g.ResetClip();
+
+            controlRectangle = new Rectangle(0, 0, Width, Height);
+            controlClipPath = GetControlClipPath(controlRectangle);
+
+            g.SetClip(controlClipPath);
+
+            //Draw upper inside border
+            Color upperBorderColor = BorderColor;
+
+            //  if (!this.Enabled && this.GrayWhenDisabled)
+            //    upperthis.BorderColor = upperthis.BorderColor;
+
+            using (Pen upperBorderPen = new Pen(upperBorderColor))
+            {
+                g.DrawLine(upperBorderPen, leftRectangle.X, leftRectangle.Y + 1, leftRectangle.X + leftRectangle.Width + (buttonWidth / 2), leftRectangle.Y + 1);
+            }
+
+            //Draw lower inside border
+            Color lowerBorderColor = BorderColor;
+
+            //    if (!this.Enabled && this.GrayWhenDisabled)
+            //      lowerthis.BorderColor = lowerthis.BorderColor;
+
+            using (Pen lowerBorderPen = new Pen(lowerBorderColor))
+            {
+                g.DrawLine(lowerBorderPen, leftRectangle.X, leftRectangle.Y + leftRectangle.Height - 1, leftRectangle.X + leftRectangle.Width + (buttonWidth / 2), leftRectangle.Y + leftRectangle.Height - 1);
+            }
+
+            g.ResetClip();
+        }
+        public void RenderRightToggleField(Graphics g, Rectangle rightRectangle, int totalToggleFieldWidth)
+        {
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+            Rectangle buttonRectangle = GetButtonRectangle();
+
+            Rectangle controlRectangle = new Rectangle(0, 0, Width, Height);
+            GraphicsPath controlClipPath = GetControlClipPath(controlRectangle);
+
+            //Draw upper gradient field
+            int gradientRectWidth = rightRectangle.Width + buttonRectangle.Width / 2;
+            int upperGradientRectHeight = (int)(0.8 * (rightRectangle.Height - 2));
+
+            Rectangle upperGradientRectangle = new Rectangle(rightRectangle.X - buttonRectangle.Width / 2, rightRectangle.Y + 1, gradientRectWidth - 1, upperGradientRectHeight - 1);
+
+            g.SetClip(controlClipPath);
+            g.IntersectClip(upperGradientRectangle);
+
+            using (GraphicsPath upperGradientPath = new GraphicsPath())
+            {
+                upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y, upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y);
+                upperGradientPath.AddArc(upperGradientRectangle.X + upperGradientRectangle.Width - Height + 1, upperGradientRectangle.Y - 1, Height, Height, 270, 115);
+                upperGradientPath.AddLine(upperGradientRectangle.X + upperGradientRectangle.Width, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height);
+                upperGradientPath.AddLine(upperGradientRectangle.X, upperGradientRectangle.Y + upperGradientRectangle.Height, upperGradientRectangle.X, upperGradientRectangle.Y);
+
+                Color upperColor1 = (!Enabled && GrayWhenDisabled) ? BackColor : BackColor;
+
+                using (Brush upperGradientBrush = new LinearGradientBrush(upperGradientRectangle, upperColor1, upperColor1, LinearGradientMode.Vertical))
+                {
+                    g.FillPath(upperGradientBrush, upperGradientPath);
+                }
+            }
+
+            g.ResetClip();
+
+            //Draw lower gradient field
+            int lowerGradientRectHeight = (int)Math.Ceiling(0.5 * (rightRectangle.Height - 2));
+
+            Rectangle lowerGradientRectangle = new Rectangle(rightRectangle.X - buttonRectangle.Width / 2, rightRectangle.Y + (rightRectangle.Height / 2), gradientRectWidth - 1, lowerGradientRectHeight);
+
+            g.SetClip(controlClipPath);
+            g.IntersectClip(lowerGradientRectangle);
+
+            using (GraphicsPath lowerGradientPath = new GraphicsPath())
+            {
+                lowerGradientPath.AddLine(lowerGradientRectangle.X, lowerGradientRectangle.Y, lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y);
+                lowerGradientPath.AddArc(lowerGradientRectangle.X + lowerGradientRectangle.Width - (int)(0.75 * (Height - 1)), lowerGradientRectangle.Y, (int)(0.75 * (Height - 1)), Height - 1, 270, 45);  //Arc from top to side
+                lowerGradientPath.AddArc(Width - Height, 0, Height, Height, 20, 70); //Arc from side to bottom
+                lowerGradientPath.AddLine(lowerGradientRectangle.X + lowerGradientRectangle.Width, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X, lowerGradientRectangle.Y + lowerGradientRectangle.Height);
+                lowerGradientPath.AddLine(lowerGradientRectangle.X, lowerGradientRectangle.Y + lowerGradientRectangle.Height, lowerGradientRectangle.X, lowerGradientRectangle.Y);
+
+                Color lowerColor1 = (!Enabled && GrayWhenDisabled) ? BackColor : BackColor;
+
+                using (Brush lowerGradientBrush = new LinearGradientBrush(lowerGradientRectangle, lowerColor1, lowerColor1, LinearGradientMode.Vertical))
+                {
+                    g.FillPath(lowerGradientBrush, lowerGradientPath);
+                }
+            }
+
+            g.ResetClip();
+
+            controlRectangle = new Rectangle(0, 0, Width, Height);
+            controlClipPath = GetControlClipPath(controlRectangle);
+
+            g.SetClip(controlClipPath);
+
+            //Draw upper inside border
+            Color upperBorderColor = BorderColor;
+
+            // if (!this.Enabled && this.GrayWhenDisabled)
+            //upperthis.BorderColor = upperthis.BorderColor;
+
+            using (Pen upperBorderPen = new Pen(upperBorderColor))
+            {
+                g.DrawLine(upperBorderPen, rightRectangle.X - (buttonRectangle.Width / 2), rightRectangle.Y + 1, rightRectangle.X + rightRectangle.Width, rightRectangle.Y + 1);
+            }
+
+            //Draw lower inside border
+            Color lowerBorderColor = BorderColor;
+
+            //  if (!this.Enabled && this.GrayWhenDisabled)
+            //    lowerthis.BorderColor = lowerthis.BorderColor;
+
+            using (Pen lowerBorderPen = new Pen(lowerBorderColor))
+            {
+                g.DrawLine(lowerBorderPen, rightRectangle.X - (buttonRectangle.Width / 2), rightRectangle.Y + rightRectangle.Height - 1, rightRectangle.X + rightRectangle.Width, rightRectangle.Y + rightRectangle.Height - 1);
+            }
+            g.ResetClip();
+        }
+        public void RenderButton(Graphics g, Rectangle buttonRectangle)
+        {
+            if (IsButtonOnLeftSide)
+            {
+                buttonRectangle.X += 1;
+            }
+            else if (IsButtonOnRightSide)
+            {
+                buttonRectangle.X -= 1;
+            }
+
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+            //Draw button shadow
+            buttonRectangle.Inflate(1, 1);
+
+            Rectangle shadowClipRectangle = new Rectangle(buttonRectangle.Location, buttonRectangle.Size);
+            shadowClipRectangle.Inflate(0, -1);
+
+            if (IsButtonOnLeftSide)
+            {
+                shadowClipRectangle.X += shadowClipRectangle.Width / 2;
+                shadowClipRectangle.Width = shadowClipRectangle.Width / 2;
+            }
+            else if (IsButtonOnRightSide)
+            {
+                shadowClipRectangle.Width = shadowClipRectangle.Width / 2;
+            }
+
+            g.SetClip(shadowClipRectangle);
+
+            g.ResetClip();
+
+            buttonRectangle.Inflate(-1, -1);
+
+            //Draw outer button border
+            Color buttonOuterBorderColor = BorderColor;
+
+            if (IsButtonPressed)
+            {
+                buttonOuterBorderColor = BorderColor;
+            }
+            else if (IsButtonHovered)
+            {
+                buttonOuterBorderColor = BorderColor;
+            }
+
+            // if (!this.Enabled && this.GrayWhenDisabled)
+            //    buttonOuterthis.BorderColor = buttonOuterthis.BorderColor;
+
+            using (Brush outerBorderBrush = new SolidBrush(buttonOuterBorderColor))
+            {
+                g.FillEllipse(outerBorderBrush, buttonRectangle);
+            }
+
+            //Draw inner button border
+            buttonRectangle.Inflate(-1, -1);
+
+            Color buttonInnerBorderColor = BorderColor;
+
+            if (IsButtonPressed)
+            {
+                buttonInnerBorderColor = BorderColor;
+            }
+            else if (IsButtonHovered)
+            {
+                buttonInnerBorderColor = BorderColor;
+            }
+
+            //   if (!this.Enabled && this.GrayWhenDisabled)
+            //     buttonInnerthis.BorderColor = buttonInnerthis.BorderColor;
+
+            using (Brush innerBorderBrush = new SolidBrush(buttonInnerBorderColor))
+            {
+                g.FillEllipse(innerBorderBrush, buttonRectangle);
+            }
+
+            //Draw button surface
+            buttonRectangle.Inflate(-1, -1);
+
+            Color buttonUpperSurfaceColor = ButtonColor;
+
+            if (IsButtonPressed)
+            {
+                buttonUpperSurfaceColor = ButtonPressedColor;
+            }
+            else if (IsButtonHovered)
+            {
+                buttonUpperSurfaceColor = ButtonHoverColor;
+            }
+
+            //      if (!this.Enabled && this.GrayWhenDisabled)
+            //        buttonUpperSurfaceColor = buttonUpperSurfaceColor;
+
+            Color buttonLowerSurfaceColor = ButtonColor;
+
+            if (IsButtonPressed)
+            {
+                buttonLowerSurfaceColor = ButtonPressedColor;
+            }
+            else if (IsButtonHovered)
+            {
+                buttonLowerSurfaceColor = ButtonHoverColor;
+            }
+
+            //     if (!this.Enabled && this.GrayWhenDisabled)
+            //       buttonLowerSurfaceColor = buttonLowerSurfaceColor;
+
+            using (Brush buttonSurfaceBrush = new LinearGradientBrush(buttonRectangle, buttonUpperSurfaceColor, buttonLowerSurfaceColor, LinearGradientMode.Vertical))
+            {
+                g.FillEllipse(buttonSurfaceBrush, buttonRectangle);
+            }
+
+            g.CompositingMode = CompositingMode.SourceOver;
+            g.CompositingQuality = CompositingQuality.HighQuality;
+
+            //Draw outer control border
+            Rectangle controlRectangle = new Rectangle(0, 0, Width, Height);
+
+            using (GraphicsPath borderPath = GetControlClipPath(controlRectangle))
+            {
+                Color controlBorderColor = (!Enabled && GrayWhenDisabled) ? BorderColor : BorderColor;
+
+                using (Pen borderPen = new Pen(controlBorderColor))
+                {
+                    g.DrawPath(borderPen, borderPath);
+                }
+            }
+
+            g.ResetClip();
+        }
+
+        #endregion Render Methods
+
+        #region Helper Methods
+        public GraphicsPath GetButtonClipPath()
+        {
+            Rectangle buttonRectangle = GetButtonRectangle();
+
+            GraphicsPath buttonPath = new GraphicsPath();
+
+            buttonPath.AddArc(buttonRectangle.X, buttonRectangle.Y, buttonRectangle.Height, buttonRectangle.Height, 0, 360);
+
+            return buttonPath;
+        }
+        public GraphicsPath GetControlClipPath(Rectangle controlRectangle)
+        {
+            GraphicsPath borderPath = new GraphicsPath();
+            borderPath.AddArc(controlRectangle.X, controlRectangle.Y, controlRectangle.Height, controlRectangle.Height, 90, 180);
+            borderPath.AddArc(controlRectangle.Width - controlRectangle.Height, controlRectangle.Y, controlRectangle.Height, controlRectangle.Height, 270, 180);
+            borderPath.CloseFigure();
+
+            return borderPath;
+        }
+        public int GetButtonWidth()
+        {
+            return Height - 2;
+        }
+        public Rectangle GetButtonRectangle()
+        {
+            int buttonWidth = GetButtonWidth();
+            return GetButtonRectangle(buttonWidth);
+        }
+        public Rectangle GetButtonRectangle(int buttonWidth)
+        {
+            Rectangle buttonRect = new Rectangle(ButtonValue, 1, buttonWidth, buttonWidth);
+            return buttonRect;
+        }
+
+        #endregion Helper Methods
+        #endregion
     }
 }

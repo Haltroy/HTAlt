@@ -118,8 +118,6 @@
     <Compile Include="HaltroySwitch.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Renderers\HaltroySwitchRenderer.cs" />
-    <Compile Include="Renderers\HaltroySwitchRendererBase.cs" />
     <Compile Include="HaltroyTabControl.cs">
       <SubType>Component</SubType>
     </Compile>

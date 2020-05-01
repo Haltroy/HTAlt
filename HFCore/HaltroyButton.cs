@@ -41,10 +41,10 @@ namespace HaltroyFramework
         }
         public enum ButtonImageSizeMode
         {
-            None, 
-            Center, 
-            Stretch, 
-            Tile, 
+            None,
+            Center,
+            Stretch,
+            Tile,
             Zoom
         }
         #endregion
@@ -54,21 +54,21 @@ namespace HaltroyFramework
             CurrentBackColor = BackColor;
         }
         private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
-        
+
         private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Image BackgroundImage
         {
-            get { return null; }
-            set { BackgroundImage = null; }
+            get => null;
+            set => BackgroundImage = null;
         }
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new ImageLayout BackgroundImageLayout
         {
-            get { return ImageLayout.None; }
-            set { BackgroundImageLayout = ImageLayout.None; }
+            get => ImageLayout.None;
+            set => BackgroundImageLayout = ImageLayout.None;
         }
         [Bindable(false)]
         [DefaultValue(typeof(ButtonTextImageRelation), "Normal")]
@@ -76,8 +76,8 @@ namespace HaltroyFramework
         [Description("Determines how to display image and text.")]
         public new ButtonTextImageRelation TextImageRelation
         {
-            get { return tiRelation; }
-            set { tiRelation = value; }
+            get => tiRelation;
+            set => tiRelation = value;
         }
         [Bindable(false)]
         [DefaultValue(typeof(ButtonImageSizeMode), "None")]
@@ -85,8 +85,8 @@ namespace HaltroyFramework
         [Description("Determines how to display image.")]
         public ButtonImageSizeMode ImageSizeMode
         {
-            get { return imgSizeMode; }
-            set { imgSizeMode = value; }
+            get => imgSizeMode;
+            set => imgSizeMode = value;
         }
         private Color CurrentBackColor;
 
@@ -131,7 +131,7 @@ namespace HaltroyFramework
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-            CurrentBackColor = ShiftBrightnessIfNeeded(BackColor,20,false);
+            CurrentBackColor = ShiftBrightnessIfNeeded(BackColor, 20, false);
             Invalidate();
         }
 
@@ -160,12 +160,12 @@ namespace HaltroyFramework
         #region "Image Draw Modes"
         private static Bitmap ResizeImage(Image image, int width, int height)
         {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
+            Rectangle destRect = new Rectangle(0, 0, width, height);
+            Bitmap destImage = new Bitmap(width, height);
 
             destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            using (var graphics = Graphics.FromImage(destImage))
+            using (Graphics graphics = Graphics.FromImage(destImage))
             {
                 graphics.CompositingMode = CompositingMode.SourceCopy;
                 graphics.CompositingQuality = CompositingQuality.HighQuality;
@@ -173,7 +173,7 @@ namespace HaltroyFramework
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
                 graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                using (var wrapMode = new ImageAttributes())
+                using (ImageAttributes wrapMode = new ImageAttributes())
                 {
                     wrapMode.SetWrapMode(WrapMode.TileFlipXY);
                     graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
@@ -187,16 +187,20 @@ namespace HaltroyFramework
             if (imgSizeMode == ButtonImageSizeMode.None)
             {
                 DrawNoneImage(e);
-            }else if (imgSizeMode == ButtonImageSizeMode.Center)
+            }
+            else if (imgSizeMode == ButtonImageSizeMode.Center)
             {
                 DrawCenterImage(e);
-            }else if (imgSizeMode == ButtonImageSizeMode.Stretch)
+            }
+            else if (imgSizeMode == ButtonImageSizeMode.Stretch)
             {
                 DrawStretchImage(e);
-            }else if (imgSizeMode == ButtonImageSizeMode.Tile)
+            }
+            else if (imgSizeMode == ButtonImageSizeMode.Tile)
             {
                 DrawTileImage(e);
-            }else if (imgSizeMode == ButtonImageSizeMode.Zoom)
+            }
+            else if (imgSizeMode == ButtonImageSizeMode.Zoom)
             {
                 DrawZoomImage(e);
             }
@@ -210,15 +214,15 @@ namespace HaltroyFramework
             {
                 resizedImage = ResizeImage(Image, Height, Height);
             }
-            else if ( Height > Width)
+            else if (Height > Width)
             {
                 resizedImage = ResizeImage(Image, Width, Width);
             }
             else
             {
-                resizedImage = ResizeImage(Image, Width,Height);
+                resizedImage = ResizeImage(Image, Width, Height);
             }
-            g.DrawImage(Image, 
+            g.DrawImage(Image,
                         new Rectangle((Width / 2) - (resizedImage.Width / 2),
                                       (Height / 2) - (resizedImage.Height / 2),
                                       resizedImage.Width,
@@ -286,12 +290,12 @@ namespace HaltroyFramework
         {
             if (Image == null) { return; }
             Graphics g = p.Graphics;
-                Image resizedImage = ResizeImage(Image, Width, Height);
-                g.DrawImage(resizedImage,
-                            new Rectangle(0,
-                                          0,
-                                          Width,
-                                          Height));
+            Image resizedImage = ResizeImage(Image, Width, Height);
+            g.DrawImage(resizedImage,
+                        new Rectangle(0,
+                                      0,
+                                      Width,
+                                      Height));
 
         }
         private void DrawNoneImage(PaintEventArgs p)
@@ -302,7 +306,7 @@ namespace HaltroyFramework
                         new Rectangle(0,
                                       0,
                                       Width,
-                                      Height),new Rectangle(0,0,Width,Height),GraphicsUnit.Pixel);
+                                      Height), new Rectangle(0, 0, Width, Height), GraphicsUnit.Pixel);
 
         }
         #endregion
@@ -323,14 +327,15 @@ namespace HaltroyFramework
             }
             //Draw text and image
             if (tiRelation == ButtonTextImageRelation.None) { return; }
-            else if ( tiRelation == ButtonTextImageRelation.JustText)
+            else if (tiRelation == ButtonTextImageRelation.JustText)
             {
                 DrawText(pevent);
             }
             else if (tiRelation == ButtonTextImageRelation.JustImage)
             {
                 DrawImage(pevent);
-            }else if (tiRelation == ButtonTextImageRelation.TextAboveImage)
+            }
+            else if (tiRelation == ButtonTextImageRelation.TextAboveImage)
             {
                 DrawImage(pevent);
                 DrawText(pevent);
