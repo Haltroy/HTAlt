@@ -39,25 +39,55 @@ namespace HaltroyFramework
             TextBelowImage,
             TextAboveImage
         }
+        public enum ButtonImageSizeMode
+        {
+            None, 
+            Center, 
+            Stretch, 
+            Tile, 
+            Zoom
+        }
         #endregion
         public HaltroyButton()
         {
             Startup startup = new Startup();
             CurrentBackColor = BackColor;
         }
+        private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
         
         private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;
-        
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new Image BackgroundImage
+        {
+            get { return null; }
+            set { BackgroundImage = null; }
+        }
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new ImageLayout BackgroundImageLayout
+        {
+            get { return ImageLayout.None; }
+            set { BackgroundImageLayout = ImageLayout.None; }
+        }
         [Bindable(false)]
         [DefaultValue(typeof(ButtonTextImageRelation), "Normal")]
         [Category("Appearance")]
-        [Description("Determines how to display image.")]
-        public ButtonTextImageRelation TextImageRelation
+        [Description("Determines how to display image and text.")]
+        public new ButtonTextImageRelation TextImageRelation
         {
             get { return tiRelation; }
             set { tiRelation = value; }
         }
-
+        [Bindable(false)]
+        [DefaultValue(typeof(ButtonImageSizeMode), "None")]
+        [Category("Appearance")]
+        [Description("Determines how to display image.")]
+        public ButtonImageSizeMode ImageSizeMode
+        {
+            get { return imgSizeMode; }
+            set { imgSizeMode = value; }
+        }
         private Color CurrentBackColor;
 
         #region "MathBox"
@@ -125,6 +155,9 @@ namespace HaltroyFramework
             CurrentBackColor = BackColor;
             Invalidate();
         }
+        #region "Paint"
+
+        #region "Image Draw Modes"
         private static Bitmap ResizeImage(Image image, int width, int height)
         {
             var destRect = new Rectangle(0, 0, width, height);
@@ -149,7 +182,26 @@ namespace HaltroyFramework
 
             return destImage;
         }
-        private void DrawImage(PaintEventArgs p)
+        private void DrawImage(PaintEventArgs e)
+        {
+            if (imgSizeMode == ButtonImageSizeMode.None)
+            {
+                DrawNoneImage(e);
+            }else if (imgSizeMode == ButtonImageSizeMode.Center)
+            {
+                DrawCenterImage(e);
+            }else if (imgSizeMode == ButtonImageSizeMode.Stretch)
+            {
+                DrawStretchImage(e);
+            }else if (imgSizeMode == ButtonImageSizeMode.Tile)
+            {
+                DrawTileImage(e);
+            }else if (imgSizeMode == ButtonImageSizeMode.Zoom)
+            {
+                DrawZoomImage(e);
+            }
+        }
+        private void DrawZoomImage(PaintEventArgs p)
         {
             if (Image == null) { return; }
             Graphics g = p.Graphics;
@@ -173,6 +225,87 @@ namespace HaltroyFramework
                                       resizedImage.Height));
 
         }
+        private void DrawCenterImage(PaintEventArgs p)
+        {
+            if (Image == null) { return; }
+            Graphics g = p.Graphics;
+            if (Width > Image.Width && Height > Image.Height)
+            {
+                g.DrawImage(Image,
+                            new Rectangle((Width / 2) - (Image.Width / 2),
+                                          (Height / 2) - (Image.Height / 2),
+                                          Image.Width,
+                                          Image.Height));
+            }
+            else
+            {
+                Image resizedImage = Image;
+                if (Width > Height)
+                {
+                    resizedImage = ResizeImage(Image, Height, Height);
+                }
+                else if (Height > Width)
+                {
+                    resizedImage = ResizeImage(Image, Width, Width);
+                }
+                else
+                {
+                    resizedImage = ResizeImage(Image, Width, Height);
+                }
+                g.DrawImage(Image,
+                            new Rectangle((Width / 2) - (resizedImage.Width / 2),
+                                          (Height / 2) - (resizedImage.Height / 2),
+                                          resizedImage.Width,
+                                          resizedImage.Height));
+            }
+        }
+        private void DrawTileImage(PaintEventArgs p)
+        {
+            if (Image == null) { return; }
+            Graphics g = p.Graphics;
+            FillPattern(g, Image, Bounds);
+        }
+        private static void FillPattern(Graphics g, Image image, Rectangle rect)
+        {
+            Rectangle imageRect;
+            Rectangle drawRect;
+
+            for (int x = rect.X; x < rect.Right; x += image.Width)
+            {
+                for (int y = rect.Y; y < rect.Bottom; y += image.Height)
+                {
+                    drawRect = new Rectangle(x, y, Math.Min(image.Width, rect.Right - x),
+                                   Math.Min(image.Height, rect.Bottom - y));
+                    imageRect = new Rectangle(0, 0, drawRect.Width, drawRect.Height);
+
+                    g.DrawImage(image, drawRect, imageRect, GraphicsUnit.Pixel);
+                }
+            }
+        }
+        private void DrawStretchImage(PaintEventArgs p)
+        {
+            if (Image == null) { return; }
+            Graphics g = p.Graphics;
+                Image resizedImage = ResizeImage(Image, Width, Height);
+                g.DrawImage(resizedImage,
+                            new Rectangle(0,
+                                          0,
+                                          Width,
+                                          Height));
+
+        }
+        private void DrawNoneImage(PaintEventArgs p)
+        {
+            if (Image == null) { return; }
+            Graphics g = p.Graphics;
+            g.DrawImage(Image,
+                        new Rectangle(0,
+                                      0,
+                                      Width,
+                                      Height),new Rectangle(0,0,Width,Height),GraphicsUnit.Pixel);
+
+        }
+        #endregion
         private void DrawText(PaintEventArgs p)
         {
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
@@ -180,12 +313,15 @@ namespace HaltroyFramework
         }
         protected override void OnPaint(PaintEventArgs pevent)
         {
+            //Paint the base
             base.OnPaint(pevent);
             ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
+            //Paint background
             if (BackColor != Color.Transparent)
             {
                 pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
             }
+            //Draw text and image
             if (tiRelation == ButtonTextImageRelation.None) { return; }
             else if ( tiRelation == ButtonTextImageRelation.JustText)
             {
@@ -205,5 +341,6 @@ namespace HaltroyFramework
                 DrawImage(pevent);
             }
         }
+        #endregion
     }
 }

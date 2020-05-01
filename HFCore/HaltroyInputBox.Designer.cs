@@ -52,8 +52,8 @@ namespace HaltroyFramework
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyInputBox));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new HaltroyFramework.HaltroyButton();
+            this.button2 = new HaltroyFramework.HaltroyButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -136,8 +136,8 @@ namespace HaltroyFramework
         #endregion
 
         protected internal System.Windows.Forms.Label label1;
-        protected internal System.Windows.Forms.Button button1;
-        protected internal System.Windows.Forms.Button button2;
+        protected internal HaltroyFramework.HaltroyButton button1;
+        protected internal HaltroyFramework.HaltroyButton button2;
         protected internal System.Windows.Forms.TextBox textBox1;
         protected internal System.Windows.Forms.Timer timer1;
     }

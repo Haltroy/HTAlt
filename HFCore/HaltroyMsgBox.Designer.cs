@@ -52,9 +52,9 @@ namespace HaltroyFramework
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyMsgBox));
             this.label1 = new System.Windows.Forms.Label();
-            this.btNo = new System.Windows.Forms.Button();
-            this.btCancel = new System.Windows.Forms.Button();
-            this.btYes = new System.Windows.Forms.Button();
+            this.btNo = new HaltroyFramework.HaltroyButton();
+            this.btCancel = new HaltroyFramework.HaltroyButton();
+            this.btYes = new HaltroyFramework.HaltroyButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
@@ -158,9 +158,9 @@ namespace HaltroyFramework
         #endregion
 
         private System.Windows.Forms.Label label1;
-        internal System.Windows.Forms.Button btNo;
-        internal System.Windows.Forms.Button btCancel;
-        internal System.Windows.Forms.Button btYes;
+        internal HaltroyFramework.HaltroyButton btNo;
+        internal HaltroyFramework.HaltroyButton btCancel;
+        internal HaltroyFramework.HaltroyButton btYes;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         protected internal System.Windows.Forms.Timer timer1;
     }
