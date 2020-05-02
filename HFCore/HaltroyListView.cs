@@ -27,8 +27,15 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
-    #region WM - Window Messages
-    public enum WM
+    /// <summary>
+    /// Customizable <see cref="System.Windows.Forms.ListView"/> Control.
+    /// </summary>
+    public class HaltroyListView : System.Windows.Forms.ListView
+    {
+        private bool updating;
+        private int itemnumber;
+        #region WM - Window Messages
+        public enum WM
     {
         WM_NULL = 0x0000,
         WM_CREATE = 0x0001,
@@ -51,10 +58,9 @@ namespace HaltroyFramework
         WM_ERASEBKGND = 0x0014,
 
     }
-    #endregion
-
-    #region RECT
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        #endregion
+        #region RECT
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public struct RECT
     {
         public int left;
@@ -63,14 +69,6 @@ namespace HaltroyFramework
         public int bottom;
     }
     #endregion
-
-
-
-    public class HaltroyListView : System.Windows.Forms.ListView
-    {
-        private bool updating;
-        private int itemnumber;
-
         #region Imported User32.DLL functions
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
@@ -103,6 +101,9 @@ namespace HaltroyFramework
         private Color headerForeColor = Color.Black;
         private Color overlayColor = Color.DodgerBlue;
 
+        /// <summary>
+        /// The back color of the headers.
+        /// </summary>
         [Category("Style"), Browsable(true), Description("The back color of the headers.")]
         public Color HeaderBackColor
         {
@@ -118,6 +119,9 @@ namespace HaltroyFramework
                 headerBackColor = value;
             }
         }
+        /// <summary>
+        /// The text color of the headers.
+        /// </summary>
         [Category("Style"), Browsable(true), Description("The text color of the headers.")]
         public Color HeaderForeColor
         {
@@ -133,6 +137,9 @@ namespace HaltroyFramework
                 headerForeColor = value;
             }
         }
+        /// <summary>
+        /// The overlay color.
+        /// </summary>
         [Category("Style"), Browsable(true), Description("The overlay color.")]
         public Color OverlayColor
         {
@@ -214,8 +221,6 @@ namespace HaltroyFramework
             }
             base.WndProc(ref messg);
         }
-
-
         #region private helperfunctions
 
         // Get the listview's rectangle and return it as a RECT structure

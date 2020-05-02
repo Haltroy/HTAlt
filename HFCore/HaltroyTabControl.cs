@@ -30,6 +30,9 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// Customizable <see cref="System.Windows.Forms.TabControl"/> with Drag & Close features.
+    /// </summary>
     public class HaltroyTabControl : TabControl
     {
         private Color backgroundColor = Color.FromArgb(45, 45, 48);
@@ -45,6 +48,9 @@ namespace HaltroyFramework
         private Color textColor = Color.FromArgb(255, 255, 255);
         private Color upDownBackColor = Color.FromArgb(63, 63, 70);
         private Color upDownTextColor = Color.FromArgb(109, 109, 112);
+        /// <summary>
+        /// The back color.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The back color.")]
         public Color BackgroundColor
         {
@@ -52,6 +58,9 @@ namespace HaltroyFramework
 
             set => backgroundColor = value;
         }
+        /// <summary>
+        /// The color of the selected tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the selected tab.")]
         public Color SelectedTabColor
         {
@@ -59,6 +68,9 @@ namespace HaltroyFramework
 
             set => selectedTabColor = value;
         }
+        /// <summary>
+        /// The color of the unselected tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the unselected tab.")]
         public Color UnselectedTabColor
         {
@@ -66,6 +78,9 @@ namespace HaltroyFramework
 
             set => unselectedTabColor = value;
         }
+        /// <summary>
+        /// The color of the tab when hovered.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The color of the tab when hovered.")]
         public Color HoverTabColor
         {
@@ -73,6 +88,9 @@ namespace HaltroyFramework
 
             set => hoverTabColor = value;
         }
+        /// <summary>
+        /// The button color of the hovered tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered tab.")]
         public Color HoverTabButtonColor
         {
@@ -80,6 +98,9 @@ namespace HaltroyFramework
 
             set => hoverTabButtonColor = value;
         }
+        /// <summary>
+        /// The button color of the hovered unselected tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the hovered unselected tab.")]
         public Color HoverUnselectedTabButtonColor
         {
@@ -87,6 +108,9 @@ namespace HaltroyFramework
 
             set => hoverUnselectedTabButtonColor = value;
         }
+        /// <summary>
+        /// The button color of the selected tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The button color of the selected tab.")]
         public Color SelectedTabButtonColor
         {
@@ -94,6 +118,9 @@ namespace HaltroyFramework
 
             set => selectedTabButtonColor = value;
         }
+        /// <summary>
+        /// The border line color of the unselected tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the unselected tab.")]
         public Color UnselectedBorderTabLineColor
         {
@@ -101,6 +128,9 @@ namespace HaltroyFramework
 
             set => unselectedBorderTabLineColor = value;
         }
+        /// <summary>
+        /// The border line color of the tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the tab.")]
         public Color BorderTabLineColor
         {
@@ -108,6 +138,9 @@ namespace HaltroyFramework
 
             set => borderTabLineColor = value;
         }
+        /// <summary>
+        /// The border line color of the under tab.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The border line color of the under tab.")]
         public Color UnderBorderTabLineColor
         {
@@ -115,6 +148,9 @@ namespace HaltroyFramework
 
             set => underBorderTabLineColor = value;
         }
+        /// <summary>
+        /// The text color.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The text color.")]
         public Color TextColor
         {
@@ -122,6 +158,9 @@ namespace HaltroyFramework
 
             set => textColor = value;
         }
+        /// <summary>
+        /// The back color of up down.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The back color of up down.")]
         public Color UpDownBackColor
         {
@@ -129,6 +168,9 @@ namespace HaltroyFramework
 
             set => upDownBackColor = value;
         }
+        /// <summary>
+        /// The text color of up down.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("The text color of up down.")]
         public Color UpDownTextColor
         {
@@ -136,8 +178,14 @@ namespace HaltroyFramework
 
             set => upDownTextColor = value;
         }
+        /// <summary>
+        /// This option disables closing tabs.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("This option disables closing tabs.")]
         public bool DisableClose { get; set; }
+        /// <summary>
+        /// This option disables dragging tabs.
+        /// </summary>
         [Category("HaltroyTabControl"), Browsable(true), Description("This option disables dragging tabs.")]
         public bool DisableDragging { get; set; }
 

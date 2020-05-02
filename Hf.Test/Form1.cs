@@ -71,7 +71,7 @@ namespace Hf.Test
             HaltroyFramework.HaltroyMsgBox mesaj = new HaltroyFramework.HaltroyMsgBox(tbTitle.Text,
                                                                                       tbMessage.Text,
                                                                                       mesajbuton)
-            {Icon = mesajicon,BackgroundColor = pbBackColor.BackColor,YesButtonText = tbYes.Text,NoButtonText = tbNo.Text,OKBUttonText = tbOK.Text,CancelButtonText = tbCancel.Text, };
+            {Icon = mesajicon,BackgroundColor = pbBackColor.BackColor,Yes = tbYes.Text,No = tbNo.Text,OK = tbOK.Text,Cancel = tbCancel.Text, };
             mesaj.Show();
         }
 
@@ -110,7 +110,7 @@ namespace Hf.Test
             HaltroyFramework.HaltroyMsgBox mesaj = new HaltroyFramework.HaltroyMsgBox(tbTitle.Text,
                                                                           tbMessage.Text,
                                                                           mesajbuton)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, YesButtonText = tbYes.Text, NoButtonText = tbNo.Text, OKBUttonText = tbOK.Text, CancelButtonText = tbCancel.Text, };
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             DialogResult diares = mesaj.ShowDialog();
             if (diares == DialogResult.OK)
             {
@@ -146,7 +146,7 @@ namespace Hf.Test
             HaltroyFramework.HaltroyInputBox inputbox = new HaltroyFramework.HaltroyInputBox(ibTitle.Text,
                                                                                              ibMessage.Text,
                                                                                              ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor,  OKText = ibOK.Text, CancelText = ibCancel.Text, };;
+            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor,  OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, };;
             DialogResult diagres = inputbox.ShowDialog();
             if (diagres == DialogResult.OK)
             {
@@ -169,7 +169,7 @@ namespace Hf.Test
             HaltroyFramework.HaltroyInputBox inputbox = new HaltroyFramework.HaltroyInputBox(ibTitle.Text,
                                                                                              ibMessage.Text,
                                                                                              ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor, OKText = ibOK.Text, CancelText = ibCancel.Text, }; ;
+            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor, OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             DialogResult diagres = inputbox.ShowDialog();
         }
 

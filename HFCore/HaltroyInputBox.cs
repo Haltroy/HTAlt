@@ -25,11 +25,28 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// Customizable Input Box.
+    /// </summary>
     public partial class HaltroyInputBox : Form
     {
+        /// <summary>
+        /// Background color of HaltroyMsgBox. Foreground color is auto-selected to White or Black.
+        /// </summary>
         public Color BackgroundColor;
-        public string OKText = "OK";
-        public string CancelText = "Cancel";
+        /// <summary>
+        /// Text to display on "OK" button.
+        /// </summary>
+        public string OK = "OK";
+        /// <summary>
+        /// Text to display on "Cancel" button.
+        /// </summary>
+        public string Cancel = "Cancel";
+        /// <summary>
+        /// Text to display on "Set to default" button.
+        /// </summary>
+        public string SetToDefault = "Set to default";
+        private string defaultString = "";
 
         private static int LinesCountIndexOf(string s)
         {
@@ -42,21 +59,31 @@ namespace HaltroyFramework
             }
             return count;
         }
+        /// <summary>
+        /// Creates a new Input Box.
+        /// </summary>
+        /// <param name="title">Title of the input box.</param>
+        /// <param name="description">Description of the input box.</param>
+        /// <param name="defaultValue">Default value of the input box.</param>
         public HaltroyInputBox(string title,
                                string description,
                                string defaultValue = "")
         {
             Startup start = new Startup();
             InitializeComponent();
+            defaultString = defaultValue;
             Text = title;
             label1.Text = description;
-            Height = (15 * LinesCountIndexOf(description)) + 70;
+            Height = (15 * LinesCountIndexOf(description)) + 95;
             MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
-            textBox1.Text = defaultValue;
+            textBox1.Text = defaultString;
             BackgroundColor = Color.White;
-            button1.Text = OKText;
-            button2.Text = CancelText;
+            button1.Text = OK;
+            button2.Text = Cancel;
         }
+        /// <summary>
+        /// Value inside the textbox in this input box.
+        /// </summary>
         public string TextValue => textBox1.Text;
         #region "MathBox"
         private static int Brightness(Color c)
@@ -111,14 +138,24 @@ namespace HaltroyFramework
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            button1.Text = OKText;
-            button2.Text = CancelText;
+            button1.Text = OK;
+            button2.Text = Cancel;
+            haltroyButton1.Text = SetToDefault;
             ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             BackColor = BackgroundColor;
             button1.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
+            button1.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            button2.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            haltroyButton1.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             button2.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
+            haltroyButton1.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             textBox1.ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             textBox1.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+        }
+
+        private void haltroyButton1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = defaultString;
         }
     }
 }

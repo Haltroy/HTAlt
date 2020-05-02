@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lResult = new System.Windows.Forms.Label();
@@ -105,6 +106,8 @@
             this.haltroyButton4 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton3 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton2 = new HaltroyFramework.HaltroyButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.ibSetToDefault = new System.Windows.Forms.TextBox();
             this.haltroyTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -441,7 +444,7 @@
             this.haltroyListView2.HeaderForeColor = System.Drawing.Color.White;
             this.haltroyListView2.HideSelection = false;
             this.haltroyListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
             this.haltroyListView2.Name = "haltroyListView2";
             this.haltroyListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
@@ -515,9 +518,11 @@
             this.tabPage3.Controls.Add(this.ibIcon);
             this.tabPage3.Controls.Add(this.ibCancel);
             this.tabPage3.Controls.Add(this.ibDefault);
+            this.tabPage3.Controls.Add(this.ibSetToDefault);
             this.tabPage3.Controls.Add(this.ibOK);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.ibTitle);
             this.tabPage3.Controls.Add(this.label17);
@@ -704,9 +709,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(549, 86);
+            this.button5.Location = new System.Drawing.Point(549, 87);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(35, 23);
+            this.button5.Size = new System.Drawing.Size(35, 24);
             this.button5.TabIndex = 11;
             this.button5.Text = "...";
             this.button5.UseVisualStyleBackColor = true;
@@ -960,12 +965,30 @@
             this.haltroyButton2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
             this.haltroyButton2.UseVisualStyleBackColor = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(313, 254);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(172, 16);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "\"Set to default\" Button Text:";
+            // 
+            // ibSetToDefault
+            // 
+            this.ibSetToDefault.Location = new System.Drawing.Point(316, 270);
+            this.ibSetToDefault.Name = "ibSetToDefault";
+            this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
+            this.ibSetToDefault.TabIndex = 17;
+            this.ibSetToDefault.Text = "Set to default";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.haltroyTabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "HaltroyFramework Test App";
             this.haltroyTabControl1.ResumeLayout(false);
@@ -1066,6 +1089,8 @@
         private System.Windows.Forms.Panel panel2;
         private HaltroyFramework.HaltroyButton haltroyButton9;
         private HaltroyFramework.HaltroyButton haltroyButton10;
+        private System.Windows.Forms.TextBox ibSetToDefault;
+        private System.Windows.Forms.Label label12;
     }
 }
 

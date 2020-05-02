@@ -25,6 +25,9 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// A <see cref="System.Windows.Forms.Form"/> alternative if you want a borderless resizable form.
+    /// </summary>
     public partial class HaltroyForms : Form
     {
         private bool useFullScreen = false;
@@ -102,13 +105,14 @@ namespace HaltroyFramework
         }
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-        protected void This_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        protected override void OnMouseDown(MouseEventArgs e)
         {
+            base.OnMouseDown(e);
             if (e.Button == MouseButtons.Left & draggable)
             {
                 if (e.Clicks > 1)
                 {
-                    this_MouseDoubleClick(sender, e);
+                    OnMouseDoubleClick(e);
                 }
                 else
                 {
@@ -117,9 +121,11 @@ namespace HaltroyFramework
                     ReleaseCapture();
                 }
             }
+            Invalidate();
         }
-        protected void this_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
+            base.OnMouseDoubleClick(e);
             if (WindowState == FormWindowState.Maximized)
             {
                 WindowState = FormWindowState.Normal;
@@ -136,35 +142,21 @@ namespace HaltroyFramework
                 }
                 WindowState = FormWindowState.Maximized;
             }
+            Invalidate();
         }
-
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Maximizes to entire screen on duble-click if enabled. Maximizes to Working Area if disabled.
         /// </summary>
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyForms));
-            SuspendLayout();
-            // 
-            // HaltroyForms
-            // 
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
-            Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            Name = "HaltroyForms";
-            Text = "HaltroyForms";
-            ResumeLayout(false);
-
-        }
-        [Category("HaltroyForms"), Browsable(true), Description("Maximizes to entire screen on duble-click if enabled.Miximizes to Working Area if disabled.")]
+        [Category("HaltroyForms"), Browsable(true), Description("Maximizes to entire screen on duble-click if enabled. Maximizes to Working Area if disabled.")]
         public bool FullScreenMode
         {
             get => useFullScreen;
 
             set => useFullScreen = value;
         }
+        /// <summary>
+        /// Enables dragging.
+        /// </summary>
         [Category("HaltroyForms"), Browsable(true), Description("Enables dragging.")]
         public bool EnableDrag
         {
@@ -175,7 +167,6 @@ namespace HaltroyFramework
         public HaltroyForms()
         {
             Startup start = new Startup();
-            InitializeComponent();
         }
     }
 }

@@ -39,7 +39,7 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ht-logo-2020.ico</ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack">
@@ -102,8 +102,6 @@
     <Compile Include="HaltroyInputBox.Designer.cs">
       <DependentUpon>HaltroyInputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsExtensionMethods.cs" />
-    <Compile Include="ImageHelper.cs" />
     <Compile Include="HaltroyMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,9 +119,6 @@
     <Compile Include="HaltroyTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="HaltroyForms.resx">
-      <DependentUpon>HaltroyForms.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HaltroySlider.resx">
       <DependentUpon>HaltroySlider.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +159,9 @@
     <None Include="Images\ScrollBarArrowDown.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ht-logo-2020.ico" />
+    <None Include="logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="license.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

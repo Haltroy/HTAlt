@@ -28,6 +28,9 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// Flat button. Imidates <see cref="System.Windows.Forms.Button"/>.
+    /// </summary>
     public class HaltroyButton : Button
     {
         #region "Enums"
@@ -54,8 +57,10 @@ namespace HaltroyFramework
             CurrentBackColor = BackColor;
         }
         private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
-
         private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;
+        /// <summary>
+        /// This property is not in use.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Image BackgroundImage
@@ -63,6 +68,9 @@ namespace HaltroyFramework
             get => null;
             set => BackgroundImage = null;
         }
+        /// <summary>
+        /// This property is not in use.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new ImageLayout BackgroundImageLayout
@@ -70,6 +78,9 @@ namespace HaltroyFramework
             get => ImageLayout.None;
             set => BackgroundImageLayout = ImageLayout.None;
         }
+        /// <summary>
+        /// Determines how to display image and text.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(ButtonTextImageRelation), "Normal")]
         [Category("Appearance")]
@@ -79,6 +90,9 @@ namespace HaltroyFramework
             get => tiRelation;
             set => tiRelation = value;
         }
+        /// <summary>
+        /// Determines how to display image.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(ButtonImageSizeMode), "None")]
         [Category("Appearance")]

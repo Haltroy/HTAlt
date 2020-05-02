@@ -29,7 +29,7 @@ namespace HaltroyFramework
 {
 
     /// <summary>
-    /// Encapsulates control that visualy displays certain integer value and allows user to change it within desired range. It imitates <see cref="System.Windows.Forms.TrackBar"/> as far as mouse usage is concerned.
+    /// Customizable <see cref="System.Windows.Forms.TrackBar"/> Control.
     /// </summary>
     [ToolboxBitmap(typeof(TrackBar))]
     [DefaultEvent("Scroll"), DefaultProperty("BarInnerColor")]
@@ -52,8 +52,6 @@ namespace HaltroyFramework
         public event ScrollEventHandler Scroll;
 
         #endregion
-
-
         #region Properties
 
         private Rectangle barRect; //bounding rectangle of bar area
@@ -487,14 +485,6 @@ namespace HaltroyFramework
 
 
         #endregion
-
-
-
-
-
-
-
-
         #region Constructors
 
         /// <summary>
@@ -531,7 +521,6 @@ namespace HaltroyFramework
         public HaltroySlider() : this(0, 100, 30) { }
 
         #endregion
-
         #region Paint
 
         /// <summary>
@@ -871,7 +860,6 @@ namespace HaltroyFramework
         }
 
         #endregion
-
         #region Overided events
 
         private bool mouseInRegion = false;
@@ -1126,7 +1114,6 @@ namespace HaltroyFramework
         }
 
         #endregion
-
         #region Help routines
 
         /// <summary>

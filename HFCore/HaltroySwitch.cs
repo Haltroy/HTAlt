@@ -28,6 +28,9 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// Custom Switch control that imidates <see cref="System.Windows.Forms.CheckBox"/>.
+    /// </summary>
     [DefaultValue("Checked"), DefaultEvent("CheckedChanged"), ToolboxBitmap(typeof(CheckBox))]
     public class HaltroySwitch : Control
     {
@@ -102,7 +105,9 @@ namespace HaltroyFramework
         #region Public Properties
 
 
-
+        /// <summary>
+        /// Gets or sets the Checked value of the HaltroySwitch
+        /// </summary>
         [Bindable(true)]
         [DefaultValue(false)]
         [Category("Data")]
@@ -133,11 +138,13 @@ namespace HaltroyFramework
                 }
             }
         }
-
+        /// <summary>
+        /// Gets or sets whether the user can change the value of the button or not.
+        /// </summary>
         [Bindable(true)]
         [DefaultValue(true)]
         [Category("Behavior")]
-        [Description("Gets or sets whether the user can change the value of the button or not")]
+        [Description("Gets or sets whether the user can change the value of the button or not.")]
         public bool AllowUserChange
         {
             get => _allowUserChange;
@@ -146,11 +153,13 @@ namespace HaltroyFramework
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle ButtonRectangle => GetButtonRectangle();
-
+        /// <summary>
+        /// Gets or sets if the HaltroySwitch should be grayed out when disabled.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(true)]
         [Category("Appearance")]
-        [Description("Gets or sets if the HaltroySwitch should be grayed out when disabled")]
+        [Description("Gets or sets if the HaltroySwitch should be grayed out when disabled.")]
         public bool GrayWhenDisabled
         {
             get => _grayWhenDisabled;
@@ -167,40 +176,49 @@ namespace HaltroyFramework
                 }
             }
         }
-
+        /// <summary>
+        /// Gets or sets if the HaltroySwitch should toggle when the button is clicked.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(true)]
         [Category("Behavior")]
-        [Description("Gets or sets if the HaltroySwitch should toggle when the button is clicked")]
+        [Description("Gets or sets if the HaltroySwitch should toggle when the button is clicked.")]
         public bool ToggleOnButtonClick
         {
             get => _toggleOnButtonClick;
             set => _toggleOnButtonClick = value;
         }
-
+        /// <summary>
+        /// Gets or sets if the HaltroySwitch should toggle when the track besides the button is clicked.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(true)]
         [Category("Behavior")]
-        [Description("Gets or sets if the HaltroySwitch should toggle when the track besides the button is clicked")]
+        [Description("Gets or sets if the HaltroySwitch should toggle when the track besides the button is clicked.")]
         public bool ToggleOnSideClick
         {
             get => _toggleOnSideClick;
             set => _toggleOnSideClick = value;
         }
-
+        /// <summary>
+        /// Gets or sets how much the button need to be on the other side (in peercept) before it snaps.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(50)]
         [Category("Behavior")]
-        [Description("Gets or sets how much the button need to be on the other side (in peercept) before it snaps")]
+        [Description("Gets or sets how much the button need to be on the other side (in peercept) before it snaps.")]
         public int ThresholdPercentage
         {
             get => _thresholdPercentage;
             set => _thresholdPercentage = value;
         }
+        /// <summary>
+        /// Gets or sets the back color when Checked = true.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "DodgerBlue")]
         [Category("Appearance")]
-        [Description("Gets or sets the back color when Checked = true")]
+        [Description("Gets or sets the back color when Checked = true.")]
         public Color OverlayColor
         {
             get => _overlayColor;
@@ -213,10 +231,13 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the back color when Checked = false.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "White")]
         [Category("Appearance")]
-        [Description("Gets or sets the back color when Checked = false")]
+        [Description("Gets or sets the back color when Checked = false.")]
         public override Color BackColor
         {
             get => _backColor;
@@ -229,10 +250,13 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the back color when Checked = false.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "LightGray")]
         [Category("Appearance")]
-        [Description("Gets or sets the back color when Checked = false")]
+        [Description("Gets or sets the back color when Checked = false.")]
         public Color BorderColor
         {
             get => _borderColor;
@@ -245,6 +269,9 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the back color of button.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "255, 235, 235, 235")]
         [Category("Appearance")]
@@ -261,6 +288,9 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the back color of button when hovered.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "255, 215, 215, 215")]
         [Category("Appearance")]
@@ -277,6 +307,9 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets the back color of button when pressed.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(typeof(Color), "255, 195, 195, 195")]
         [Category("Appearance")]
@@ -293,10 +326,13 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets whether the button image should be scaled to fit.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(false)]
         [Category("Behavior")]
-        [Description("Gets or sets whether the button image should be scaled to fit")]
+        [Description("Gets or sets whether the button image should be scaled to fit.")]
         public bool ButtonScaleImageToFit
         {
             get => _buttonScaleImage;
@@ -309,20 +345,25 @@ namespace HaltroyFramework
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets whether the toggle change should be animated or not.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(true)]
         [Category("Behavior")]
-        [Description("Gets or sets whether the toggle change should be animated or not")]
+        [Description("Gets or sets whether the toggle change should be animated or not.")]
         public bool UseAnimation
         {
             get => _useAnimation;
             set => _useAnimation = value;
         }
-
+        /// <summary>
+        /// Gets or sets the interval in ms between animation frames.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(1)]
         [Category("Behavior")]
-        [Description("Gets or sets the interval in ms between animation frames")]
+        [Description("Gets or sets the interval in ms between animation frames.")]
         public int AnimationInterval
         {
             get => _animationInterval;
@@ -336,11 +377,13 @@ namespace HaltroyFramework
                 _animationInterval = value;
             }
         }
-
+        /// <summary>
+        /// Gets or sets the step in pixes the button shouldbe moved between each animation interval.
+        /// </summary>
         [Bindable(false)]
         [DefaultValue(10)]
         [Category("Behavior")]
-        [Description("Gets or sets the step in pixes the button shouldbe moved between each animation interval")]
+        [Description("Gets or sets the step in pixes the button shouldbe moved between each animation interval.")]
         public int AnimationStep
         {
             get => _animationStep;
@@ -357,6 +400,9 @@ namespace HaltroyFramework
 
         #region Hidden Base Properties
 
+        /// <summary>
+        /// Not in use.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new string Text
@@ -364,7 +410,9 @@ namespace HaltroyFramework
             get => "";
             set => base.Text = "";
         }
-
+        /// <summary>
+        /// Not in use.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Color ForeColor
@@ -372,7 +420,9 @@ namespace HaltroyFramework
             get => Color.Black;
             set => base.ForeColor = Color.Black;
         }
-
+        /// <summary>
+        /// Not in use.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Font Font

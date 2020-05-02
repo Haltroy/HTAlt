@@ -25,15 +25,33 @@ using System.Windows.Forms;
 
 namespace HaltroyFramework
 {
+    /// <summary>
+    /// Customizable <see cref="System.Windows.Forms.MessageBox"/>.
+    /// </summary>
     public partial class HaltroyMsgBox : Form
     {
+        /// <summary>
+        /// Background color of HaltroyMsgBox. Foreground color is auto-selected to White or Black.
+        /// </summary>
         public Color BackgroundColor;
         private bool useOK = false;
         private readonly MessageBoxButtons msgbutton = MessageBoxButtons.OK;
-        public string YesButtonText = "Yes";
-        public string NoButtonText = "No";
-        public string OKBUttonText = "OK";
-        public string CancelButtonText = "Cancel";
+        /// <summary>
+        /// Text to display on "Yes" button.
+        /// </summary>
+        public string Yes = "Yes";
+        /// <summary>
+        /// Text to display on "No" button.
+        /// </summary>
+        public string No = "No";
+        /// <summary>
+        /// Text to display on "OK" button.
+        /// </summary>
+        public string OK = "OK";
+        /// <summary>
+        /// Text to display on "Cancel" button.
+        /// </summary>
+        public string Cancel = "Cancel";
 
         private static int LinesCountIndexOf(string s)
         {
@@ -46,6 +64,12 @@ namespace HaltroyFramework
             }
             return count;
         }
+        /// <summary>
+        /// Creates new HaltroyMsgBox.
+        /// </summary>
+        /// <param name="title">Title of the message.</param>
+        /// <param name="message">Text of message.</param>
+        /// <param name="messageBoxButtons">Buttons to display.</param>
         public HaltroyMsgBox(string title,
                       string message,
                       MessageBoxButtons messageBoxButtons)
@@ -173,9 +197,9 @@ namespace HaltroyFramework
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            btYes.Text = useOK ? OKBUttonText : YesButtonText;
-            btNo.Text = NoButtonText;
-            btCancel.Text = CancelButtonText;
+            btYes.Text = useOK ? OK : Yes;
+            btNo.Text = No;
+            btCancel.Text = Cancel;
             ForeColor = isBright(BackgroundColor) ? Color.Black : Color.White;
             BackColor = BackgroundColor;
             btCancel.BackColor = ShiftBrightnessIfNeeded(BackgroundColor, 20, false);

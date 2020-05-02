@@ -56,6 +56,7 @@ namespace HaltroyFramework
             this.button2 = new HaltroyFramework.HaltroyButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.haltroyButton1 = new HaltroyFramework.HaltroyButton();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +66,7 @@ namespace HaltroyFramework
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Location = new System.Drawing.Point(0, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 41);
+            this.label1.Size = new System.Drawing.Size(384, 43);
             this.label1.TabIndex = 0;
             this.label1.Text = "description";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,11 +78,12 @@ namespace HaltroyFramework
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 65);
+            this.button1.Location = new System.Drawing.Point(0, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(384, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "OK";
+            this.button1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -92,11 +94,12 @@ namespace HaltroyFramework
             this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 88);
+            this.button2.Location = new System.Drawing.Point(0, 113);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(384, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Cancel";
+            this.button2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -104,7 +107,7 @@ namespace HaltroyFramework
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 45);
+            this.textBox1.Location = new System.Drawing.Point(0, 47);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(384, 20);
             this.textBox1.TabIndex = 2;
@@ -114,18 +117,35 @@ namespace HaltroyFramework
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // haltroyButton1
+            // 
+            this.haltroyButton1.AutoSize = true;
+            this.haltroyButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.haltroyButton1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.haltroyButton1.FlatAppearance.BorderSize = 0;
+            this.haltroyButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.haltroyButton1.Location = new System.Drawing.Point(0, 67);
+            this.haltroyButton1.Name = "haltroyButton1";
+            this.haltroyButton1.Size = new System.Drawing.Size(384, 23);
+            this.haltroyButton1.TabIndex = 3;
+            this.haltroyButton1.Text = "Set to default";
+            this.haltroyButton1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
+            this.haltroyButton1.UseVisualStyleBackColor = true;
+            this.haltroyButton1.Click += new System.EventHandler(this.haltroyButton1_Click);
+            // 
             // HaltroyInputBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 111);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(384, 136);
             this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.haltroyButton1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(400, 150);
+            this.MinimumSize = new System.Drawing.Size(400, 175);
             this.Name = "HaltroyInputBox";
             this.Text = "<title>";
             this.ResumeLayout(false);
@@ -140,5 +160,6 @@ namespace HaltroyFramework
         protected internal HaltroyFramework.HaltroyButton button2;
         protected internal System.Windows.Forms.TextBox textBox1;
         protected internal System.Windows.Forms.Timer timer1;
+        protected internal HaltroyButton haltroyButton1;
     }
 }
