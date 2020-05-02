@@ -93,19 +93,19 @@ namespace HaltroyFramework
                c.G * c.G * .691 +
                c.B * c.B * .068);
         }
-        public static bool isBright(Color c)
+        private static bool isBright(Color c)
         {
             return Brightness(c) > 130;
         }
-        public static int GerekiyorsaAzalt(int defaultint, int azaltma)
+        private static int GerekiyorsaAzalt(int defaultint, int azaltma)
         {
             return defaultint > azaltma ? defaultint - azaltma : defaultint;
         }
-        public static int GerekiyorsaArttır(int defaultint, int arttırma, int sınır)
+        private static int GerekiyorsaArttır(int defaultint, int arttırma, int sınır)
         {
             return defaultint + arttırma > sınır ? defaultint : defaultint + arttırma;
         }
-        public static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
+        private static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
         {
             if (isBright(baseColor))
             {
