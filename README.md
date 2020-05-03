@@ -3,7 +3,7 @@
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
-Latest Stable Version: [`b1.0`](https://github.com/Haltroy/HaltroyFramework/releases/tag/b1.0)
+Latest Stable Version: [`b1.1`](https://github.com/Haltroy/HaltroyFramework/releases/tag/b1.1)
 
 ## Features
  - Tab (Control)
@@ -21,6 +21,6 @@ Latest Stable Version: [`b1.0`](https://github.com/Haltroy/HaltroyFramework/rele
 
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
-| [`master`](https://github.com/haltroy/haltroyframework)              | Framework 4.5 | Development | Unknown |
-| [`b1.0`](https://github.com/haltroy/haltroyframework/tree/b1.0) | Framework 4.5 | **Latest Release** | 29.4.2020 |
-| `a1.9` and lower | Framework 4.5 | Unsupported | Before 29.4.2020 |
+| [`master`](https://github.com/haltroy/haltroyframework)              | Framework 4.5 | Development | |
+| [`b1.1`](https://github.com/haltroy/haltroyframework/tree/b1.1) | Framework 4.5 | **Latest Release** | 03.5.2020 |
+| `b1.0` and lower | Framework 4.5 | Unsupported | Before 03.5.2020 |
