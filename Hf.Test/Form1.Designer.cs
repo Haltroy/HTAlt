@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Test");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -76,9 +76,11 @@
             this.ibIcon = new System.Windows.Forms.TextBox();
             this.ibCancel = new System.Windows.Forms.TextBox();
             this.ibDefault = new System.Windows.Forms.TextBox();
+            this.ibSetToDefault = new System.Windows.Forms.TextBox();
             this.ibOK = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.ibTitle = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -106,8 +108,15 @@
             this.haltroyButton4 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton3 = new HaltroyFramework.HaltroyButton();
             this.haltroyButton2 = new HaltroyFramework.HaltroyButton();
-            this.label12 = new System.Windows.Forms.Label();
-            this.ibSetToDefault = new System.Windows.Forms.TextBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.haltroyProgressBar8 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar4 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar7 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar3 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar6 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar2 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar5 = new HaltroyFramework.HaltroyProgressBar();
+            this.haltroyProgressBar1 = new HaltroyFramework.HaltroyProgressBar();
             this.haltroyTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -119,6 +128,7 @@
             this.tabPage5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // haltroyTabControl1
@@ -131,6 +141,7 @@
             this.haltroyTabControl1.Controls.Add(this.tabPage3);
             this.haltroyTabControl1.Controls.Add(this.tabPage4);
             this.haltroyTabControl1.Controls.Add(this.tabPage5);
+            this.haltroyTabControl1.Controls.Add(this.tabPage6);
             this.haltroyTabControl1.DisableClose = false;
             this.haltroyTabControl1.DisableDragging = false;
             this.haltroyTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -444,7 +455,7 @@
             this.haltroyListView2.HeaderForeColor = System.Drawing.Color.White;
             this.haltroyListView2.HideSelection = false;
             this.haltroyListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
             this.haltroyListView2.Name = "haltroyListView2";
             this.haltroyListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
@@ -636,6 +647,14 @@
             this.ibDefault.Size = new System.Drawing.Size(268, 23);
             this.ibDefault.TabIndex = 17;
             // 
+            // ibSetToDefault
+            // 
+            this.ibSetToDefault.Location = new System.Drawing.Point(316, 270);
+            this.ibSetToDefault.Name = "ibSetToDefault";
+            this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
+            this.ibSetToDefault.TabIndex = 17;
+            this.ibSetToDefault.Text = "Set to default";
+            // 
             // ibOK
             // 
             this.ibOK.Location = new System.Drawing.Point(316, 171);
@@ -661,6 +680,15 @@
             this.label22.Size = new System.Drawing.Size(87, 16);
             this.label22.TabIndex = 14;
             this.label22.Text = "Default Value:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(313, 254);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(172, 16);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "\"Set to default\" Button Text:";
             // 
             // label16
             // 
@@ -965,22 +993,112 @@
             this.haltroyButton2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
             this.haltroyButton2.UseVisualStyleBackColor = false;
             // 
-            // label12
+            // tabPage6
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(313, 254);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(172, 16);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "\"Set to default\" Button Text:";
+            this.tabPage6.Controls.Add(this.haltroyProgressBar8);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar4);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar7);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar3);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar6);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar2);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar5);
+            this.tabPage6.Controls.Add(this.haltroyProgressBar1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 20);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(792, 426);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "ProgressBar";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // ibSetToDefault
+            // haltroyProgressBar8
             // 
-            this.ibSetToDefault.Location = new System.Drawing.Point(316, 270);
-            this.ibSetToDefault.Name = "ibSetToDefault";
-            this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
-            this.ibSetToDefault.TabIndex = 17;
-            this.ibSetToDefault.Text = "Set to default";
+            this.haltroyProgressBar8.BorderThickness = 2;
+            this.haltroyProgressBar8.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.TopToBottom;
+            this.haltroyProgressBar8.DrawBorder = true;
+            this.haltroyProgressBar8.Location = new System.Drawing.Point(493, 132);
+            this.haltroyProgressBar8.Name = "haltroyProgressBar8";
+            this.haltroyProgressBar8.Size = new System.Drawing.Size(135, 261);
+            this.haltroyProgressBar8.TabIndex = 0;
+            this.haltroyProgressBar8.Text = "label19";
+            this.haltroyProgressBar8.Value = 34;
+            // 
+            // haltroyProgressBar4
+            // 
+            this.haltroyProgressBar4.BorderThickness = 0;
+            this.haltroyProgressBar4.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.TopToBottom;
+            this.haltroyProgressBar4.Location = new System.Drawing.Point(162, 132);
+            this.haltroyProgressBar4.Name = "haltroyProgressBar4";
+            this.haltroyProgressBar4.Size = new System.Drawing.Size(135, 261);
+            this.haltroyProgressBar4.TabIndex = 0;
+            this.haltroyProgressBar4.Text = "label19";
+            this.haltroyProgressBar4.Value = 34;
+            // 
+            // haltroyProgressBar7
+            // 
+            this.haltroyProgressBar7.BorderThickness = 2;
+            this.haltroyProgressBar7.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.BottomToTop;
+            this.haltroyProgressBar7.DrawBorder = true;
+            this.haltroyProgressBar7.Location = new System.Drawing.Point(366, 132);
+            this.haltroyProgressBar7.Name = "haltroyProgressBar7";
+            this.haltroyProgressBar7.Size = new System.Drawing.Size(110, 261);
+            this.haltroyProgressBar7.TabIndex = 0;
+            this.haltroyProgressBar7.Text = "label19";
+            this.haltroyProgressBar7.Value = 34;
+            // 
+            // haltroyProgressBar3
+            // 
+            this.haltroyProgressBar3.BorderThickness = 0;
+            this.haltroyProgressBar3.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.BottomToTop;
+            this.haltroyProgressBar3.Location = new System.Drawing.Point(35, 132);
+            this.haltroyProgressBar3.Name = "haltroyProgressBar3";
+            this.haltroyProgressBar3.Size = new System.Drawing.Size(110, 261);
+            this.haltroyProgressBar3.TabIndex = 0;
+            this.haltroyProgressBar3.Text = "label19";
+            this.haltroyProgressBar3.Value = 34;
+            // 
+            // haltroyProgressBar6
+            // 
+            this.haltroyProgressBar6.BorderThickness = 2;
+            this.haltroyProgressBar6.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.RightToLeft;
+            this.haltroyProgressBar6.DrawBorder = true;
+            this.haltroyProgressBar6.Location = new System.Drawing.Point(366, 84);
+            this.haltroyProgressBar6.Name = "haltroyProgressBar6";
+            this.haltroyProgressBar6.Size = new System.Drawing.Size(262, 27);
+            this.haltroyProgressBar6.TabIndex = 0;
+            this.haltroyProgressBar6.Text = "label19";
+            this.haltroyProgressBar6.Value = 34;
+            // 
+            // haltroyProgressBar2
+            // 
+            this.haltroyProgressBar2.BorderThickness = 0;
+            this.haltroyProgressBar2.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.RightToLeft;
+            this.haltroyProgressBar2.Location = new System.Drawing.Point(35, 84);
+            this.haltroyProgressBar2.Name = "haltroyProgressBar2";
+            this.haltroyProgressBar2.Size = new System.Drawing.Size(262, 27);
+            this.haltroyProgressBar2.TabIndex = 0;
+            this.haltroyProgressBar2.Text = "label19";
+            this.haltroyProgressBar2.Value = 34;
+            // 
+            // haltroyProgressBar5
+            // 
+            this.haltroyProgressBar5.BorderThickness = 2;
+            this.haltroyProgressBar5.DrawBorder = true;
+            this.haltroyProgressBar5.Location = new System.Drawing.Point(366, 30);
+            this.haltroyProgressBar5.Name = "haltroyProgressBar5";
+            this.haltroyProgressBar5.Size = new System.Drawing.Size(262, 27);
+            this.haltroyProgressBar5.TabIndex = 0;
+            this.haltroyProgressBar5.Text = "label19";
+            this.haltroyProgressBar5.Value = 34;
+            // 
+            // haltroyProgressBar1
+            // 
+            this.haltroyProgressBar1.BorderThickness = 0;
+            this.haltroyProgressBar1.Location = new System.Drawing.Point(35, 30);
+            this.haltroyProgressBar1.Name = "haltroyProgressBar1";
+            this.haltroyProgressBar1.Size = new System.Drawing.Size(262, 27);
+            this.haltroyProgressBar1.TabIndex = 0;
+            this.haltroyProgressBar1.Text = "label19";
+            this.haltroyProgressBar1.Value = 34;
             // 
             // Form1
             // 
@@ -1007,6 +1125,7 @@
             this.tabPage5.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1091,6 +1210,15 @@
         private HaltroyFramework.HaltroyButton haltroyButton10;
         private System.Windows.Forms.TextBox ibSetToDefault;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage6;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar1;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar4;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar3;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar2;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar8;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar7;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar6;
+        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar5;
     }
 }
 

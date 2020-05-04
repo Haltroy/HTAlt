@@ -90,6 +90,9 @@
     <Compile Include="HaltroyForms.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HaltroyProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HaltroySlider.cs">
       <SubType>Component</SubType>
     </Compile>
