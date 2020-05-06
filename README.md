@@ -1,9 +1,9 @@
-# Haltroy Framework
-[![HaltroyFramework](https://img.shields.io/nuget/v/HaltroyFramework.svg?style=flat&label=HaltroyFramework)](https://www.nuget.org/packages/HaltroyFramework/)
+# HTAlt
+[![HTAlt](https://img.shields.io/nuget/v/HTAlt.svg?style=flat&label=HTAlt)](https://www.nuget.org/packages/HTAlt/)
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
-Latest Stable Version: [`b1.1`](https://github.com/Haltroy/HaltroyFramework/releases/tag/b1.1)
+Latest Stable Version: [`b1.1`](https://github.com/Haltroy/HTAlt/releases/tag/b1.1)
 
 ## Features
  - Tab (Control)
@@ -11,7 +11,7 @@ Latest Stable Version: [`b1.1`](https://github.com/Haltroy/HaltroyFramework/rele
  - Button (Control)
  - ListView (Control)
  - Switch (Control)
- - HaltroyForms (Form Type)
+ - HTForms (Form Type)
  - MessageBox (Dialog)
  - InputBox (Form)
 
@@ -21,6 +21,6 @@ Latest Stable Version: [`b1.1`](https://github.com/Haltroy/HaltroyFramework/rele
 
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
-| [`master`](https://github.com/haltroy/haltroyframework)              | Framework 4.5 | Development | |
-| [`b1.1`](https://github.com/haltroy/haltroyframework/tree/b1.1) | Framework 4.5 | **Latest Release** | 03.5.2020 |
+| [`master`](https://github.com/haltroy/htalt)              | Framework 4.5 | Development | |
+| [`b1.1`](https://github.com/haltroy/htalt/tree/b1.1) | Framework 4.5 | **Latest Release** | 03.5.2020 |
 | `b1.0` and lower | Framework 4.5 | Unsupported | Before 03.5.2020 |
