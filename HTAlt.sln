@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT-Alt", "HFCore\HT-Alt.csproj", "{EC777E43-5DDB-481C-9A70-07B4AB6AF769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt", "HTAlt\HTAlt.csproj", "{EC777E43-5DDB-481C-9A70-07B4AB6AF769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HT-Alt.Test", "Hf.Test\HT-Alt.Test.csproj", "{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.Test", "HTAlt.Test\HTAlt.Test.csproj", "{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

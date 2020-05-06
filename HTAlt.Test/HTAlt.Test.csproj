@@ -88,9 +88,9 @@
     <None Include="Resources\ht-logo-2020.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HFCore\HT-Alt.csproj">
+    <ProjectReference Include="..\HTAlt\HTAlt.csproj">
       <Project>{ec777e43-5ddb-481c-9a70-07b4ab6af769}</Project>
-      <Name>HT-Alt</Name>
+      <Name>HTAlt</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
