@@ -1,5 +1,5 @@
 # HTAlt
-[![HTAlt](https://img.shields.io/nuget/v/HTAlt.svg?style=flat&label=HTAlt)](https://www.nuget.org/packages/HTAlt/)
+[![HTAlt](https://img.shields.io/nuget/v/HTAlt.svg?style=flat&label=Nuget)](https://www.nuget.org/packages/HTAlt/)
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
