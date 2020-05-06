@@ -25,12 +25,12 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.ListView"/> Control.
     /// </summary>
-    public class HaltroyListView : System.Windows.Forms.ListView
+    public class HTListView : System.Windows.Forms.ListView
     {
         private bool updating;
         private int itemnumber;
@@ -74,7 +74,7 @@ namespace HaltroyFramework
         public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
         #endregion
 
-        public HaltroyListView()
+        public HTListView()
         {
             Startup startup = new Startup();
             OwnerDraw = true;

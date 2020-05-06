@@ -25,7 +25,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace HaltroyFramework
     /// </summary>
     [ToolboxBitmap(typeof(TrackBar))]
     [DefaultEvent("Scroll"), DefaultProperty("BarInnerColor")]
-    public partial class HaltroySlider : Control
+    public partial class HTSlider : Control
     {
         #region Events
 
@@ -493,7 +493,7 @@ namespace HaltroyFramework
         /// <param name="min">The minimum value.</param>
         /// <param name="max">The maximum value.</param>
         /// <param name="value">The current value.</param>
-        public HaltroySlider(int min, int max, int value)
+        public HTSlider(int min, int max, int value)
         {
             InitializeComponent();
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
@@ -518,7 +518,7 @@ namespace HaltroyFramework
         /// <summary>
         /// Initializes a new instance of the <see cref="HaltroySlider"/> class.
         /// </summary>
-        public HaltroySlider() : this(0, 100, 30) { }
+        public HTSlider() : this(0, 100, 30) { }
 
         #endregion
         #region Paint

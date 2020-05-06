@@ -21,16 +21,16 @@
 //SOFTWARE.
 using System;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     internal class Startup
     {
-        private readonly string hfVersion;
+        private readonly string htaltVersion;
         public Startup()
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             Version version = assembly.GetName().Version;
-            hfVersion = version.ToString();
+            htaltVersion = version.ToString();
             PrintInfoToConsole();
         }
         public void PrintInfoToConsole()
@@ -47,7 +47,7 @@ namespace HaltroyFramework
                 + Environment.NewLine
                 + ProductName()
                 + " v"
-                + HFVersion().ToString()
+                + HTAltVersion().ToString()
                 + " by Haltroy"
                 + Environment.NewLine
                 + HFWebsite()
@@ -56,17 +56,17 @@ namespace HaltroyFramework
         }
         public string ProductName()
         {
-            return "Haltroy Framework";
+            return "HT-Alt";
         }
-        public Version HFVersion()
+        public Version HTAltVersion()
         {
-            return new Version(hfVersion);
+            return new Version(htaltVersion);
         }
         public string Developer()
         { return "Haltroy"; }
         public Uri HFWebsite()
         {
-            return new Uri("https://github.com/haltroy/haltroyframework");
+            return new Uri("https://github.com/haltroy/HTAlt");
         }
     }
 }

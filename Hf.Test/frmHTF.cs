@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Hf.Test
 {
-    public partial class frmHTF : HaltroyFramework.HaltroyForms
+    public partial class frmHTF : HTAlt.HTForms
     {
         public frmHTF()
         {

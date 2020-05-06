@@ -1,6 +1,6 @@
 ﻿namespace Hf.Test
 {
-    partial class frmHTF : HaltroyFramework.HaltroyForms
+    partial class frmHTF : HTAlt.HTForms
     {
         /// <summary>
         /// Required designer variable.

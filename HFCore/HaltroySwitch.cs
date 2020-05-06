@@ -26,13 +26,13 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Custom Switch control that imidates <see cref="System.Windows.Forms.CheckBox"/>.
     /// </summary>
     [DefaultValue("Checked"), DefaultEvent("CheckedChanged"), ToolboxBitmap(typeof(CheckBox))]
-    public class HaltroySwitch : Control
+    public class HTSwitch : Control
     {
         #region Delegate and Event declarations
 
@@ -85,7 +85,7 @@ namespace HaltroyFramework
 
         #region Constructor Etc.
 
-        public HaltroySwitch()
+        public HTSwitch()
         {
             Startup startup = new Startup();
             SetStyle(ControlStyles.ResizeRedraw |

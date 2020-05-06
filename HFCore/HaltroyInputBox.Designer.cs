@@ -19,9 +19,9 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-namespace HaltroyFramework
+namespace HTAlt
 {
-    partial class HaltroyInputBox
+    partial class HTInputBox
     {
         /// <summary>
         /// Required designer variable.
@@ -50,13 +50,13 @@ namespace HaltroyFramework
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HaltroyInputBox));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HTInputBox));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new HaltroyFramework.HaltroyButton();
-            this.button2 = new HaltroyFramework.HaltroyButton();
+            this.button1 = new HTAlt.HTButton();
+            this.button2 = new HTAlt.HTButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.haltroyButton1 = new HaltroyFramework.HaltroyButton();
+            this.haltroyButton1 = new HTAlt.HTButton();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +83,7 @@ namespace HaltroyFramework
             this.button1.Size = new System.Drawing.Size(384, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "OK";
-            this.button1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
+            this.button1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
@@ -99,7 +99,7 @@ namespace HaltroyFramework
             this.button2.Size = new System.Drawing.Size(384, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Cancel";
-            this.button2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
+            this.button2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -129,7 +129,7 @@ namespace HaltroyFramework
             this.haltroyButton1.Size = new System.Drawing.Size(384, 23);
             this.haltroyButton1.TabIndex = 3;
             this.haltroyButton1.Text = "Set to default";
-            this.haltroyButton1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
+            this.haltroyButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.haltroyButton1.UseVisualStyleBackColor = true;
             this.haltroyButton1.Click += new System.EventHandler(this.haltroyButton1_Click);
             // 
@@ -156,10 +156,10 @@ namespace HaltroyFramework
         #endregion
 
         protected internal System.Windows.Forms.Label label1;
-        protected internal HaltroyFramework.HaltroyButton button1;
-        protected internal HaltroyFramework.HaltroyButton button2;
+        protected internal HTAlt.HTButton button1;
+        protected internal HTAlt.HTButton button2;
         protected internal System.Windows.Forms.TextBox textBox1;
         protected internal System.Windows.Forms.Timer timer1;
-        protected internal HaltroyButton haltroyButton1;
+        protected internal HTButton haltroyButton1;
     }
 }

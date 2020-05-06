@@ -28,12 +28,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.TabControl"/> with Drag & Close features.
     /// </summary>
-    public class HaltroyTabControl : TabControl
+    public class HTTabControl : TabControl
     {
         private Color backgroundColor = Color.FromArgb(45, 45, 48);
         private Color selectedTabColor = Color.FromArgb(0, 122, 204);
@@ -197,7 +197,7 @@ namespace HaltroyFramework
         private bool bUpDown = false;
         private bool hasFocus = false;
 
-        public HaltroyTabControl()
+        public HTTabControl()
         {
             base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             DoubleBuffered = true;

@@ -68,7 +68,7 @@ namespace Hf.Test
             {
                 mesajicon = this.Icon;
             }
-            HaltroyFramework.HaltroyMsgBox mesaj = new HaltroyFramework.HaltroyMsgBox(tbTitle.Text,
+            HTAlt.HTMsgBox mesaj = new HTAlt.HTMsgBox(tbTitle.Text,
                                                                                       tbMessage.Text,
                                                                                       mesajbuton)
             {Icon = mesajicon,BackgroundColor = pbBackColor.BackColor,Yes = tbYes.Text,No = tbNo.Text,OK = tbOK.Text,Cancel = tbCancel.Text, };
@@ -107,7 +107,7 @@ namespace Hf.Test
             {
                 mesajicon = this.Icon;
             }
-            HaltroyFramework.HaltroyMsgBox mesaj = new HaltroyFramework.HaltroyMsgBox(tbTitle.Text,
+            HTAlt.HTMsgBox mesaj = new HTAlt.HTMsgBox(tbTitle.Text,
                                                                           tbMessage.Text,
                                                                           mesajbuton)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
@@ -143,7 +143,7 @@ namespace Hf.Test
             {
                 mesajicon = new Icon(ibIcon.Text);
             }
-            HaltroyFramework.HaltroyInputBox inputbox = new HaltroyFramework.HaltroyInputBox(ibTitle.Text,
+            HTAlt.HTInputBox inputbox = new HTAlt.HTInputBox(ibTitle.Text,
                                                                                              ibMessage.Text,
                                                                                              ibDefault.Text)
             { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor,  OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, };;
@@ -166,16 +166,16 @@ namespace Hf.Test
             {
                 mesajicon = new Icon(ibIcon.Text);
             }
-            HaltroyFramework.HaltroyInputBox inputbox = new HaltroyFramework.HaltroyInputBox(ibTitle.Text,
+            HTAlt.HTInputBox inputbox = new HTAlt.HTInputBox(ibTitle.Text,
                                                                                              ibMessage.Text,
                                                                                              ibDefault.Text)
             { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor, OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             DialogResult diagres = inputbox.ShowDialog();
         }
 
-        private void HaltroySlider1_Scroll(object sender, ScrollEventArgs e)
+        private void HTSlider1_Scroll(object sender, ScrollEventArgs e)
         {
-            sliderValue.Text = haltroySlider1.Value.ToString();
+            sliderValue.Text = HTSlider1.Value.ToString();
         }
         bool draggable;
         bool fullscreenmode;
@@ -187,17 +187,17 @@ namespace Hf.Test
             newform.Show();
         }
 
-        private void haltroySwitch2_CheckedChanged(object sender, EventArgs e)
+        private void HTSwitch2_CheckedChanged(object sender, EventArgs e)
         {
-            draggable = haltroySwitch2.Checked;
+            draggable = HTSwitch2.Checked;
         }
 
-        private void haltroySwitch3_CheckedChanged(object sender, EventArgs e)
+        private void HTSwitch3_CheckedChanged(object sender, EventArgs e)
         {
-            fullscreenmode = haltroySwitch3.Checked;
+            fullscreenmode = HTSwitch3.Checked;
         }
 
-        private void haltroyListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void HTListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

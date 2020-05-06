@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.ProgressBar"/>.
     /// </summary>
-    public class HaltroyProgressBar : Control
+    public class HTProgressBar : Control
     {
         #region "Enums"
         public enum ProgressDirection

@@ -85,13 +85,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HFCore\HF.csproj">
-      <Project>{EC777E43-5DDB-481C-9A70-07B4AB6AF769}</Project>
-      <Name>HF</Name>
-    </ProjectReference>
+    <None Include="Resources\ht-logo-2020.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ht-logo-2020.png" />
+    <ProjectReference Include="..\HFCore\HT-Alt.csproj">
+      <Project>{ec777e43-5ddb-481c-9a70-07b4ab6af769}</Project>
+      <Name>HT-Alt</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

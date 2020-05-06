@@ -23,12 +23,12 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Customizable Input Box.
     /// </summary>
-    public partial class HaltroyInputBox : Form
+    public partial class HTInputBox : Form
     {
         /// <summary>
         /// Background color of HaltroyMsgBox. Foreground color is auto-selected to White or Black.
@@ -65,7 +65,7 @@ namespace HaltroyFramework
         /// <param name="title">Title of the input box.</param>
         /// <param name="description">Description of the input box.</param>
         /// <param name="defaultValue">Default value of the input box.</param>
-        public HaltroyInputBox(string title,
+        public HTInputBox(string title,
                                string description,
                                string defaultValue = "")
         {

@@ -19,9 +19,9 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-namespace HaltroyFramework
+namespace HTAlt
 {
-    partial class HaltroySlider
+    partial class HTSlider
     {
         /// <summary> 
         /// Required designer variable.

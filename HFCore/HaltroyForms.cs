@@ -23,12 +23,12 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// A <see cref="System.Windows.Forms.Form"/> alternative if you want a borderless resizable form.
     /// </summary>
-    public partial class HaltroyForms : Form
+    public partial class HTForms : Form
     {
         private bool useFullScreen = false;
         private bool draggable = true;
@@ -164,7 +164,7 @@ namespace HaltroyFramework
 
             set => draggable = value;
         }
-        public HaltroyForms()
+        public HTForms()
         {
             Startup start = new Startup();
         }

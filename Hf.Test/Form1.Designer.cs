@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.haltroyTabControl1 = new HaltroyFramework.HaltroyTabControl();
+            this.HTTabControl1 = new HTAlt.HTTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lResult = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,15 +55,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.haltroyListView1 = new HaltroyFramework.HaltroyListView();
+            this.HTListView1 = new HTAlt.HTListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.haltroyListView2 = new HaltroyFramework.HaltroyListView();
+            this.HTListView2 = new HTAlt.HTListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sliderValue = new System.Windows.Forms.Label();
-            this.haltroySwitch1 = new HaltroyFramework.HaltroySwitch();
-            this.haltroySlider1 = new HaltroyFramework.HaltroySlider();
+            this.HTSwitch1 = new HTAlt.HTSwitch();
+            this.HTSlider1 = new HTAlt.HTSlider();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ibResult = new System.Windows.Forms.Label();
             this.ibResultTitle = new System.Windows.Forms.Label();
@@ -90,34 +90,34 @@
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label24 = new System.Windows.Forms.Label();
-            this.haltroySwitch3 = new HaltroyFramework.HaltroySwitch();
+            this.HTSwitch3 = new HTAlt.HTSwitch();
             this.label21 = new System.Windows.Forms.Label();
-            this.haltroySwitch2 = new HaltroyFramework.HaltroySwitch();
+            this.HTSwitch2 = new HTAlt.HTSwitch();
             this.button7 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.haltroyButton10 = new HaltroyFramework.HaltroyButton();
+            this.HTButton10 = new HTAlt.HTButton();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.haltroyButton9 = new HaltroyFramework.HaltroyButton();
+            this.HTButton9 = new HTAlt.HTButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.haltroyButton8 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton5 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton7 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton6 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton1 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton4 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton3 = new HaltroyFramework.HaltroyButton();
-            this.haltroyButton2 = new HaltroyFramework.HaltroyButton();
+            this.HTButton8 = new HTAlt.HTButton();
+            this.HTButton5 = new HTAlt.HTButton();
+            this.HTButton7 = new HTAlt.HTButton();
+            this.HTButton6 = new HTAlt.HTButton();
+            this.HTButton1 = new HTAlt.HTButton();
+            this.HTButton4 = new HTAlt.HTButton();
+            this.HTButton3 = new HTAlt.HTButton();
+            this.HTButton2 = new HTAlt.HTButton();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.haltroyProgressBar8 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar4 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar7 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar3 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar6 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar2 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar5 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyProgressBar1 = new HaltroyFramework.HaltroyProgressBar();
-            this.haltroyTabControl1.SuspendLayout();
+            this.HTProgressBar8 = new HTAlt.HTProgressBar();
+            this.HTProgressBar4 = new HTAlt.HTProgressBar();
+            this.HTProgressBar7 = new HTAlt.HTProgressBar();
+            this.HTProgressBar3 = new HTAlt.HTProgressBar();
+            this.HTProgressBar6 = new HTAlt.HTProgressBar();
+            this.HTProgressBar2 = new HTAlt.HTProgressBar();
+            this.HTProgressBar5 = new HTAlt.HTProgressBar();
+            this.HTProgressBar1 = new HTAlt.HTProgressBar();
+            this.HTTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -131,39 +131,39 @@
             this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // haltroyTabControl1
+            // HTTabControl1
             // 
-            this.haltroyTabControl1.AllowDrop = true;
-            this.haltroyTabControl1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.haltroyTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.haltroyTabControl1.Controls.Add(this.tabPage1);
-            this.haltroyTabControl1.Controls.Add(this.tabPage2);
-            this.haltroyTabControl1.Controls.Add(this.tabPage3);
-            this.haltroyTabControl1.Controls.Add(this.tabPage4);
-            this.haltroyTabControl1.Controls.Add(this.tabPage5);
-            this.haltroyTabControl1.Controls.Add(this.tabPage6);
-            this.haltroyTabControl1.DisableClose = false;
-            this.haltroyTabControl1.DisableDragging = false;
-            this.haltroyTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.haltroyTabControl1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.haltroyTabControl1.HoverTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(176)))), ((int)(((byte)(239)))));
-            this.haltroyTabControl1.HoverTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.haltroyTabControl1.HoverUnselectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
-            this.haltroyTabControl1.ItemSize = new System.Drawing.Size(240, 16);
-            this.haltroyTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.haltroyTabControl1.Name = "haltroyTabControl1";
-            this.haltroyTabControl1.Padding = new System.Drawing.Point(14, 4);
-            this.haltroyTabControl1.SelectedIndex = 0;
-            this.haltroyTabControl1.SelectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
-            this.haltroyTabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.haltroyTabControl1.Size = new System.Drawing.Size(800, 450);
-            this.haltroyTabControl1.TabIndex = 0;
-            this.haltroyTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.haltroyTabControl1.UnderBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
-            this.haltroyTabControl1.UnselectedBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
-            this.haltroyTabControl1.UnselectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
-            this.haltroyTabControl1.UpDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
-            this.haltroyTabControl1.UpDownTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(112)))));
+            this.HTTabControl1.AllowDrop = true;
+            this.HTTabControl1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.HTTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.HTTabControl1.Controls.Add(this.tabPage1);
+            this.HTTabControl1.Controls.Add(this.tabPage2);
+            this.HTTabControl1.Controls.Add(this.tabPage3);
+            this.HTTabControl1.Controls.Add(this.tabPage4);
+            this.HTTabControl1.Controls.Add(this.tabPage5);
+            this.HTTabControl1.Controls.Add(this.tabPage6);
+            this.HTTabControl1.DisableClose = false;
+            this.HTTabControl1.DisableDragging = false;
+            this.HTTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HTTabControl1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.HTTabControl1.HoverTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(176)))), ((int)(((byte)(239)))));
+            this.HTTabControl1.HoverTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.HTTabControl1.HoverUnselectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(85)))));
+            this.HTTabControl1.ItemSize = new System.Drawing.Size(240, 16);
+            this.HTTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.HTTabControl1.Name = "HTTabControl1";
+            this.HTTabControl1.Padding = new System.Drawing.Point(14, 4);
+            this.HTTabControl1.SelectedIndex = 0;
+            this.HTTabControl1.SelectedTabButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(151)))), ((int)(((byte)(234)))));
+            this.HTTabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.HTTabControl1.Size = new System.Drawing.Size(800, 450);
+            this.HTTabControl1.TabIndex = 0;
+            this.HTTabControl1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.HTTabControl1.UnderBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(70)))));
+            this.HTTabControl1.UnselectedBorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.HTTabControl1.UnselectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.HTTabControl1.UpDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
+            this.HTTabControl1.UpDownTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(112)))));
             // 
             // tabPage1
             // 
@@ -190,7 +190,7 @@
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.haltroyListView1);
+            this.tabPage1.Controls.Add(this.HTListView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 20);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -413,27 +413,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // haltroyListView1
+            // HTListView1
             // 
-            this.haltroyListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.haltroyListView1.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyListView1.HeaderForeColor = System.Drawing.Color.Black;
-            this.haltroyListView1.HideSelection = false;
-            this.haltroyListView1.Location = new System.Drawing.Point(3, 3);
-            this.haltroyListView1.Name = "haltroyListView1";
-            this.haltroyListView1.OverlayColor = System.Drawing.Color.DodgerBlue;
-            this.haltroyListView1.OwnerDraw = true;
-            this.haltroyListView1.Size = new System.Drawing.Size(786, 420);
-            this.haltroyListView1.TabIndex = 0;
-            this.haltroyListView1.UseCompatibleStateImageBehavior = false;
-            this.haltroyListView1.SelectedIndexChanged += new System.EventHandler(this.haltroyListView1_SelectedIndexChanged);
+            this.HTListView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HTListView1.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTListView1.HeaderForeColor = System.Drawing.Color.Black;
+            this.HTListView1.HideSelection = false;
+            this.HTListView1.Location = new System.Drawing.Point(3, 3);
+            this.HTListView1.Name = "HTListView1";
+            this.HTListView1.OverlayColor = System.Drawing.Color.DodgerBlue;
+            this.HTListView1.OwnerDraw = true;
+            this.HTListView1.Size = new System.Drawing.Size(786, 420);
+            this.HTListView1.TabIndex = 0;
+            this.HTListView1.UseCompatibleStateImageBehavior = false;
+            this.HTListView1.SelectedIndexChanged += new System.EventHandler(this.HTListView1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.haltroyListView2);
+            this.tabPage2.Controls.Add(this.HTListView2);
             this.tabPage2.Controls.Add(this.sliderValue);
-            this.tabPage2.Controls.Add(this.haltroySwitch1);
-            this.tabPage2.Controls.Add(this.haltroySlider1);
+            this.tabPage2.Controls.Add(this.HTSwitch1);
+            this.tabPage2.Controls.Add(this.HTSlider1);
             this.tabPage2.Location = new System.Drawing.Point(4, 20);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -442,28 +442,28 @@
             this.tabPage2.Text = "Slider & Switch & ListView";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // haltroyListView2
+            // HTListView2
             // 
-            this.haltroyListView2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.haltroyListView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.haltroyListView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.HTListView2.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.HTListView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.HTListView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.haltroyListView2.ForeColor = System.Drawing.SystemColors.Menu;
-            this.haltroyListView2.HeaderBackColor = System.Drawing.Color.Black;
-            this.haltroyListView2.HeaderForeColor = System.Drawing.Color.White;
-            this.haltroyListView2.HideSelection = false;
-            this.haltroyListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            this.HTListView2.ForeColor = System.Drawing.SystemColors.Menu;
+            this.HTListView2.HeaderBackColor = System.Drawing.Color.Black;
+            this.HTListView2.HeaderForeColor = System.Drawing.Color.White;
+            this.HTListView2.HideSelection = false;
+            this.HTListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.haltroyListView2.Location = new System.Drawing.Point(8, 85);
-            this.haltroyListView2.Name = "haltroyListView2";
-            this.haltroyListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
-            this.haltroyListView2.OwnerDraw = true;
-            this.haltroyListView2.Size = new System.Drawing.Size(777, 335);
-            this.haltroyListView2.TabIndex = 3;
-            this.haltroyListView2.UseCompatibleStateImageBehavior = false;
-            this.haltroyListView2.View = System.Windows.Forms.View.Details;
+            this.HTListView2.Location = new System.Drawing.Point(8, 85);
+            this.HTListView2.Name = "HTListView2";
+            this.HTListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
+            this.HTListView2.OwnerDraw = true;
+            this.HTListView2.Size = new System.Drawing.Size(777, 335);
+            this.HTListView2.TabIndex = 3;
+            this.HTListView2.UseCompatibleStateImageBehavior = false;
+            this.HTListView2.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -491,30 +491,30 @@
             this.sliderValue.TabIndex = 2;
             this.sliderValue.Text = "<value>";
             // 
-            // haltroySwitch1
+            // HTSwitch1
             // 
-            this.haltroySwitch1.Location = new System.Drawing.Point(8, 47);
-            this.haltroySwitch1.Name = "haltroySwitch1";
-            this.haltroySwitch1.Size = new System.Drawing.Size(50, 19);
-            this.haltroySwitch1.TabIndex = 1;
+            this.HTSwitch1.Location = new System.Drawing.Point(8, 47);
+            this.HTSwitch1.Name = "HTSwitch1";
+            this.HTSwitch1.Size = new System.Drawing.Size(50, 19);
+            this.HTSwitch1.TabIndex = 1;
             // 
-            // haltroySlider1
+            // HTSlider1
             // 
-            this.haltroySlider1.BackColor = System.Drawing.Color.White;
-            this.haltroySlider1.BorderRoundRectSize = new System.Drawing.Size(8, 8);
-            this.haltroySlider1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            this.haltroySlider1.ForeColor = System.Drawing.Color.Black;
-            this.haltroySlider1.LargeChange = ((uint)(5u));
-            this.haltroySlider1.Location = new System.Drawing.Point(8, 6);
-            this.haltroySlider1.Name = "haltroySlider1";
-            this.haltroySlider1.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
-            this.haltroySlider1.Size = new System.Drawing.Size(200, 26);
-            this.haltroySlider1.SmallChange = ((uint)(1u));
-            this.haltroySlider1.TabIndex = 0;
-            this.haltroySlider1.Text = "haltroySlider1";
-            this.haltroySlider1.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
-            this.haltroySlider1.ThumbSize = new System.Drawing.Size(16, 16);
-            this.haltroySlider1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HaltroySlider1_Scroll);
+            this.HTSlider1.BackColor = System.Drawing.Color.White;
+            this.HTSlider1.BorderRoundRectSize = new System.Drawing.Size(8, 8);
+            this.HTSlider1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.HTSlider1.ForeColor = System.Drawing.Color.Black;
+            this.HTSlider1.LargeChange = ((uint)(5u));
+            this.HTSlider1.Location = new System.Drawing.Point(8, 6);
+            this.HTSlider1.Name = "HTSlider1";
+            this.HTSlider1.OverlayColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(157)))), ((int)(((byte)(204)))));
+            this.HTSlider1.Size = new System.Drawing.Size(200, 26);
+            this.HTSlider1.SmallChange = ((uint)(1u));
+            this.HTSlider1.TabIndex = 0;
+            this.HTSlider1.Text = "HTSlider1";
+            this.HTSlider1.ThumbRoundRectSize = new System.Drawing.Size(16, 16);
+            this.HTSlider1.ThumbSize = new System.Drawing.Size(16, 16);
+            this.HTSlider1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HTSlider1_Scroll);
             // 
             // tabPage3
             // 
@@ -757,9 +757,9 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label24);
-            this.tabPage4.Controls.Add(this.haltroySwitch3);
+            this.tabPage4.Controls.Add(this.HTSwitch3);
             this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.haltroySwitch2);
+            this.tabPage4.Controls.Add(this.HTSwitch2);
             this.tabPage4.Controls.Add(this.button7);
             this.tabPage4.Location = new System.Drawing.Point(4, 20);
             this.tabPage4.Name = "tabPage4";
@@ -777,15 +777,15 @@
             this.label24.Size = new System.Drawing.Size(104, 16);
             this.label24.TabIndex = 2;
             this.label24.Text = "Full Screen Mode";
-            this.label24.Click += new System.EventHandler(this.haltroySwitch3_CheckedChanged);
+            this.label24.Click += new System.EventHandler(this.HTSwitch3_CheckedChanged);
             // 
-            // haltroySwitch3
+            // HTSwitch3
             // 
-            this.haltroySwitch3.Location = new System.Drawing.Point(9, 61);
-            this.haltroySwitch3.Name = "haltroySwitch3";
-            this.haltroySwitch3.Size = new System.Drawing.Size(50, 19);
-            this.haltroySwitch3.TabIndex = 1;
-            this.haltroySwitch3.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch3_CheckedChanged);
+            this.HTSwitch3.Location = new System.Drawing.Point(9, 61);
+            this.HTSwitch3.Name = "HTSwitch3";
+            this.HTSwitch3.Size = new System.Drawing.Size(50, 19);
+            this.HTSwitch3.TabIndex = 1;
+            this.HTSwitch3.CheckedChanged += new HTAlt.HTSwitch.CheckedChangedDelegate(this.HTSwitch3_CheckedChanged);
             // 
             // label21
             // 
@@ -795,15 +795,15 @@
             this.label21.Size = new System.Drawing.Size(65, 16);
             this.label21.TabIndex = 2;
             this.label21.Text = "Draggable";
-            this.label21.Click += new System.EventHandler(this.haltroySwitch2_CheckedChanged);
+            this.label21.Click += new System.EventHandler(this.HTSwitch2_CheckedChanged);
             // 
-            // haltroySwitch2
+            // HTSwitch2
             // 
-            this.haltroySwitch2.Location = new System.Drawing.Point(9, 36);
-            this.haltroySwitch2.Name = "haltroySwitch2";
-            this.haltroySwitch2.Size = new System.Drawing.Size(50, 19);
-            this.haltroySwitch2.TabIndex = 1;
-            this.haltroySwitch2.CheckedChanged += new HaltroyFramework.HaltroySwitch.CheckedChangedDelegate(this.haltroySwitch2_CheckedChanged);
+            this.HTSwitch2.Location = new System.Drawing.Point(9, 36);
+            this.HTSwitch2.Name = "HTSwitch2";
+            this.HTSwitch2.Size = new System.Drawing.Size(50, 19);
+            this.HTSwitch2.TabIndex = 1;
+            this.HTSwitch2.CheckedChanged += new HTAlt.HTSwitch.CheckedChangedDelegate(this.HTSwitch2_CheckedChanged);
             // 
             // button7
             // 
@@ -817,17 +817,17 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.haltroyButton10);
+            this.tabPage5.Controls.Add(this.HTButton10);
             this.tabPage5.Controls.Add(this.label11);
             this.tabPage5.Controls.Add(this.panel2);
             this.tabPage5.Controls.Add(this.panel1);
-            this.tabPage5.Controls.Add(this.haltroyButton5);
-            this.tabPage5.Controls.Add(this.haltroyButton7);
-            this.tabPage5.Controls.Add(this.haltroyButton6);
-            this.tabPage5.Controls.Add(this.haltroyButton1);
-            this.tabPage5.Controls.Add(this.haltroyButton4);
-            this.tabPage5.Controls.Add(this.haltroyButton3);
-            this.tabPage5.Controls.Add(this.haltroyButton2);
+            this.tabPage5.Controls.Add(this.HTButton5);
+            this.tabPage5.Controls.Add(this.HTButton7);
+            this.tabPage5.Controls.Add(this.HTButton6);
+            this.tabPage5.Controls.Add(this.HTButton1);
+            this.tabPage5.Controls.Add(this.HTButton4);
+            this.tabPage5.Controls.Add(this.HTButton3);
+            this.tabPage5.Controls.Add(this.HTButton2);
             this.tabPage5.Location = new System.Drawing.Point(4, 20);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -836,17 +836,17 @@
             this.tabPage5.Text = "Button";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // haltroyButton10
+            // HTButton10
             // 
-            this.haltroyButton10.BackColor = System.Drawing.Color.Transparent;
-            this.haltroyButton10.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton10.Location = new System.Drawing.Point(238, 247);
-            this.haltroyButton10.Name = "haltroyButton10";
-            this.haltroyButton10.Size = new System.Drawing.Size(139, 67);
-            this.haltroyButton10.TabIndex = 0;
-            this.haltroyButton10.Text = "haltroyButton1";
-            this.haltroyButton10.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
-            this.haltroyButton10.UseVisualStyleBackColor = false;
+            this.HTButton10.BackColor = System.Drawing.Color.Transparent;
+            this.HTButton10.ForeColor = System.Drawing.Color.Black;
+            this.HTButton10.Location = new System.Drawing.Point(238, 247);
+            this.HTButton10.Name = "HTButton10";
+            this.HTButton10.Size = new System.Drawing.Size(139, 67);
+            this.HTButton10.TabIndex = 0;
+            this.HTButton10.Text = "HTButton1";
+            this.HTButton10.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.HTButton10.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -861,148 +861,148 @@
             // 
             this.panel2.BackgroundImage = global::Hf.Test.Properties.Resources.ht_logo_2020;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel2.Controls.Add(this.haltroyButton9);
+            this.panel2.Controls.Add(this.HTButton9);
             this.panel2.Location = new System.Drawing.Point(52, 323);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(126, 100);
             this.panel2.TabIndex = 2;
             // 
-            // haltroyButton9
+            // HTButton9
             // 
-            this.haltroyButton9.BackColor = System.Drawing.Color.Transparent;
-            this.haltroyButton9.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton9.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton9.Location = new System.Drawing.Point(0, 3);
-            this.haltroyButton9.Name = "haltroyButton9";
-            this.haltroyButton9.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton9.TabIndex = 0;
-            this.haltroyButton9.Text = "haltroyButton1";
-            this.haltroyButton9.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
-            this.haltroyButton9.UseVisualStyleBackColor = false;
+            this.HTButton9.BackColor = System.Drawing.Color.Transparent;
+            this.HTButton9.ForeColor = System.Drawing.Color.Black;
+            this.HTButton9.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton9.Location = new System.Drawing.Point(0, 3);
+            this.HTButton9.Name = "HTButton9";
+            this.HTButton9.Size = new System.Drawing.Size(126, 33);
+            this.HTButton9.TabIndex = 0;
+            this.HTButton9.Text = "HTButton1";
+            this.HTButton9.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.HTButton9.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.Controls.Add(this.haltroyButton8);
+            this.panel1.Controls.Add(this.HTButton8);
             this.panel1.Location = new System.Drawing.Point(52, 247);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(119, 67);
             this.panel1.TabIndex = 1;
             // 
-            // haltroyButton8
+            // HTButton8
             // 
-            this.haltroyButton8.BackColor = System.Drawing.Color.Transparent;
-            this.haltroyButton8.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton8.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton8.Location = new System.Drawing.Point(0, 3);
-            this.haltroyButton8.Name = "haltroyButton8";
-            this.haltroyButton8.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton8.TabIndex = 0;
-            this.haltroyButton8.Text = "haltroyButton1";
-            this.haltroyButton8.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
-            this.haltroyButton8.UseVisualStyleBackColor = false;
+            this.HTButton8.BackColor = System.Drawing.Color.Transparent;
+            this.HTButton8.ForeColor = System.Drawing.Color.Black;
+            this.HTButton8.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton8.Location = new System.Drawing.Point(0, 3);
+            this.HTButton8.Name = "HTButton8";
+            this.HTButton8.Size = new System.Drawing.Size(126, 33);
+            this.HTButton8.TabIndex = 0;
+            this.HTButton8.Text = "HTButton1";
+            this.HTButton8.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.HTButton8.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton5
+            // HTButton5
             // 
-            this.haltroyButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton5.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton5.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton5.Location = new System.Drawing.Point(606, 34);
-            this.haltroyButton5.Name = "haltroyButton5";
-            this.haltroyButton5.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton5.TabIndex = 0;
-            this.haltroyButton5.Text = "haltroyButton1";
-            this.haltroyButton5.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.None;
-            this.haltroyButton5.UseVisualStyleBackColor = false;
+            this.HTButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton5.ForeColor = System.Drawing.Color.Black;
+            this.HTButton5.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton5.Location = new System.Drawing.Point(606, 34);
+            this.HTButton5.Name = "HTButton5";
+            this.HTButton5.Size = new System.Drawing.Size(126, 33);
+            this.HTButton5.TabIndex = 0;
+            this.HTButton5.Text = "HTButton1";
+            this.HTButton5.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.None;
+            this.HTButton5.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton7
+            // HTButton7
             // 
-            this.haltroyButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton7.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton7.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton7.Location = new System.Drawing.Point(482, 148);
-            this.haltroyButton7.Name = "haltroyButton7";
-            this.haltroyButton7.Size = new System.Drawing.Size(60, 74);
-            this.haltroyButton7.TabIndex = 0;
-            this.haltroyButton7.Text = "haltroyButton1";
-            this.haltroyButton7.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
-            this.haltroyButton7.UseVisualStyleBackColor = false;
+            this.HTButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton7.ForeColor = System.Drawing.Color.Black;
+            this.HTButton7.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton7.Location = new System.Drawing.Point(482, 148);
+            this.HTButton7.Name = "HTButton7";
+            this.HTButton7.Size = new System.Drawing.Size(60, 74);
+            this.HTButton7.TabIndex = 0;
+            this.HTButton7.Text = "HTButton1";
+            this.HTButton7.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.HTButton7.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton6
+            // HTButton6
             // 
-            this.haltroyButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton6.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton6.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton6.Location = new System.Drawing.Point(482, 95);
-            this.haltroyButton6.Name = "haltroyButton6";
-            this.haltroyButton6.Size = new System.Drawing.Size(60, 33);
-            this.haltroyButton6.TabIndex = 0;
-            this.haltroyButton6.Text = "haltroyButton1";
-            this.haltroyButton6.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
-            this.haltroyButton6.UseVisualStyleBackColor = false;
+            this.HTButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton6.ForeColor = System.Drawing.Color.Black;
+            this.HTButton6.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton6.Location = new System.Drawing.Point(482, 95);
+            this.HTButton6.Name = "HTButton6";
+            this.HTButton6.Size = new System.Drawing.Size(60, 33);
+            this.HTButton6.TabIndex = 0;
+            this.HTButton6.Text = "HTButton1";
+            this.HTButton6.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.HTButton6.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton1
+            // HTButton1
             // 
-            this.haltroyButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton1.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton1.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton1.Location = new System.Drawing.Point(449, 34);
-            this.haltroyButton1.Name = "haltroyButton1";
-            this.haltroyButton1.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton1.TabIndex = 0;
-            this.haltroyButton1.Text = "haltroyButton1";
-            this.haltroyButton1.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustImage;
-            this.haltroyButton1.UseVisualStyleBackColor = false;
+            this.HTButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton1.ForeColor = System.Drawing.Color.Black;
+            this.HTButton1.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton1.Location = new System.Drawing.Point(449, 34);
+            this.HTButton1.Name = "HTButton1";
+            this.HTButton1.Size = new System.Drawing.Size(126, 33);
+            this.HTButton1.TabIndex = 0;
+            this.HTButton1.Text = "HTButton1";
+            this.HTButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.HTButton1.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton4
+            // HTButton4
             // 
-            this.haltroyButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton4.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton4.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton4.Location = new System.Drawing.Point(306, 34);
-            this.haltroyButton4.Name = "haltroyButton4";
-            this.haltroyButton4.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton4.TabIndex = 0;
-            this.haltroyButton4.Text = "haltroyButton1";
-            this.haltroyButton4.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.JustText;
-            this.haltroyButton4.UseVisualStyleBackColor = false;
+            this.HTButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton4.ForeColor = System.Drawing.Color.Black;
+            this.HTButton4.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton4.Location = new System.Drawing.Point(306, 34);
+            this.HTButton4.Name = "HTButton4";
+            this.HTButton4.Size = new System.Drawing.Size(126, 33);
+            this.HTButton4.TabIndex = 0;
+            this.HTButton4.Text = "HTButton1";
+            this.HTButton4.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.HTButton4.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton3
+            // HTButton3
             // 
-            this.haltroyButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton3.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton3.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton3.Location = new System.Drawing.Point(159, 34);
-            this.haltroyButton3.Name = "haltroyButton3";
-            this.haltroyButton3.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton3.TabIndex = 0;
-            this.haltroyButton3.Text = "haltroyButton1";
-            this.haltroyButton3.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextAboveImage;
-            this.haltroyButton3.UseVisualStyleBackColor = false;
+            this.HTButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton3.ForeColor = System.Drawing.Color.Black;
+            this.HTButton3.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton3.Location = new System.Drawing.Point(159, 34);
+            this.HTButton3.Name = "HTButton3";
+            this.HTButton3.Size = new System.Drawing.Size(126, 33);
+            this.HTButton3.TabIndex = 0;
+            this.HTButton3.Text = "HTButton1";
+            this.HTButton3.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextAboveImage;
+            this.HTButton3.UseVisualStyleBackColor = false;
             // 
-            // haltroyButton2
+            // HTButton2
             // 
-            this.haltroyButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.haltroyButton2.ForeColor = System.Drawing.Color.Black;
-            this.haltroyButton2.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
-            this.haltroyButton2.Location = new System.Drawing.Point(17, 34);
-            this.haltroyButton2.Name = "haltroyButton2";
-            this.haltroyButton2.Size = new System.Drawing.Size(126, 33);
-            this.haltroyButton2.TabIndex = 0;
-            this.haltroyButton2.Text = "haltroyButton1";
-            this.haltroyButton2.TextImageRelation = HaltroyFramework.HaltroyButton.ButtonTextImageRelation.TextBelowImage;
-            this.haltroyButton2.UseVisualStyleBackColor = false;
+            this.HTButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.HTButton2.ForeColor = System.Drawing.Color.Black;
+            this.HTButton2.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton2.Location = new System.Drawing.Point(17, 34);
+            this.HTButton2.Name = "HTButton2";
+            this.HTButton2.Size = new System.Drawing.Size(126, 33);
+            this.HTButton2.TabIndex = 0;
+            this.HTButton2.Text = "HTButton1";
+            this.HTButton2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.HTButton2.UseVisualStyleBackColor = false;
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.haltroyProgressBar8);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar4);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar7);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar3);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar6);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar2);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar5);
-            this.tabPage6.Controls.Add(this.haltroyProgressBar1);
+            this.tabPage6.Controls.Add(this.HTProgressBar8);
+            this.tabPage6.Controls.Add(this.HTProgressBar4);
+            this.tabPage6.Controls.Add(this.HTProgressBar7);
+            this.tabPage6.Controls.Add(this.HTProgressBar3);
+            this.tabPage6.Controls.Add(this.HTProgressBar6);
+            this.tabPage6.Controls.Add(this.HTProgressBar2);
+            this.tabPage6.Controls.Add(this.HTProgressBar5);
+            this.tabPage6.Controls.Add(this.HTProgressBar1);
             this.tabPage6.Location = new System.Drawing.Point(4, 20);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(792, 426);
@@ -1010,106 +1010,106 @@
             this.tabPage6.Text = "ProgressBar";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // haltroyProgressBar8
+            // HTProgressBar8
             // 
-            this.haltroyProgressBar8.BorderThickness = 2;
-            this.haltroyProgressBar8.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.TopToBottom;
-            this.haltroyProgressBar8.DrawBorder = true;
-            this.haltroyProgressBar8.Location = new System.Drawing.Point(493, 132);
-            this.haltroyProgressBar8.Name = "haltroyProgressBar8";
-            this.haltroyProgressBar8.Size = new System.Drawing.Size(135, 261);
-            this.haltroyProgressBar8.TabIndex = 0;
-            this.haltroyProgressBar8.Text = "label19";
-            this.haltroyProgressBar8.Value = 34;
+            this.HTProgressBar8.BorderThickness = 2;
+            this.HTProgressBar8.Direction = HTAlt.HTProgressBar.ProgressDirection.TopToBottom;
+            this.HTProgressBar8.DrawBorder = true;
+            this.HTProgressBar8.Location = new System.Drawing.Point(493, 132);
+            this.HTProgressBar8.Name = "HTProgressBar8";
+            this.HTProgressBar8.Size = new System.Drawing.Size(135, 261);
+            this.HTProgressBar8.TabIndex = 0;
+            this.HTProgressBar8.Text = "label19";
+            this.HTProgressBar8.Value = 34;
             // 
-            // haltroyProgressBar4
+            // HTProgressBar4
             // 
-            this.haltroyProgressBar4.BorderThickness = 0;
-            this.haltroyProgressBar4.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.TopToBottom;
-            this.haltroyProgressBar4.Location = new System.Drawing.Point(162, 132);
-            this.haltroyProgressBar4.Name = "haltroyProgressBar4";
-            this.haltroyProgressBar4.Size = new System.Drawing.Size(135, 261);
-            this.haltroyProgressBar4.TabIndex = 0;
-            this.haltroyProgressBar4.Text = "label19";
-            this.haltroyProgressBar4.Value = 34;
+            this.HTProgressBar4.BorderThickness = 0;
+            this.HTProgressBar4.Direction = HTAlt.HTProgressBar.ProgressDirection.TopToBottom;
+            this.HTProgressBar4.Location = new System.Drawing.Point(162, 132);
+            this.HTProgressBar4.Name = "HTProgressBar4";
+            this.HTProgressBar4.Size = new System.Drawing.Size(135, 261);
+            this.HTProgressBar4.TabIndex = 0;
+            this.HTProgressBar4.Text = "label19";
+            this.HTProgressBar4.Value = 34;
             // 
-            // haltroyProgressBar7
+            // HTProgressBar7
             // 
-            this.haltroyProgressBar7.BorderThickness = 2;
-            this.haltroyProgressBar7.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.BottomToTop;
-            this.haltroyProgressBar7.DrawBorder = true;
-            this.haltroyProgressBar7.Location = new System.Drawing.Point(366, 132);
-            this.haltroyProgressBar7.Name = "haltroyProgressBar7";
-            this.haltroyProgressBar7.Size = new System.Drawing.Size(110, 261);
-            this.haltroyProgressBar7.TabIndex = 0;
-            this.haltroyProgressBar7.Text = "label19";
-            this.haltroyProgressBar7.Value = 34;
+            this.HTProgressBar7.BorderThickness = 2;
+            this.HTProgressBar7.Direction = HTAlt.HTProgressBar.ProgressDirection.BottomToTop;
+            this.HTProgressBar7.DrawBorder = true;
+            this.HTProgressBar7.Location = new System.Drawing.Point(366, 132);
+            this.HTProgressBar7.Name = "HTProgressBar7";
+            this.HTProgressBar7.Size = new System.Drawing.Size(110, 261);
+            this.HTProgressBar7.TabIndex = 0;
+            this.HTProgressBar7.Text = "label19";
+            this.HTProgressBar7.Value = 34;
             // 
-            // haltroyProgressBar3
+            // HTProgressBar3
             // 
-            this.haltroyProgressBar3.BorderThickness = 0;
-            this.haltroyProgressBar3.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.BottomToTop;
-            this.haltroyProgressBar3.Location = new System.Drawing.Point(35, 132);
-            this.haltroyProgressBar3.Name = "haltroyProgressBar3";
-            this.haltroyProgressBar3.Size = new System.Drawing.Size(110, 261);
-            this.haltroyProgressBar3.TabIndex = 0;
-            this.haltroyProgressBar3.Text = "label19";
-            this.haltroyProgressBar3.Value = 34;
+            this.HTProgressBar3.BorderThickness = 0;
+            this.HTProgressBar3.Direction = HTAlt.HTProgressBar.ProgressDirection.BottomToTop;
+            this.HTProgressBar3.Location = new System.Drawing.Point(35, 132);
+            this.HTProgressBar3.Name = "HTProgressBar3";
+            this.HTProgressBar3.Size = new System.Drawing.Size(110, 261);
+            this.HTProgressBar3.TabIndex = 0;
+            this.HTProgressBar3.Text = "label19";
+            this.HTProgressBar3.Value = 34;
             // 
-            // haltroyProgressBar6
+            // HTProgressBar6
             // 
-            this.haltroyProgressBar6.BorderThickness = 2;
-            this.haltroyProgressBar6.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.RightToLeft;
-            this.haltroyProgressBar6.DrawBorder = true;
-            this.haltroyProgressBar6.Location = new System.Drawing.Point(366, 84);
-            this.haltroyProgressBar6.Name = "haltroyProgressBar6";
-            this.haltroyProgressBar6.Size = new System.Drawing.Size(262, 27);
-            this.haltroyProgressBar6.TabIndex = 0;
-            this.haltroyProgressBar6.Text = "label19";
-            this.haltroyProgressBar6.Value = 34;
+            this.HTProgressBar6.BorderThickness = 2;
+            this.HTProgressBar6.Direction = HTAlt.HTProgressBar.ProgressDirection.RightToLeft;
+            this.HTProgressBar6.DrawBorder = true;
+            this.HTProgressBar6.Location = new System.Drawing.Point(366, 84);
+            this.HTProgressBar6.Name = "HTProgressBar6";
+            this.HTProgressBar6.Size = new System.Drawing.Size(262, 27);
+            this.HTProgressBar6.TabIndex = 0;
+            this.HTProgressBar6.Text = "label19";
+            this.HTProgressBar6.Value = 34;
             // 
-            // haltroyProgressBar2
+            // HTProgressBar2
             // 
-            this.haltroyProgressBar2.BorderThickness = 0;
-            this.haltroyProgressBar2.Direction = HaltroyFramework.HaltroyProgressBar.ProgressDirection.RightToLeft;
-            this.haltroyProgressBar2.Location = new System.Drawing.Point(35, 84);
-            this.haltroyProgressBar2.Name = "haltroyProgressBar2";
-            this.haltroyProgressBar2.Size = new System.Drawing.Size(262, 27);
-            this.haltroyProgressBar2.TabIndex = 0;
-            this.haltroyProgressBar2.Text = "label19";
-            this.haltroyProgressBar2.Value = 34;
+            this.HTProgressBar2.BorderThickness = 0;
+            this.HTProgressBar2.Direction = HTAlt.HTProgressBar.ProgressDirection.RightToLeft;
+            this.HTProgressBar2.Location = new System.Drawing.Point(35, 84);
+            this.HTProgressBar2.Name = "HTProgressBar2";
+            this.HTProgressBar2.Size = new System.Drawing.Size(262, 27);
+            this.HTProgressBar2.TabIndex = 0;
+            this.HTProgressBar2.Text = "label19";
+            this.HTProgressBar2.Value = 34;
             // 
-            // haltroyProgressBar5
+            // HTProgressBar5
             // 
-            this.haltroyProgressBar5.BorderThickness = 2;
-            this.haltroyProgressBar5.DrawBorder = true;
-            this.haltroyProgressBar5.Location = new System.Drawing.Point(366, 30);
-            this.haltroyProgressBar5.Name = "haltroyProgressBar5";
-            this.haltroyProgressBar5.Size = new System.Drawing.Size(262, 27);
-            this.haltroyProgressBar5.TabIndex = 0;
-            this.haltroyProgressBar5.Text = "label19";
-            this.haltroyProgressBar5.Value = 34;
+            this.HTProgressBar5.BorderThickness = 2;
+            this.HTProgressBar5.DrawBorder = true;
+            this.HTProgressBar5.Location = new System.Drawing.Point(366, 30);
+            this.HTProgressBar5.Name = "HTProgressBar5";
+            this.HTProgressBar5.Size = new System.Drawing.Size(262, 27);
+            this.HTProgressBar5.TabIndex = 0;
+            this.HTProgressBar5.Text = "label19";
+            this.HTProgressBar5.Value = 34;
             // 
-            // haltroyProgressBar1
+            // HTProgressBar1
             // 
-            this.haltroyProgressBar1.BorderThickness = 0;
-            this.haltroyProgressBar1.Location = new System.Drawing.Point(35, 30);
-            this.haltroyProgressBar1.Name = "haltroyProgressBar1";
-            this.haltroyProgressBar1.Size = new System.Drawing.Size(262, 27);
-            this.haltroyProgressBar1.TabIndex = 0;
-            this.haltroyProgressBar1.Text = "label19";
-            this.haltroyProgressBar1.Value = 34;
+            this.HTProgressBar1.BorderThickness = 0;
+            this.HTProgressBar1.Location = new System.Drawing.Point(35, 30);
+            this.HTProgressBar1.Name = "HTProgressBar1";
+            this.HTProgressBar1.Size = new System.Drawing.Size(262, 27);
+            this.HTProgressBar1.TabIndex = 0;
+            this.HTProgressBar1.Text = "label19";
+            this.HTProgressBar1.Value = 34;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.haltroyTabControl1);
+            this.Controls.Add(this.HTTabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "HaltroyFramework Test App";
-            this.haltroyTabControl1.ResumeLayout(false);
+            this.Text = "HTAlt Test App";
+            this.HTTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
@@ -1132,12 +1132,12 @@
 
         #endregion
 
-        private HaltroyFramework.HaltroyTabControl haltroyTabControl1;
+        private HTAlt.HTTabControl HTTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private HaltroyFramework.HaltroyListView haltroyListView1;
-        private HaltroyFramework.HaltroySwitch haltroySwitch1;
-        private HaltroyFramework.HaltroySlider haltroySlider1;
+        private HTAlt.HTListView HTListView1;
+        private HTAlt.HTSwitch HTSwitch1;
+        private HTAlt.HTSlider HTSlider1;
         private System.Windows.Forms.TextBox tbMessage;
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Label label2;
@@ -1187,38 +1187,38 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label24;
-        private HaltroyFramework.HaltroySwitch haltroySwitch3;
+        private HTAlt.HTSwitch HTSwitch3;
         private System.Windows.Forms.Label label21;
-        private HaltroyFramework.HaltroySwitch haltroySwitch2;
-        private HaltroyFramework.HaltroyListView haltroyListView2;
+        private HTAlt.HTSwitch HTSwitch2;
+        private HTAlt.HTListView HTListView2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.TabPage tabPage5;
-        private HaltroyFramework.HaltroyButton haltroyButton5;
-        private HaltroyFramework.HaltroyButton haltroyButton7;
-        private HaltroyFramework.HaltroyButton haltroyButton6;
-        private HaltroyFramework.HaltroyButton haltroyButton1;
-        private HaltroyFramework.HaltroyButton haltroyButton4;
-        private HaltroyFramework.HaltroyButton haltroyButton3;
-        private HaltroyFramework.HaltroyButton haltroyButton2;
+        private HTAlt.HTButton HTButton5;
+        private HTAlt.HTButton HTButton7;
+        private HTAlt.HTButton HTButton6;
+        private HTAlt.HTButton HTButton1;
+        private HTAlt.HTButton HTButton4;
+        private HTAlt.HTButton HTButton3;
+        private HTAlt.HTButton HTButton2;
         private System.Windows.Forms.Panel panel1;
-        private HaltroyFramework.HaltroyButton haltroyButton8;
+        private HTAlt.HTButton HTButton8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel2;
-        private HaltroyFramework.HaltroyButton haltroyButton9;
-        private HaltroyFramework.HaltroyButton haltroyButton10;
+        private HTAlt.HTButton HTButton9;
+        private HTAlt.HTButton HTButton10;
         private System.Windows.Forms.TextBox ibSetToDefault;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TabPage tabPage6;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar1;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar4;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar3;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar2;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar8;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar7;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar6;
-        private HaltroyFramework.HaltroyProgressBar haltroyProgressBar5;
+        private HTAlt.HTProgressBar HTProgressBar1;
+        private HTAlt.HTProgressBar HTProgressBar4;
+        private HTAlt.HTProgressBar HTProgressBar3;
+        private HTAlt.HTProgressBar HTProgressBar2;
+        private HTAlt.HTProgressBar HTProgressBar8;
+        private HTAlt.HTProgressBar HTProgressBar7;
+        private HTAlt.HTProgressBar HTProgressBar6;
+        private HTAlt.HTProgressBar HTProgressBar5;
     }
 }
 

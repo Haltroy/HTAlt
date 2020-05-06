@@ -26,12 +26,12 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Flat button. Imidates <see cref="System.Windows.Forms.Button"/>.
     /// </summary>
-    public class HaltroyButton : Button
+    public class HTButton : Button
     {
         #region "Enums"
         public enum ButtonTextImageRelation
@@ -51,7 +51,7 @@ namespace HaltroyFramework
             Zoom
         }
         #endregion
-        public HaltroyButton()
+        public HTButton()
         {
             Startup startup = new Startup();
             CurrentBackColor = BackColor;

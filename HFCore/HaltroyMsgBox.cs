@@ -23,12 +23,12 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace HaltroyFramework
+namespace HTAlt
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.MessageBox"/>.
     /// </summary>
-    public partial class HaltroyMsgBox : Form
+    public partial class HTMsgBox : Form
     {
         /// <summary>
         /// Background color of HaltroyMsgBox. Foreground color is auto-selected to White or Black.
@@ -70,7 +70,7 @@ namespace HaltroyFramework
         /// <param name="title">Title of the message.</param>
         /// <param name="message">Text of message.</param>
         /// <param name="messageBoxButtons">Buttons to display.</param>
-        public HaltroyMsgBox(string title,
+        public HTMsgBox(string title,
                       string message,
                       MessageBoxButtons messageBoxButtons)
         {

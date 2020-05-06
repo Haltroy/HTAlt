@@ -7,8 +7,8 @@
     <ProjectGuid>{EC777E43-5DDB-481C-9A70-07B4AB6AF769}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HaltroyFramework</RootNamespace>
-    <AssemblyName>HaltroyFramework</AssemblyName>
+    <RootNamespace>HTAlt</RootNamespace>
+    <AssemblyName>HTAlt</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
