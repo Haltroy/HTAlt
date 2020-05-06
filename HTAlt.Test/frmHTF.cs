@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Hf.Test
+namespace HTAlt.Test
 {
     public partial class frmHTF : HTAlt.HTForms
     {
@@ -21,5 +22,6 @@ namespace Hf.Test
         {
             Close();
         }
+
     }
 }

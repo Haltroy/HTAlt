@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Hf.Test</RootNamespace>
-    <AssemblyName>Hf.Test</AssemblyName>
+    <RootNamespace>HTAlt.Test</RootNamespace>
+    <AssemblyName>HTAlt.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

@@ -1,4 +1,4 @@
-﻿namespace Hf.Test
+﻿namespace HTAlt.Test
 {
     partial class frmHTF : HTAlt.HTForms
     {

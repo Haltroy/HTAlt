@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Hf.Test
+namespace HTAlt.Test
 {
     static class Program
     {

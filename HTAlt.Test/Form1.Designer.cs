@@ -1,4 +1,4 @@
-﻿namespace Hf.Test
+﻿namespace HTAlt.Test
 {
     partial class Form1
     {
@@ -859,7 +859,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.panel2.BackgroundImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Controls.Add(this.HTButton9);
             this.panel2.Location = new System.Drawing.Point(52, 323);
@@ -871,7 +871,7 @@
             // 
             this.HTButton9.BackColor = System.Drawing.Color.Transparent;
             this.HTButton9.ForeColor = System.Drawing.Color.Black;
-            this.HTButton9.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton9.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton9.Location = new System.Drawing.Point(0, 3);
             this.HTButton9.Name = "HTButton9";
             this.HTButton9.Size = new System.Drawing.Size(126, 33);
@@ -893,7 +893,7 @@
             // 
             this.HTButton8.BackColor = System.Drawing.Color.Transparent;
             this.HTButton8.ForeColor = System.Drawing.Color.Black;
-            this.HTButton8.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton8.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton8.Location = new System.Drawing.Point(0, 3);
             this.HTButton8.Name = "HTButton8";
             this.HTButton8.Size = new System.Drawing.Size(126, 33);
@@ -906,7 +906,7 @@
             // 
             this.HTButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton5.ForeColor = System.Drawing.Color.Black;
-            this.HTButton5.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton5.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton5.Location = new System.Drawing.Point(606, 34);
             this.HTButton5.Name = "HTButton5";
             this.HTButton5.Size = new System.Drawing.Size(126, 33);
@@ -919,7 +919,7 @@
             // 
             this.HTButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton7.ForeColor = System.Drawing.Color.Black;
-            this.HTButton7.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton7.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton7.Location = new System.Drawing.Point(482, 148);
             this.HTButton7.Name = "HTButton7";
             this.HTButton7.Size = new System.Drawing.Size(60, 74);
@@ -932,7 +932,7 @@
             // 
             this.HTButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton6.ForeColor = System.Drawing.Color.Black;
-            this.HTButton6.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton6.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton6.Location = new System.Drawing.Point(482, 95);
             this.HTButton6.Name = "HTButton6";
             this.HTButton6.Size = new System.Drawing.Size(60, 33);
@@ -945,7 +945,7 @@
             // 
             this.HTButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton1.ForeColor = System.Drawing.Color.Black;
-            this.HTButton1.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton1.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton1.Location = new System.Drawing.Point(449, 34);
             this.HTButton1.Name = "HTButton1";
             this.HTButton1.Size = new System.Drawing.Size(126, 33);
@@ -958,7 +958,7 @@
             // 
             this.HTButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton4.ForeColor = System.Drawing.Color.Black;
-            this.HTButton4.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton4.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton4.Location = new System.Drawing.Point(306, 34);
             this.HTButton4.Name = "HTButton4";
             this.HTButton4.Size = new System.Drawing.Size(126, 33);
@@ -971,7 +971,7 @@
             // 
             this.HTButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton3.ForeColor = System.Drawing.Color.Black;
-            this.HTButton3.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton3.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton3.Location = new System.Drawing.Point(159, 34);
             this.HTButton3.Name = "HTButton3";
             this.HTButton3.Size = new System.Drawing.Size(126, 33);
@@ -984,7 +984,7 @@
             // 
             this.HTButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.HTButton2.ForeColor = System.Drawing.Color.Black;
-            this.HTButton2.Image = global::Hf.Test.Properties.Resources.ht_logo_2020;
+            this.HTButton2.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
             this.HTButton2.Location = new System.Drawing.Point(17, 34);
             this.HTButton2.Name = "HTButton2";
             this.HTButton2.Size = new System.Drawing.Size(126, 33);
