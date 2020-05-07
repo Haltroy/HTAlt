@@ -298,7 +298,7 @@ namespace HTAlt
             base.OnPaint(pevent);
             ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
             //Paint background
-            if (BackColor != Color.Transparent)
+            if (CurrentBackColor != Color.Transparent)
             {
                 pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
             }

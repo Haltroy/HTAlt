@@ -48,15 +48,16 @@ namespace HTAlt
         /// </summary>
         public static bool PrintInfoToConsole()
         { 
-                if (Properties.Settings.Default.isInfoGiven == false)
-                {
-                    Properties.Settings.Default.isInfoGiven = true;
-                    Console.WriteLine(PrintInfo);
-                }
+           if (Properties.Settings.Default.isInfoGiven == false)
+           {
+                Properties.Settings.Default.isInfoGiven = true;
+                Console.WriteLine(PrintInfo);
                 return true;
+           }else { return false; }
+                
         }
         /// <summary>
-        /// Returns the information text displayed in console.
+        /// Returns the information text displayed in console on start.
         /// </summary>
         public static string PrintInfo
         {
@@ -111,7 +112,7 @@ namespace HTAlt
         /// Converts the image to Base 64 code.
         /// </summary>
         /// <param name="image">Image to convert.</param>
-        /// <returns></returns>
+        /// <returns>String representing the base 64 code of image.</returns>
         public static string ImageToBase64(System.Drawing.Image image)
         {
             using (MemoryStream m = new MemoryStream())
@@ -125,7 +126,7 @@ namespace HTAlt
         /// Converts Base 64 code to an image.
         /// </summary>
         /// <param name="base64String">Code to convert.</param>
-        /// <returns></returns>
+        /// <returns>Image representing the base 64 code.</returns>
         public static System.Drawing.Image Base64ToImage(string base64String)
         {
             byte[] imageBytes = Convert.FromBase64String(base64String);
@@ -137,7 +138,7 @@ namespace HTAlt
         /// <summary>
         /// Generates a random text with 11 random characters.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>11 random characters in a string.</returns>
         public static string GenerateRandomText
         {
             get
@@ -158,8 +159,8 @@ namespace HTAlt
         /// Gets the base URL of an URL.
         /// </summary>
         /// <param name="url">Address for getting the base address.</param>
-        /// <returns></returns>
-        public static string getBaseURL(string url)
+        /// <returns>Base URL.</returns>
+        public static string GetBaseURL(string url)
         {
             Uri uri = new Uri(url);
             string baseUri = uri.GetLeftPart(System.UriPartial.Authority);
@@ -169,7 +170,7 @@ namespace HTAlt
         /// Converts Hexadecimal to Color
         /// </summary>
         /// <param name="hexString">Hex Code of Color</param>
-        /// <returns></returns>
+        /// <returns>Color representing the hex code.</returns>
         public static Color HexToColor(string hexString)
         {
             return ColorTranslator.FromHtml(hexString);
@@ -178,7 +179,7 @@ namespace HTAlt
         /// Converts Color to Hexadecimal
         /// </summary>
         /// <param name="color">Color to convert</param>
-        /// <returns></returns>
+        /// <returns>String representing the hex code of color.</returns>
         public static string ColorToHex(Color color)
         {
             return ColorTranslator.ToHtml(Color.FromArgb(color.ToArgb()));
@@ -187,7 +188,7 @@ namespace HTAlt
         /// Gets Image from Url
         /// </summary>
         /// <param name="url">Address of image.</param>
-        /// <returns></returns>
+        /// <returns>Image located in the URL.</returns>
         public static Image GetImageFromUrl(string url)
         {
             using (System.Net.WebClient webClient = new System.Net.WebClient())
@@ -202,7 +203,7 @@ namespace HTAlt
         /// Return <c>true</c> if path directory is empty.
         /// </summary>
         /// <param name="path">Directory path to check.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if the directory is empty, otherwise <c>false</c>.</returns>
         public static bool IsDirectoryEmpty(string path)
         {
             if (Directory.Exists(path))
@@ -215,7 +216,7 @@ namespace HTAlt
         /// Gets Brightness level between 0-255.
         /// </summary>
         /// <param name="c">Color for checking brightness.</param>
-        /// <returns></returns>
+        /// <returns>Level of brightness between 0-255</returns>
         public static int Brightness(Color c)
         {
             return (int)Math.Sqrt(
@@ -230,7 +231,7 @@ namespace HTAlt
         /// <param name="tolerance">The area of ​​relationship with color equivalents.</param>
         /// <param name="oldColor">Color to change from.</param>
         /// <param name="NewColor">Color to change to.</param>
-        /// <returns></returns>
+        /// <returns>Final result of the image after processing it.</returns>
         public static Image ColorReplace(Image inputImage, int tolerance, Color oldColor, Color NewColor)
         {
             Bitmap outputImage = new Bitmap(inputImage.Width, inputImage.Height);
@@ -317,7 +318,7 @@ namespace HTAlt
         /// <param name="input">Image to work on.</param>
         /// <param name="texture">Texture to apply.</param>
         /// <param name="repeatable"><c>true</c> to repeat texture like a tile. <c>false</c> to resize texture to fit to image.</param>
-        /// <returns></returns>
+        /// <returns>Final result of the image after processing it.</returns>
         public static Image RepaintImage(Image input, Image texture, bool repeatable)
         {
             if (repeatable)
@@ -373,7 +374,7 @@ namespace HTAlt
         /// Determines which color (Black or White) to use for foreground of the color.
         /// </summary>
         /// <param name="c">Color to work on.</param>
-        /// <returns></returns>
+        /// <returns>Returns Black if color is bright, otherwise White.</returns>
         public static Color AutoWhiteBlack(Color c)
         {
             return IsBright(c) ? Color.Black : Color.White;
@@ -382,7 +383,7 @@ namespace HTAlt
         /// Determies which color (Black or White) is closer to the color.
         /// </summary>
         /// <param name="c">Color to work on.</param>
-        /// <returns></returns>
+        /// <returns>Returns White if color is bright, otherwise Black.</returns>
         public static Color WhiteOrBlack(Color c)
         {
             return IsBright(c) ? Color.White : Color.Black;
@@ -391,7 +392,7 @@ namespace HTAlt
         /// Returns <c>true</c> if the color is bright.
         /// </summary>
         /// <param name="c">Color to work on.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if color is bright, otherwise <c>false</c></returns>
         public static bool IsBright(Color c)
         {
             return Brightness(c) > 130;
@@ -401,7 +402,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="number">Integer to work on.</param>
         /// <param name="subtract">Integer to subtract.</param>
-        /// <returns></returns>
+        /// <returns>Subtracts the number if subtract is smaller than the number, otherwise returns the number untouched.</returns>
         public static int SubtractIfNeeded(int number, int subtract)
         {
             return number > subtract ? number - subtract : number;
@@ -412,7 +413,7 @@ namespace HTAlt
         /// <param name="number">Integer to work on.</param>
         /// <param name="add">Integer to add.</param>
         /// <param name="limit">Integer for limit.</param>
-        /// <returns></returns>
+        /// <returns>Adds the number if added number is smaller than the limit, otherwise returns the number untouched.</returns>
         public static int AddIfNeeded(int number, int add, int limit)
         {
             return number + add > limit ? number : number + add;
@@ -422,7 +423,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="c">Color to work on.</param>
         /// <param name="reverseAlpha"><c>true</c> to also reverse Alpha (Transparency) channel.</param>
-        /// <returns></returns>
+        /// <returns>Opposite of the color.</returns>
         public static Color ReverseColor(Color c, bool reverseAlpha)
         {
             return Color.FromArgb(reverseAlpha ? (255 - c.A) : c.A,
@@ -436,7 +437,7 @@ namespace HTAlt
         /// <param name="baseColor">Color to work on.</param>
         /// <param name="value">Shift integer.</param>
         /// <param name="shiftAlpha"><c>true</c> to also shift Alpha (Transparency) channel.</param>
-        /// <returns></returns>
+        /// <returns>Color with shifted brightness.</returns>
         public static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
         {
             if (IsBright(baseColor))
@@ -459,7 +460,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="encode">Rules for reading the file.</param>
-        /// <returns></returns>
+        /// <returns>Text inside the file.</returns>
         public static string ReadFile(string fileLocation, Encoding encode)
         {
             FileStream fs = new FileStream(fileLocation, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -472,12 +473,40 @@ namespace HTAlt
         /// Reads a file without locking it.
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
-        /// <returns></returns>
+        /// <returns>File stream containing file information.</returns>
         public static Stream ReadFile(string fileLocation)
         {
             FileStream fs = new FileStream(fileLocation, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             return fs;
-
+        }
+        /// <summary>
+        /// Reads a file without locking it.
+        /// </summary>
+        /// <param name="fileLocation">Location of the file.</param>
+        /// <param name="format">Not used but required due to other overflows.</param>
+        /// <returns>Image from location.</returns>
+        public static Image ReadFile(string fileLocation,ImageFormat format)
+        {
+            if (format != null)
+            {
+                format = null;
+            }
+            Image img = Image.FromStream(ReadFile(fileLocation));
+            return img;
+        }
+        /// <summary>
+        /// Reads a file without locking it.
+        /// </summary>
+        /// <param name="fileLocation">Location of the file.</param>
+        /// <param name="ignored">Not used but required due to other overflows.</param>
+        /// <returns>Bitmap from location.</returns>
+        public static Bitmap ReadFile(string fileLocation,string ignored)
+        {
+            if (!string.IsNullOrWhiteSpace(ignored))
+            {
+                ignored = "";
+            }
+            return new Bitmap(ReadFile(fileLocation, format: null));
         }
         /// <summary>
         /// Creates and writes a file without locking it.
@@ -485,7 +514,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="input">Text to write on.</param>
         /// <param name="encode">Rules to follow while writing.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, string input, Encoding encode)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -505,7 +534,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="bitmap">Bitmap to write on.</param>
         /// <param name="format">Format to use while writing.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Bitmap bitmap, ImageFormat format)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -530,7 +559,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="image">Image to write on.</param>
         /// <param name="format">Format to use while writing.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Image image, ImageFormat format)
         {
             Bitmap bitmap = new Bitmap(image);
@@ -541,7 +570,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="input">Bytes to write on.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, byte[] input)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -560,7 +589,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="stream">Stream to write on.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Stream stream)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
