@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,10 +15,71 @@ namespace HTAlt
     /// </summary>
     public class HTProgressBar : Control
     {
-        public HTProgressBar()
+        #region Constructor
+        public HTProgressBar() : this(100, 0, 0) { }
+        public HTProgressBar(int max,int min,int value)
         {
             Tools.PrintInfoToConsole();
+            _Value = value;
+            _Max = max;
+            _Min = min;
         }
+        #endregion
+        #region Events
+        /// <summary>
+        /// Used in MaximumChanged, MinimumChanged & ValueChanged events.
+        /// </summary>
+        public class IntChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Old value of the control's property.
+            /// </summary>
+            public int oldValue { get; set; }
+            /// <summary>
+            /// New value of the control's property.
+            /// </summary>
+            public int newValue { get; set; }
+        }
+        /// <summary>
+        /// This event is called when Maximum value changes.
+        /// </summary>
+        [Description("This event is called when Maximum value changes."),Category("HTProgressBar")]
+        public event EventHandler<IntChangedEventArgs> MaximumChanged;
+        /// <summary>
+        /// This event is called when Minimum value changes.
+        /// </summary>
+        [Description("This event is called when Minimum value changes."), Category("HTProgressBar")]
+        public event EventHandler<IntChangedEventArgs> MinimumChanged;
+        /// <summary>
+        /// This event is called when Value changes.
+        /// </summary>
+        [Description("This event is called when Value changes."), Category("HTProgressBar")]
+        public event EventHandler<IntChangedEventArgs> ValueChanged;
+        protected virtual void OnValueChanged(IntChangedEventArgs e)
+        {
+            EventHandler<IntChangedEventArgs> handler = ValueChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        protected virtual void OnMaximumChanged(IntChangedEventArgs e)
+        {
+            EventHandler<IntChangedEventArgs> handler = MaximumChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        protected virtual void OnMinimumChanged(IntChangedEventArgs e)
+        {
+            EventHandler<IntChangedEventArgs> handler = MinimumChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        #endregion
         #region "Enums"
         public enum ProgressDirection
         {
@@ -110,7 +172,21 @@ namespace HTAlt
         public int Maximum
         {
             get => _Max;
-            set { _Max = value; Refresh(); }
+            set {
+                if (value < _Min) 
+                { 
+                    throw new ArgumentOutOfRangeException("Maximum cannot be smaller than Minimum."); 
+                }
+                else
+                {
+                    IntChangedEventArgs args = new IntChangedEventArgs();
+                    args.oldValue = _Max;
+                    args.newValue = value;
+                    OnMaximumChanged(args);
+                    _Max = value;
+                    Refresh();
+                }
+            }
         }
         /// <summary>
         /// Minimum value of the progress bar.
@@ -122,7 +198,21 @@ namespace HTAlt
         public int Minimum
         {
             get => _Min;
-            set { _Min = value; Refresh(); }
+            set {
+                if (_Max < value) 
+                {
+                    throw new ArgumentOutOfRangeException("Minimum cannot be bigger than Maximum.");
+                }
+                else
+                {
+                    IntChangedEventArgs args = new IntChangedEventArgs();
+                    args.oldValue = _Min;
+                    args.newValue = value;
+                    OnMinimumChanged(args);
+                    _Min = value;
+                    Refresh();
+                }
+            }
         }
         /// <summary>
         /// Value of the progress bar.
@@ -134,7 +224,20 @@ namespace HTAlt
         public int Value
         {
             get => _Value;
-            set { _Value = value; Refresh(); }
+            set {
+                if (_Min <= value && _Max >= value)
+                {
+                    IntChangedEventArgs args = new IntChangedEventArgs();
+                    args.oldValue = _Value;
+                    args.newValue = value;
+                    OnValueChanged(args);
+                    _Value = value;
+                    Refresh();
+                }else
+                {
+                    throw new ArgumentOutOfRangeException("Value must be equal or smaller than Maximum and equal or bigger than Minimum.");
+                }
+            }
         }
         private ProgressDirection _Direction = ProgressDirection.LeftToRight;
         private int _Min = 0;

@@ -426,7 +426,6 @@
             this.HTListView1.Size = new System.Drawing.Size(786, 420);
             this.HTListView1.TabIndex = 0;
             this.HTListView1.UseCompatibleStateImageBehavior = false;
-            this.HTListView1.SelectedIndexChanged += new System.EventHandler(this.HTListView1_SelectedIndexChanged);
             // 
             // tabPage2
             // 

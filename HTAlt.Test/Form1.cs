@@ -196,10 +196,5 @@ namespace HTAlt.Test
         {
             fullscreenmode = HTSwitch3.Checked;
         }
-
-        private void HTListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
