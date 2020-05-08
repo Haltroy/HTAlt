@@ -73,11 +73,17 @@ namespace HTAlt
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
         #endregion
+        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new bool OwnerDraw
+        {
+            get => true;
+            set { value = true; }
+        }
 
         public HTListView()
         {
             Tools.PrintInfoToConsole();
-            OwnerDraw = true;
+            
             DrawItem += this_DrawItem;
             DrawSubItem += this_DrawSubItem;
             DrawColumnHeader += this_DrawColumnHeaders;
@@ -91,7 +97,7 @@ namespace HTAlt
         /// <param name="iIndex">Index of the item just added</param>
         public void UpdateItem(int iIndex)
         {
-            OwnerDraw = true;
+            
             updating = true;
             itemnumber = iIndex;
             Update();
@@ -109,13 +115,13 @@ namespace HTAlt
         {
             get
             {
-                OwnerDraw = true;
+                
                 return headerBackColor;
             }
 
             set
             {
-                OwnerDraw = true;
+                
                 headerBackColor = value;
             }
         }
@@ -127,13 +133,13 @@ namespace HTAlt
         {
             get
             {
-                OwnerDraw = true;
+                
                 return headerForeColor;
             }
 
             set
             {
-                OwnerDraw = true;
+                
                 headerForeColor = value;
             }
         }
@@ -145,19 +151,35 @@ namespace HTAlt
         {
             get
             {
-                OwnerDraw = true;
+                
                 return overlayColor;
             }
 
             set
             {
-                OwnerDraw = true;
+                
                 overlayColor = value;
+            }
+        }
+        private int _barThiccness = 2;
+        /// <summary>
+        /// The thickness of column header border.
+        /// </summary>
+        [Category("Style"), Browsable(true), Description("The thickness of column header border.")]
+        public int HeaderBorderThickness
+        {
+            get
+            {
+                return _barThiccness;
+            }
+            set
+            {
+                _barThiccness = value;
             }
         }
         private void this_DrawColumnHeaders(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            OwnerDraw = true;
+            
             using (StringFormat sf = new StringFormat())
             {
                 // Store the column text alignment, letting it default
@@ -178,25 +200,25 @@ namespace HTAlt
                 e.Graphics.DrawString(e.Header.Text, e.Font,
                         new SolidBrush(headerForeColor), e.Bounds, sf);
                 // Draw the header lines.
-                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y, e.Bounds.X, e.Bounds.Y + e.Bounds.Height);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X + e.Bounds.Width, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
-                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), 2), e.Bounds.X, e.Bounds.Y + e.Bounds.Height, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), _barThiccness), e.Bounds.X, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), _barThiccness), e.Bounds.X, e.Bounds.Y, e.Bounds.X, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), _barThiccness), e.Bounds.X + e.Bounds.Width, e.Bounds.Y, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
+                e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), _barThiccness), e.Bounds.X, e.Bounds.Y + e.Bounds.Height, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
             }
         }
         private void this_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            OwnerDraw = true;
+            
             e.DrawDefault = true;
         }
         private void this_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-            OwnerDraw = true;
+            
             e.DrawDefault = true;
         }
         private void this_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            OwnerDraw = true;
+            
             Invalidate();
         }
         protected override void WndProc(ref Message messg)

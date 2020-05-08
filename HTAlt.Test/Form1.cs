@@ -44,7 +44,7 @@ namespace HTAlt.Test
             if (cbButtons.Text == "Nothing")
             {
                 mesajbuton = MessageBoxButtons.AbortRetryIgnore;
-            }else if (cbButtons.Text == "YesNo")
+            } else if (cbButtons.Text == "YesNo")
             {
                 mesajbuton = MessageBoxButtons.YesNo;
             }
@@ -64,14 +64,14 @@ namespace HTAlt.Test
             if (System.IO.File.Exists(tbIcon.Text))
             {
                 mesajicon = new Icon(tbIcon.Text);
-            }else
+            } else
             {
                 mesajicon = this.Icon;
             }
-            HTAlt.HTMsgBox mesaj = new HTAlt.HTMsgBox(tbTitle.Text,
+            HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                                                                       tbMessage.Text,
                                                                                       mesajbuton)
-            {Icon = mesajicon,BackgroundColor = pbBackColor.BackColor,Yes = tbYes.Text,No = tbNo.Text,OK = tbOK.Text,Cancel = tbCancel.Text, };
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             mesaj.Show();
         }
 
@@ -131,27 +131,21 @@ namespace HTAlt.Test
             label10.Visible = true;
             lResult.Visible = true;
         }
-        private void CbButtons_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           // if (cbButtons.Text = "Nothing"){button2.Enabled = false;} else { button2.Enabled = true; }
-        }
 
         private void Button4_Click(object sender, EventArgs e)
         {
             Icon mesajicon = null;
-            if (System.IO.File.Exists(ibIcon.Text))
+            if (System.IO.File.Exists(tbIcon.Text))
             {
-                mesajicon = new Icon(ibIcon.Text);
+                mesajicon = new Icon(tbIcon.Text);
             }
-            HTAlt.HTInputBox inputbox = new HTAlt.HTInputBox(ibTitle.Text,
-                                                                                             ibMessage.Text,
-                                                                                             ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor,  OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, };;
+            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             DialogResult diagres = inputbox.ShowDialog();
             if (diagres == DialogResult.OK)
             {
                 ibResult.Text = inputbox.TextValue;
-            }else
+            } else
             {
                 ibResult.Text = "Cancelled.";
             }
@@ -162,14 +156,12 @@ namespace HTAlt.Test
         private void Button6_Click(object sender, EventArgs e)
         {
             Icon mesajicon = null;
-            if (System.IO.File.Exists(ibIcon.Text))
+            if (System.IO.File.Exists(tbIcon.Text))
             {
-                mesajicon = new Icon(ibIcon.Text);
+                mesajicon = new Icon(tbIcon.Text);
             }
-            HTAlt.HTInputBox inputbox = new HTAlt.HTInputBox(ibTitle.Text,
-                                                                                             ibMessage.Text,
-                                                                                             ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = ibBackColor.BackColor, OK = ibOK.Text, Cancel = ibCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
+            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             DialogResult diagres = inputbox.ShowDialog();
         }
 
@@ -196,5 +188,6 @@ namespace HTAlt.Test
         {
             fullscreenmode = HTSwitch3.Checked;
         }
+
     }
 }

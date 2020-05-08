@@ -31,7 +31,7 @@ namespace HTAlt
     public partial class HTInputBox : Form
     {
         /// <summary>
-        /// Background color of HaltroyMsgBox. Foreground color is auto-selected to White or Black.
+        /// Background color of HTInputBox. Foreground color is auto-selected to White or Black.
         /// </summary>
         public Color BackgroundColor;
         /// <summary>
