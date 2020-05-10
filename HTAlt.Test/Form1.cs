@@ -188,6 +188,5 @@ namespace HTAlt.Test
         {
             fullscreenmode = HTSwitch3.Checked;
         }
-
     }
 }

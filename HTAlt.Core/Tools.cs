@@ -47,21 +47,20 @@ namespace HTAlt
         /// If you are going to save settings for this project, please reset <c>isInfoGiven</c> before saving.
         /// </summary>
         public static bool PrintInfoToConsole()
-        { 
-           if (Properties.Settings.Default.isInfoGiven == false)
-           {
+        {
+            if (Properties.Settings.Default.isInfoGiven == false)
+            {
                 Properties.Settings.Default.isInfoGiven = true;
                 Console.WriteLine(PrintInfo);
                 return true;
-           }else { return false; }
-                
+            }
+            else { return false; }
+
         }
         /// <summary>
         /// Returns the information text displayed in console on start.
         /// </summary>
-        public static string PrintInfo
-        {
-            get => Environment.NewLine
+        public static string PrintInfo => Environment.NewLine
                 + "------------------"
                 + Environment.NewLine
                 + ProjectName
@@ -74,40 +73,26 @@ namespace HTAlt
                 + Environment.NewLine
                 + "------------------"
                 + Environment.NewLine;
-        }
         /// <summary>
         /// Returns this project's name.
         /// </summary>
-        public static string ProjectName
-        {
-            get => name;
-        }
+        public static string ProjectName => name;
         /// <summary>
         /// Returns the codename of this project.
         /// </summary>
-        public static string ProjectCodeName
-        {
-            get => codeName;
-        }
+        public static string ProjectCodeName => codeName;
         /// <summary>
         /// Returns project version as Version.
         /// </summary>
-        public static Version ProjectVersion
-        {
-            get => new Version(version);
-        }
+        public static Version ProjectVersion => new Version(version);
         /// <summary>
         /// Returns developer name of this project.
         /// </summary>
-        public static string ProjectDeveloper
-        { get => developer; }
+        public static string ProjectDeveloper => developer;
         /// <summary>
         /// Returns project website address as Uri.
         /// </summary>
-        public static Uri ProjectWebsite
-        {
-            get => new Uri(link);
-        }
+        public static Uri ProjectWebsite => new Uri(link);
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>
@@ -134,6 +119,27 @@ namespace HTAlt
             ms.Write(imageBytes, 0, imageBytes.Length);
             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
             return image;
+        }
+        /// <summary>
+        /// Crops an image to a rectangle.
+        /// </summary>
+        /// <param name="img">Image to work on.</param>
+        /// <param name="cropArea">Focus area to crop to.</param>
+        /// <returns>Cropped image.</returns>
+        public static Image CropImage(Image img, Rectangle cropArea)
+        {
+            Bitmap bmpImage = new Bitmap(img);
+            return bmpImage.Clone(cropArea, bmpImage.PixelFormat);
+        }
+        /// <summary>
+        /// Crops a bitmap to a rectangle.
+        /// </summary>
+        /// <param name="bm">Bitmap to work on.</param>
+        /// <param name="cropArea">Focus area to crop to.</param>
+        /// <returns>Cropped bitmap.</returns>
+        public static Bitmap CropBitmap(Bitmap bm, Rectangle cropArea)
+        {
+            return bm.Clone(cropArea, bm.PixelFormat);
         }
         /// <summary>
         /// Generates a random text with 11 random characters.
@@ -223,6 +229,42 @@ namespace HTAlt
                c.R * c.R * .241 +
                c.G * c.G * .691 +
                c.B * c.B * .068);
+        }
+        /// <summary>
+        /// Gets Transparency level between 0-255.
+        /// </summary>
+        /// <param name="c">Color for checking transparency.</param>
+        /// <returns>Level of transparency between 0-255</returns>
+        public static int Transparency(Color c)
+        {
+            return Convert.ToInt32(c.A);
+        }
+        /// <summary>
+        /// Returns true if the color is not so opaque, owtherwise false.
+        /// </summary>
+        /// <param name="c">Color for checking transparency.</param>
+        /// <returns>Returns true if the color is not so opaque, otherwise false.</returns>
+        public static bool IsTransparencyHigh(Color c)
+        {
+            return Transparency(c) < 130;
+        }
+        /// <summary>
+        /// Returns true if the color is opaque, otherwise false.
+        /// </summary>
+        /// <param name="c">Color for checking opacity.</param>
+        /// <returns>Returns true if the color is opaque, otherwise false.</returns>
+        public static bool IsOpaque(Color c)
+        {
+            return Transparency(c) == 255;
+        }
+        /// <summary>
+        /// Returns true if the color is invisible due to high transparency.
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>Returns true if the color is invisible.</returns>
+        public static bool IsInvisible(Color c)
+        {
+            return Transparency(c) == 0;
         }
         /// <summary>
         /// Replaces a color from an image to another color.
@@ -442,14 +484,14 @@ namespace HTAlt
         {
             if (IsBright(baseColor))
             {
-                return Color.FromArgb(shiftAlpha ? SubtractIfNeeded(baseColor.A, value) : baseColor.A,
+                return Color.FromArgb(shiftAlpha ? (IsTransparencyHigh(baseColor) ? AddIfNeeded(baseColor.A, value, 255) : SubtractIfNeeded(baseColor.A, value)) : baseColor.A,
                                       SubtractIfNeeded(baseColor.R, value),
                                       SubtractIfNeeded(baseColor.G, value),
                                       SubtractIfNeeded(baseColor.B, value));
             }
             else
             {
-                return Color.FromArgb(shiftAlpha ? AddIfNeeded(baseColor.A, value, 255) : baseColor.A,
+                return Color.FromArgb(shiftAlpha ? (IsTransparencyHigh(baseColor) ? AddIfNeeded(baseColor.A, value, 255) : SubtractIfNeeded(baseColor.A, value)) : baseColor.A,
                       AddIfNeeded(baseColor.R, value, 255),
                       AddIfNeeded(baseColor.G, value, 255),
                       AddIfNeeded(baseColor.B, value, 255));
@@ -485,7 +527,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="format">Not used but required due to other overflows.</param>
         /// <returns>Image from location.</returns>
-        public static Image ReadFile(string fileLocation,ImageFormat format)
+        public static Image ReadFile(string fileLocation, ImageFormat format)
         {
             if (format != null)
             {
@@ -500,7 +542,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="ignored">Not used but required due to other overflows.</param>
         /// <returns>Bitmap from location.</returns>
-        public static Bitmap ReadFile(string fileLocation,string ignored)
+        public static Bitmap ReadFile(string fileLocation, string ignored)
         {
             if (!string.IsNullOrWhiteSpace(ignored))
             {

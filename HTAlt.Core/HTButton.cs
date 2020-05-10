@@ -53,6 +53,8 @@ namespace HTAlt
         #endregion
         public HTButton()
         {
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            SetStyle(ControlStyles.Opaque, true);
             Tools.PrintInfoToConsole();
             CurrentBackColor = BackColor;
         }
@@ -102,13 +104,14 @@ namespace HTAlt
             get => imgSizeMode;
             set => imgSizeMode = value;
         }
+
         private Color CurrentBackColor;
 
-        
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-            CurrentBackColor = BackColor.A == 255 ? Tools.ShiftBrightnessIfNeeded(BackColor, 20, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 20, true);
+            CurrentBackColor = Tools.IsOpaque(BackColor) ? Tools.ShiftBrightnessIfNeeded(BackColor, 20, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 20, true);
             Invalidate();
         }
 
@@ -122,7 +125,7 @@ namespace HTAlt
         protected override void OnMouseDown(MouseEventArgs mevent)
         {
             base.OnMouseDown(mevent);
-            CurrentBackColor = BackColor.A == 255 ? Tools.ShiftBrightnessIfNeeded(BackColor, 40, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 40, true);
+            CurrentBackColor = Tools.IsOpaque(BackColor) ? Tools.ShiftBrightnessIfNeeded(BackColor, 40, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 40, true);
             Invalidate();
         }
 
@@ -296,11 +299,12 @@ namespace HTAlt
         {
             //Paint the base
             base.OnPaint(pevent);
-            ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
             //Paint background
-            if (CurrentBackColor != Color.Transparent)
+            ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
+            if (!Tools.IsInvisible(CurrentBackColor))
             {
-                pevent.Graphics.FillRectangle(new SolidBrush(CurrentBackColor), 0, 0, Width, Height);
+                SolidBrush _backBrush = new SolidBrush(CurrentBackColor);
+                pevent.Graphics.FillRectangle(_backBrush, 0, 0, Width, Height);
             }
             //Draw text and image
             if (tiRelation == ButtonTextImageRelation.None) { return; }
@@ -322,6 +326,14 @@ namespace HTAlt
                 DrawText(pevent);
                 DrawImage(pevent);
             }
+        }
+        protected override void OnBackColorChanged(EventArgs e)
+        {
+            if (this != null)
+            {
+                Invalidate(Bounds, true);
+            }
+            base.OnBackColorChanged(e);
         }
         #endregion
     }

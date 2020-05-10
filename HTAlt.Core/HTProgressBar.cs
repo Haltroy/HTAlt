@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HTAlt
@@ -17,7 +12,7 @@ namespace HTAlt
     {
         #region Constructor
         public HTProgressBar() : this(100, 0, 0) { }
-        public HTProgressBar(int max,int min,int value)
+        public HTProgressBar(int max, int min, int value)
         {
             Tools.PrintInfoToConsole();
             _Value = value;
@@ -43,7 +38,7 @@ namespace HTAlt
         /// <summary>
         /// This event is called when Maximum value changes.
         /// </summary>
-        [Description("This event is called when Maximum value changes."),Category("HTProgressBar")]
+        [Description("This event is called when Maximum value changes."), Category("HTProgressBar")]
         public event EventHandler<IntChangedEventArgs> MaximumChanged;
         /// <summary>
         /// This event is called when Minimum value changes.
@@ -148,7 +143,7 @@ namespace HTAlt
         public Color BarColor
         {
             get => _Overlay;
-            set { _Overlay = value; Refresh();}
+            set { _Overlay = value; Refresh(); }
         }
         /// <summary>
         /// Color of the loading bar.
@@ -161,7 +156,7 @@ namespace HTAlt
         {
             get => _Direction;
             set { _Direction = value; Refresh(); }
-            }
+        }
         /// <summary>
         /// Maximum value of the progress bar.
         /// </summary>
@@ -172,16 +167,19 @@ namespace HTAlt
         public int Maximum
         {
             get => _Max;
-            set {
-                if (value < _Min) 
-                { 
-                    throw new ArgumentOutOfRangeException("Maximum cannot be smaller than Minimum."); 
+            set
+            {
+                if (value < _Min)
+                {
+                    throw new ArgumentOutOfRangeException("Maximum cannot be smaller than Minimum.");
                 }
                 else
                 {
-                    IntChangedEventArgs args = new IntChangedEventArgs();
-                    args.oldValue = _Max;
-                    args.newValue = value;
+                    IntChangedEventArgs args = new IntChangedEventArgs
+                    {
+                        oldValue = _Max,
+                        newValue = value
+                    };
                     OnMaximumChanged(args);
                     _Max = value;
                     Refresh();
@@ -198,16 +196,19 @@ namespace HTAlt
         public int Minimum
         {
             get => _Min;
-            set {
-                if (_Max < value) 
+            set
+            {
+                if (_Max < value)
                 {
                     throw new ArgumentOutOfRangeException("Minimum cannot be bigger than Maximum.");
                 }
                 else
                 {
-                    IntChangedEventArgs args = new IntChangedEventArgs();
-                    args.oldValue = _Min;
-                    args.newValue = value;
+                    IntChangedEventArgs args = new IntChangedEventArgs
+                    {
+                        oldValue = _Min,
+                        newValue = value
+                    };
                     OnMinimumChanged(args);
                     _Min = value;
                     Refresh();
@@ -224,16 +225,20 @@ namespace HTAlt
         public int Value
         {
             get => _Value;
-            set {
+            set
+            {
                 if (_Min <= value && _Max >= value)
                 {
-                    IntChangedEventArgs args = new IntChangedEventArgs();
-                    args.oldValue = _Value;
-                    args.newValue = value;
+                    IntChangedEventArgs args = new IntChangedEventArgs
+                    {
+                        oldValue = _Value,
+                        newValue = value
+                    };
                     OnValueChanged(args);
                     _Value = value;
                     Refresh();
-                }else
+                }
+                else
                 {
                     throw new ArgumentOutOfRangeException("Value must be equal or smaller than Maximum and equal or bigger than Minimum.");
                 }
@@ -257,7 +262,8 @@ namespace HTAlt
             if (_Direction == ProgressDirection.LeftToRight)
             {
                 DPLR(e);
-            }else if (_Direction == ProgressDirection.RightToLeft)
+            }
+            else if (_Direction == ProgressDirection.RightToLeft)
             {
                 DPRL(e);
             }
@@ -271,9 +277,9 @@ namespace HTAlt
             }
             if (_DrawBorder)
             {
-                e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0,0,Width,_BorderThiccness));
+                e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, Width, _BorderThiccness));
                 e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, Height - _BorderThiccness, Width, _BorderThiccness));
-                e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, _BorderThiccness,Height));
+                e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(0, 0, _BorderThiccness, Height));
                 e.Graphics.FillRectangle(new SolidBrush(_BorderColor), new Rectangle(Width - _BorderThiccness, 0, _BorderThiccness, Height));
             }
             e.Graphics.ResetClip();
@@ -330,7 +336,7 @@ namespace HTAlt
             else
             {
                 int loadstart = (Height / (_Max - _Min)) * _Value;
-                Rectangle loadbar = new System.Drawing.Rectangle(0, Height - loadstart, Width,  loadstart);
+                Rectangle loadbar = new System.Drawing.Rectangle(0, Height - loadstart, Width, loadstart);
                 e.Graphics.FillRectangle(new SolidBrush(_Overlay), loadbar);
             }
         }

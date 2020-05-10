@@ -162,12 +162,12 @@ namespace HTAlt
             btYes.Text = useOK ? OK : Yes;
             btNo.Text = No;
             btCancel.Text = Cancel;
-            ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
-            btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             btYes.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
-            btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             flowLayoutPanel1.BackColor = BackgroundColor;

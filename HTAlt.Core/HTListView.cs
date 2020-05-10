@@ -36,54 +36,54 @@ namespace HTAlt
         private int itemnumber;
         #region WM - Window Messages
         public enum WM
-    {
-        WM_NULL = 0x0000,
-        WM_CREATE = 0x0001,
-        WM_DESTROY = 0x0002,
-        WM_MOVE = 0x0003,
-        WM_SIZE = 0x0005,
-        WM_ACTIVATE = 0x0006,
-        WM_SETFOCUS = 0x0007,
-        WM_KILLFOCUS = 0x0008,
-        WM_ENABLE = 0x000A,
-        WM_SETREDRAW = 0x000B,
-        WM_SETTEXT = 0x000C,
-        WM_GETTEXT = 0x000D,
-        WM_GETTEXTLENGTH = 0x000E,
-        WM_PAINT = 0x000F,
-        WM_CLOSE = 0x0010,
-        WM_QUERYENDSESSION = 0x0011,
-        WM_QUIT = 0x0012,
-        WM_QUERYOPEN = 0x0013,
-        WM_ERASEBKGND = 0x0014,
+        {
+            WM_NULL = 0x0000,
+            WM_CREATE = 0x0001,
+            WM_DESTROY = 0x0002,
+            WM_MOVE = 0x0003,
+            WM_SIZE = 0x0005,
+            WM_ACTIVATE = 0x0006,
+            WM_SETFOCUS = 0x0007,
+            WM_KILLFOCUS = 0x0008,
+            WM_ENABLE = 0x000A,
+            WM_SETREDRAW = 0x000B,
+            WM_SETTEXT = 0x000C,
+            WM_GETTEXT = 0x000D,
+            WM_GETTEXTLENGTH = 0x000E,
+            WM_PAINT = 0x000F,
+            WM_CLOSE = 0x0010,
+            WM_QUERYENDSESSION = 0x0011,
+            WM_QUIT = 0x0012,
+            WM_QUERYOPEN = 0x0013,
+            WM_ERASEBKGND = 0x0014,
 
-    }
+        }
         #endregion
         #region RECT
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-    public struct RECT
-    {
-        public int left;
-        public int top;
-        public int right;
-        public int bottom;
-    }
-    #endregion
+        public struct RECT
+        {
+            public int left;
+            public int top;
+            public int right;
+            public int bottom;
+        }
+        #endregion
         #region Imported User32.DLL functions
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
         #endregion
-        [Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool OwnerDraw
         {
             get => true;
-            set { value = true; }
+            set => value = true;
         }
 
         public HTListView()
         {
             Tools.PrintInfoToConsole();
-            
+
             DrawItem += this_DrawItem;
             DrawSubItem += this_DrawSubItem;
             DrawColumnHeader += this_DrawColumnHeaders;
@@ -97,7 +97,7 @@ namespace HTAlt
         /// <param name="iIndex">Index of the item just added</param>
         public void UpdateItem(int iIndex)
         {
-            
+
             updating = true;
             itemnumber = iIndex;
             Update();
@@ -113,17 +113,9 @@ namespace HTAlt
         [Category("Style"), Browsable(true), Description("The back color of the headers.")]
         public Color HeaderBackColor
         {
-            get
-            {
-                
-                return headerBackColor;
-            }
+            get => headerBackColor;
 
-            set
-            {
-                
-                headerBackColor = value;
-            }
+            set => headerBackColor = value;
         }
         /// <summary>
         /// The text color of the headers.
@@ -131,17 +123,9 @@ namespace HTAlt
         [Category("Style"), Browsable(true), Description("The text color of the headers.")]
         public Color HeaderForeColor
         {
-            get
-            {
-                
-                return headerForeColor;
-            }
+            get => headerForeColor;
 
-            set
-            {
-                
-                headerForeColor = value;
-            }
+            set => headerForeColor = value;
         }
         /// <summary>
         /// The overlay color.
@@ -149,17 +133,9 @@ namespace HTAlt
         [Category("Style"), Browsable(true), Description("The overlay color.")]
         public Color OverlayColor
         {
-            get
-            {
-                
-                return overlayColor;
-            }
+            get => overlayColor;
 
-            set
-            {
-                
-                overlayColor = value;
-            }
+            set => overlayColor = value;
         }
         private int _barThiccness = 2;
         /// <summary>
@@ -168,18 +144,12 @@ namespace HTAlt
         [Category("Style"), Browsable(true), Description("The thickness of column header border.")]
         public int HeaderBorderThickness
         {
-            get
-            {
-                return _barThiccness;
-            }
-            set
-            {
-                _barThiccness = value;
-            }
+            get => _barThiccness;
+            set => _barThiccness = value;
         }
         private void this_DrawColumnHeaders(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            
+
             using (StringFormat sf = new StringFormat())
             {
                 // Store the column text alignment, letting it default
@@ -208,17 +178,17 @@ namespace HTAlt
         }
         private void this_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-            
+
             e.DrawDefault = true;
         }
         private void this_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-            
+
             e.DrawDefault = true;
         }
         private void this_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            
+
             Invalidate();
         }
         protected override void WndProc(ref Message messg)

@@ -1122,9 +1122,9 @@ namespace HTAlt
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            this.Size = new System.Drawing.Size(200, 48);
-            this.ResumeLayout(false);
+            SuspendLayout();
+            Size = new System.Drawing.Size(200, 48);
+            ResumeLayout(false);
         }
         /// <summary>
         /// Creates the round rect path.

@@ -46,7 +46,7 @@ namespace HTAlt
         /// Text to display on "Set to default" button.
         /// </summary>
         public string SetToDefault = "Set to default";
-        private string defaultString = "";
+        private readonly string defaultString = "";
 
         private static int LinesCountIndexOf(string s)
         {
@@ -85,7 +85,7 @@ namespace HTAlt
         /// Value inside the textbox in this input box.
         /// </summary>
         public string TextValue => textBox1.Text;
-        
+
 
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -104,15 +104,15 @@ namespace HTAlt
             button1.Text = OK;
             button2.Text = Cancel;
             haltroyButton1.Text = SetToDefault;
-            ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
-            button1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            button1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             button1.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             button2.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             haltroyButton1.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
-            button2.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
-            haltroyButton1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
-            textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);;
+            button2.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            haltroyButton1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             textBox1.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
         }
 
