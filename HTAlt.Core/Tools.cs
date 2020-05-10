@@ -33,8 +33,8 @@ namespace HTAlt
     /// </summary>
     public class Tools
     {
-        private static readonly string version = "0.1.2.0";
-        private static readonly string codeName = "Hiko";
+        private static readonly string version = "0.1.3.0";
+        private static readonly string codeName = "Sidewalk";
         private static readonly string name = "HTAlt";
         private static readonly string link = "https://github.com/haltroy/HTAlt";
         private static readonly string developer = "Haltroy";
