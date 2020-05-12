@@ -74,6 +74,15 @@
             this.HTSwitch1 = new HTAlt.HTSwitch();
             this.HTSlider1 = new HTAlt.HTSlider();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.htButton9 = new HTAlt.HTButton();
+            this.htButton8 = new HTAlt.HTButton();
+            this.htButton7 = new HTAlt.HTButton();
+            this.htButton6 = new HTAlt.HTButton();
+            this.htButton5 = new HTAlt.HTButton();
+            this.htButton4 = new HTAlt.HTButton();
+            this.htButton3 = new HTAlt.HTButton();
+            this.htButton2 = new HTAlt.HTButton();
+            this.htButton1 = new HTAlt.HTButton();
             this.HTProgressBar8 = new HTAlt.HTProgressBar();
             this.HTProgressBar4 = new HTAlt.HTProgressBar();
             this.HTProgressBar7 = new HTAlt.HTProgressBar();
@@ -82,11 +91,6 @@
             this.HTProgressBar2 = new HTAlt.HTProgressBar();
             this.htProgressBar5 = new HTAlt.HTProgressBar();
             this.HTProgressBar1 = new HTAlt.HTProgressBar();
-            this.HTButton5 = new HTAlt.HTButton();
-            this.HTButton1 = new HTAlt.HTButton();
-            this.HTButton4 = new HTAlt.HTButton();
-            this.HTButton3 = new HTAlt.HTButton();
-            this.HTButton2 = new HTAlt.HTButton();
             this.label24 = new System.Windows.Forms.Label();
             this.HTSwitch3 = new HTAlt.HTSwitch();
             this.label21 = new System.Windows.Forms.Label();
@@ -568,6 +572,15 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.htButton9);
+            this.tabPage4.Controls.Add(this.htButton8);
+            this.tabPage4.Controls.Add(this.htButton7);
+            this.tabPage4.Controls.Add(this.htButton6);
+            this.tabPage4.Controls.Add(this.htButton5);
+            this.tabPage4.Controls.Add(this.htButton4);
+            this.tabPage4.Controls.Add(this.htButton3);
+            this.tabPage4.Controls.Add(this.htButton2);
+            this.tabPage4.Controls.Add(this.htButton1);
             this.tabPage4.Controls.Add(this.HTProgressBar8);
             this.tabPage4.Controls.Add(this.HTProgressBar4);
             this.tabPage4.Controls.Add(this.HTProgressBar7);
@@ -576,11 +589,6 @@
             this.tabPage4.Controls.Add(this.HTProgressBar2);
             this.tabPage4.Controls.Add(this.htProgressBar5);
             this.tabPage4.Controls.Add(this.HTProgressBar1);
-            this.tabPage4.Controls.Add(this.HTButton5);
-            this.tabPage4.Controls.Add(this.HTButton1);
-            this.tabPage4.Controls.Add(this.HTButton4);
-            this.tabPage4.Controls.Add(this.HTButton3);
-            this.tabPage4.Controls.Add(this.HTButton2);
             this.tabPage4.Controls.Add(this.label24);
             this.tabPage4.Controls.Add(this.HTSwitch3);
             this.tabPage4.Controls.Add(this.label21);
@@ -593,6 +601,131 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Forms & Button & ProgressBar";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // htButton9
+            // 
+            this.htButton9.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton9.ButtonText = "Sample Text";
+            this.htButton9.FlatAppearance.BorderSize = 0;
+            this.htButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton9.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Tile;
+            this.htButton9.Location = new System.Drawing.Point(410, 252);
+            this.htButton9.Name = "htButton9";
+            this.htButton9.Size = new System.Drawing.Size(124, 49);
+            this.htButton9.TabIndex = 24;
+            this.htButton9.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton9.UseVisualStyleBackColor = true;
+            // 
+            // htButton8
+            // 
+            this.htButton8.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton8.ButtonText = "Sample Text";
+            this.htButton8.FlatAppearance.BorderSize = 0;
+            this.htButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton8.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Stretch;
+            this.htButton8.Location = new System.Drawing.Point(410, 169);
+            this.htButton8.Name = "htButton8";
+            this.htButton8.Size = new System.Drawing.Size(124, 49);
+            this.htButton8.TabIndex = 23;
+            this.htButton8.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton8.UseVisualStyleBackColor = true;
+            // 
+            // htButton7
+            // 
+            this.htButton7.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton7.ButtonText = "Sample Text";
+            this.htButton7.FlatAppearance.BorderSize = 0;
+            this.htButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton7.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
+            this.htButton7.Location = new System.Drawing.Point(269, 169);
+            this.htButton7.Name = "htButton7";
+            this.htButton7.Size = new System.Drawing.Size(124, 49);
+            this.htButton7.TabIndex = 22;
+            this.htButton7.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton7.UseVisualStyleBackColor = true;
+            // 
+            // htButton6
+            // 
+            this.htButton6.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton6.ButtonText = "Sample Text";
+            this.htButton6.FlatAppearance.BorderSize = 0;
+            this.htButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton6.Location = new System.Drawing.Point(139, 169);
+            this.htButton6.Name = "htButton6";
+            this.htButton6.Size = new System.Drawing.Size(124, 49);
+            this.htButton6.TabIndex = 21;
+            this.htButton6.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton6.UseVisualStyleBackColor = true;
+            // 
+            // htButton5
+            // 
+            this.htButton5.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton5.ButtonText = "Sample Text";
+            this.htButton5.FlatAppearance.BorderSize = 0;
+            this.htButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton5.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton5.Location = new System.Drawing.Point(9, 97);
+            this.htButton5.Name = "htButton5";
+            this.htButton5.Size = new System.Drawing.Size(124, 49);
+            this.htButton5.TabIndex = 20;
+            this.htButton5.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.None;
+            this.htButton5.UseVisualStyleBackColor = true;
+            // 
+            // htButton4
+            // 
+            this.htButton4.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton4.ButtonText = "Sample Text";
+            this.htButton4.FlatAppearance.BorderSize = 0;
+            this.htButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton4.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton4.Location = new System.Drawing.Point(9, 169);
+            this.htButton4.Name = "htButton4";
+            this.htButton4.Size = new System.Drawing.Size(124, 49);
+            this.htButton4.TabIndex = 19;
+            this.htButton4.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton4.UseVisualStyleBackColor = true;
+            // 
+            // htButton3
+            // 
+            this.htButton3.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton3.ButtonText = "Sample Text";
+            this.htButton3.FlatAppearance.BorderSize = 0;
+            this.htButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton3.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton3.Location = new System.Drawing.Point(9, 234);
+            this.htButton3.Name = "htButton3";
+            this.htButton3.Size = new System.Drawing.Size(124, 49);
+            this.htButton3.TabIndex = 18;
+            this.htButton3.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.htButton3.UseVisualStyleBackColor = true;
+            // 
+            // htButton2
+            // 
+            this.htButton2.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton2.ButtonText = "Sample Text";
+            this.htButton2.FlatAppearance.BorderSize = 0;
+            this.htButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton2.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton2.Location = new System.Drawing.Point(9, 344);
+            this.htButton2.Name = "htButton2";
+            this.htButton2.Size = new System.Drawing.Size(124, 49);
+            this.htButton2.TabIndex = 17;
+            this.htButton2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.htButton2.UseVisualStyleBackColor = true;
+            // 
+            // htButton1
+            // 
+            this.htButton1.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
+            this.htButton1.ButtonText = "Sample Text";
+            this.htButton1.FlatAppearance.BorderSize = 0;
+            this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton1.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton1.Location = new System.Drawing.Point(9, 289);
+            this.htButton1.Name = "htButton1";
+            this.htButton1.Size = new System.Drawing.Size(124, 49);
+            this.htButton1.TabIndex = 16;
+            this.htButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextAboveImage;
+            this.htButton1.UseVisualStyleBackColor = true;
             // 
             // HTProgressBar8
             // 
@@ -683,76 +816,6 @@
             this.HTProgressBar1.TabIndex = 15;
             this.HTProgressBar1.Text = "label19";
             this.HTProgressBar1.Value = 25;
-            // 
-            // HTButton5
-            // 
-            this.HTButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.HTButton5.ForeColor = System.Drawing.Color.Black;
-            this.HTButton5.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.HTButton5.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
-            this.HTButton5.Location = new System.Drawing.Point(9, 262);
-            this.HTButton5.Name = "HTButton5";
-            this.HTButton5.Size = new System.Drawing.Size(126, 33);
-            this.HTButton5.TabIndex = 3;
-            this.HTButton5.Text = "HTButton1";
-            this.HTButton5.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.None;
-            this.HTButton5.UseVisualStyleBackColor = false;
-            // 
-            // HTButton1
-            // 
-            this.HTButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.HTButton1.ForeColor = System.Drawing.Color.Black;
-            this.HTButton1.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.HTButton1.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
-            this.HTButton1.Location = new System.Drawing.Point(9, 221);
-            this.HTButton1.Name = "HTButton1";
-            this.HTButton1.Size = new System.Drawing.Size(126, 33);
-            this.HTButton1.TabIndex = 4;
-            this.HTButton1.Text = "HTButton1";
-            this.HTButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
-            this.HTButton1.UseVisualStyleBackColor = false;
-            // 
-            // HTButton4
-            // 
-            this.HTButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.HTButton4.ForeColor = System.Drawing.Color.Black;
-            this.HTButton4.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.HTButton4.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
-            this.HTButton4.Location = new System.Drawing.Point(9, 185);
-            this.HTButton4.Name = "HTButton4";
-            this.HTButton4.Size = new System.Drawing.Size(126, 33);
-            this.HTButton4.TabIndex = 5;
-            this.HTButton4.Text = "HTButton1";
-            this.HTButton4.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
-            this.HTButton4.UseVisualStyleBackColor = false;
-            // 
-            // HTButton3
-            // 
-            this.HTButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.HTButton3.ForeColor = System.Drawing.Color.Black;
-            this.HTButton3.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.HTButton3.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
-            this.HTButton3.Location = new System.Drawing.Point(9, 146);
-            this.HTButton3.Name = "HTButton3";
-            this.HTButton3.Size = new System.Drawing.Size(126, 33);
-            this.HTButton3.TabIndex = 6;
-            this.HTButton3.Text = "HTButton1";
-            this.HTButton3.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextAboveImage;
-            this.HTButton3.UseVisualStyleBackColor = false;
-            // 
-            // HTButton2
-            // 
-            this.HTButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.HTButton2.ForeColor = System.Drawing.Color.Black;
-            this.HTButton2.Image = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.HTButton2.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
-            this.HTButton2.Location = new System.Drawing.Point(9, 107);
-            this.HTButton2.Name = "HTButton2";
-            this.HTButton2.Size = new System.Drawing.Size(126, 33);
-            this.HTButton2.TabIndex = 7;
-            this.HTButton2.Text = "HTButton1";
-            this.HTButton2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
-            this.HTButton2.UseVisualStyleBackColor = false;
             // 
             // label24
             // 
@@ -880,11 +943,15 @@
         private HTProgressBar HTProgressBar2;
         private HTProgressBar htProgressBar5;
         private HTProgressBar HTProgressBar1;
-        private HTButton HTButton5;
-        private HTButton HTButton1;
-        private HTButton HTButton4;
-        private HTButton HTButton3;
-        private HTButton HTButton2;
+        private HTButton htButton2;
+        private HTButton htButton1;
+        private HTButton htButton5;
+        private HTButton htButton4;
+        private HTButton htButton3;
+        private HTButton htButton7;
+        private HTButton htButton6;
+        private HTButton htButton9;
+        private HTButton htButton8;
     }
 }
 

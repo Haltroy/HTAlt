@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace HTAlt
@@ -51,10 +52,12 @@ namespace HTAlt
             Zoom
         }
         #endregion
-        public HTButton()
+        public HTButton() : base()
         {
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            SetStyle(ControlStyles.Opaque, true);
+            FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FlatAppearance.BorderSize = 0;
+            FlatAppearance.CheckedBackColor = Color.Empty;
+            FlatAppearance.MouseOverBackColor = Color.Empty;
             Tools.PrintInfoToConsole();
             CurrentBackColor = BackColor;
         }
@@ -70,6 +73,17 @@ namespace HTAlt
             get => null;
             set => BackgroundImage = null;
         }
+
+        /// <summary>
+        /// This property is not in use.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new TextAlignment TextAlign
+        {
+            get => TextAlignment.Center;
+            set => value = TextAlignment.Center;
+        }
         /// <summary>
         /// This property is not in use.
         /// </summary>
@@ -78,7 +92,27 @@ namespace HTAlt
         public new ImageLayout BackgroundImageLayout
         {
             get => ImageLayout.None;
-            set => BackgroundImageLayout = ImageLayout.None;
+            set => value = ImageLayout.None;
+        }
+        /// <summary>
+        /// This property is not in use.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new string Text
+        {
+            get => string.Empty;
+            set => value = string.Empty;
+        }
+        // <summary>
+        /// This property is not in use.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new Image Image
+        {
+            get => null;
+            set => value = null;
         }
         /// <summary>
         /// Determines how to display image and text.
@@ -104,7 +138,32 @@ namespace HTAlt
             get => imgSizeMode;
             set => imgSizeMode = value;
         }
-
+        /// <summary>
+        /// Determines the display image.
+        /// </summary>
+        [Bindable(false)]
+        [DefaultValue(null)]
+        [Category("Appearance")]
+        [Description("Determines the display image.")]
+        public Image ButtonImage
+        {
+            get => _Image;
+            set => _Image = value;
+        }
+        /// <summary>
+        /// Determines the display text.
+        /// </summary>
+        [Bindable(false)]
+        [DefaultValue(null)]
+        [Category("Appearance")]
+        [Description("Determines the display text.")]
+        public string ButtonText
+        {
+            get => _Text;
+            set => _Text = value;
+        }
+        private string _Text;
+        private Image _Image;
         private Color CurrentBackColor;
 
 
@@ -187,22 +246,22 @@ namespace HTAlt
         }
         private void DrawZoomImage(PaintEventArgs p)
         {
-            if (Image == null) { return; }
+            if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            Image resizedImage = Image;
+            Image resizedImage = _Image;
             if (Width > Height)
             {
-                resizedImage = ResizeImage(Image, Height, Height);
+                resizedImage = ResizeImage(_Image, Height, Height);
             }
             else if (Height > Width)
             {
-                resizedImage = ResizeImage(Image, Width, Width);
+                resizedImage = ResizeImage(_Image, Width, Width);
             }
             else
             {
-                resizedImage = ResizeImage(Image, Width, Height);
+                resizedImage = ResizeImage(_Image, Width, Height);
             }
-            g.DrawImage(Image,
+            g.DrawImage(_Image,
                         new Rectangle((Width / 2) - (resizedImage.Width / 2),
                                       (Height / 2) - (resizedImage.Height / 2),
                                       resizedImage.Width,
@@ -211,47 +270,30 @@ namespace HTAlt
         }
         private void DrawCenterImage(PaintEventArgs p)
         {
-            if (Image == null) { return; }
+            if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            if (Width > Image.Width && Height > Image.Height)
+            if (Width > _Image.Width && Height > _Image.Height)
             {
-                g.DrawImage(Image,
+                g.DrawImage(_Image,
                             new Rectangle((Width / 2) - (Image.Width / 2),
                                           (Height / 2) - (Image.Height / 2),
-                                          Image.Width,
-                                          Image.Height));
+                                          _Image.Width,
+                                          _Image.Height));
             }
             else
             {
-                Image resizedImage = Image;
-                if (Width > Height)
-                {
-                    resizedImage = ResizeImage(Image, Height, Height);
-                }
-                else if (Height > Width)
-                {
-                    resizedImage = ResizeImage(Image, Width, Width);
-                }
-                else
-                {
-                    resizedImage = ResizeImage(Image, Width, Height);
-                }
-                g.DrawImage(Image,
-                            new Rectangle((Width / 2) - (resizedImage.Width / 2),
-                                          (Height / 2) - (resizedImage.Height / 2),
-                                          resizedImage.Width,
-                                          resizedImage.Height));
+                DrawZoomImage(p);
             }
         }
         private void DrawTileImage(PaintEventArgs p)
         {
-            if (Image == null) { return; }
+            if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            FillPattern(g, Image, Bounds);
+            FillPattern(g, _Image, Bounds);
         }
         private static void FillPattern(Graphics g, Image image, Rectangle rect)
         {
-            Rectangle imageRect;
+            Rectangle _ImageRect;
             Rectangle drawRect;
 
             for (int x = rect.X; x < rect.Right; x += image.Width)
@@ -260,17 +302,17 @@ namespace HTAlt
                 {
                     drawRect = new Rectangle(x, y, Math.Min(image.Width, rect.Right - x),
                                    Math.Min(image.Height, rect.Bottom - y));
-                    imageRect = new Rectangle(0, 0, drawRect.Width, drawRect.Height);
+                    _ImageRect = new Rectangle(0, 0, drawRect.Width, drawRect.Height);
 
-                    g.DrawImage(image, drawRect, imageRect, GraphicsUnit.Pixel);
+                    g.DrawImage(image, drawRect, _ImageRect, GraphicsUnit.Pixel);
                 }
             }
         }
         private void DrawStretchImage(PaintEventArgs p)
         {
-            if (Image == null) { return; }
+            if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            Image resizedImage = ResizeImage(Image, Width, Height);
+            Image resizedImage = ResizeImage(_Image, Width, Height);
             g.DrawImage(resizedImage,
                         new Rectangle(0,
                                       0,
@@ -280,9 +322,9 @@ namespace HTAlt
         }
         private void DrawNoneImage(PaintEventArgs p)
         {
-            if (Image == null) { return; }
+            if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            g.DrawImage(Image,
+            g.DrawImage(_Image,
                         new Rectangle(0,
                                       0,
                                       Width,
@@ -293,21 +335,14 @@ namespace HTAlt
         private void DrawText(PaintEventArgs p)
         {
             TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
-            TextRenderer.DrawText(p.Graphics, Text, Font, new Point(Width + 3, Height / 2), ForeColor, flags);
+            TextRenderer.DrawText(p.Graphics, _Text, Font, new System.Drawing.Point(Width + 3, Height / 2), ForeColor, flags);
         }
         protected override void OnPaint(PaintEventArgs pevent)
         {
             //Paint the base
             base.OnPaint(pevent);
-            //Paint background
-            ButtonRenderer.DrawParentBackground(pevent.Graphics, ClientRectangle, this);
-            if (!Tools.IsInvisible(CurrentBackColor))
-            {
-                SolidBrush _backBrush = new SolidBrush(CurrentBackColor);
-                pevent.Graphics.FillRectangle(_backBrush, 0, 0, Width, Height);
-            }
             //Draw text and image
-            if (tiRelation == ButtonTextImageRelation.None) { return; }
+            if (tiRelation == ButtonTextImageRelation.None) { }
             else if (tiRelation == ButtonTextImageRelation.JustText)
             {
                 DrawText(pevent);
@@ -326,6 +361,7 @@ namespace HTAlt
                 DrawText(pevent);
                 DrawImage(pevent);
             }
+            pevent.Graphics.ResetClip();
         }
         protected override void OnBackColorChanged(EventArgs e)
         {
