@@ -90,6 +90,7 @@
     <Compile Include="HTForms.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HTInfo.cs" />
     <Compile Include="HTProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>

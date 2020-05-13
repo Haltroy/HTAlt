@@ -33,11 +33,7 @@ namespace HTAlt
     /// </summary>
     public class Tools
     {
-        private static readonly string version = "0.1.3.0";
-        private static readonly string codeName = "Sidewalk";
-        private static readonly string name = "HTAlt";
-        private static readonly string link = "https://github.com/haltroy/HTAlt";
-        private static readonly string developer = "Haltroy";
+        private static HTInfo info = new HTInfo();
         public Tools()
         {
             PrintInfoToConsole();
@@ -63,36 +59,17 @@ namespace HTAlt
         public static string PrintInfo => Environment.NewLine
                 + "------------------"
                 + Environment.NewLine
-                + ProjectName
+                + info.ProjectName
                 + " v"
-                + ProjectVersion.ToString()
-                + (" [ " + ProjectCodeName + " ] ")
+                + info.ProjectVersion.ToString()
+                + (" [ " + info.ProjectCodeName + " ] ")
                 + " by Haltroy"
                 + Environment.NewLine
-                + ProjectWebsite
+                + info.ProjectWebsite
                 + Environment.NewLine
                 + "------------------"
                 + Environment.NewLine;
-        /// <summary>
-        /// Returns this project's name.
-        /// </summary>
-        public static string ProjectName => name;
-        /// <summary>
-        /// Returns the codename of this project.
-        /// </summary>
-        public static string ProjectCodeName => codeName;
-        /// <summary>
-        /// Returns project version as Version.
-        /// </summary>
-        public static Version ProjectVersion => new Version(version);
-        /// <summary>
-        /// Returns developer name of this project.
-        /// </summary>
-        public static string ProjectDeveloper => developer;
-        /// <summary>
-        /// Returns project website address as Uri.
-        /// </summary>
-        public static Uri ProjectWebsite => new Uri(link);
+        
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>

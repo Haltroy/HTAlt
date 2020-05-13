@@ -114,6 +114,53 @@ namespace HTAlt
             get => null;
             set => value = null;
         }
+        #region HTControls
+        private HTInfo info = new HTInfo();
+        private Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTButton-Class");
+        private Version firstHTAltVersion = new Version("0.1.1.0");
+        private string description = "Flat button. Imidates System.Windows.Forms.Button.";
+        /// <summary>
+        /// This control's wiki link.
+        /// </summary>
+        [Bindable(false)]
+        [Category("HTAlt")]
+        [Description("This control's wiki link.")]
+        public Uri WikiLink
+        {
+            get => wikiLink;
+        }
+        /// <summary>
+        /// This control's first appearance version for HTAlt.
+        /// </summary>
+        [Bindable(false)]
+        [Category("HTAlt")]
+        [Description("This control's first appearance version for HTAlt.")]
+        public Version FirstHTAltVersion
+        {
+            get => firstHTAltVersion;
+        }
+        /// <summary>
+        /// This control's description.
+        /// </summary>
+        [Bindable(false)]
+        [Category("HTAlt")]
+        [Description("This control's description.")]
+        public string Description
+        {
+            get => description;
+        }
+        /// <summary>
+        /// Information about this control's project.
+        /// </summary>
+        [Bindable(false)]
+        [Category("HTAlt")]
+        [Description("Information about this control's project.")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        public HTInfo ProjectInfo
+        {
+            get => info;
+        }
+        #endregion
         /// <summary>
         /// Determines how to display image and text.
         /// </summary>
