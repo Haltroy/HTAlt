@@ -110,7 +110,7 @@ namespace HTAlt
             defaultString = defaultValue;
             Text = title;
             label1.Text = description;
-            Height = (15 * LinesCountIndexOf(description)) + 95;
+            Height = (23 * LinesCountIndexOf(description)) + 155;
             MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
             textBox1.Text = defaultString;
             BackgroundColor = Color.White;

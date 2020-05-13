@@ -114,6 +114,26 @@ namespace HTAlt
             get => null;
             set => value = null;
         }
+        // <summary>
+        /// This property is not in use.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new bool AutoSize
+        {
+            get => false;
+            set => value = false;
+        }
+        // <summary>
+        /// This property is not in use.
+        /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public new AutoSizeMode AutoSizeMode
+        {
+            get => AutoSizeMode.GrowOnly;
+            set => value = AutoSizeMode.GrowOnly;
+        }
         #region HTControls
         private readonly HTInfo info = new HTInfo();
         private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTButton-Class");

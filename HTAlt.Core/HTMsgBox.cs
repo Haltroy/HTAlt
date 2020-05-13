@@ -115,7 +115,7 @@ namespace HTAlt
             Tools.PrintInfoToConsole();
             Text = title;
             label1.Text = message;
-            Height = (15 * LinesCountIndexOf(message)) + 123;
+            Height = (23 * LinesCountIndexOf(message)) + 145;
             MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
         }
 
@@ -206,7 +206,6 @@ namespace HTAlt
             btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            flowLayoutPanel1.BackColor = BackgroundColor;
         }
     }
 }
