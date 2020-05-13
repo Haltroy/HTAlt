@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HTAlt
 {
@@ -24,37 +19,34 @@ namespace HTAlt
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's Name.")]
-        public string ProjectName
-        {
-            get => name;
-        }
+        public string ProjectName => name;
         /// <summary>
         /// The Project's Code Name.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's Code Name.")]
-        public string ProjectCodeName { get => codeName; }
+        public string ProjectCodeName => codeName;
         /// <summary>
         /// The Project's version.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's version.")]
-        public Version ProjectVersion { get => new Version(version); }
+        public Version ProjectVersion => new Version(version);
         /// <summary>
         /// The Project's developer.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's developer.")]
-        public string ProjectDeveloper { get => developer; }
+        public string ProjectDeveloper => developer;
         /// <summary>
         /// The Project's website.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's website.")]
-        public Uri ProjectWebsite { get => new Uri(link); }
+        public Uri ProjectWebsite => new Uri(link);
     }
 }

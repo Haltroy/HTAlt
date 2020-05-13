@@ -33,7 +33,7 @@ namespace HTAlt
     /// </summary>
     public class Tools
     {
-        private static HTInfo info = new HTInfo();
+        private static readonly HTInfo info = new HTInfo();
         public Tools()
         {
             PrintInfoToConsole();
@@ -69,7 +69,7 @@ namespace HTAlt
                 + Environment.NewLine
                 + "------------------"
                 + Environment.NewLine;
-        
+
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>

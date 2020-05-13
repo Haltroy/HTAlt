@@ -35,40 +35,31 @@ namespace HTAlt
     public class HTSwitch : Control
     {
         #region HTControls
-        private HTInfo info = new HTInfo();
-        private Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTSwitch-Class");
-        private Version firstHTAltVersion = new Version("0.1.1.0");
-        private string description = "Custom Switch control that imidates System.Windows.Forms.CheckBox.";
+        private readonly HTInfo info = new HTInfo();
+        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTSwitch-Class");
+        private readonly Version firstHTAltVersion = new Version("0.1.1.0");
+        private readonly string description = "Custom Switch control that imidates System.Windows.Forms.CheckBox.";
         /// <summary>
         /// This control's wiki link.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
-        public Uri WikiLink
-        {
-            get => wikiLink;
-        }
+        public Uri WikiLink => wikiLink;
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
-        public Version FirstHTAltVersion
-        {
-            get => firstHTAltVersion;
-        }
+        public Version FirstHTAltVersion => firstHTAltVersion;
         /// <summary>
         /// This control's description.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("This control's description.")]
-        public string Description
-        {
-            get => description;
-        }
+        public string Description => description;
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -76,10 +67,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
-        public HTInfo ProjectInfo
-        {
-            get => info;
-        }
+        public HTInfo ProjectInfo => info;
         #endregion
 
         #region Delegate and Event declarations
