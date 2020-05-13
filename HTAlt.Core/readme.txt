@@ -29,6 +29,8 @@ Current Features:
 -HaltroyForms Form Type
 -MessageBox Form
 -InputBox Form
+-ProgessBar Control
+-Tools Class
 
 This Project is used in these Haltroy projects:
 -Korot (Desktop)
