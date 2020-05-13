@@ -195,9 +195,9 @@ namespace HTAlt
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            btYes.Text = useOK ? OK : Yes;
-            btNo.Text = No;
-            btCancel.Text = Cancel;
+            btYes.ButtonText = useOK ? OK : Yes;
+            btNo.ButtonText = No;
+            btCancel.ButtonText = Cancel;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);

@@ -137,9 +137,9 @@ namespace HTAlt
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            button1.Text = OK;
-            button2.Text = Cancel;
-            haltroyButton1.Text = SetToDefault;
+            button1.ButtonText = OK;
+            button2.ButtonText = Cancel;
+            haltroyButton1.ButtonText = SetToDefault;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             button1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
