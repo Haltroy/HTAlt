@@ -24,5 +24,5 @@ Latest Stable Version: [`b1.3`](https://github.com/Haltroy/HTAlt/releases/tag/b1
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
 | [`master`](https://github.com/haltroy/htalt)              | Framework 4.5 | Development | ¯\_(ツ)_/¯ |
-| [`b1.2`](https://github.com/haltroy/htalt/tree/b1.2) | Framework 4.5 | **Latest Release** | 13.5.2020 |
+| [`b1.3`](https://github.com/haltroy/htalt/tree/b1.3) | Framework 4.5 | **Latest Release** | 13.5.2020 |
 | `HaltroyFramework`,`b1.2` and lower | Framework 4.5 | Unsupported | Before 13.5.2020 |
