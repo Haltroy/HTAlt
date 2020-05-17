@@ -20,9 +20,12 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using Win32Interop.Methods;
 
 namespace HTAlt
 {
@@ -70,12 +73,24 @@ namespace HTAlt
         /// Background color of HTMsgBox. Foreground color is auto-selected to White or Black.
         /// </summary>
         public Color BackgroundColor;
-        private bool useOK = false;
-        private readonly MessageBoxButtons msgbutton = MessageBoxButtons.OK;
+        private HTMsgBoxButtons msgbutton = new HTMsgBoxButtons(){ OK = true,};
+        public HTMsgBoxButtons MsgBoxButtons => msgbutton;
         /// <summary>
         /// Text to display on "Yes" button.
         /// </summary>
         public string Yes = "Yes";
+        /// <summary>
+        /// Text to display on "Retry" button.
+        /// </summary>
+        public string Retry = "Retry";
+        /// <summary>
+        /// Text to display on "Abort" button.
+        /// </summary>
+        public string Abort = "Abort";
+        /// <summary>
+        /// Text to display on "Ignore" button.
+        /// </summary>
+        public string Ignore = "Ignore";
         /// <summary>
         /// Text to display on "No" button.
         /// </summary>
@@ -88,40 +103,65 @@ namespace HTAlt
         /// Text to display on "Cancel" button.
         /// </summary>
         public string Cancel = "Cancel";
+        /// <summary>
+        /// Text to display on top of buttons.
+        /// </summary>
+        public string Message = "";
 
-        private static int LinesCountIndexOf(string s)
-        {
-            int count = 0;
-            int position = 0;
-            while ((position = s.IndexOf('\n', position)) != -1)
-            {
-                count++;
-                position++;
-            }
-            return count;
-        }
         /// <summary>
         /// Creates new HaltroyMsgBox.
         /// </summary>
         /// <param name="title">Title of the message.</param>
         /// <param name="message">Text of message.</param>
         /// <param name="messageBoxButtons">Buttons to display.</param>
-        public HTMsgBox(string title,
-                      string message,
-                      MessageBoxButtons messageBoxButtons)
+        public HTMsgBox(string Title,
+                      string MsgBoxMessage,
+                      HTMsgBoxButtons MessageBoxButtons)
         {
-            msgbutton = messageBoxButtons;
+            msgbutton = MessageBoxButtons;
             InitializeComponent();
             Tools.PrintInfoToConsole();
-            Text = title;
-            label1.Text = message;
-            Height = (23 * LinesCountIndexOf(message)) + 145;
-            MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
+            Text = Title;
+            Message = MsgBoxMessage;
+            label1.Text = Message;
+            label1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 50;
+            int Count = 0;
+            Count += msgbutton.Yes ? 1 : 0;
+            Count += msgbutton.No ? 1 : 0;
+            Count += msgbutton.Cancel ? 1 : 0;
+            Count += msgbutton.OK ? 1 : 0;
+            Count += msgbutton.Abort ? 1 : 0;
+            Count += msgbutton.Retry ? 1 : 0;
+            Count += msgbutton.Ignore ? 1 : 0;
+            if (Count > 0)
+            {
+                buttonSize += Count * 25;
+            }
+            else
+            {
+                buttonSize = 50;
+            }
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
         }
+        /// <summary>
+        /// Creates new HaltroyMsgBox.
+        /// </summary>
+        /// <param name="message">Text of message.</param>
+        public HTMsgBox(string message) : this("", message, new HTMsgBoxButtons() { OK = true, }) { }
+        /// <summary>
+        /// Creates new HaltroyMsgBox.
+        /// </summary>
+        /// <param name="title">Title of the message.</param>
+        /// <param name="message">Text of message.</param>
+        public HTMsgBox(string message,string title) : this(title, message, new HTMsgBoxButtons() { OK = true, }) { }
 
         private void btYes_Click(object sender, EventArgs e)
         {
-            DialogResult = useOK ? DialogResult.OK : DialogResult.Yes;
+            DialogResult = DialogResult.Yes;
             Close();
         }
 
@@ -136,57 +176,6 @@ namespace HTAlt
             Close();
         }
 
-        private void msgkts_Load(object sender, EventArgs e)
-        {
-            if (msgbutton == MessageBoxButtons.OK)
-            {
-                btYes.Visible = true;
-                btNo.Visible = false;
-                btCancel.Visible = false;
-                btYes.Enabled = true;
-                btNo.Enabled = false;
-                btCancel.Enabled = false;
-                useOK = true;
-            }
-            else if (msgbutton == MessageBoxButtons.OKCancel)
-            {
-                btYes.Visible = true;
-                btNo.Visible = false;
-                btCancel.Visible = true;
-                btYes.Enabled = true;
-                btNo.Enabled = false;
-                btCancel.Enabled = true;
-                useOK = true;
-            }
-            else if (msgbutton == MessageBoxButtons.YesNo)
-            {
-                btYes.Visible = true;
-                btNo.Visible = true;
-                btCancel.Visible = false;
-                btYes.Enabled = true;
-                btNo.Enabled = true;
-                btCancel.Enabled = false;
-            }
-            else if (msgbutton == MessageBoxButtons.YesNoCancel)
-            {
-                btYes.Visible = true;
-                btNo.Visible = true;
-                btCancel.Visible = true;
-                btYes.Enabled = true;
-                btNo.Enabled = true;
-                btCancel.Enabled = true;
-            }
-            else
-            {
-                btYes.Visible = false;
-                btNo.Visible = false;
-                btCancel.Visible = false;
-                btYes.Enabled = false;
-                btNo.Enabled = false;
-                btCancel.Enabled = false;
-            }
-        }
-
         private void btOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -195,9 +184,61 @@ namespace HTAlt
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            btYes.ButtonText = useOK ? OK : Yes;
+            if (FormBorderStyle != FormBorderStyle.None || FormBorderStyle != FormBorderStyle.FixedToolWindow)
+            {
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            }
+            label1.Text = Message;
+            label1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 50;
+            int Count = 0;
+            Count += msgbutton.Yes ? 1 : 0;
+            Count += msgbutton.No ? 1 : 0;
+            Count += msgbutton.Cancel ? 1 : 0;
+            Count += msgbutton.OK ? 1 : 0;
+            Count += msgbutton.Abort ? 1 : 0;
+            Count += msgbutton.Retry ? 1 : 0;
+            Count += msgbutton.Ignore ? 1 : 0;
+            if (Count > 0)
+            {
+                buttonSize += Count * 25;
+            }
+            else
+            {
+                buttonSize = 50;
+            }
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            // Yes
+            btYes.Visible = msgbutton.Yes;
+            btYes.Enabled = msgbutton.Yes;
+            // No
+            btNo.Visible = msgbutton.No;
+            btNo.Enabled = msgbutton.No;
+            // Cancel
+            btCancel.Visible = msgbutton.Cancel;
+            btCancel.Enabled = msgbutton.Cancel;
+            // OK
+            btOK.Visible = msgbutton.OK;
+            btOK.Enabled = msgbutton.OK;
+            // Abort
+            btAbort.Visible = msgbutton.Abort;
+            btAbort.Enabled = msgbutton.Abort;
+            // Retry
+            btRetry.Visible = msgbutton.Retry;
+            btRetry.Enabled = msgbutton.Retry;
+            // Ignore
+            btIgnore.Visible = msgbutton.Ignore;
+            btIgnore.Enabled = msgbutton.Ignore;
+            btYes.ButtonText = Yes;
             btNo.ButtonText = No;
             btCancel.ButtonText = Cancel;
+            btAbort.ButtonText = Abort;
+            btRetry.ButtonText = Retry;
+            btIgnore.ButtonText = Ignore;
+            btOK.ButtonText = OK;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
@@ -206,6 +247,142 @@ namespace HTAlt
             btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+        }
+
+        private void btOK_Click_1(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btAbort_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Abort;
+            Close();
+        }
+
+        private void btRetry_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Retry;
+            Close();
+        }
+
+        private void btIgnore_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Ignore;
+            Close();
+        }
+    }
+    /// <summary>
+    /// Buttons to display in a HTMsgBox.
+    /// </summary>
+    public class HTMsgBoxButtons
+    {
+        private bool _OK = false;
+        private bool _Yes = false;
+        private bool _No = false;
+        private bool _Cancel = false;
+        private bool _Ignore = false;
+        private bool _Abort = false;
+        private bool _Retry = false;
+        /// <summary>
+        /// OK Button.
+        /// </summary>
+        public bool OK
+        {
+            get
+            {
+                return _OK;
+            }
+            set 
+            { 
+                _OK = value; 
+            }
+        }
+
+        /// <summary>
+        /// Yes Button.
+        /// </summary>
+        public bool Yes
+        {
+            get
+            {
+                return _Yes;
+            }
+            set
+            {
+                _Yes = value;
+            }
+        }
+        /// <summary>
+        /// No Button.
+        /// </summary>
+        public bool No
+        {
+            get
+            {
+                return _No;
+            }
+            set
+            {
+                _No = value;
+            }
+        }
+        /// <summary>
+        /// Cancel Button.
+        /// </summary>
+        public bool Cancel
+        {
+            get
+            {
+                return _Cancel;
+            }
+            set
+            {
+                _Cancel = value;
+            }
+        }
+        /// <summary>
+        /// Abort Button.
+        /// </summary>
+        public bool Abort
+        {
+            get
+            {
+                return _Abort;
+            }
+            set
+            {
+                _Abort = value;
+            }
+        }
+        /// <summary>
+        /// Retry Button.
+        /// </summary>
+        public bool Retry
+        {
+            get
+            {
+                return _Retry;
+            }
+            set
+            {
+                _Retry = value;
+            }
+        }
+        /// <summary>
+        /// Ignore Button.
+        /// </summary>
+        public bool Ignore
+        {
+            get
+            {
+                return _Ignore;
+            }
+            set
+            {
+                _Ignore = value;
+            }
         }
     }
 }

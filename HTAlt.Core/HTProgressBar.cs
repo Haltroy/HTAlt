@@ -110,7 +110,7 @@ namespace HTAlt
             }
         }
         #endregion
-        #region "Enums"
+        #region Enums
         public enum ProgressDirection
         {
             LeftToRight,
@@ -119,7 +119,7 @@ namespace HTAlt
             TopToBottom
         }
         #endregion
-        #region "Properties"
+        #region Properties
         /// <summary>
         /// Color of the background.
         /// </summary>
@@ -130,7 +130,7 @@ namespace HTAlt
         public override Color BackColor
         {
             get => _BackColor;
-            set { _BackColor = value; Refresh(); }
+            set { _BackColor = value; Update(); }
         }
         /// <summary>
         /// Color of the border.
@@ -142,7 +142,7 @@ namespace HTAlt
         public Color BorderColor
         {
             get => _BorderColor;
-            set { _BorderColor = value; Refresh(); }
+            set { _BorderColor = value; Update(); }
         }
         /// <summary>
         /// <c>true</c> if a border should be drawn, otherwise <c>false</c>.
@@ -154,7 +154,7 @@ namespace HTAlt
         public bool DrawBorder
         {
             get => _DrawBorder;
-            set { _DrawBorder = value; Refresh(); }
+            set { _DrawBorder = value; Update(); }
         }
         /// <summary>
         /// Thickness of the border.
@@ -166,7 +166,7 @@ namespace HTAlt
         public int BorderThickness
         {
             get => _BorderThiccness;
-            set { _BorderThiccness = value; Refresh(); }
+            set { _BorderThiccness = value; Update(); }
         }
         /// <summary>
         /// Color of the loading bar.
@@ -178,7 +178,7 @@ namespace HTAlt
         public Color BarColor
         {
             get => _Overlay;
-            set { _Overlay = value; Refresh(); }
+            set { _Overlay = value; Update(); }
         }
         /// <summary>
         /// Color of the loading bar.
@@ -190,7 +190,7 @@ namespace HTAlt
         public ProgressDirection Direction
         {
             get => _Direction;
-            set { _Direction = value; Refresh(); }
+            set { _Direction = value; Update(); }
         }
         /// <summary>
         /// Maximum value of the progress bar.
@@ -217,7 +217,7 @@ namespace HTAlt
                     };
                     OnMaximumChanged(args);
                     _Max = value;
-                    Refresh();
+                    Update();
                 }
             }
         }
@@ -246,7 +246,7 @@ namespace HTAlt
                     };
                     OnMinimumChanged(args);
                     _Min = value;
-                    Refresh();
+                    Update();
                 }
             }
         }
@@ -271,7 +271,7 @@ namespace HTAlt
                     };
                     OnValueChanged(args);
                     _Value = value;
-                    Refresh();
+                    Update();
                 }
                 else
                 {
@@ -289,7 +289,7 @@ namespace HTAlt
         private Color _BorderColor = Color.Black;
         private Color _BackColor = Color.White;
         #endregion
-        #region "Paint"
+        #region Paint
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

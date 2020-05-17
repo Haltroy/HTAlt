@@ -40,26 +40,16 @@ namespace HTAlt.Test
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            MessageBoxButtons mesajbuton = new MessageBoxButtons();
-            if (cbButtons.Text == "Nothing")
+            HTMsgBoxButtons mesajbuton = new HTMsgBoxButtons()
             {
-                mesajbuton = MessageBoxButtons.AbortRetryIgnore;
-            } else if (cbButtons.Text == "YesNo")
-            {
-                mesajbuton = MessageBoxButtons.YesNo;
-            }
-            else if (cbButtons.Text == "YesNoCancel")
-            {
-                mesajbuton = MessageBoxButtons.YesNoCancel;
-            }
-            else if (cbButtons.Text == "OK")
-            {
-                mesajbuton = MessageBoxButtons.OK;
-            }
-            else if (cbButtons.Text == "OKCancel")
-            {
-                mesajbuton = MessageBoxButtons.OKCancel;
-            }
+                OK = hsOK.Checked,
+                Cancel = hsCancel.Checked,
+                Yes = hsYes.Checked,
+                No = hsNo.Checked,
+                Abort = hsAbort.Checked,
+                Ignore = hsIgnore.Checked,
+                Retry = hsRetry.Checked,
+            };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
             {
@@ -71,33 +61,22 @@ namespace HTAlt.Test
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                                                                       tbMessage.Text,
                                                                                       mesajbuton)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             mesaj.Show();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            MessageBoxButtons mesajbuton = new MessageBoxButtons();
-            if (cbButtons.Text == "Nothing")
+            HTMsgBoxButtons mesajbuton = new HTMsgBoxButtons()
             {
-                mesajbuton = MessageBoxButtons.AbortRetryIgnore;
-            }
-            else if (cbButtons.Text == "YesNo")
-            {
-                mesajbuton = MessageBoxButtons.YesNo;
-            }
-            else if (cbButtons.Text == "YesNoCancel")
-            {
-                mesajbuton = MessageBoxButtons.YesNoCancel;
-            }
-            else if (cbButtons.Text == "OK")
-            {
-                mesajbuton = MessageBoxButtons.OK;
-            }
-            else if (cbButtons.Text == "OKCancel")
-            {
-                mesajbuton = MessageBoxButtons.OKCancel;
-            }
+                OK = hsOK.Checked,
+                Cancel = hsCancel.Checked,
+                Yes = hsYes.Checked,
+                No = hsNo.Checked,
+                Abort = hsAbort.Checked,
+                Ignore = hsIgnore.Checked,
+                Retry = hsRetry.Checked,
+            };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
             {
@@ -110,7 +89,7 @@ namespace HTAlt.Test
             HTAlt.HTMsgBox mesaj = new HTAlt.HTMsgBox(tbTitle.Text,
                                                                           tbMessage.Text,
                                                                           mesajbuton)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor,Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             DialogResult diares = mesaj.ShowDialog();
             if (diares == DialogResult.OK)
             {
@@ -127,6 +106,21 @@ namespace HTAlt.Test
             else if (diares == DialogResult.No)
             {
                 lResult.Text = "No - " + tbNo.Text;
+            }
+            else if (diares == DialogResult.Abort)
+            {
+                lResult.Text = "Abort - " + tbAbort.Text;
+            }
+            else if (diares == DialogResult.Retry)
+            {
+                lResult.Text = "Retry - " + tbRetry.Text;
+            }
+            else if (diares == DialogResult.Ignore)
+            {
+                lResult.Text = "Ignore - " + tbIgnore.Text;
+            }else
+            {
+                lResult.Text = "None";
             }
             label10.Visible = true;
             lResult.Visible = true;
@@ -188,5 +182,6 @@ namespace HTAlt.Test
         {
             fullscreenmode = HTSwitch3.Checked;
         }
+
     }
 }

@@ -8,8 +8,8 @@ namespace HTAlt
     /// </summary>
     public class HTInfo
     {
-        private static readonly string version = "0.1.3.2";
-        private static readonly string codeName = "Sidewalk Hotfix 2";
+        private static readonly string version = "0.1.4.0";
+        private static readonly string codeName = "Midnight Walk";
         private static readonly string name = "HTAlt";
         private static readonly string link = "https://github.com/haltroy/HTAlt";
         private static readonly string developer = "Haltroy";

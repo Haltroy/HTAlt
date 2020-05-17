@@ -31,7 +31,14 @@
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.HTTabControl1 = new HTAlt.HTTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tpBoxes = new System.Windows.Forms.TabPage();
+            this.hsRetry = new HTAlt.HTSwitch();
+            this.hsCancel = new HTAlt.HTSwitch();
+            this.hsOK = new HTAlt.HTSwitch();
+            this.hsNo = new HTAlt.HTSwitch();
+            this.hsYes = new HTAlt.HTSwitch();
+            this.hsIgnore = new HTAlt.HTSwitch();
+            this.hsAbort = new HTAlt.HTSwitch();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.ibResult = new System.Windows.Forms.Label();
@@ -44,7 +51,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lResult = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.cbButtons = new System.Windows.Forms.ComboBox();
             this.pbBackColor = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,13 +60,18 @@
             this.tbOK = new System.Windows.Forms.TextBox();
             this.tbNo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.tbIgnore = new System.Windows.Forms.TextBox();
+            this.tbAbort = new System.Windows.Forms.TextBox();
+            this.tbRetry = new System.Windows.Forms.TextBox();
             this.tbYes = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -97,7 +108,7 @@
             this.HTSwitch2 = new HTAlt.HTSwitch();
             this.button7 = new System.Windows.Forms.Button();
             this.HTTabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpBoxes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -108,7 +119,7 @@
             this.HTTabControl1.AllowDrop = true;
             this.HTTabControl1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.HTTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.HTTabControl1.Controls.Add(this.tabPage1);
+            this.HTTabControl1.Controls.Add(this.tpBoxes);
             this.HTTabControl1.Controls.Add(this.tabPage2);
             this.HTTabControl1.Controls.Add(this.tabPage4);
             this.HTTabControl1.DisableClose = false;
@@ -134,48 +145,108 @@
             this.HTTabControl1.UpDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(70)))));
             this.HTTabControl1.UpDownTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(112)))));
             // 
-            // tabPage1
+            // tpBoxes
             // 
-            this.tabPage1.Controls.Add(this.label20);
-            this.tabPage1.Controls.Add(this.label19);
-            this.tabPage1.Controls.Add(this.ibResult);
-            this.tabPage1.Controls.Add(this.ibResultTitle);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.ibDefault);
-            this.tabPage1.Controls.Add(this.ibSetToDefault);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Controls.Add(this.lResult);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.cbButtons);
-            this.tabPage1.Controls.Add(this.pbBackColor);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.tbMessage);
-            this.tabPage1.Controls.Add(this.tbIcon);
-            this.tabPage1.Controls.Add(this.tbCancel);
-            this.tabPage1.Controls.Add(this.tbOK);
-            this.tabPage1.Controls.Add(this.tbNo);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.tbYes);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.tbTitle);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 20);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 426);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "MsgBox & InputBox";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpBoxes.Controls.Add(this.hsRetry);
+            this.tpBoxes.Controls.Add(this.hsCancel);
+            this.tpBoxes.Controls.Add(this.hsOK);
+            this.tpBoxes.Controls.Add(this.hsNo);
+            this.tpBoxes.Controls.Add(this.hsYes);
+            this.tpBoxes.Controls.Add(this.hsIgnore);
+            this.tpBoxes.Controls.Add(this.hsAbort);
+            this.tpBoxes.Controls.Add(this.label20);
+            this.tpBoxes.Controls.Add(this.label19);
+            this.tpBoxes.Controls.Add(this.ibResult);
+            this.tpBoxes.Controls.Add(this.ibResultTitle);
+            this.tpBoxes.Controls.Add(this.button4);
+            this.tpBoxes.Controls.Add(this.button6);
+            this.tpBoxes.Controls.Add(this.ibDefault);
+            this.tpBoxes.Controls.Add(this.ibSetToDefault);
+            this.tpBoxes.Controls.Add(this.label22);
+            this.tpBoxes.Controls.Add(this.label12);
+            this.tpBoxes.Controls.Add(this.lResult);
+            this.tpBoxes.Controls.Add(this.label10);
+            this.tpBoxes.Controls.Add(this.pbBackColor);
+            this.tpBoxes.Controls.Add(this.label5);
+            this.tpBoxes.Controls.Add(this.label4);
+            this.tpBoxes.Controls.Add(this.tbMessage);
+            this.tpBoxes.Controls.Add(this.tbIcon);
+            this.tpBoxes.Controls.Add(this.tbCancel);
+            this.tpBoxes.Controls.Add(this.tbOK);
+            this.tpBoxes.Controls.Add(this.tbNo);
+            this.tpBoxes.Controls.Add(this.label9);
+            this.tpBoxes.Controls.Add(this.tbIgnore);
+            this.tpBoxes.Controls.Add(this.tbAbort);
+            this.tpBoxes.Controls.Add(this.tbRetry);
+            this.tpBoxes.Controls.Add(this.tbYes);
+            this.tpBoxes.Controls.Add(this.label8);
+            this.tpBoxes.Controls.Add(this.tbTitle);
+            this.tpBoxes.Controls.Add(this.label7);
+            this.tpBoxes.Controls.Add(this.label2);
+            this.tpBoxes.Controls.Add(this.label14);
+            this.tpBoxes.Controls.Add(this.label13);
+            this.tpBoxes.Controls.Add(this.label11);
+            this.tpBoxes.Controls.Add(this.label6);
+            this.tpBoxes.Controls.Add(this.label1);
+            this.tpBoxes.Controls.Add(this.button2);
+            this.tpBoxes.Controls.Add(this.button3);
+            this.tpBoxes.Controls.Add(this.button1);
+            this.tpBoxes.Location = new System.Drawing.Point(4, 20);
+            this.tpBoxes.Name = "tpBoxes";
+            this.tpBoxes.Padding = new System.Windows.Forms.Padding(3);
+            this.tpBoxes.Size = new System.Drawing.Size(792, 426);
+            this.tpBoxes.TabIndex = 0;
+            this.tpBoxes.Text = "MsgBox & InputBox";
+            this.tpBoxes.UseVisualStyleBackColor = true;
+            // 
+            // hsRetry
+            // 
+            this.hsRetry.Location = new System.Drawing.Point(530, 279);
+            this.hsRetry.Name = "hsRetry";
+            this.hsRetry.Size = new System.Drawing.Size(50, 19);
+            this.hsRetry.TabIndex = 31;
+            // 
+            // hsCancel
+            // 
+            this.hsCancel.Location = new System.Drawing.Point(530, 234);
+            this.hsCancel.Name = "hsCancel";
+            this.hsCancel.Size = new System.Drawing.Size(50, 19);
+            this.hsCancel.TabIndex = 31;
+            // 
+            // hsOK
+            // 
+            this.hsOK.Location = new System.Drawing.Point(531, 192);
+            this.hsOK.Name = "hsOK";
+            this.hsOK.Size = new System.Drawing.Size(50, 19);
+            this.hsOK.TabIndex = 31;
+            // 
+            // hsNo
+            // 
+            this.hsNo.Location = new System.Drawing.Point(530, 150);
+            this.hsNo.Name = "hsNo";
+            this.hsNo.Size = new System.Drawing.Size(50, 19);
+            this.hsNo.TabIndex = 31;
+            // 
+            // hsYes
+            // 
+            this.hsYes.Location = new System.Drawing.Point(530, 105);
+            this.hsYes.Name = "hsYes";
+            this.hsYes.Size = new System.Drawing.Size(50, 19);
+            this.hsYes.TabIndex = 31;
+            // 
+            // hsIgnore
+            // 
+            this.hsIgnore.Location = new System.Drawing.Point(238, 324);
+            this.hsIgnore.Name = "hsIgnore";
+            this.hsIgnore.Size = new System.Drawing.Size(50, 19);
+            this.hsIgnore.TabIndex = 31;
+            // 
+            // hsAbort
+            // 
+            this.hsAbort.Location = new System.Drawing.Point(238, 276);
+            this.hsAbort.Name = "hsAbort";
+            this.hsAbort.Size = new System.Drawing.Size(50, 19);
+            this.hsAbort.TabIndex = 31;
             // 
             // label20
             // 
@@ -237,7 +308,7 @@
             // 
             // ibDefault
             // 
-            this.ibDefault.Location = new System.Drawing.Point(21, 250);
+            this.ibDefault.Location = new System.Drawing.Point(21, 211);
             this.ibDefault.Multiline = true;
             this.ibDefault.Name = "ibDefault";
             this.ibDefault.Size = new System.Drawing.Size(268, 62);
@@ -245,7 +316,7 @@
             // 
             // ibSetToDefault
             // 
-            this.ibSetToDefault.Location = new System.Drawing.Point(313, 289);
+            this.ibSetToDefault.Location = new System.Drawing.Point(315, 346);
             this.ibSetToDefault.Name = "ibSetToDefault";
             this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
             this.ibSetToDefault.TabIndex = 21;
@@ -254,7 +325,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(18, 231);
+            this.label22.Location = new System.Drawing.Point(18, 192);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 16);
             this.label22.TabIndex = 18;
@@ -263,7 +334,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(310, 270);
+            this.label12.Location = new System.Drawing.Point(312, 327);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(172, 16);
             this.label12.TabIndex = 19;
@@ -289,26 +360,11 @@
             this.label10.Text = "Result:";
             this.label10.Visible = false;
             // 
-            // cbButtons
-            // 
-            this.cbButtons.FormattingEnabled = true;
-            this.cbButtons.Items.AddRange(new object[] {
-            "Nothing",
-            "YesNo",
-            "YesNoCancel",
-            "OK",
-            "OKCancel"});
-            this.cbButtons.Location = new System.Drawing.Point(313, 31);
-            this.cbButtons.Name = "cbButtons";
-            this.cbButtons.Size = new System.Drawing.Size(267, 24);
-            this.cbButtons.TabIndex = 7;
-            this.cbButtons.Text = "Nothing";
-            // 
             // pbBackColor
             // 
             this.pbBackColor.BackColor = System.Drawing.Color.White;
             this.pbBackColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbBackColor.Location = new System.Drawing.Point(380, 318);
+            this.pbBackColor.Location = new System.Drawing.Point(382, 60);
             this.pbBackColor.Name = "pbBackColor";
             this.pbBackColor.Size = new System.Drawing.Size(30, 30);
             this.pbBackColor.TabIndex = 6;
@@ -318,7 +374,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(310, 325);
+            this.label5.Location = new System.Drawing.Point(312, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 16);
             this.label5.TabIndex = 5;
@@ -327,7 +383,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(310, 54);
+            this.label4.Location = new System.Drawing.Point(310, 15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 5;
@@ -338,20 +394,20 @@
             this.tbMessage.Location = new System.Drawing.Point(21, 70);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(268, 158);
+            this.tbMessage.Size = new System.Drawing.Size(268, 119);
             this.tbMessage.TabIndex = 3;
             this.tbMessage.Text = "This is a test message!";
             // 
             // tbIcon
             // 
-            this.tbIcon.Location = new System.Drawing.Point(313, 70);
+            this.tbIcon.Location = new System.Drawing.Point(313, 31);
             this.tbIcon.Name = "tbIcon";
             this.tbIcon.Size = new System.Drawing.Size(235, 23);
             this.tbIcon.TabIndex = 3;
             // 
             // tbCancel
             // 
-            this.tbCancel.Location = new System.Drawing.Point(313, 244);
+            this.tbCancel.Location = new System.Drawing.Point(313, 253);
             this.tbCancel.Name = "tbCancel";
             this.tbCancel.Size = new System.Drawing.Size(268, 23);
             this.tbCancel.TabIndex = 3;
@@ -359,7 +415,7 @@
             // 
             // tbOK
             // 
-            this.tbOK.Location = new System.Drawing.Point(312, 205);
+            this.tbOK.Location = new System.Drawing.Point(312, 211);
             this.tbOK.Name = "tbOK";
             this.tbOK.Size = new System.Drawing.Size(268, 23);
             this.tbOK.TabIndex = 3;
@@ -367,7 +423,7 @@
             // 
             // tbNo
             // 
-            this.tbNo.Location = new System.Drawing.Point(313, 166);
+            this.tbNo.Location = new System.Drawing.Point(313, 169);
             this.tbNo.Name = "tbNo";
             this.tbNo.Size = new System.Drawing.Size(268, 23);
             this.tbNo.TabIndex = 3;
@@ -376,11 +432,35 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(310, 228);
+            this.label9.Location = new System.Drawing.Point(310, 237);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(121, 16);
             this.label9.TabIndex = 2;
             this.label9.Text = "Cancel Button Text:";
+            // 
+            // tbIgnore
+            // 
+            this.tbIgnore.Location = new System.Drawing.Point(21, 343);
+            this.tbIgnore.Name = "tbIgnore";
+            this.tbIgnore.Size = new System.Drawing.Size(267, 23);
+            this.tbIgnore.TabIndex = 3;
+            this.tbIgnore.Text = "Ignore";
+            // 
+            // tbAbort
+            // 
+            this.tbAbort.Location = new System.Drawing.Point(21, 295);
+            this.tbAbort.Name = "tbAbort";
+            this.tbAbort.Size = new System.Drawing.Size(267, 23);
+            this.tbAbort.TabIndex = 3;
+            this.tbAbort.Text = "Abort";
+            // 
+            // tbRetry
+            // 
+            this.tbRetry.Location = new System.Drawing.Point(315, 298);
+            this.tbRetry.Name = "tbRetry";
+            this.tbRetry.Size = new System.Drawing.Size(267, 23);
+            this.tbRetry.TabIndex = 3;
+            this.tbRetry.Text = "Retry";
             // 
             // tbYes
             // 
@@ -393,7 +473,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(309, 189);
+            this.label8.Location = new System.Drawing.Point(309, 195);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 16);
             this.label8.TabIndex = 2;
@@ -410,7 +490,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(310, 150);
+            this.label7.Location = new System.Drawing.Point(310, 153);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 16);
             this.label7.TabIndex = 2;
@@ -425,6 +505,33 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Message:";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(18, 324);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(119, 16);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "Ignore Button Text:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 276);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(115, 16);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Abort Button Text:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(312, 279);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(114, 16);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Retry Button Text:";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -433,15 +540,6 @@
             this.label6.Size = new System.Drawing.Size(102, 16);
             this.label6.TabIndex = 2;
             this.label6.Text = "Yes Button Text:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(310, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "MessageBoxButtons:";
             // 
             // label1
             // 
@@ -464,7 +562,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(545, 69);
+            this.button3.Location = new System.Drawing.Point(545, 30);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 24);
             this.button3.TabIndex = 1;
@@ -873,8 +971,8 @@
             this.Name = "Form1";
             this.Text = "HTAlt Test App";
             this.HTTabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tpBoxes.ResumeLayout(false);
+            this.tpBoxes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -887,7 +985,7 @@
         #endregion
 
         private HTAlt.HTTabControl HTTabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tpBoxes;
         private System.Windows.Forms.TabPage tabPage2;
         private HTAlt.HTSwitch HTSwitch1;
         private HTAlt.HTSlider HTSlider1;
@@ -897,7 +995,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbIcon;
         private System.Windows.Forms.Button button3;
@@ -911,7 +1008,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbCancel;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbButtons;
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label sliderValue;
@@ -952,6 +1048,19 @@
         private HTButton htButton6;
         private HTButton htButton9;
         private HTButton htButton8;
+        private System.Windows.Forms.TextBox tbRetry;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbIgnore;
+        private System.Windows.Forms.TextBox tbAbort;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private HTSwitch hsCancel;
+        private HTSwitch hsOK;
+        private HTSwitch hsNo;
+        private HTSwitch hsYes;
+        private HTSwitch hsIgnore;
+        private HTSwitch hsAbort;
+        private HTSwitch hsRetry;
     }
 }
 

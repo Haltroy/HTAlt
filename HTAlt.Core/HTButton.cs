@@ -59,10 +59,10 @@ namespace HTAlt
             FlatAppearance.CheckedBackColor = Color.Empty;
             FlatAppearance.MouseOverBackColor = Color.Empty;
             Tools.PrintInfoToConsole();
-            CurrentBackColor = BackColor;
         }
         private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
         private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;
+        #region Not Browsable
         /// <summary>
         /// This property is not in use.
         /// </summary>
@@ -134,6 +134,7 @@ namespace HTAlt
             get => AutoSizeMode.GrowOnly;
             set => value = AutoSizeMode.GrowOnly;
         }
+        #endregion
         #region HTControls
         private readonly HTInfo info = new HTInfo();
         private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTButton-Class");
@@ -179,7 +180,7 @@ namespace HTAlt
         public new ButtonTextImageRelation TextImageRelation
         {
             get => tiRelation;
-            set => tiRelation = value;
+            set { tiRelation = value; Update(); }
         }
         /// <summary>
         /// Determines how to display image.
@@ -191,7 +192,7 @@ namespace HTAlt
         public ButtonImageSizeMode ImageSizeMode
         {
             get => imgSizeMode;
-            set => imgSizeMode = value;
+            set {imgSizeMode = value; Update(); }
         }
         /// <summary>
         /// Determines the display image.
@@ -203,8 +204,8 @@ namespace HTAlt
         public Image ButtonImage
         {
             get => _Image;
-            set => _Image = value;
-        }
+            set { _Image = value; Update(); }
+}
         /// <summary>
         /// Determines the display text.
         /// </summary>
@@ -215,40 +216,10 @@ namespace HTAlt
         public string ButtonText
         {
             get => _Text;
-            set => _Text = value;
+            set { _Text = value; Update(); }
         }
         private string _Text;
         private Image _Image;
-        private Color CurrentBackColor;
-
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            CurrentBackColor = Tools.IsOpaque(BackColor) ? Tools.ShiftBrightnessIfNeeded(BackColor, 20, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 20, true);
-            Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-            CurrentBackColor = BackColor;
-            Invalidate();
-        }
-
-        protected override void OnMouseDown(MouseEventArgs mevent)
-        {
-            base.OnMouseDown(mevent);
-            CurrentBackColor = Tools.IsOpaque(BackColor) ? Tools.ShiftBrightnessIfNeeded(BackColor, 40, false) : Tools.ShiftBrightnessIfNeeded(BackColor, 40, true);
-            Invalidate();
-        }
-
-        protected override void OnMouseUp(MouseEventArgs mevent)
-        {
-            base.OnMouseUp(mevent);
-            CurrentBackColor = BackColor;
-            Invalidate();
-        }
         #region "Paint"
 
         #region "Image Draw Modes"

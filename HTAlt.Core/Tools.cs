@@ -421,10 +421,11 @@ namespace HTAlt
         /// </summary>
         /// <param name="number">Integer to work on.</param>
         /// <param name="subtract">Integer to subtract.</param>
+        /// <param name="limit">Integer for limit.</param>
         /// <returns>Subtracts the number if subtract is smaller than the number, otherwise returns the number untouched.</returns>
-        public static int SubtractIfNeeded(int number, int subtract)
+        public static int SubtractIfNeeded(int number, int subtract, int limit = 0)
         {
-            return number > subtract ? number - subtract : number;
+            return limit == 0 ? (number > subtract ? number - subtract : number) : (number - subtract < limit ? number : number - subtract);
         }
         /// <summary>
         /// Add the number if the result is going to be smaller or equal to limit.
@@ -433,7 +434,7 @@ namespace HTAlt
         /// <param name="add">Integer to add.</param>
         /// <param name="limit">Integer for limit.</param>
         /// <returns>Adds the number if added number is smaller than the limit, otherwise returns the number untouched.</returns>
-        public static int AddIfNeeded(int number, int add, int limit)
+        public static int AddIfNeeded(int number, int add, int limit = ((2^31) -1))
         {
             return number + add > limit ? number : number + add;
         }

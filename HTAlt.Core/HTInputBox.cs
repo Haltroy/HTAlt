@@ -110,13 +110,17 @@ namespace HTAlt
             defaultString = defaultValue;
             Text = title;
             label1.Text = description;
-            Height = (23 * LinesCountIndexOf(description)) + 155;
+            label1.MaximumSize = new Size(Width - 25, 0);
+            Console.WriteLine(" This Width: " + Width + " Label1: " + label1.Width);
+            // (23 * LinesCountIndexOf(description))
+            Height = label1.Height + 145;
             MaximumSize = new Size(Screen.FromHandle(Handle).WorkingArea.Width, Screen.FromHandle(Handle).WorkingArea.Height);
             textBox1.Text = defaultString;
             BackgroundColor = Color.White;
             button1.Text = OK;
             button2.Text = Cancel;
         }
+
         /// <summary>
         /// Value inside the textbox in this input box.
         /// </summary>
@@ -155,6 +159,11 @@ namespace HTAlt
         private void haltroyButton1_Click(object sender, EventArgs e)
         {
             textBox1.Text = defaultString;
+        }
+
+        private void HTInputBox_Load(object sender, EventArgs e)
+        {
+            timer1_Tick(sender,e);
         }
     }
 }
