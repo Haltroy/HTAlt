@@ -54,9 +54,14 @@ namespace HTAlt
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.haltroyButton1 = new HTAlt.HTButton();
-            this.button1 = new HTAlt.HTButton();
-            this.button2 = new HTAlt.HTButton();
+            this.btDefault = new HTAlt.HTButton();
+            this.btOK = new HTAlt.HTButton();
+            this.btCancel = new HTAlt.HTButton();
+            this.btYes = new HTAlt.HTButton();
+            this.btNo = new HTAlt.HTButton();
+            this.btAbort = new HTAlt.HTButton();
+            this.btIgnore = new HTAlt.HTButton();
+            this.btRetry = new HTAlt.HTButton();
             this.SuspendLayout();
             // 
             // label1
@@ -76,7 +81,7 @@ namespace HTAlt
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 27);
+            this.textBox1.Location = new System.Drawing.Point(0, 34);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(384, 20);
             this.textBox1.TabIndex = 1;
@@ -86,58 +91,133 @@ namespace HTAlt
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // haltroyButton1
+            // btDefault
             // 
-            this.haltroyButton1.ButtonText = "Set to Default";
-            this.haltroyButton1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.haltroyButton1.FlatAppearance.BorderSize = 0;
-            this.haltroyButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.haltroyButton1.Location = new System.Drawing.Point(0, 47);
-            this.haltroyButton1.Name = "haltroyButton1";
-            this.haltroyButton1.Size = new System.Drawing.Size(384, 23);
-            this.haltroyButton1.TabIndex = 2;
-            this.haltroyButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
-            this.haltroyButton1.UseVisualStyleBackColor = true;
-            this.haltroyButton1.Click += new System.EventHandler(this.haltroyButton1_Click);
+            this.btDefault.ButtonText = "Set to Default";
+            this.btDefault.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btDefault.FlatAppearance.BorderSize = 0;
+            this.btDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btDefault.Location = new System.Drawing.Point(0, 54);
+            this.btDefault.Name = "btDefault";
+            this.btDefault.Size = new System.Drawing.Size(384, 23);
+            this.btDefault.TabIndex = 2;
+            this.btDefault.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btDefault.UseVisualStyleBackColor = true;
+            this.btDefault.Click += new System.EventHandler(this.haltroyButton1_Click);
             // 
-            // button1
+            // btOK
             // 
-            this.button1.ButtonText = "OK";
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 70);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(384, 23);
-            this.button1.TabIndex = 3;
-            this.button1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btOK.ButtonText = "OK";
+            this.btOK.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btOK.FlatAppearance.BorderSize = 0;
+            this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btOK.Location = new System.Drawing.Point(0, 192);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(384, 23);
+            this.btOK.TabIndex = 3;
+            this.btOK.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button2
+            // btCancel
             // 
-            this.button2.ButtonText = "Cancel";
-            this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(384, 23);
-            this.button2.TabIndex = 4;
-            this.button2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.btCancel.ButtonText = "Cancel";
+            this.btCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btCancel.FlatAppearance.BorderSize = 0;
+            this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btCancel.Location = new System.Drawing.Point(0, 215);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(384, 23);
+            this.btCancel.TabIndex = 4;
+            this.btCancel.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // btYes
+            // 
+            this.btYes.ButtonText = "Yes";
+            this.btYes.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btYes.FlatAppearance.BorderSize = 0;
+            this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btYes.Location = new System.Drawing.Point(0, 169);
+            this.btYes.Name = "btYes";
+            this.btYes.Size = new System.Drawing.Size(384, 23);
+            this.btYes.TabIndex = 5;
+            this.btYes.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btYes.UseVisualStyleBackColor = true;
+            this.btYes.Click += new System.EventHandler(this.btYes_Click);
+            // 
+            // btNo
+            // 
+            this.btNo.ButtonText = "No";
+            this.btNo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btNo.FlatAppearance.BorderSize = 0;
+            this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNo.Location = new System.Drawing.Point(0, 146);
+            this.btNo.Name = "btNo";
+            this.btNo.Size = new System.Drawing.Size(384, 23);
+            this.btNo.TabIndex = 6;
+            this.btNo.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btNo.UseVisualStyleBackColor = true;
+            this.btNo.Click += new System.EventHandler(this.btNo_Click);
+            // 
+            // btAbort
+            // 
+            this.btAbort.ButtonText = "Abort";
+            this.btAbort.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btAbort.FlatAppearance.BorderSize = 0;
+            this.btAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btAbort.Location = new System.Drawing.Point(0, 123);
+            this.btAbort.Name = "btAbort";
+            this.btAbort.Size = new System.Drawing.Size(384, 23);
+            this.btAbort.TabIndex = 7;
+            this.btAbort.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btAbort.UseVisualStyleBackColor = true;
+            this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
+            // 
+            // btIgnore
+            // 
+            this.btIgnore.ButtonText = "Ignore";
+            this.btIgnore.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btIgnore.FlatAppearance.BorderSize = 0;
+            this.btIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btIgnore.Location = new System.Drawing.Point(0, 100);
+            this.btIgnore.Name = "btIgnore";
+            this.btIgnore.Size = new System.Drawing.Size(384, 23);
+            this.btIgnore.TabIndex = 8;
+            this.btIgnore.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btIgnore.UseVisualStyleBackColor = true;
+            this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
+            // 
+            // btRetry
+            // 
+            this.btRetry.ButtonText = "Retry";
+            this.btRetry.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btRetry.FlatAppearance.BorderSize = 0;
+            this.btRetry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRetry.Location = new System.Drawing.Point(0, 77);
+            this.btRetry.Name = "btRetry";
+            this.btRetry.Size = new System.Drawing.Size(384, 23);
+            this.btRetry.TabIndex = 9;
+            this.btRetry.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btRetry.UseVisualStyleBackColor = true;
+            this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
             // 
             // HTInputBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 116);
+            this.ClientSize = new System.Drawing.Size(384, 238);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.haltroyButton1);
+            this.Controls.Add(this.btDefault);
+            this.Controls.Add(this.btRetry);
+            this.Controls.Add(this.btIgnore);
+            this.Controls.Add(this.btAbort);
+            this.Controls.Add(this.btNo);
+            this.Controls.Add(this.btYes);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btOK);
+            this.Controls.Add(this.btCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 155);
@@ -152,10 +232,15 @@ namespace HTAlt
         #endregion
 
         protected internal System.Windows.Forms.Label label1;
-        protected internal HTAlt.HTButton button1;
-        protected internal HTAlt.HTButton button2;
+        protected internal HTAlt.HTButton btOK;
+        protected internal HTAlt.HTButton btCancel;
         protected internal System.Windows.Forms.TextBox textBox1;
         protected internal System.Windows.Forms.Timer timer1;
-        protected internal HTButton haltroyButton1;
+        protected internal HTButton btDefault;
+        protected internal HTButton btYes;
+        protected internal HTButton btNo;
+        protected internal HTButton btAbort;
+        protected internal HTButton btIgnore;
+        protected internal HTButton btRetry;
     }
 }

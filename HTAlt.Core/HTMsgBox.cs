@@ -74,7 +74,14 @@ namespace HTAlt
         /// </summary>
         public Color BackgroundColor;
         private HTMsgBoxButtons msgbutton = new HTMsgBoxButtons(){ OK = true,};
-        public HTMsgBoxButtons MsgBoxButtons => msgbutton;
+        /// <summary>
+        /// Gets or sets the list of visible buttons.
+        /// </summary>
+        public HTMsgBoxButtons MsgBoxButtons
+        {
+            get => msgbutton;
+            set => msgbutton = value;
+        }
         /// <summary>
         /// Text to display on "Yes" button.
         /// </summary>
@@ -111,9 +118,9 @@ namespace HTAlt
         /// <summary>
         /// Creates new HaltroyMsgBox.
         /// </summary>
-        /// <param name="title">Title of the message.</param>
-        /// <param name="message">Text of message.</param>
-        /// <param name="messageBoxButtons">Buttons to display.</param>
+        /// <param name="Title">Title of the message.</param>
+        /// <param name="Message">Text of message.</param>
+        /// <param name="MessageBoxButtons">Buttons to display.</param>
         public HTMsgBox(string Title,
                       string MsgBoxMessage,
                       HTMsgBoxButtons MessageBoxButtons)
@@ -137,10 +144,6 @@ namespace HTAlt
             if (Count > 0)
             {
                 buttonSize += Count * 25;
-            }
-            else
-            {
-                buttonSize = 50;
             }
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
@@ -202,10 +205,6 @@ namespace HTAlt
             if (Count > 0)
             {
                 buttonSize += Count * 25;
-            }
-            else
-            {
-                buttonSize = 50;
             }
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
