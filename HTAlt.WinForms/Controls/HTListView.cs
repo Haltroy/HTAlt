@@ -117,7 +117,7 @@ namespace HTAlt
 
         public HTListView()
         {
-            Tools.PrintInfoToConsole();
+            
 
             DrawItem += this_DrawItem;
             DrawSubItem += this_DrawSubItem;

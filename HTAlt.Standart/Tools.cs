@@ -44,14 +44,8 @@ namespace HTAlt
         /// </summary>
         public static bool PrintInfoToConsole()
         {
-            if (Properties.Settings.Default.isInfoGiven == false)
-            {
-                Properties.Settings.Default.isInfoGiven = true;
-                Console.WriteLine(PrintInfo);
-                return true;
-            }
-            else { return false; }
-
+            Console.WriteLine(PrintInfo);
+            return true;
         }
         /// <summary>
         /// Returns the information text displayed in console on start.

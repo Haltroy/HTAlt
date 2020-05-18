@@ -49,7 +49,7 @@ namespace HTAlt
         public HTProgressBar() : this(100, 0, 0) { }
         public HTProgressBar(int max, int min, int value)
         {
-            Tools.PrintInfoToConsole();
+            
             _Value = value;
             _Max = max;
             _Min = min;

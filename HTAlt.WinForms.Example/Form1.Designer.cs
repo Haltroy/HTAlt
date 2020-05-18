@@ -107,6 +107,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.HTSwitch2 = new HTAlt.HTSwitch();
             this.button7 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.HTTabControl1.SuspendLayout();
             this.tpBoxes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
@@ -691,6 +692,7 @@
             this.tabPage4.Controls.Add(this.HTSwitch3);
             this.tabPage4.Controls.Add(this.label21);
             this.tabPage4.Controls.Add(this.HTSwitch2);
+            this.tabPage4.Controls.Add(this.button5);
             this.tabPage4.Controls.Add(this.button7);
             this.tabPage4.Location = new System.Drawing.Point(4, 20);
             this.tabPage4.Name = "tabPage4";
@@ -957,9 +959,19 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(187, 23);
             this.button7.TabIndex = 0;
-            this.button7.Text = "Spawn a HaltroyForm";
+            this.button7.Text = "Spawn a HTForm";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(206, 6);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(187, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Spawn a HTTabForm";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // Form1
             // 
@@ -1061,6 +1073,7 @@
         private HTSwitch hsIgnore;
         private HTSwitch hsAbort;
         private HTSwitch hsRetry;
+        private System.Windows.Forms.Button button5;
     }
 }
 

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-<!--MIT License
+MIT License
 
 Copyright (c) 2020 Eren "Haltroy" Kanat
 
@@ -20,20 +18,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. -->
-    <configSections>
-        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-            <section name="HTAlt.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false"/>
-        </sectionGroup>
-    </configSections>
-    <startup> 
-        
-    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2"/></startup>
-    <userSettings>
-        <HTAlt.Properties.Settings>
-            <setting name="isInfoGiven" serializeAs="String">
-                <value>False</value>
-            </setting>
-        </HTAlt.Properties.Settings>
-    </userSettings>
-</configuration>
+SOFTWARE.

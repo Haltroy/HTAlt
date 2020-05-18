@@ -234,7 +234,7 @@ namespace HTAlt
 
         public HTTabControl()
         {
-            Tools.PrintInfoToConsole();
+            
             base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             DoubleBuffered = true;
             CenterSF = new StringFormat

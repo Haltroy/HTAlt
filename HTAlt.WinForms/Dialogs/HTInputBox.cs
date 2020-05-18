@@ -151,7 +151,7 @@ namespace HTAlt
                                HTMsgBoxButtons MessageBoxButtons,
                                string defaultValue = "")
         {
-            Tools.PrintInfoToConsole();
+            
             InitializeComponent();
             defaultString = defaultValue;
             msgbutton = MessageBoxButtons;

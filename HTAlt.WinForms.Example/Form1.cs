@@ -183,5 +183,12 @@ namespace HTAlt.Test
             fullscreenmode = HTSwitch3.Checked;
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TabForm tabform = new TabForm();
+            tabform.Tabs.Add(tabform.CreateTab());
+            tabform.SelectedTabIndex = 0;
+            tabform.Show();
+        }
     }
 }

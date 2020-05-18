@@ -58,7 +58,7 @@ namespace HTAlt
             FlatAppearance.BorderSize = 0;
             FlatAppearance.CheckedBackColor = Color.Empty;
             FlatAppearance.MouseOverBackColor = Color.Empty;
-            Tools.PrintInfoToConsole();
+            
         }
         private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
         private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;

@@ -127,7 +127,7 @@ namespace HTAlt
         {
             msgbutton = MessageBoxButtons;
             InitializeComponent();
-            Tools.PrintInfoToConsole();
+            
             Text = Title;
             Message = MsgBoxMessage;
             label1.Text = Message;

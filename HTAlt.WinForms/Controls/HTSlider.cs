@@ -530,7 +530,7 @@ namespace HTAlt
         /// <param name="value">The current value.</param>
         public HTSlider(int min, int max, int value)
         {
-            Tools.PrintInfoToConsole();
+            
             InitializeComponent();
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw | ControlStyles.Selectable |

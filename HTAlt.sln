@@ -3,24 +3,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.Core", "HTAlt.Core\HTAlt.Core.csproj", "{EC777E43-5DDB-481C-9A70-07B4AB6AF769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.WinForms", "HTAlt.WinForms\HTAlt.WinForms.csproj", "{EC777E43-5DDB-481C-9A70-07B4AB6AF769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.Test", "HTAlt.Test\HTAlt.Test.csproj", "{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.Winforms.Example", "HTAlt.WinForms.Example\HTAlt.Winforms.Example.csproj", "{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTAlt.Standart", "HTAlt.Standart\HTAlt.Standart.csproj", "{FD372B88-D2DF-4420-AC75-9F70E0F3032E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Debug|x86.Build.0 = Debug|Any CPU
 		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC777E43-5DDB-481C-9A70-07B4AB6AF769}.Release|x86.Build.0 = Release|Any CPU
 		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Debug|x86.Build.0 = Debug|Any CPU
 		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E4F3BDB-E3A1-4CD9-ABA3-C2E89A1F7C21}.Release|x86.Build.0 = Release|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Debug|x86.Build.0 = Debug|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|x86.ActiveCfg = Release|Any CPU
+		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

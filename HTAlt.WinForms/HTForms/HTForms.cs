@@ -201,7 +201,7 @@ namespace HTAlt
         }
         public HTForms()
         {
-            Tools.PrintInfoToConsole();
+            
         }
     }
 }

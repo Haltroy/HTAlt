@@ -122,7 +122,7 @@ namespace HTAlt
 
         public HTSwitch()
         {
-            Tools.PrintInfoToConsole();
+            
             SetStyle(ControlStyles.ResizeRedraw |
                         ControlStyles.SupportsTransparentBackColor |
                         ControlStyles.AllPaintingInWmPaint |
