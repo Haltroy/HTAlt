@@ -21,7 +21,13 @@ namespace HTAlt.Test
         }
         public override HTTitleTab CreateTab()
         {
-            return new HTTitleTab(this) { BackColor = Color.White, UseDefaultBackColor = true, Content = new TabInnerForm() };
+            return new HTTitleTab(this) 
+            { 
+                RightImage = Properties.Resources.ht_logo_2020,
+                BackColor = Color.White, 
+                UseDefaultBackColor = true, 
+                Content = new TabInnerForm() 
+            };
         }
     }
 }

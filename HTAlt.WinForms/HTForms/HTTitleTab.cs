@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTAlt.Standart;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -24,8 +25,59 @@ namespace HTAlt.WinForms
 	/// </summary>
 	public class HTTitleTabsOverlay : Form
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTabsOverlay-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Borderless overlay window that is moved with and rendered on top of the non-client area of a HTTitleTabs instance that's responsible for rendering the actual tab content and responding to click events for those tabs.";
 		/// <summary>
-		/// 
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink=> originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
+		/// <summary>
+		/// Tooltip's timer.
 		/// </summary>
 		protected Timer showTooltipTimer;
 
@@ -1066,6 +1118,7 @@ namespace HTAlt.WinForms
 	[Serializable]
 	public class ListModificationEventArgs : ListRangeEventArgs
 	{
+
 		/// <summary>Modification being made to the list.</summary>
 		private readonly ListModification _modification;
 
@@ -1590,6 +1643,57 @@ namespace HTAlt.WinForms
 	/// </summary>
 	public class HTTitleTabsApplicationContext : ApplicationContext
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTabsApplicationContext-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Application context to use when starting a HTTitleTabs application via Application.Run(ApplicationContext).  Used to track open windows so that the entire application doesn't quit when the first-opened window is closed.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>List of all opened windows.</summary>
 		protected List<HTTitleTabs> _openWindows = new List<HTTitleTabs>();
 
@@ -1653,6 +1757,61 @@ namespace HTAlt.WinForms
 	/// <summary>Wraps a <see cref="Form" /> instance (<see cref="_content" />), that represents the content that should be displayed within a tab instance.</summary>
 	public class HTTitleTab
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTab-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Wraps a Form instance (_content), that represents the content that should be displayed within a tab instance.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
+		/// <summary>
+		/// Image to display between Close button and text.
+		/// </summary>
+		public Image RightImage { get; set; }
 		/// <summary>
 		/// True to use the default color for background.
 		/// </summary>
@@ -1956,6 +2115,57 @@ namespace HTAlt.WinForms
 	/// </summary>
 	public class TornTabForm : Form
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/TornTabForm-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Contains a semi-transparent window with a thumbnail of a tab that has been torn away from its parent window.  This thumbnail will follow the cursor around as it's dragged around the screen.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>Window that contains the actual thumbnail image data.</summary>
 		private readonly LayeredWindow _layeredWindow;
 
@@ -2137,6 +2347,57 @@ namespace HTAlt.WinForms
 	/// <summary>Form that actually displays the thumbnail content for <see cref="TornTabForm" />.</summary>
 	internal class LayeredWindow : Form
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/LayeredWindow-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Form that actually displays the thumbnail content for TornTabForm.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>Default constructor.</summary>
 		public LayeredWindow()
 		{

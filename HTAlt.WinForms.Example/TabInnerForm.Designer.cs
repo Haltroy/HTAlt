@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.noshitsherlock = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // noshitsherlock
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This is a tab.";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.noshitsherlock.AutoSize = true;
+            this.noshitsherlock.Location = new System.Drawing.Point(13, 27);
+            this.noshitsherlock.Name = "noshitsherlock";
+            this.noshitsherlock.Size = new System.Drawing.Size(67, 13);
+            this.noshitsherlock.TabIndex = 0;
+            this.noshitsherlock.Text = "This is a tab.";
+            this.noshitsherlock.Click += new System.EventHandler(this.label1_Click);
             // 
             // TabInnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.noshitsherlock);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TabInnerForm";
             this.Text = "TabInnerForm";
@@ -57,6 +57,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label noshitsherlock;
     }
 }

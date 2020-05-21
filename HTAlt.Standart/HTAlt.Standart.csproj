@@ -5,14 +5,14 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <Version>0.1.4.0</Version>
     <Authors>Haltroy</Authors>
-    <Description>Standart library for HTAlt.</Description>
+    <Description>Standart library for HTAlt packages.</Description>
     <Copyright>Copyright © Haltroy 2020</Copyright>
     <PackageProjectUrl>https://github.com/Haltroy/HTAlt</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Haltroy/HTAlt</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <PackageTags>haltroy HTAlt haltroyframework hf button listview tabcontrol tab tabs slider switch</PackageTags>
+    <PackageTags>haltroy HTAlt haltroyframework hf</PackageTags>
     <PackageReleaseNotes>Please go to https://github.com/Haltroy/HTAlt/releases to see the changes.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>

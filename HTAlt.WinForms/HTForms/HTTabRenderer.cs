@@ -1,14 +1,67 @@
+using HTAlt.Standart;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms
 {
-	/// <summary>Renderer that produces tabs that mimic the appearance of the Chrome browser.</summary>
+	/// <summary>Renderer that produces tabs that mimic the appearance of the Korot desktop Client.</summary>
 	public class HTTabRenderer : HTBaseTabRenderer
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTabRenderer-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Renderer that produces tabs that mimic the appearance of the Korot desktop Client.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>
 		/// Overlay background color.
 		/// </summary>
@@ -108,7 +161,57 @@ namespace HTAlt.WinForms
 	/// </summary>
 	public abstract class HTBaseTabRenderer
 	{
-
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTBaseTabRenderer-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Provides the base functionality for any tab renderer, taking care of actually rendering and detecting whether the cursor is over a tab.  Any custom tab renderer needs to inherit from this class, just as HTTabRenderer does.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>Area on the screen where the add button is located.</summary>
 		protected Rectangle _addButtonArea;
 
@@ -776,10 +879,9 @@ namespace HTAlt.WinForms
 					// Draw the close button
 					if (tab.ShowCloseButton)
 					{
-
 						tab.CloseButtonArea = new Rectangle(
-							area.Width - LeftRightWidth - CloseButtonMarginRight - closeButtonWH, CloseButtonMarginTop, closeButtonWH,
-							closeButtonWH);
+	                    area.Width - LeftRightWidth - CloseButtonMarginRight - closeButtonWH, CloseButtonMarginTop, closeButtonWH,
+	                    closeButtonWH);
 						Color closeButtonColor = OverlayColor;
 						if (CloseTabButton == TabColors.BackColor)
 						{
@@ -797,6 +899,24 @@ namespace HTAlt.WinForms
 							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(OverlayBackColor, 20, false) : OverlayBackColor;
 						}
 						tabGraphicsContext.DrawString("X", new Font(_parentWindow.Font.FontFamily, 12, FontStyle.Bold),new SolidBrush(closeButtonColor),tab.CloseButtonArea);
+					}
+					// Draw secondary image
+					if (tab.RightImage != null)
+					{
+						Rectangle ImageRect;
+						if (tab.ShowCloseButton)
+						{
+							Console.WriteLine("Close Button Shown");
+							ImageRect = new Rectangle(
+						area.Width - LeftRightWidth - CloseButtonMarginRight - closeButtonWH - 20, CloseButtonMarginTop, closeButtonWH,
+						closeButtonWH);
+						}else
+						{
+							ImageRect = new Rectangle(
+						area.Width - LeftRightWidth - CloseButtonMarginRight - closeButtonWH, CloseButtonMarginTop, closeButtonWH,
+						closeButtonWH);
+						}
+						tabGraphicsContext.DrawImage(tab.RightImage, ImageRect);
 					}
 				}
 
@@ -839,7 +959,7 @@ namespace HTAlt.WinForms
 							: 0),
 						CaptionMarginTop + area.Y,
 						_tabContentWidth - (tab.Content.ShowIcon
-							? IconMarginLeft + 16 + IconMarginRight
+							? IconMarginLeft + 16 + (tab.RightImage != null ? 20 : 0) + IconMarginRight
 							: 0) - (tab.ShowCloseButton
 								? closeButtonWH +
 								  CloseButtonMarginRight +

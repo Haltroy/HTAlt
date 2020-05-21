@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
+using HTAlt.Standart;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using Win32Interop.Enums;
 using Win32Interop.Methods;
@@ -22,6 +23,57 @@ namespace HTAlt.WinForms
 	/// </summary>
 	public abstract partial class HTTitleTabs : Form
 	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTabs-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Base class that contains the functionality to render tabs within a WinForms application's title bar area. This  is done through a borderless overlay window (_overlay) rendered on top of the non-client area at the top of this window.  All an implementing class will need to do is set the TabRenderer property and begin adding tabs to Tabs.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
