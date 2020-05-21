@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTAlt.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,17 +11,17 @@ using System.Windows.Forms;
 
 namespace HTAlt.Test
 {
-    public partial class TabForm : HTTitleBarTabs
+    public partial class TabForm : HTTitleTabs
     {
         public TabForm()
         {
             InitializeComponent();
             AeroPeekEnabled = true;
-            TabRenderer = new HTTabRenderer(this, Color.White, Color.Black, Color.DodgerBlue, null, false);
+            TabRenderer = new HTTabRenderer(this);
         }
-        public override HTTitleBarTab CreateTab()
+        public override HTTitleTab CreateTab()
         {
-            return new HTTitleBarTab(this) { BackColor = Color.White, useDefaultBackColor = true, Content = new TabInnerForm() };
+            return new HTTitleTab(this) { BackColor = Color.White, UseDefaultBackColor = true, Content = new TabInnerForm() };
         }
     }
 }

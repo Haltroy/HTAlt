@@ -1,4 +1,6 @@
-﻿namespace HTAlt.Test
+﻿using HTAlt.WinForms;
+
+namespace HTAlt.Test
 {
     partial class Form1
     {
@@ -30,15 +32,15 @@
         {
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Test");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.HTTabControl1 = new HTAlt.HTTabControl();
+            this.HTTabControl1 = new HTAlt.WinForms.HTTabControl();
             this.tpBoxes = new System.Windows.Forms.TabPage();
-            this.hsRetry = new HTAlt.HTSwitch();
-            this.hsCancel = new HTAlt.HTSwitch();
-            this.hsOK = new HTAlt.HTSwitch();
-            this.hsNo = new HTAlt.HTSwitch();
-            this.hsYes = new HTAlt.HTSwitch();
-            this.hsIgnore = new HTAlt.HTSwitch();
-            this.hsAbort = new HTAlt.HTSwitch();
+            this.hsRetry = new HTAlt.WinForms.HTSwitch();
+            this.hsCancel = new HTAlt.WinForms.HTSwitch();
+            this.hsOK = new HTAlt.WinForms.HTSwitch();
+            this.hsNo = new HTAlt.WinForms.HTSwitch();
+            this.hsYes = new HTAlt.WinForms.HTSwitch();
+            this.hsIgnore = new HTAlt.WinForms.HTSwitch();
+            this.hsAbort = new HTAlt.WinForms.HTSwitch();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.ibResult = new System.Windows.Forms.Label();
@@ -77,35 +79,35 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.HTListView2 = new HTAlt.HTListView();
+            this.HTListView2 = new HTAlt.WinForms.HTListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sliderValue = new System.Windows.Forms.Label();
-            this.HTSwitch1 = new HTAlt.HTSwitch();
-            this.HTSlider1 = new HTAlt.HTSlider();
+            this.HTSwitch1 = new HTAlt.WinForms.HTSwitch();
+            this.HTSlider1 = new HTAlt.WinForms.HTSlider();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.htButton9 = new HTAlt.HTButton();
-            this.htButton8 = new HTAlt.HTButton();
-            this.htButton7 = new HTAlt.HTButton();
-            this.htButton6 = new HTAlt.HTButton();
-            this.htButton5 = new HTAlt.HTButton();
-            this.htButton4 = new HTAlt.HTButton();
-            this.htButton3 = new HTAlt.HTButton();
-            this.htButton2 = new HTAlt.HTButton();
-            this.htButton1 = new HTAlt.HTButton();
-            this.HTProgressBar8 = new HTAlt.HTProgressBar();
-            this.HTProgressBar4 = new HTAlt.HTProgressBar();
-            this.HTProgressBar7 = new HTAlt.HTProgressBar();
-            this.HTProgressBar3 = new HTAlt.HTProgressBar();
-            this.htProgressBar6 = new HTAlt.HTProgressBar();
-            this.HTProgressBar2 = new HTAlt.HTProgressBar();
-            this.htProgressBar5 = new HTAlt.HTProgressBar();
-            this.HTProgressBar1 = new HTAlt.HTProgressBar();
+            this.htButton9 = new HTAlt.WinForms.HTButton();
+            this.htButton8 = new HTAlt.WinForms.HTButton();
+            this.htButton7 = new HTAlt.WinForms.HTButton();
+            this.htButton6 = new HTAlt.WinForms.HTButton();
+            this.htButton5 = new HTAlt.WinForms.HTButton();
+            this.htButton4 = new HTAlt.WinForms.HTButton();
+            this.htButton3 = new HTAlt.WinForms.HTButton();
+            this.htButton2 = new HTAlt.WinForms.HTButton();
+            this.htButton1 = new HTAlt.WinForms.HTButton();
+            this.HTProgressBar8 = new HTAlt.WinForms.HTProgressBar();
+            this.HTProgressBar4 = new HTAlt.WinForms.HTProgressBar();
+            this.HTProgressBar7 = new HTAlt.WinForms.HTProgressBar();
+            this.HTProgressBar3 = new HTAlt.WinForms.HTProgressBar();
+            this.htProgressBar6 = new HTAlt.WinForms.HTProgressBar();
+            this.HTProgressBar2 = new HTAlt.WinForms.HTProgressBar();
+            this.htProgressBar5 = new HTAlt.WinForms.HTProgressBar();
+            this.HTProgressBar1 = new HTAlt.WinForms.HTProgressBar();
             this.label24 = new System.Windows.Forms.Label();
-            this.HTSwitch3 = new HTAlt.HTSwitch();
+            this.HTSwitch3 = new HTAlt.WinForms.HTSwitch();
             this.label21 = new System.Windows.Forms.Label();
-            this.HTSwitch2 = new HTAlt.HTSwitch();
+            this.HTSwitch2 = new HTAlt.WinForms.HTSwitch();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.HTTabControl1.SuspendLayout();
@@ -708,12 +710,12 @@
             this.htButton9.ButtonText = "Sample Text";
             this.htButton9.FlatAppearance.BorderSize = 0;
             this.htButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton9.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Tile;
+            this.htButton9.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Tile;
             this.htButton9.Location = new System.Drawing.Point(410, 252);
             this.htButton9.Name = "htButton9";
             this.htButton9.Size = new System.Drawing.Size(124, 49);
             this.htButton9.TabIndex = 24;
-            this.htButton9.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton9.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
             this.htButton9.UseVisualStyleBackColor = true;
             // 
             // htButton8
@@ -722,12 +724,12 @@
             this.htButton8.ButtonText = "Sample Text";
             this.htButton8.FlatAppearance.BorderSize = 0;
             this.htButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton8.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Stretch;
+            this.htButton8.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Stretch;
             this.htButton8.Location = new System.Drawing.Point(410, 169);
             this.htButton8.Name = "htButton8";
             this.htButton8.Size = new System.Drawing.Size(124, 49);
             this.htButton8.TabIndex = 23;
-            this.htButton8.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton8.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
             this.htButton8.UseVisualStyleBackColor = true;
             // 
             // htButton7
@@ -736,12 +738,12 @@
             this.htButton7.ButtonText = "Sample Text";
             this.htButton7.FlatAppearance.BorderSize = 0;
             this.htButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton7.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Center;
+            this.htButton7.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Center;
             this.htButton7.Location = new System.Drawing.Point(269, 169);
             this.htButton7.Name = "htButton7";
             this.htButton7.Size = new System.Drawing.Size(124, 49);
             this.htButton7.TabIndex = 22;
-            this.htButton7.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton7.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
             this.htButton7.UseVisualStyleBackColor = true;
             // 
             // htButton6
@@ -754,7 +756,7 @@
             this.htButton6.Name = "htButton6";
             this.htButton6.Size = new System.Drawing.Size(124, 49);
             this.htButton6.TabIndex = 21;
-            this.htButton6.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton6.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
             this.htButton6.UseVisualStyleBackColor = true;
             // 
             // htButton5
@@ -763,12 +765,12 @@
             this.htButton5.ButtonText = "Sample Text";
             this.htButton5.FlatAppearance.BorderSize = 0;
             this.htButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton5.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton5.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton5.Location = new System.Drawing.Point(9, 97);
             this.htButton5.Name = "htButton5";
             this.htButton5.Size = new System.Drawing.Size(124, 49);
             this.htButton5.TabIndex = 20;
-            this.htButton5.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.None;
+            this.htButton5.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.None;
             this.htButton5.UseVisualStyleBackColor = true;
             // 
             // htButton4
@@ -777,12 +779,12 @@
             this.htButton4.ButtonText = "Sample Text";
             this.htButton4.FlatAppearance.BorderSize = 0;
             this.htButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton4.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton4.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton4.Location = new System.Drawing.Point(9, 169);
             this.htButton4.Name = "htButton4";
             this.htButton4.Size = new System.Drawing.Size(124, 49);
             this.htButton4.TabIndex = 19;
-            this.htButton4.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustImage;
+            this.htButton4.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
             this.htButton4.UseVisualStyleBackColor = true;
             // 
             // htButton3
@@ -791,12 +793,12 @@
             this.htButton3.ButtonText = "Sample Text";
             this.htButton3.FlatAppearance.BorderSize = 0;
             this.htButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton3.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton3.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton3.Location = new System.Drawing.Point(9, 234);
             this.htButton3.Name = "htButton3";
             this.htButton3.Size = new System.Drawing.Size(124, 49);
             this.htButton3.TabIndex = 18;
-            this.htButton3.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.JustText;
+            this.htButton3.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustText;
             this.htButton3.UseVisualStyleBackColor = true;
             // 
             // htButton2
@@ -805,12 +807,12 @@
             this.htButton2.ButtonText = "Sample Text";
             this.htButton2.FlatAppearance.BorderSize = 0;
             this.htButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton2.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton2.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton2.Location = new System.Drawing.Point(9, 344);
             this.htButton2.Name = "htButton2";
             this.htButton2.Size = new System.Drawing.Size(124, 49);
             this.htButton2.TabIndex = 17;
-            this.htButton2.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.htButton2.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.htButton2.UseVisualStyleBackColor = true;
             // 
             // htButton1
@@ -819,18 +821,18 @@
             this.htButton1.ButtonText = "Sample Text";
             this.htButton1.FlatAppearance.BorderSize = 0;
             this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton1.ImageSizeMode = HTAlt.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton1.Location = new System.Drawing.Point(9, 289);
             this.htButton1.Name = "htButton1";
             this.htButton1.Size = new System.Drawing.Size(124, 49);
             this.htButton1.TabIndex = 16;
-            this.htButton1.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextAboveImage;
+            this.htButton1.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextAboveImage;
             this.htButton1.UseVisualStyleBackColor = true;
             // 
             // HTProgressBar8
             // 
             this.HTProgressBar8.BorderThickness = 2;
-            this.HTProgressBar8.Direction = HTAlt.HTProgressBar.ProgressDirection.TopToBottom;
+            this.HTProgressBar8.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.TopToBottom;
             this.HTProgressBar8.DrawBorder = true;
             this.HTProgressBar8.Location = new System.Drawing.Point(697, 121);
             this.HTProgressBar8.Name = "HTProgressBar8";
@@ -842,7 +844,7 @@
             // HTProgressBar4
             // 
             this.HTProgressBar4.BorderThickness = 0;
-            this.HTProgressBar4.Direction = HTAlt.HTProgressBar.ProgressDirection.TopToBottom;
+            this.HTProgressBar4.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.TopToBottom;
             this.HTProgressBar4.Location = new System.Drawing.Point(653, 121);
             this.HTProgressBar4.Name = "HTProgressBar4";
             this.HTProgressBar4.Size = new System.Drawing.Size(10, 261);
@@ -853,7 +855,7 @@
             // HTProgressBar7
             // 
             this.HTProgressBar7.BorderThickness = 2;
-            this.HTProgressBar7.Direction = HTAlt.HTProgressBar.ProgressDirection.BottomToTop;
+            this.HTProgressBar7.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.BottomToTop;
             this.HTProgressBar7.DrawBorder = true;
             this.HTProgressBar7.Location = new System.Drawing.Point(681, 121);
             this.HTProgressBar7.Name = "HTProgressBar7";
@@ -865,7 +867,7 @@
             // HTProgressBar3
             // 
             this.HTProgressBar3.BorderThickness = 0;
-            this.HTProgressBar3.Direction = HTAlt.HTProgressBar.ProgressDirection.BottomToTop;
+            this.HTProgressBar3.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.BottomToTop;
             this.HTProgressBar3.Location = new System.Drawing.Point(619, 121);
             this.HTProgressBar3.Name = "HTProgressBar3";
             this.HTProgressBar3.Size = new System.Drawing.Size(10, 261);
@@ -876,7 +878,7 @@
             // htProgressBar6
             // 
             this.htProgressBar6.BorderThickness = 2;
-            this.htProgressBar6.Direction = HTAlt.HTProgressBar.ProgressDirection.RightToLeft;
+            this.htProgressBar6.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.RightToLeft;
             this.htProgressBar6.DrawBorder = true;
             this.htProgressBar6.Location = new System.Drawing.Point(619, 69);
             this.htProgressBar6.Name = "htProgressBar6";
@@ -888,7 +890,7 @@
             // HTProgressBar2
             // 
             this.HTProgressBar2.BorderThickness = 0;
-            this.HTProgressBar2.Direction = HTAlt.HTProgressBar.ProgressDirection.RightToLeft;
+            this.HTProgressBar2.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.RightToLeft;
             this.HTProgressBar2.Location = new System.Drawing.Point(619, 36);
             this.HTProgressBar2.Name = "HTProgressBar2";
             this.HTProgressBar2.Size = new System.Drawing.Size(153, 10);
@@ -933,7 +935,7 @@
             this.HTSwitch3.Name = "HTSwitch3";
             this.HTSwitch3.Size = new System.Drawing.Size(50, 19);
             this.HTSwitch3.TabIndex = 1;
-            this.HTSwitch3.CheckedChanged += new HTAlt.HTSwitch.CheckedChangedDelegate(this.HTSwitch3_CheckedChanged);
+            this.HTSwitch3.CheckedChanged += new HTAlt.WinForms.HTSwitch.CheckedChangedDelegate(this.HTSwitch3_CheckedChanged);
             // 
             // label21
             // 
@@ -951,7 +953,7 @@
             this.HTSwitch2.Name = "HTSwitch2";
             this.HTSwitch2.Size = new System.Drawing.Size(50, 19);
             this.HTSwitch2.TabIndex = 1;
-            this.HTSwitch2.CheckedChanged += new HTAlt.HTSwitch.CheckedChangedDelegate(this.HTSwitch2_CheckedChanged);
+            this.HTSwitch2.CheckedChanged += new HTAlt.WinForms.HTSwitch.CheckedChangedDelegate(this.HTSwitch2_CheckedChanged);
             // 
             // button7
             // 
@@ -996,11 +998,11 @@
 
         #endregion
 
-        private HTAlt.HTTabControl HTTabControl1;
+        private HTAlt.WinForms.HTTabControl HTTabControl1;
         private System.Windows.Forms.TabPage tpBoxes;
         private System.Windows.Forms.TabPage tabPage2;
-        private HTAlt.HTSwitch HTSwitch1;
-        private HTAlt.HTSlider HTSlider1;
+        private HTAlt.WinForms.HTSwitch HTSwitch1;
+        private HTAlt.WinForms.HTSlider HTSlider1;
         private System.Windows.Forms.TextBox tbMessage;
         private System.Windows.Forms.TextBox tbTitle;
         private System.Windows.Forms.Label label2;
@@ -1026,10 +1028,10 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label24;
-        private HTAlt.HTSwitch HTSwitch3;
+        private HTAlt.WinForms.HTSwitch HTSwitch3;
         private System.Windows.Forms.Label label21;
-        private HTAlt.HTSwitch HTSwitch2;
-        private HTAlt.HTListView HTListView2;
+        private HTAlt.WinForms.HTSwitch HTSwitch2;
+        private HTAlt.WinForms.HTListView HTListView2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

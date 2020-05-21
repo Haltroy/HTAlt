@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace HTAlt
+namespace HTAlt.Standart
 {
     /// <summary>
     /// This class holds information about this project.

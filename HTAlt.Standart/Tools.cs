@@ -26,7 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace HTAlt
+namespace HTAlt.Standart
 {
     /// <summary>
     /// Custom class to handle custom actions and events.

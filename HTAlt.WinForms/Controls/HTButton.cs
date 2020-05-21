@@ -19,6 +19,7 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
+using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -27,7 +28,7 @@ using System.Drawing.Imaging;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace HTAlt
+namespace HTAlt.WinForms
 {
     /// <summary>
     /// Flat button. Imidates <see cref="System.Windows.Forms.Button"/>.

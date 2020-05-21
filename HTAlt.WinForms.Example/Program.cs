@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTAlt.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -14,7 +15,13 @@ namespace HTAlt.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 frm1 = new Form1();
+            frm1.Show();
+            TabForm tabForm = new TabForm();
+            tabForm.Tabs.Add(tabForm.CreateTab());
+            HTTitleTabsApplicationContext appContext = new HTTitleTabsApplicationContext();
+            appContext.Start(tabForm);
+            Application.Run(appContext);
         }
     }
 }

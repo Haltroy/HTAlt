@@ -19,7 +19,7 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-namespace HTAlt
+namespace HTAlt.WinForms
 {
     partial class HTMsgBox
     {
@@ -53,13 +53,13 @@ namespace HTAlt
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HTMsgBox));
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btYes = new HTAlt.HTButton();
-            this.btCancel = new HTAlt.HTButton();
-            this.btNo = new HTAlt.HTButton();
-            this.btOK = new HTAlt.HTButton();
-            this.btAbort = new HTAlt.HTButton();
-            this.btRetry = new HTAlt.HTButton();
-            this.btIgnore = new HTAlt.HTButton();
+            this.btYes = new HTAlt.WinForms.HTButton();
+            this.btCancel = new HTAlt.WinForms.HTButton();
+            this.btNo = new HTAlt.WinForms.HTButton();
+            this.btOK = new HTAlt.WinForms.HTButton();
+            this.btAbort = new HTAlt.WinForms.HTButton();
+            this.btRetry = new HTAlt.WinForms.HTButton();
+            this.btIgnore = new HTAlt.WinForms.HTButton();
             this.SuspendLayout();
             // 
             // label1
@@ -87,7 +87,7 @@ namespace HTAlt
             this.btYes.Name = "btYes";
             this.btYes.Size = new System.Drawing.Size(370, 25);
             this.btYes.TabIndex = 0;
-            this.btYes.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btYes.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Visible = false;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
@@ -102,7 +102,7 @@ namespace HTAlt
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(370, 25);
             this.btCancel.TabIndex = 0;
-            this.btCancel.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btCancel.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Visible = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
@@ -117,7 +117,7 @@ namespace HTAlt
             this.btNo.Name = "btNo";
             this.btNo.Size = new System.Drawing.Size(370, 25);
             this.btNo.TabIndex = 0;
-            this.btNo.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btNo.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Visible = false;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
@@ -132,7 +132,7 @@ namespace HTAlt
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(370, 25);
             this.btOK.TabIndex = 1;
-            this.btOK.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btOK.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Visible = false;
             this.btOK.Click += new System.EventHandler(this.btOK_Click_1);
@@ -147,7 +147,7 @@ namespace HTAlt
             this.btAbort.Name = "btAbort";
             this.btAbort.Size = new System.Drawing.Size(370, 25);
             this.btAbort.TabIndex = 2;
-            this.btAbort.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btAbort.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btAbort.UseVisualStyleBackColor = true;
             this.btAbort.Visible = false;
             this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
@@ -162,7 +162,7 @@ namespace HTAlt
             this.btRetry.Name = "btRetry";
             this.btRetry.Size = new System.Drawing.Size(370, 25);
             this.btRetry.TabIndex = 3;
-            this.btRetry.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btRetry.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btRetry.UseVisualStyleBackColor = true;
             this.btRetry.Visible = false;
             this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
@@ -177,7 +177,7 @@ namespace HTAlt
             this.btIgnore.Name = "btIgnore";
             this.btIgnore.Size = new System.Drawing.Size(370, 25);
             this.btIgnore.TabIndex = 4;
-            this.btIgnore.TextImageRelation = HTAlt.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btIgnore.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btIgnore.UseVisualStyleBackColor = true;
             this.btIgnore.Visible = false;
             this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
@@ -211,9 +211,9 @@ namespace HTAlt
         #endregion
 
         private System.Windows.Forms.Label label1;
-        internal HTAlt.HTButton btNo;
-        internal HTAlt.HTButton btCancel;
-        internal HTAlt.HTButton btYes;
+        internal HTAlt.WinForms.HTButton btNo;
+        internal HTAlt.WinForms.HTButton btCancel;
+        internal HTAlt.WinForms.HTButton btYes;
         protected internal System.Windows.Forms.Timer timer1;
         internal HTButton btOK;
         internal HTButton btAbort;

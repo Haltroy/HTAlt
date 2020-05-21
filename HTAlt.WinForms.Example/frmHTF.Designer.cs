@@ -1,6 +1,6 @@
 ﻿namespace HTAlt.Test
 {
-    partial class frmHTF : HTAlt.HTForms
+    partial class frmHTF : HTForms
     {
         /// <summary>
         /// Required designer variable.

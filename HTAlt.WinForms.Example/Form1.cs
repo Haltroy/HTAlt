@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HTAlt.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,7 +87,7 @@ namespace HTAlt.Test
             {
                 mesajicon = this.Icon;
             }
-            HTAlt.HTMsgBox mesaj = new HTAlt.HTMsgBox(tbTitle.Text,
+            HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                                                           tbMessage.Text,
                                                                           mesajbuton)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor,Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };

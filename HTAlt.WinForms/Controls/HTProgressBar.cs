@@ -1,9 +1,10 @@
-﻿using System;
+﻿using HTAlt.Standart;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace HTAlt
+namespace HTAlt.WinForms
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.ProgressBar"/>.

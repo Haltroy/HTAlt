@@ -31,7 +31,7 @@ namespace HTAlt
     public partial class HTForms : Form
     {
         #region HTControls
-        private readonly HTInfo info = new HTInfo();
+        private readonly HTAlt.Standart.HTInfo info = new HTAlt.Standart.HTInfo();
         private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTForms-Class");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "A System.Windows.Forms.Form alternative if you want a borderless resizable form.";
@@ -63,7 +63,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
-        public HTInfo ProjectInfo => info;
+        public HTAlt.Standart.HTInfo ProjectInfo => info;
         #endregion
         private bool useFullScreen = false;
         private bool draggable = true;

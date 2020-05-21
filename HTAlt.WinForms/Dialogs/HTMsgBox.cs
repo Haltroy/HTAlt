@@ -19,6 +19,7 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
+using HTAlt.Standart;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using Win32Interop.Methods;
 
-namespace HTAlt
+namespace HTAlt.WinForms
 {
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.MessageBox"/>.

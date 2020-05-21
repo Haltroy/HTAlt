@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HTAlt.Test
 {
-    public partial class frmHTF : HTAlt.HTForms
+    public partial class frmHTF : HTForms
     {
         public frmHTF()
         {

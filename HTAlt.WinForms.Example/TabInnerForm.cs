@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HTAlt.Standart;
+using HTAlt.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +14,11 @@ namespace HTAlt.Test
 {
     public partial class TabInnerForm : Form
     {
-        protected HTTitleBarTabs ParentTabs
+        protected HTTitleTabs ParentTabs
         {
             get
             {
-                return (ParentForm as HTTitleBarTabs);
+                return (ParentForm as HTTitleTabs);
             }
         }
         public TabInnerForm()

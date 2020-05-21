@@ -25,11 +25,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HTAlt")]
+[assembly: AssemblyTitle("HTAlt WinForms")]
 [assembly: AssemblyDescription("A pack of controls used in Haltroy projects.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haltroy")]
-[assembly: AssemblyProduct("HTAlt")]
+[assembly: AssemblyProduct("HTAlt.WinForms")]
 [assembly: AssemblyCopyright("Copyright © Haltroy 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
