@@ -15,13 +15,7 @@ namespace HTAlt.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1 frm1 = new Form1();
-            frm1.Show();
-            TabForm tabForm = new TabForm();
-            tabForm.Tabs.Add(tabForm.CreateTab());
-            HTTitleTabsApplicationContext appContext = new HTTitleTabsApplicationContext();
-            appContext.Start(tabForm);
-            Application.Run(appContext);
+            Application.Run(new Form1());
         }
     }
 }

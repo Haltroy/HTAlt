@@ -31,6 +31,7 @@ namespace HTAlt.Test
         private void PictureBox1_Click(object sender, EventArgs e)
         {
             ColorDialog colordlg = new ColorDialog();
+            colordlg.Color = pbBackColor.BackColor;
             colordlg.AllowFullOpen = true;
             colordlg.AnyColor = true;
             if (colordlg.ShowDialog() == DialogResult.OK)
@@ -60,8 +61,8 @@ namespace HTAlt.Test
                 mesajicon = this.Icon;
             }
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
-                                                                                      tbMessage.Text,
-                                                                                      mesajbuton)
+                                          tbMessage.Text,
+                                          mesajbuton)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             mesaj.Show();
         }
@@ -88,8 +89,8 @@ namespace HTAlt.Test
                 mesajicon = this.Icon;
             }
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
-                                                                          tbMessage.Text,
-                                                                          mesajbuton)
+                                          tbMessage.Text,
+                                          mesajbuton)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor,Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
             DialogResult diares = mesaj.ShowDialog();
             if (diares == DialogResult.OK)
@@ -135,7 +136,7 @@ namespace HTAlt.Test
                 mesajicon = new Icon(tbIcon.Text);
             }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             DialogResult diagres = inputbox.ShowDialog();
             if (diagres == DialogResult.OK)
             {
@@ -156,8 +157,8 @@ namespace HTAlt.Test
                 mesajicon = new Icon(tbIcon.Text);
             }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
-            DialogResult diagres = inputbox.ShowDialog();
+            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
+            inputbox.Show();
         }
 
         private void HTSlider1_Scroll(object sender, ScrollEventArgs e)
@@ -186,10 +187,47 @@ namespace HTAlt.Test
 
         private void button5_Click(object sender, EventArgs e)
         {
-            TabForm tabform = new TabForm();
-            tabform.Tabs.Add(tabform.CreateTab());
-            tabform.SelectedTabIndex = 0;
-            tabform.Show();
+            TabForm tabForm = new TabForm();
+            tabForm.Tabs.Add(tabForm.CreateTab());
+            tabForm.SelectedTabIndex = 0;
+            HTTitleTabsApplicationContext appContext = new HTTitleTabsApplicationContext();
+            appContext.Start(tabForm);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Icon mesajicon = null;
+            if (System.IO.File.Exists(tbIcon.Text))
+            {
+                mesajicon = new Icon(tbIcon.Text);
+            }
+            HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text)
+            {
+                OverlayColor = pbOverlayColor.BackColor,
+                Icon = mesajicon,
+                BackgroundColor = pbBackColor.BackColor,
+                Abort = tbAbort.Text,
+                ShowAbortButton = hsAbort.Checked,
+                ShowProgressBar = hsPBar.Checked,
+                Min = Convert.ToInt32(nudMin.Value),
+                Max = Convert.ToInt32(nudMax.Value),
+                Value = Convert.ToInt32(nudVal.Value),
+                BorderThickness = Convert.ToInt32(nudBorder.Value),
+                ShowBorder = hsBorder.Checked,
+            };
+            inputbox.Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            ColorDialog colordlg = new ColorDialog();
+            colordlg.Color = pbOverlayColor.BackColor;
+            colordlg.AllowFullOpen = true;
+            colordlg.AnyColor = true;
+            if (colordlg.ShowDialog() == DialogResult.OK)
+            {
+                pbOverlayColor.BackColor = colordlg.Color;
+            }
         }
     }
 }

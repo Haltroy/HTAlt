@@ -24,35 +24,35 @@ namespace HTAlt.WinForms
 		[Bindable(false)]
 		[Category("HTAlt")]
 		[Description("This control's wiki link.")]
-		public Uri WikiLink => wikiLink;
+		public new Uri WikiLink => wikiLink;
 		/// <summary>
 		/// This control's origin project name.
 		/// </summary>
 		[Bindable(false)]
 		[Category("HTAlt")]
 		[Description("This control's origin project name.")]
-		public string OriginProjectName => originProjectName;
+		public new string OriginProjectName => originProjectName;
 		/// <summary>
 		/// This control's origin project link.
 		/// </summary>
 		[Bindable(false)]
 		[Category("HTAlt")]
 		[Description("This control's origin project link.")]
-		public Uri OriginProjectLink => originProject;
+		public new Uri OriginProjectLink => originProject;
 		/// <summary>
 		/// This control's first appearance version for HTAlt.
 		/// </summary>
 		[Bindable(false)]
 		[Category("HTAlt")]
 		[Description("This control's first appearance version for HTAlt.")]
-		public Version FirstHTAltVersion => firstHTAltVersion;
+		public new Version FirstHTAltVersion => firstHTAltVersion;
 		/// <summary>
 		/// This control's description.
 		/// </summary>
 		[Bindable(false)]
 		[Category("HTAlt")]
 		[Description("This control's description.")]
-		public string Description => description;
+		public new string Description => description;
 		/// <summary>
 		/// Information about this control's project.
 		/// </summary>
@@ -60,7 +60,7 @@ namespace HTAlt.WinForms
 		[Category("HTAlt")]
 		[Description("Information about this control's project.")]
 		[TypeConverter(typeof(ExpandableObjectConverter))]
-		public HTInfo ProjectInfo => info;
+		public new HTInfo ProjectInfo => info;
 		#endregion
 		/// <summary>
 		/// Overlay background color.

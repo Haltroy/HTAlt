@@ -34,6 +34,18 @@ namespace HTAlt.Test
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.HTTabControl1 = new HTAlt.WinForms.HTTabControl();
             this.tpBoxes = new System.Windows.Forms.TabPage();
+            this.nudBorder = new System.Windows.Forms.NumericUpDown();
+            this.nudVal = new System.Windows.Forms.NumericUpDown();
+            this.nudMax = new System.Windows.Forms.NumericUpDown();
+            this.nudMin = new System.Windows.Forms.NumericUpDown();
+            this.lbBorder = new System.Windows.Forms.Label();
+            this.lbVal = new System.Windows.Forms.Label();
+            this.lbMax = new System.Windows.Forms.Label();
+            this.lbMin = new System.Windows.Forms.Label();
+            this.hsBorder = new HTAlt.WinForms.HTSwitch();
+            this.hsPBar = new HTAlt.WinForms.HTSwitch();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.hsRetry = new HTAlt.WinForms.HTSwitch();
             this.hsCancel = new HTAlt.WinForms.HTSwitch();
             this.hsOK = new HTAlt.WinForms.HTSwitch();
@@ -41,10 +53,12 @@ namespace HTAlt.Test
             this.hsYes = new HTAlt.WinForms.HTSwitch();
             this.hsIgnore = new HTAlt.WinForms.HTSwitch();
             this.hsAbort = new HTAlt.WinForms.HTSwitch();
+            this.label16 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.ibResult = new System.Windows.Forms.Label();
             this.ibResultTitle = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.ibDefault = new System.Windows.Forms.TextBox();
@@ -53,6 +67,8 @@ namespace HTAlt.Test
             this.label12 = new System.Windows.Forms.Label();
             this.lResult = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.pbOverlayColor = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.pbBackColor = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -108,10 +124,15 @@ namespace HTAlt.Test
             this.HTSwitch3 = new HTAlt.WinForms.HTSwitch();
             this.label21 = new System.Windows.Forms.Label();
             this.HTSwitch2 = new HTAlt.WinForms.HTSwitch();
-            this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.HTTabControl1.SuspendLayout();
             this.tpBoxes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBorder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -150,6 +171,18 @@ namespace HTAlt.Test
             // 
             // tpBoxes
             // 
+            this.tpBoxes.Controls.Add(this.nudBorder);
+            this.tpBoxes.Controls.Add(this.nudVal);
+            this.tpBoxes.Controls.Add(this.nudMax);
+            this.tpBoxes.Controls.Add(this.nudMin);
+            this.tpBoxes.Controls.Add(this.lbBorder);
+            this.tpBoxes.Controls.Add(this.lbVal);
+            this.tpBoxes.Controls.Add(this.lbMax);
+            this.tpBoxes.Controls.Add(this.lbMin);
+            this.tpBoxes.Controls.Add(this.hsBorder);
+            this.tpBoxes.Controls.Add(this.hsPBar);
+            this.tpBoxes.Controls.Add(this.label15);
+            this.tpBoxes.Controls.Add(this.label3);
             this.tpBoxes.Controls.Add(this.hsRetry);
             this.tpBoxes.Controls.Add(this.hsCancel);
             this.tpBoxes.Controls.Add(this.hsOK);
@@ -157,10 +190,12 @@ namespace HTAlt.Test
             this.tpBoxes.Controls.Add(this.hsYes);
             this.tpBoxes.Controls.Add(this.hsIgnore);
             this.tpBoxes.Controls.Add(this.hsAbort);
+            this.tpBoxes.Controls.Add(this.label16);
             this.tpBoxes.Controls.Add(this.label20);
             this.tpBoxes.Controls.Add(this.label19);
             this.tpBoxes.Controls.Add(this.ibResult);
             this.tpBoxes.Controls.Add(this.ibResultTitle);
+            this.tpBoxes.Controls.Add(this.button8);
             this.tpBoxes.Controls.Add(this.button4);
             this.tpBoxes.Controls.Add(this.button6);
             this.tpBoxes.Controls.Add(this.ibDefault);
@@ -169,6 +204,8 @@ namespace HTAlt.Test
             this.tpBoxes.Controls.Add(this.label12);
             this.tpBoxes.Controls.Add(this.lResult);
             this.tpBoxes.Controls.Add(this.label10);
+            this.tpBoxes.Controls.Add(this.pbOverlayColor);
+            this.tpBoxes.Controls.Add(this.label17);
             this.tpBoxes.Controls.Add(this.pbBackColor);
             this.tpBoxes.Controls.Add(this.label5);
             this.tpBoxes.Controls.Add(this.label4);
@@ -202,54 +239,209 @@ namespace HTAlt.Test
             this.tpBoxes.Text = "MsgBox & InputBox";
             this.tpBoxes.UseVisualStyleBackColor = true;
             // 
+            // nudBorder
+            // 
+            this.nudBorder.Location = new System.Drawing.Point(237, 347);
+            this.nudBorder.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudBorder.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudBorder.Name = "nudBorder";
+            this.nudBorder.Size = new System.Drawing.Size(52, 23);
+            this.nudBorder.TabIndex = 40;
+            // 
+            // nudVal
+            // 
+            this.nudVal.Location = new System.Drawing.Point(70, 347);
+            this.nudVal.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudVal.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudVal.Name = "nudVal";
+            this.nudVal.Size = new System.Drawing.Size(80, 23);
+            this.nudVal.TabIndex = 39;
+            this.nudVal.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // nudMax
+            // 
+            this.nudMax.Location = new System.Drawing.Point(196, 317);
+            this.nudMax.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudMax.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudMax.Name = "nudMax";
+            this.nudMax.Size = new System.Drawing.Size(93, 23);
+            this.nudMax.TabIndex = 38;
+            this.nudMax.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // nudMin
+            // 
+            this.nudMin.Location = new System.Drawing.Point(70, 317);
+            this.nudMin.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudMin.Minimum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            -2147483648});
+            this.nudMin.Name = "nudMin";
+            this.nudMin.Size = new System.Drawing.Size(80, 23);
+            this.nudMin.TabIndex = 37;
+            // 
+            // lbBorder
+            // 
+            this.lbBorder.AutoSize = true;
+            this.lbBorder.Location = new System.Drawing.Point(156, 349);
+            this.lbBorder.Name = "lbBorder";
+            this.lbBorder.Size = new System.Drawing.Size(75, 16);
+            this.lbBorder.TabIndex = 36;
+            this.lbBorder.Text = "Border Size:";
+            // 
+            // lbVal
+            // 
+            this.lbVal.AutoSize = true;
+            this.lbVal.Location = new System.Drawing.Point(23, 349);
+            this.lbVal.Name = "lbVal";
+            this.lbVal.Size = new System.Drawing.Size(41, 16);
+            this.lbVal.TabIndex = 35;
+            this.lbVal.Text = "Value:";
+            // 
+            // lbMax
+            // 
+            this.lbMax.AutoSize = true;
+            this.lbMax.Location = new System.Drawing.Point(156, 319);
+            this.lbMax.Name = "lbMax";
+            this.lbMax.Size = new System.Drawing.Size(34, 16);
+            this.lbMax.TabIndex = 34;
+            this.lbMax.Text = "Max:";
+            // 
+            // lbMin
+            // 
+            this.lbMin.AutoSize = true;
+            this.lbMin.Location = new System.Drawing.Point(23, 319);
+            this.lbMin.Name = "lbMin";
+            this.lbMin.Size = new System.Drawing.Size(32, 16);
+            this.lbMin.TabIndex = 34;
+            this.lbMin.Text = "Min:";
+            // 
+            // hsBorder
+            // 
+            this.hsBorder.Location = new System.Drawing.Point(111, 383);
+            this.hsBorder.Name = "hsBorder";
+            this.hsBorder.Size = new System.Drawing.Size(50, 19);
+            this.hsBorder.TabIndex = 33;
+            // 
+            // hsPBar
+            // 
+            this.hsPBar.Location = new System.Drawing.Point(140, 285);
+            this.hsPBar.Name = "hsPBar";
+            this.hsPBar.Size = new System.Drawing.Size(50, 19);
+            this.hsPBar.TabIndex = 33;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(23, 384);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 16);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Draw Border:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 285);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 16);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Show Progress Bar:";
+            // 
             // hsRetry
             // 
-            this.hsRetry.Location = new System.Drawing.Point(530, 279);
+            this.hsRetry.Location = new System.Drawing.Point(315, 206);
             this.hsRetry.Name = "hsRetry";
             this.hsRetry.Size = new System.Drawing.Size(50, 19);
             this.hsRetry.TabIndex = 31;
             // 
             // hsCancel
             // 
-            this.hsCancel.Location = new System.Drawing.Point(530, 234);
+            this.hsCancel.Location = new System.Drawing.Point(315, 181);
             this.hsCancel.Name = "hsCancel";
             this.hsCancel.Size = new System.Drawing.Size(50, 19);
             this.hsCancel.TabIndex = 31;
             // 
             // hsOK
             // 
-            this.hsOK.Location = new System.Drawing.Point(531, 192);
+            this.hsOK.Location = new System.Drawing.Point(315, 156);
             this.hsOK.Name = "hsOK";
             this.hsOK.Size = new System.Drawing.Size(50, 19);
             this.hsOK.TabIndex = 31;
             // 
             // hsNo
             // 
-            this.hsNo.Location = new System.Drawing.Point(530, 150);
+            this.hsNo.Location = new System.Drawing.Point(315, 131);
             this.hsNo.Name = "hsNo";
             this.hsNo.Size = new System.Drawing.Size(50, 19);
             this.hsNo.TabIndex = 31;
             // 
             // hsYes
             // 
-            this.hsYes.Location = new System.Drawing.Point(530, 105);
+            this.hsYes.Location = new System.Drawing.Point(314, 106);
             this.hsYes.Name = "hsYes";
             this.hsYes.Size = new System.Drawing.Size(50, 19);
             this.hsYes.TabIndex = 31;
             // 
             // hsIgnore
             // 
-            this.hsIgnore.Location = new System.Drawing.Point(238, 324);
+            this.hsIgnore.Location = new System.Drawing.Point(315, 256);
             this.hsIgnore.Name = "hsIgnore";
             this.hsIgnore.Size = new System.Drawing.Size(50, 19);
             this.hsIgnore.TabIndex = 31;
             // 
             // hsAbort
             // 
-            this.hsAbort.Location = new System.Drawing.Point(238, 276);
+            this.hsAbort.Location = new System.Drawing.Point(314, 231);
             this.hsAbort.Name = "hsAbort";
             this.hsAbort.Size = new System.Drawing.Size(50, 19);
             this.hsAbort.TabIndex = 31;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(615, 256);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(97, 16);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "HTProgressBox:";
             // 
             // label20
             // 
@@ -289,6 +481,16 @@ namespace HTAlt.Test
             this.ibResultTitle.Text = "Result:";
             this.ibResultTitle.Visible = false;
             // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(711, 253);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.TabIndex = 26;
+            this.button8.Text = "Show";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(696, 166);
@@ -311,15 +513,15 @@ namespace HTAlt.Test
             // 
             // ibDefault
             // 
-            this.ibDefault.Location = new System.Drawing.Point(21, 211);
+            this.ibDefault.Location = new System.Drawing.Point(21, 188);
             this.ibDefault.Multiline = true;
             this.ibDefault.Name = "ibDefault";
-            this.ibDefault.Size = new System.Drawing.Size(268, 62);
+            this.ibDefault.Size = new System.Drawing.Size(268, 46);
             this.ibDefault.TabIndex = 20;
             // 
             // ibSetToDefault
             // 
-            this.ibSetToDefault.Location = new System.Drawing.Point(315, 346);
+            this.ibSetToDefault.Location = new System.Drawing.Point(21, 256);
             this.ibSetToDefault.Name = "ibSetToDefault";
             this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
             this.ibSetToDefault.TabIndex = 21;
@@ -328,7 +530,7 @@ namespace HTAlt.Test
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(18, 192);
+            this.label22.Location = new System.Drawing.Point(18, 169);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 16);
             this.label22.TabIndex = 18;
@@ -337,7 +539,7 @@ namespace HTAlt.Test
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(312, 327);
+            this.label12.Location = new System.Drawing.Point(18, 237);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(172, 16);
             this.label12.TabIndex = 19;
@@ -362,6 +564,26 @@ namespace HTAlt.Test
             this.label10.TabIndex = 8;
             this.label10.Text = "Result:";
             this.label10.Visible = false;
+            // 
+            // pbOverlayColor
+            // 
+            this.pbOverlayColor.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pbOverlayColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbOverlayColor.Location = new System.Drawing.Point(518, 60);
+            this.pbOverlayColor.Name = "pbOverlayColor";
+            this.pbOverlayColor.Size = new System.Drawing.Size(30, 30);
+            this.pbOverlayColor.TabIndex = 6;
+            this.pbOverlayColor.TabStop = false;
+            this.pbOverlayColor.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(431, 67);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(81, 16);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "OverlayColor:";
             // 
             // pbBackColor
             // 
@@ -397,7 +619,7 @@ namespace HTAlt.Test
             this.tbMessage.Location = new System.Drawing.Point(21, 70);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(268, 119);
+            this.tbMessage.Size = new System.Drawing.Size(268, 93);
             this.tbMessage.TabIndex = 3;
             this.tbMessage.Text = "This is a test message!";
             // 
@@ -410,32 +632,32 @@ namespace HTAlt.Test
             // 
             // tbCancel
             // 
-            this.tbCancel.Location = new System.Drawing.Point(313, 253);
+            this.tbCancel.Location = new System.Drawing.Point(495, 180);
             this.tbCancel.Name = "tbCancel";
-            this.tbCancel.Size = new System.Drawing.Size(268, 23);
+            this.tbCancel.Size = new System.Drawing.Size(85, 23);
             this.tbCancel.TabIndex = 3;
             this.tbCancel.Text = "Cancel";
             // 
             // tbOK
             // 
-            this.tbOK.Location = new System.Drawing.Point(312, 211);
+            this.tbOK.Location = new System.Drawing.Point(475, 156);
             this.tbOK.Name = "tbOK";
-            this.tbOK.Size = new System.Drawing.Size(268, 23);
+            this.tbOK.Size = new System.Drawing.Size(105, 23);
             this.tbOK.TabIndex = 3;
             this.tbOK.Text = "OK";
             // 
             // tbNo
             // 
-            this.tbNo.Location = new System.Drawing.Point(313, 169);
+            this.tbNo.Location = new System.Drawing.Point(473, 131);
             this.tbNo.Name = "tbNo";
-            this.tbNo.Size = new System.Drawing.Size(268, 23);
+            this.tbNo.Size = new System.Drawing.Size(107, 23);
             this.tbNo.TabIndex = 3;
             this.tbNo.Text = "No";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(310, 237);
+            this.label9.Location = new System.Drawing.Point(368, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(121, 16);
             this.label9.TabIndex = 2;
@@ -443,40 +665,40 @@ namespace HTAlt.Test
             // 
             // tbIgnore
             // 
-            this.tbIgnore.Location = new System.Drawing.Point(21, 343);
+            this.tbIgnore.Location = new System.Drawing.Point(491, 253);
             this.tbIgnore.Name = "tbIgnore";
-            this.tbIgnore.Size = new System.Drawing.Size(267, 23);
+            this.tbIgnore.Size = new System.Drawing.Size(89, 23);
             this.tbIgnore.TabIndex = 3;
             this.tbIgnore.Text = "Ignore";
             // 
             // tbAbort
             // 
-            this.tbAbort.Location = new System.Drawing.Point(21, 295);
+            this.tbAbort.Location = new System.Drawing.Point(491, 229);
             this.tbAbort.Name = "tbAbort";
-            this.tbAbort.Size = new System.Drawing.Size(267, 23);
+            this.tbAbort.Size = new System.Drawing.Size(89, 23);
             this.tbAbort.TabIndex = 3;
             this.tbAbort.Text = "Abort";
             // 
             // tbRetry
             // 
-            this.tbRetry.Location = new System.Drawing.Point(315, 298);
+            this.tbRetry.Location = new System.Drawing.Point(491, 204);
             this.tbRetry.Name = "tbRetry";
-            this.tbRetry.Size = new System.Drawing.Size(267, 23);
+            this.tbRetry.Size = new System.Drawing.Size(89, 23);
             this.tbRetry.TabIndex = 3;
             this.tbRetry.Text = "Retry";
             // 
             // tbYes
             // 
-            this.tbYes.Location = new System.Drawing.Point(313, 127);
+            this.tbYes.Location = new System.Drawing.Point(476, 105);
             this.tbYes.Name = "tbYes";
-            this.tbYes.Size = new System.Drawing.Size(267, 23);
+            this.tbYes.Size = new System.Drawing.Size(104, 23);
             this.tbYes.TabIndex = 3;
             this.tbYes.Text = "Yes";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(309, 195);
+            this.label8.Location = new System.Drawing.Point(371, 159);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 16);
             this.label8.TabIndex = 2;
@@ -493,7 +715,7 @@ namespace HTAlt.Test
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(310, 153);
+            this.label7.Location = new System.Drawing.Point(368, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 16);
             this.label7.TabIndex = 2;
@@ -511,7 +733,7 @@ namespace HTAlt.Test
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(18, 324);
+            this.label14.Location = new System.Drawing.Point(368, 256);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(119, 16);
             this.label14.TabIndex = 2;
@@ -520,7 +742,7 @@ namespace HTAlt.Test
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(18, 276);
+            this.label13.Location = new System.Drawing.Point(368, 232);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(115, 16);
             this.label13.TabIndex = 2;
@@ -529,7 +751,7 @@ namespace HTAlt.Test
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(312, 279);
+            this.label11.Location = new System.Drawing.Point(371, 207);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(114, 16);
             this.label11.TabIndex = 2;
@@ -538,7 +760,7 @@ namespace HTAlt.Test
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(310, 108);
+            this.label6.Location = new System.Drawing.Point(368, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 16);
             this.label6.TabIndex = 2;
@@ -955,16 +1177,6 @@ namespace HTAlt.Test
             this.HTSwitch2.TabIndex = 1;
             this.HTSwitch2.CheckedChanged += new HTAlt.WinForms.HTSwitch.CheckedChangedDelegate(this.HTSwitch2_CheckedChanged);
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(8, 6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(187, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Spawn a HTForm";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(206, 6);
@@ -974,6 +1186,16 @@ namespace HTAlt.Test
             this.button5.Text = "Spawn a HTTabForm";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(8, 6);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(187, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Spawn a HTForm";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 
@@ -987,6 +1209,11 @@ namespace HTAlt.Test
             this.HTTabControl1.ResumeLayout(false);
             this.tpBoxes.ResumeLayout(false);
             this.tpBoxes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBorder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -1076,6 +1303,22 @@ namespace HTAlt.Test
         private HTSwitch hsAbort;
         private HTSwitch hsRetry;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.NumericUpDown nudBorder;
+        private System.Windows.Forms.NumericUpDown nudVal;
+        private System.Windows.Forms.NumericUpDown nudMax;
+        private System.Windows.Forms.NumericUpDown nudMin;
+        private System.Windows.Forms.Label lbBorder;
+        private System.Windows.Forms.Label lbVal;
+        private System.Windows.Forms.Label lbMax;
+        private System.Windows.Forms.Label lbMin;
+        private HTSwitch hsBorder;
+        private HTSwitch hsPBar;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pbOverlayColor;
+        private System.Windows.Forms.Label label17;
     }
 }
 

@@ -102,6 +102,12 @@
     <Compile Include="Dialogs\HTInputBox.Designer.cs">
       <DependentUpon>HTInputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\HTProgressBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\HTProgressBox.Designer.cs">
+      <DependentUpon>HTProgressBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\HTMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="Dialogs\HTInputBox.resx">
       <DependentUpon>HTInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\HTProgressBox.resx">
+      <DependentUpon>HTProgressBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\HTMsgBox.resx">
       <DependentUpon>HTMsgBox.cs</DependentUpon>

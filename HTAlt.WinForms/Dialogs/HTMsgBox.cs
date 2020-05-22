@@ -247,6 +247,14 @@ namespace HTAlt.WinForms
             btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btOK.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btOK.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btAbort.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btRetry.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btRetry.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btIgnore.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
         }
 
         private void btOK_Click_1(object sender, EventArgs e)
