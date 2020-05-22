@@ -1,5 +1,7 @@
 # HTAlt
-[![HTAlt](https://img.shields.io/nuget/v/HTAlt.svg?style=flat&label=Nuget)](https://www.nuget.org/packages/HTAlt/)
+|Standart|WinForms|
+|--|--|
+|![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)|![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)|
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
