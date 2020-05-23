@@ -33,37 +33,6 @@ namespace HTAlt.Standart
     /// </summary>
     public class Tools
     {
-        private static readonly HTInfo info = new HTInfo();
-        public Tools()
-        {
-            PrintInfoToConsole();
-        }
-        /// <summary>
-        /// Prints project info to console if not printed.
-        /// If you are going to save settings for this project, please reset <c>isInfoGiven</c> before saving.
-        /// </summary>
-        public static bool PrintInfoToConsole()
-        {
-            Console.WriteLine(PrintInfo);
-            return true;
-        }
-        /// <summary>
-        /// Returns the information text displayed in console on start.
-        /// </summary>
-        public static string PrintInfo => Environment.NewLine
-                + "------------------"
-                + Environment.NewLine
-                + info.ProjectName
-                + " v"
-                + info.ProjectVersion.ToString()
-                + (" [ " + info.ProjectCodeName + " ] ")
-                + " by Haltroy"
-                + Environment.NewLine
-                + info.ProjectWebsite
-                + Environment.NewLine
-                + "------------------"
-                + Environment.NewLine;
-
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>

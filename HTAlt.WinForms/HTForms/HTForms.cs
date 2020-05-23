@@ -23,7 +23,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace HTAlt
+namespace HTAlt.WinForms
 {
     /// <summary>
     /// A <see cref="System.Windows.Forms.Form"/> alternative if you want a borderless resizable form.

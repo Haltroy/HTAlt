@@ -117,7 +117,7 @@ namespace HTAlt.WinForms
         public string Message = "";
 
         /// <summary>
-        /// Creates new HaltroyMsgBox.
+        /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="Title">Title of the message.</param>
         /// <param name="Message">Text of message.</param>
@@ -150,9 +150,10 @@ namespace HTAlt.WinForms
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            timer1_Tick(null, null);
         }
         /// <summary>
-        /// Creates new HaltroyMsgBox.
+        /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="message">Text of message.</param>
         public HTMsgBox(string message) : this("", message, new HTMsgBoxButtons() { OK = true, }) { }

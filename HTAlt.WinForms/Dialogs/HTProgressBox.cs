@@ -71,7 +71,7 @@ namespace HTAlt.WinForms
         public HTInfo ProjectInfo => info;
         #endregion
         /// <summary>
-        /// Background color of HTMsgBox. Foreground color is auto-selected to White or Black.
+        /// Background color of HTProgressBox. Foreground color is auto-selected to White or Black.
         /// </summary>
         public Color BackgroundColor;
 
@@ -116,7 +116,7 @@ namespace HTAlt.WinForms
         /// </summary>
         public bool ShowBorder;
         /// <summary>
-        /// Creates new HaltroyMsgBox.
+        /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="Title">Title of the message.</param>
         /// <param name="BoxMessage">Text of message.</param>
@@ -141,9 +141,10 @@ namespace HTAlt.WinForms
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            timer1_Tick(null, null);
         }
         /// <summary>
-        /// Creates new HaltroyMsgBox.
+        /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="message">Text of message.</param>
         public HTProgressBox(string message) : this("", message) { }

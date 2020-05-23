@@ -141,7 +141,7 @@ namespace HTAlt.WinForms
             set => showDefaultButton = value;
         }
         /// <summary>
-        /// Creates a new Input Box.
+        /// Creates new HTInputBox.
         /// </summary>
         /// <param name="title">Title of the input box.</param>
         /// <param name="message">Description of the input box.</param>
@@ -178,6 +178,7 @@ namespace HTAlt.WinForms
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            timer1_Tick(null, null);
         }
         /// <summary>
         /// Creates new HTInputBox
