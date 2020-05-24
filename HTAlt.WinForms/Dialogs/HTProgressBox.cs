@@ -73,24 +73,49 @@ namespace HTAlt.WinForms
         /// <summary>
         /// Background color of HTProgressBox. Foreground color is auto-selected to White or Black.
         /// </summary>
-        public Color BackgroundColor;
+        public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
 
         /// <summary>
         /// Gets or sets the loading bar color.
         /// </summary>
         public Color OverlayColor;
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, };
         /// <summary>
-        /// True to show a progress bar.
+        /// Gets or sets the list of visible buttons.
         /// </summary>
-        public bool ShowProgressBar = true;
+        public HTDialogBoxContext MsgBoxButtons
+        {
+            get => msgbutton;
+            set => msgbutton = value;
+        }
         /// <summary>
-        /// True to show Abort button.
+        /// Text to display on "Yes" button.
         /// </summary>
-        public bool ShowAbortButton = true;
+        public string Yes = "Yes";
+        /// <summary>
+        /// Text to display on "Retry" button.
+        /// </summary>
+        public string Retry = "Retry";
         /// <summary>
         /// Text to display on "Abort" button.
         /// </summary>
         public string Abort = "Abort";
+        /// <summary>
+        /// Text to display on "Ignore" button.
+        /// </summary>
+        public string Ignore = "Ignore";
+        /// <summary>
+        /// Text to display on "No" button.
+        /// </summary>
+        public string No = "No";
+        /// <summary>
+        /// Text to display on "OK" button.
+        /// </summary>
+        public string OK = "OK";
+        /// <summary>
+        /// Text to display on "Cancel" button.
+        /// </summary>
+        public string Cancel = "Cancel";
         /// <summary>
         /// Text to display on top of buttons.
         /// </summary>
@@ -119,20 +144,28 @@ namespace HTAlt.WinForms
         /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="Title">Title of the message.</param>
-        /// <param name="BoxMessage">Text of message.</param>
+        /// <param name="BoxMessage">Text to display.</param>
+        /// <param name="DialogContext">Context to display in this dialog box.</param>
         public HTProgressBox(string Title,
-                      string BoxMessage)
+                      string BoxMessage,
+                      HTDialogBoxContext DialogContext)
         {
             InitializeComponent();
-            
+            msgbutton = DialogContext;
             Text = Title;
             Message = BoxMessage;
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
             int buttonSize = 75;
             int Count = 0;
-            Count += ShowProgressBar ? 1 : 0;
-            Count += ShowAbortButton ? 1 : 0;
+            Count += msgbutton.ProgressBar ? 1 : 0;
+            Count += msgbutton.Yes ? 1 : 0;
+            Count += msgbutton.No ? 1 : 0;
+            Count += msgbutton.Cancel ? 1 : 0;
+            Count += msgbutton.OK ? 1 : 0;
+            Count += msgbutton.Abort ? 1 : 0;
+            Count += msgbutton.Retry ? 1 : 0;
+            Count += msgbutton.Ignore ? 1 : 0;
             if (Count > 0)
             {
                 buttonSize += Count * 25;
@@ -146,9 +179,96 @@ namespace HTAlt.WinForms
         /// <summary>
         /// Creates new HTProgressBox.
         /// </summary>
-        /// <param name="message">Text of message.</param>
-        public HTProgressBox(string message) : this("", message) { }
+        /// <param name="message">Text to display.</param>
+        public HTProgressBox(string message) : this("", message, new HTDialogBoxContext() { ProgressBar = true,Abort = true, }) { }
+        /// <summary>
+        /// Creates new HTProgressBox.
+        /// </summary>
+        /// <param name="title">Title of message.</param>
+        /// <param name="message">Text to display.</param>
+        public HTProgressBox(string title, string message) : this("", message, new HTDialogBoxContext() { ProgressBar = true, Abort = true, }) { }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (FormBorderStyle != FormBorderStyle.None || FormBorderStyle != FormBorderStyle.FixedToolWindow)
+            {
+                FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            }
+            label1.Text = Message;
+            label1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 75;
+            int Count = 0;
+            Count += msgbutton.ProgressBar ? 1 : 0;
+            Count += msgbutton.Yes ? 1 : 0;
+            Count += msgbutton.No ? 1 : 0;
+            Count += msgbutton.Cancel ? 1 : 0;
+            Count += msgbutton.OK ? 1 : 0;
+            Count += msgbutton.Abort ? 1 : 0;
+            Count += msgbutton.Retry ? 1 : 0;
+            Count += msgbutton.Ignore ? 1 : 0;
+            if (Count > 0)
+            {
+                buttonSize += Count * 25;
+            }
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            htProgressBar1.Location = new Point(htProgressBar1.Location.X, label1.Location.X + label1.Height + 20);
+            htProgressBar1.Maximum = Max;
+            htProgressBar1.Minimum = Min;
+            htProgressBar1.Value = Value;
+            htProgressBar1.DrawBorder = ShowBorder;
+            htProgressBar1.BorderThickness = BorderThickness;
+            htProgressBar1.BarColor = OverlayColor;
+            /// ProgressBar
+            htProgressBar1.Visible = msgbutton.ProgressBar;
+            htProgressBar1.Enabled = msgbutton.ProgressBar;
+            // Yes
+            btYes.Visible = msgbutton.Yes;
+            btYes.Enabled = msgbutton.Yes;
+            // No
+            btNo.Visible = msgbutton.No;
+            btNo.Enabled = msgbutton.No;
+            // Cancel
+            btCancel.Visible = msgbutton.Cancel;
+            btCancel.Enabled = msgbutton.Cancel;
+            // OK
+            btOK.Visible = msgbutton.OK;
+            btOK.Enabled = msgbutton.OK;
+            // Abort
+            btAbort.Visible = msgbutton.Abort;
+            btAbort.Enabled = msgbutton.Abort;
+            // Retry
+            btRetry.Visible = msgbutton.Retry;
+            btRetry.Enabled = msgbutton.Retry;
+            // Ignore
+            btIgnore.Visible = msgbutton.Ignore;
+            btIgnore.Enabled = msgbutton.Ignore;
+            btYes.ButtonText = Yes;
+            btNo.ButtonText = No;
+            btCancel.ButtonText = Cancel;
+            btAbort.ButtonText = Abort;
+            btRetry.ButtonText = Retry;
+            btIgnore.ButtonText = Ignore;
+            btOK.ButtonText = OK;
+            ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            BackColor = BackgroundColor;
+            btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            btYes.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            btNo.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btOK.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btOK.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btAbort.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btRetry.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
+            btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+        }
         private void btYes_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
@@ -172,47 +292,21 @@ namespace HTAlt.WinForms
             Close();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (FormBorderStyle != FormBorderStyle.None || FormBorderStyle != FormBorderStyle.FixedToolWindow)
-            {
-                FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            }
-            label1.Text = Message;
-            label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 75;
-            int Count = 0;
-            Count += ShowProgressBar ? 1 : 0;
-            Count += ShowAbortButton ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
-            MaximumSize = new Size(Width, label1.Height + buttonSize);
-            MinimumSize = new Size(Width, label1.Height + buttonSize);
-            Height = label1.Height + buttonSize;
-            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
-            htProgressBar1.Location = new Point(htProgressBar1.Location.X, label1.Location.X + label1.Height + 20);
-            htProgressBar1.Maximum = Max;
-            htProgressBar1.Minimum = Min;
-            htProgressBar1.Value = Value;
-            htProgressBar1.DrawBorder = ShowBorder;
-            htProgressBar1.BorderThickness = BorderThickness;
-            htProgressBar1.BarColor = OverlayColor;
-            htProgressBar1.Visible = ShowProgressBar;
-            htProgressBar1.Enabled = ShowProgressBar;
-            // Abort
-            btAbort.Visible = ShowAbortButton;
-            btAbort.Enabled = ShowAbortButton;
-            btAbort.ButtonText = Abort;
-            ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            BackColor = BackgroundColor;
-            btAbort.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
-            btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-        }
         private void btAbort_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Abort;
+            Close();
+        }
+
+        private void btRetry_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Retry;
+            Close();
+        }
+
+        private void btIgnore_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Ignore;
             Close();
         }
     }

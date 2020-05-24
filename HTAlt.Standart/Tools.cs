@@ -26,7 +26,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace HTAlt.Standart
+namespace HTAlt
 {
     /// <summary>
     /// Custom class to handle custom actions and events.
@@ -82,24 +82,25 @@ namespace HTAlt.Standart
             return bm.Clone(cropArea, bm.PixelFormat);
         }
         /// <summary>
-        /// Generates a random text with 11 random characters.
+        /// Generates a random text with random characters with length.
         /// </summary>
-        /// <returns>11 random characters in a string.</returns>
-        public static string GenerateRandomText
+        /// <param name="length">Length of random text./param>
+        /// <returns>Random characters in a string.</returns>
+        public static string GenerateRandomText(int length = 11)
         {
-            get
-            {
-                StringBuilder builder = new StringBuilder();
-                Enumerable
-                   .Range(65, 26)
-                    .Select(e => ((char)e).ToString())
-                    .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
-                    .Concat(Enumerable.Range(0, 10).Select(e => e.ToString()))
-                    .OrderBy(e => Guid.NewGuid())
-                    .Take(11)
-                    .ToList().ForEach(e => builder.Append(e));
-                return builder.ToString();
-            }
+            if (length == 0) { throw new ArgumentOutOfRangeException("\"length\" must be greater than 0."); }
+            if (length < 0) { length = length * -1; }
+            if (length >= int.MaxValue) { throw new ArgumentOutOfRangeException("\"length\" must be smaller than the 32-bit integer limit."); }
+            StringBuilder builder = new StringBuilder();
+            Enumerable
+               .Range(65, 26)
+                .Select(e => ((char)e).ToString())
+                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
+                .Concat(Enumerable.Range(0,length - 1).Select(e => e.ToString()))
+                .OrderBy(e => Guid.NewGuid())
+                .Take(length)
+                .ToList().ForEach(e => builder.Append(e));
+            return builder.ToString();
         }
         /// <summary>
         /// Gets the base URL of an URL.
@@ -421,22 +422,12 @@ namespace HTAlt.Standart
         /// <param name="value">Shift integer.</param>
         /// <param name="shiftAlpha"><c>true</c> to also shift Alpha (Transparency) channel.</param>
         /// <returns>Color with shifted brightness.</returns>
-        public static Color ShiftBrightnessIfNeeded(Color baseColor, int value, bool shiftAlpha)
+        public static Color ShiftBrightness(Color baseColor, int value, bool shiftAlpha)
         {
-            if (IsBright(baseColor))
-            {
-                return Color.FromArgb(shiftAlpha ? (IsTransparencyHigh(baseColor) ? AddIfNeeded(baseColor.A, value, 255) : SubtractIfNeeded(baseColor.A, value)) : baseColor.A,
-                                      SubtractIfNeeded(baseColor.R, value),
-                                      SubtractIfNeeded(baseColor.G, value),
-                                      SubtractIfNeeded(baseColor.B, value));
-            }
-            else
-            {
-                return Color.FromArgb(shiftAlpha ? (IsTransparencyHigh(baseColor) ? AddIfNeeded(baseColor.A, value, 255) : SubtractIfNeeded(baseColor.A, value)) : baseColor.A,
-                      AddIfNeeded(baseColor.R, value, 255),
-                      AddIfNeeded(baseColor.G, value, 255),
-                      AddIfNeeded(baseColor.B, value, 255));
-            }
+            return Color.FromArgb(shiftAlpha ? (IsTransparencyHigh(baseColor) ? AddIfNeeded(baseColor.A, value, 255) : SubtractIfNeeded(baseColor.A, value)) : baseColor.A,
+                                  IsBright(baseColor) ? SubtractIfNeeded(baseColor.R, value) : AddIfNeeded(baseColor.R, value, 255),
+                                  IsBright(baseColor) ? SubtractIfNeeded(baseColor.G, value) : AddIfNeeded(baseColor.G, value, 255),
+                                  IsBright(baseColor) ? SubtractIfNeeded(baseColor.B, value) : AddIfNeeded(baseColor.B, value, 255));
         }
         /// <summary>
         /// Reads a file without locking it.

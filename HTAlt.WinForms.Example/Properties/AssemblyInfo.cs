@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Bir bütünleştirilmiş koda ilişkin Genel Bilgiler aşağıdaki öznitelikler kümesiyle
 // denetlenir. Bütünleştirilmiş kod ile ilişkili bilgileri değiştirmek için
 // bu öznitelik değerlerini değiştirin.
-[assembly: AssemblyTitle("HTAlt.Test")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("HTAlt.WinForms.Example")]
+[assembly: AssemblyDescription("Example application fro testing HTAlt.WinForms.dll")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HTAlt.Test")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("Haltroy")]
+[assembly: AssemblyProduct("HTAlt.WinForms.Example")]
+[assembly: AssemblyCopyright("Copyright © Haltroy 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

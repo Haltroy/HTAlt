@@ -223,7 +223,6 @@ namespace HTAlt.WinForms
             this.MinimumSize = new System.Drawing.Size(400, 155);
             this.Name = "HTInputBox";
             this.Text = "<title>";
-            this.Load += new System.EventHandler(this.HTInputBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

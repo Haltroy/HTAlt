@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace HTAlt.Test
+namespace HTAlt.WinForms.Example
 {
     public partial class Form1 : Form
     {
@@ -42,7 +42,7 @@ namespace HTAlt.Test
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            HTMsgBoxButtons mesajbuton = new HTMsgBoxButtons()
+            HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
                 OK = hsOK.Checked,
                 Cancel = hsCancel.Checked,
@@ -63,14 +63,26 @@ namespace HTAlt.Test
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                           tbMessage.Text,
                                           mesajbuton)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
+            { 
+                Icon = mesajicon, 
+                BackgroundColor = pbBackColor.BackColor, 
+                Abort = tbAbort.Text, 
+                Retry = tbRetry.Text, 
+                Ignore = tbIgnore.Text, 
+                Yes = tbYes.Text, 
+                No = tbNo.Text, 
+                OK = tbOK.Text, 
+                Cancel = tbCancel.Text, 
+            };
             mesaj.Show();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            HTMsgBoxButtons mesajbuton = new HTMsgBoxButtons()
+            HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
+                SetToDefault = hsDefault.Checked,
+                ProgressBar = hsPBar.Checked,
                 OK = hsOK.Checked,
                 Cancel = hsCancel.Checked,
                 Yes = hsYes.Checked,
@@ -91,7 +103,17 @@ namespace HTAlt.Test
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                           tbMessage.Text,
                                           mesajbuton)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor,Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, };
+            {
+                Icon = mesajicon,
+                BackgroundColor = pbBackColor.BackColor,
+                Abort = tbAbort.Text, 
+                Retry = tbRetry.Text, 
+                Ignore = tbIgnore.Text, 
+                Yes = tbYes.Text, 
+                No = tbNo.Text, 
+                OK = tbOK.Text, 
+                Cancel = tbCancel.Text, 
+            };
             DialogResult diares = mesaj.ShowDialog();
             if (diares == DialogResult.OK)
             {
@@ -130,13 +152,36 @@ namespace HTAlt.Test
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
+            {
+                SetToDefault = hsDefault.Checked,
+                ProgressBar = hsPBar.Checked,
+                OK = hsOK.Checked,
+                Cancel = hsCancel.Checked,
+                Yes = hsYes.Checked,
+                No = hsNo.Checked,
+                Abort = hsAbort.Checked,
+                Ignore = hsIgnore.Checked,
+                Retry = hsRetry.Checked,
+            };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
-            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
+            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
+            { 
+                Icon = mesajicon, 
+                BackgroundColor = pbBackColor.BackColor, 
+                Abort = tbAbort.Text, 
+                Retry = tbRetry.Text, 
+                Ignore = tbIgnore.Text, 
+                Yes = tbYes.Text, 
+                No = tbNo.Text, 
+                OK = tbOK.Text, 
+                Cancel = tbCancel.Text, 
+                SetToDefault = ibSetToDefault.Text, 
+            };
             DialogResult diagres = inputbox.ShowDialog();
             if (diagres == DialogResult.OK)
             {
@@ -151,12 +196,24 @@ namespace HTAlt.Test
 
         private void Button6_Click(object sender, EventArgs e)
         {
+            HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
+            {
+                SetToDefault = hsDefault.Checked,
+                ProgressBar = hsPBar.Checked,
+                OK = hsOK.Checked,
+                Cancel = hsCancel.Checked,
+                Yes = hsYes.Checked,
+                No = hsNo.Checked,
+                Abort = hsAbort.Checked,
+                Ignore = hsIgnore.Checked,
+                Retry = hsRetry.Checked,
+            };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
-            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, ibDefault.Text)
+            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text,mesajbuton, ibDefault.Text)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             inputbox.Show();
         }
@@ -165,24 +222,12 @@ namespace HTAlt.Test
         {
             sliderValue.Text = HTSlider1.Value.ToString();
         }
-        bool draggable;
-        bool fullscreenmode;
         private void button7_Click(object sender, EventArgs e)
         {
             frmHTF newform = new frmHTF();
-            newform.EnableDrag = draggable;
-            newform.FullScreenMode = fullscreenmode;
+            newform.EnableDrag = hsDrag.Checked;
+            newform.FullScreenMode = hsFullScreen.Checked;
             newform.Show();
-        }
-
-        private void HTSwitch2_CheckedChanged(object sender, EventArgs e)
-        {
-            draggable = HTSwitch2.Checked;
-        }
-
-        private void HTSwitch3_CheckedChanged(object sender, EventArgs e)
-        {
-            fullscreenmode = HTSwitch3.Checked;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -196,19 +241,29 @@ namespace HTAlt.Test
 
         private void button8_Click(object sender, EventArgs e)
         {
+            HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
+            {
+                SetToDefault = hsDefault.Checked,
+                ProgressBar = hsPBar.Checked,
+                OK = hsOK.Checked,
+                Cancel = hsCancel.Checked,
+                Yes = hsYes.Checked,
+                No = hsNo.Checked,
+                Abort = hsAbort.Checked,
+                Ignore = hsIgnore.Checked,
+                Retry = hsRetry.Checked,
+            };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
-            HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text)
+            HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text,mesajbuton)
             {
                 OverlayColor = pbOverlayColor.BackColor,
                 Icon = mesajicon,
                 BackgroundColor = pbBackColor.BackColor,
                 Abort = tbAbort.Text,
-                ShowAbortButton = hsAbort.Checked,
-                ShowProgressBar = hsPBar.Checked,
                 Min = Convert.ToInt32(nudMin.Value),
                 Max = Convert.ToInt32(nudMax.Value),
                 Value = Convert.ToInt32(nudVal.Value),
@@ -227,6 +282,17 @@ namespace HTAlt.Test
             if (colordlg.ShowDialog() == DialogResult.OK)
             {
                 pbOverlayColor.BackColor = colordlg.Color;
+            }
+        }
+
+        private void hbRandom_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lbRandom.Text = HTAlt.Tools.GenerateRandomText(Convert.ToInt32(nudRandom.Value));
+            }catch (Exception ex)
+            {
+                lbRandom.Text = ex.Message;
             }
         }
     }

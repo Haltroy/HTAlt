@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace HTAlt.Standart
+namespace HTAlt
 {
     /// <summary>
     /// This class holds information about this project.
@@ -9,7 +9,7 @@ namespace HTAlt.Standart
     public class HTInfo
     {
         private static readonly string version = "0.1.4.1";
-        private static readonly string codeName = "Midnight Walk Hotfix 1";
+        private static readonly string codeName = "Midnight Walk I";
         private static readonly string name = "HTAlt";
         private static readonly string link = "https://github.com/haltroy/HTAlt";
         private static readonly string developer = "Haltroy";

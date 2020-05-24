@@ -1,6 +1,6 @@
 ﻿using HTAlt.WinForms;
 
-namespace HTAlt.Test
+namespace HTAlt.WinForms.Example
 {
     partial class Form1
     {
@@ -94,7 +94,9 @@ namespace HTAlt.Test
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpControl1 = new System.Windows.Forms.TabPage();
+            this.htButton1 = new HTAlt.WinForms.HTButton();
+            this.htProgressBar5 = new HTAlt.WinForms.HTProgressBar();
             this.HTListView2 = new HTAlt.WinForms.HTListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -102,30 +104,18 @@ namespace HTAlt.Test
             this.sliderValue = new System.Windows.Forms.Label();
             this.HTSwitch1 = new HTAlt.WinForms.HTSwitch();
             this.HTSlider1 = new HTAlt.WinForms.HTSlider();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.htButton9 = new HTAlt.WinForms.HTButton();
-            this.htButton8 = new HTAlt.WinForms.HTButton();
-            this.htButton7 = new HTAlt.WinForms.HTButton();
-            this.htButton6 = new HTAlt.WinForms.HTButton();
-            this.htButton5 = new HTAlt.WinForms.HTButton();
-            this.htButton4 = new HTAlt.WinForms.HTButton();
-            this.htButton3 = new HTAlt.WinForms.HTButton();
-            this.htButton2 = new HTAlt.WinForms.HTButton();
-            this.htButton1 = new HTAlt.WinForms.HTButton();
-            this.HTProgressBar8 = new HTAlt.WinForms.HTProgressBar();
-            this.HTProgressBar4 = new HTAlt.WinForms.HTProgressBar();
-            this.HTProgressBar7 = new HTAlt.WinForms.HTProgressBar();
-            this.HTProgressBar3 = new HTAlt.WinForms.HTProgressBar();
-            this.htProgressBar6 = new HTAlt.WinForms.HTProgressBar();
-            this.HTProgressBar2 = new HTAlt.WinForms.HTProgressBar();
-            this.htProgressBar5 = new HTAlt.WinForms.HTProgressBar();
-            this.HTProgressBar1 = new HTAlt.WinForms.HTProgressBar();
+            this.tpForms = new System.Windows.Forms.TabPage();
             this.label24 = new System.Windows.Forms.Label();
-            this.HTSwitch3 = new HTAlt.WinForms.HTSwitch();
+            this.hsFullScreen = new HTAlt.WinForms.HTSwitch();
             this.label21 = new System.Windows.Forms.Label();
-            this.HTSwitch2 = new HTAlt.WinForms.HTSwitch();
+            this.hsDrag = new HTAlt.WinForms.HTSwitch();
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.tpTools = new System.Windows.Forms.TabPage();
+            this.hbRandom = new HTAlt.WinForms.HTButton();
+            this.lbRandom = new System.Windows.Forms.Label();
+            this.nudRandom = new System.Windows.Forms.NumericUpDown();
+            this.hsDefault = new HTAlt.WinForms.HTSwitch();
             this.HTTabControl1.SuspendLayout();
             this.tpBoxes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBorder)).BeginInit();
@@ -134,8 +124,10 @@ namespace HTAlt.Test
             ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tpControl1.SuspendLayout();
+            this.tpForms.SuspendLayout();
+            this.tpTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandom)).BeginInit();
             this.SuspendLayout();
             // 
             // HTTabControl1
@@ -144,8 +136,9 @@ namespace HTAlt.Test
             this.HTTabControl1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.HTTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.HTTabControl1.Controls.Add(this.tpBoxes);
-            this.HTTabControl1.Controls.Add(this.tabPage2);
-            this.HTTabControl1.Controls.Add(this.tabPage4);
+            this.HTTabControl1.Controls.Add(this.tpControl1);
+            this.HTTabControl1.Controls.Add(this.tpForms);
+            this.HTTabControl1.Controls.Add(this.tpTools);
             this.HTTabControl1.DisableClose = false;
             this.HTTabControl1.DisableDragging = false;
             this.HTTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -189,6 +182,7 @@ namespace HTAlt.Test
             this.tpBoxes.Controls.Add(this.hsNo);
             this.tpBoxes.Controls.Add(this.hsYes);
             this.tpBoxes.Controls.Add(this.hsIgnore);
+            this.tpBoxes.Controls.Add(this.hsDefault);
             this.tpBoxes.Controls.Add(this.hsAbort);
             this.tpBoxes.Controls.Add(this.label16);
             this.tpBoxes.Controls.Add(this.label20);
@@ -805,19 +799,46 @@ namespace HTAlt.Test
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // tabPage2
+            // tpControl1
             // 
-            this.tabPage2.Controls.Add(this.HTListView2);
-            this.tabPage2.Controls.Add(this.sliderValue);
-            this.tabPage2.Controls.Add(this.HTSwitch1);
-            this.tabPage2.Controls.Add(this.HTSlider1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 20);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 426);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Slider & Switch & ListView";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpControl1.Controls.Add(this.htButton1);
+            this.tpControl1.Controls.Add(this.htProgressBar5);
+            this.tpControl1.Controls.Add(this.HTListView2);
+            this.tpControl1.Controls.Add(this.sliderValue);
+            this.tpControl1.Controls.Add(this.HTSwitch1);
+            this.tpControl1.Controls.Add(this.HTSlider1);
+            this.tpControl1.Location = new System.Drawing.Point(4, 20);
+            this.tpControl1.Name = "tpControl1";
+            this.tpControl1.Padding = new System.Windows.Forms.Padding(3);
+            this.tpControl1.Size = new System.Drawing.Size(792, 426);
+            this.tpControl1.TabIndex = 1;
+            this.tpControl1.Text = "Slider & Switch & ListView";
+            this.tpControl1.UseVisualStyleBackColor = true;
+            // 
+            // htButton1
+            // 
+            this.htButton1.ButtonImage = global::HTAlt.WinForms.Example.Properties.Resources.logo;
+            this.htButton1.ButtonText = "Sample Text";
+            this.htButton1.FlatAppearance.BorderSize = 0;
+            this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
+            this.htButton1.Location = new System.Drawing.Point(8, 65);
+            this.htButton1.Name = "htButton1";
+            this.htButton1.Size = new System.Drawing.Size(124, 49);
+            this.htButton1.TabIndex = 16;
+            this.htButton1.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextAboveImage;
+            this.htButton1.UseVisualStyleBackColor = true;
+            // 
+            // htProgressBar5
+            // 
+            this.htProgressBar5.BorderThickness = 2;
+            this.htProgressBar5.DrawBorder = true;
+            this.htProgressBar5.Location = new System.Drawing.Point(8, 38);
+            this.htProgressBar5.Name = "htProgressBar5";
+            this.htProgressBar5.Size = new System.Drawing.Size(274, 10);
+            this.htProgressBar5.TabIndex = 14;
+            this.htProgressBar5.Text = "label19";
+            this.htProgressBar5.Value = 34;
             // 
             // HTListView2
             // 
@@ -834,10 +855,10 @@ namespace HTAlt.Test
             this.HTListView2.HideSelection = false;
             this.HTListView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.HTListView2.Location = new System.Drawing.Point(8, 85);
+            this.HTListView2.Location = new System.Drawing.Point(8, 120);
             this.HTListView2.Name = "HTListView2";
             this.HTListView2.OverlayColor = System.Drawing.Color.DodgerBlue;
-            this.HTListView2.Size = new System.Drawing.Size(777, 335);
+            this.HTListView2.Size = new System.Drawing.Size(777, 300);
             this.HTListView2.TabIndex = 3;
             this.HTListView2.UseCompatibleStateImageBehavior = false;
             this.HTListView2.View = System.Windows.Forms.View.Details;
@@ -870,7 +891,7 @@ namespace HTAlt.Test
             // 
             // HTSwitch1
             // 
-            this.HTSwitch1.Location = new System.Drawing.Point(8, 47);
+            this.HTSwitch1.Location = new System.Drawing.Point(158, 77);
             this.HTSwitch1.Name = "HTSwitch1";
             this.HTSwitch1.Size = new System.Drawing.Size(50, 19);
             this.HTSwitch1.TabIndex = 1;
@@ -893,293 +914,57 @@ namespace HTAlt.Test
             this.HTSlider1.ThumbSize = new System.Drawing.Size(16, 16);
             this.HTSlider1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HTSlider1_Scroll);
             // 
-            // tabPage4
+            // tpForms
             // 
-            this.tabPage4.Controls.Add(this.htButton9);
-            this.tabPage4.Controls.Add(this.htButton8);
-            this.tabPage4.Controls.Add(this.htButton7);
-            this.tabPage4.Controls.Add(this.htButton6);
-            this.tabPage4.Controls.Add(this.htButton5);
-            this.tabPage4.Controls.Add(this.htButton4);
-            this.tabPage4.Controls.Add(this.htButton3);
-            this.tabPage4.Controls.Add(this.htButton2);
-            this.tabPage4.Controls.Add(this.htButton1);
-            this.tabPage4.Controls.Add(this.HTProgressBar8);
-            this.tabPage4.Controls.Add(this.HTProgressBar4);
-            this.tabPage4.Controls.Add(this.HTProgressBar7);
-            this.tabPage4.Controls.Add(this.HTProgressBar3);
-            this.tabPage4.Controls.Add(this.htProgressBar6);
-            this.tabPage4.Controls.Add(this.HTProgressBar2);
-            this.tabPage4.Controls.Add(this.htProgressBar5);
-            this.tabPage4.Controls.Add(this.HTProgressBar1);
-            this.tabPage4.Controls.Add(this.label24);
-            this.tabPage4.Controls.Add(this.HTSwitch3);
-            this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.HTSwitch2);
-            this.tabPage4.Controls.Add(this.button5);
-            this.tabPage4.Controls.Add(this.button7);
-            this.tabPage4.Location = new System.Drawing.Point(4, 20);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(792, 426);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Forms & Button & ProgressBar";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // htButton9
-            // 
-            this.htButton9.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton9.ButtonText = "Sample Text";
-            this.htButton9.FlatAppearance.BorderSize = 0;
-            this.htButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton9.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Tile;
-            this.htButton9.Location = new System.Drawing.Point(410, 252);
-            this.htButton9.Name = "htButton9";
-            this.htButton9.Size = new System.Drawing.Size(124, 49);
-            this.htButton9.TabIndex = 24;
-            this.htButton9.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
-            this.htButton9.UseVisualStyleBackColor = true;
-            // 
-            // htButton8
-            // 
-            this.htButton8.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton8.ButtonText = "Sample Text";
-            this.htButton8.FlatAppearance.BorderSize = 0;
-            this.htButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton8.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Stretch;
-            this.htButton8.Location = new System.Drawing.Point(410, 169);
-            this.htButton8.Name = "htButton8";
-            this.htButton8.Size = new System.Drawing.Size(124, 49);
-            this.htButton8.TabIndex = 23;
-            this.htButton8.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
-            this.htButton8.UseVisualStyleBackColor = true;
-            // 
-            // htButton7
-            // 
-            this.htButton7.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton7.ButtonText = "Sample Text";
-            this.htButton7.FlatAppearance.BorderSize = 0;
-            this.htButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton7.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Center;
-            this.htButton7.Location = new System.Drawing.Point(269, 169);
-            this.htButton7.Name = "htButton7";
-            this.htButton7.Size = new System.Drawing.Size(124, 49);
-            this.htButton7.TabIndex = 22;
-            this.htButton7.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
-            this.htButton7.UseVisualStyleBackColor = true;
-            // 
-            // htButton6
-            // 
-            this.htButton6.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton6.ButtonText = "Sample Text";
-            this.htButton6.FlatAppearance.BorderSize = 0;
-            this.htButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton6.Location = new System.Drawing.Point(139, 169);
-            this.htButton6.Name = "htButton6";
-            this.htButton6.Size = new System.Drawing.Size(124, 49);
-            this.htButton6.TabIndex = 21;
-            this.htButton6.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
-            this.htButton6.UseVisualStyleBackColor = true;
-            // 
-            // htButton5
-            // 
-            this.htButton5.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton5.ButtonText = "Sample Text";
-            this.htButton5.FlatAppearance.BorderSize = 0;
-            this.htButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton5.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
-            this.htButton5.Location = new System.Drawing.Point(9, 97);
-            this.htButton5.Name = "htButton5";
-            this.htButton5.Size = new System.Drawing.Size(124, 49);
-            this.htButton5.TabIndex = 20;
-            this.htButton5.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.None;
-            this.htButton5.UseVisualStyleBackColor = true;
-            // 
-            // htButton4
-            // 
-            this.htButton4.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton4.ButtonText = "Sample Text";
-            this.htButton4.FlatAppearance.BorderSize = 0;
-            this.htButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton4.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
-            this.htButton4.Location = new System.Drawing.Point(9, 169);
-            this.htButton4.Name = "htButton4";
-            this.htButton4.Size = new System.Drawing.Size(124, 49);
-            this.htButton4.TabIndex = 19;
-            this.htButton4.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustImage;
-            this.htButton4.UseVisualStyleBackColor = true;
-            // 
-            // htButton3
-            // 
-            this.htButton3.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton3.ButtonText = "Sample Text";
-            this.htButton3.FlatAppearance.BorderSize = 0;
-            this.htButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton3.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
-            this.htButton3.Location = new System.Drawing.Point(9, 234);
-            this.htButton3.Name = "htButton3";
-            this.htButton3.Size = new System.Drawing.Size(124, 49);
-            this.htButton3.TabIndex = 18;
-            this.htButton3.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.JustText;
-            this.htButton3.UseVisualStyleBackColor = true;
-            // 
-            // htButton2
-            // 
-            this.htButton2.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton2.ButtonText = "Sample Text";
-            this.htButton2.FlatAppearance.BorderSize = 0;
-            this.htButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton2.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
-            this.htButton2.Location = new System.Drawing.Point(9, 344);
-            this.htButton2.Name = "htButton2";
-            this.htButton2.Size = new System.Drawing.Size(124, 49);
-            this.htButton2.TabIndex = 17;
-            this.htButton2.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
-            this.htButton2.UseVisualStyleBackColor = true;
-            // 
-            // htButton1
-            // 
-            this.htButton1.ButtonImage = global::HTAlt.Test.Properties.Resources.ht_logo_2020;
-            this.htButton1.ButtonText = "Sample Text";
-            this.htButton1.FlatAppearance.BorderSize = 0;
-            this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
-            this.htButton1.Location = new System.Drawing.Point(9, 289);
-            this.htButton1.Name = "htButton1";
-            this.htButton1.Size = new System.Drawing.Size(124, 49);
-            this.htButton1.TabIndex = 16;
-            this.htButton1.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextAboveImage;
-            this.htButton1.UseVisualStyleBackColor = true;
-            // 
-            // HTProgressBar8
-            // 
-            this.HTProgressBar8.BorderThickness = 2;
-            this.HTProgressBar8.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.TopToBottom;
-            this.HTProgressBar8.DrawBorder = true;
-            this.HTProgressBar8.Location = new System.Drawing.Point(697, 121);
-            this.HTProgressBar8.Name = "HTProgressBar8";
-            this.HTProgressBar8.Size = new System.Drawing.Size(10, 261);
-            this.HTProgressBar8.TabIndex = 8;
-            this.HTProgressBar8.Text = "label19";
-            this.HTProgressBar8.Value = 34;
-            // 
-            // HTProgressBar4
-            // 
-            this.HTProgressBar4.BorderThickness = 0;
-            this.HTProgressBar4.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.TopToBottom;
-            this.HTProgressBar4.Location = new System.Drawing.Point(653, 121);
-            this.HTProgressBar4.Name = "HTProgressBar4";
-            this.HTProgressBar4.Size = new System.Drawing.Size(10, 261);
-            this.HTProgressBar4.TabIndex = 9;
-            this.HTProgressBar4.Text = "label19";
-            this.HTProgressBar4.Value = 34;
-            // 
-            // HTProgressBar7
-            // 
-            this.HTProgressBar7.BorderThickness = 2;
-            this.HTProgressBar7.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.BottomToTop;
-            this.HTProgressBar7.DrawBorder = true;
-            this.HTProgressBar7.Location = new System.Drawing.Point(681, 121);
-            this.HTProgressBar7.Name = "HTProgressBar7";
-            this.HTProgressBar7.Size = new System.Drawing.Size(10, 261);
-            this.HTProgressBar7.TabIndex = 10;
-            this.HTProgressBar7.Text = "label19";
-            this.HTProgressBar7.Value = 34;
-            // 
-            // HTProgressBar3
-            // 
-            this.HTProgressBar3.BorderThickness = 0;
-            this.HTProgressBar3.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.BottomToTop;
-            this.HTProgressBar3.Location = new System.Drawing.Point(619, 121);
-            this.HTProgressBar3.Name = "HTProgressBar3";
-            this.HTProgressBar3.Size = new System.Drawing.Size(10, 261);
-            this.HTProgressBar3.TabIndex = 11;
-            this.HTProgressBar3.Text = "label19";
-            this.HTProgressBar3.Value = 34;
-            // 
-            // htProgressBar6
-            // 
-            this.htProgressBar6.BorderThickness = 2;
-            this.htProgressBar6.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.RightToLeft;
-            this.htProgressBar6.DrawBorder = true;
-            this.htProgressBar6.Location = new System.Drawing.Point(619, 69);
-            this.htProgressBar6.Name = "htProgressBar6";
-            this.htProgressBar6.Size = new System.Drawing.Size(153, 10);
-            this.htProgressBar6.TabIndex = 12;
-            this.htProgressBar6.Text = "label19";
-            this.htProgressBar6.Value = 34;
-            // 
-            // HTProgressBar2
-            // 
-            this.HTProgressBar2.BorderThickness = 0;
-            this.HTProgressBar2.Direction = HTAlt.WinForms.HTProgressBar.ProgressDirection.RightToLeft;
-            this.HTProgressBar2.Location = new System.Drawing.Point(619, 36);
-            this.HTProgressBar2.Name = "HTProgressBar2";
-            this.HTProgressBar2.Size = new System.Drawing.Size(153, 10);
-            this.HTProgressBar2.TabIndex = 13;
-            this.HTProgressBar2.Text = "label19";
-            this.HTProgressBar2.Value = 34;
-            // 
-            // htProgressBar5
-            // 
-            this.htProgressBar5.BorderThickness = 2;
-            this.htProgressBar5.DrawBorder = true;
-            this.htProgressBar5.Location = new System.Drawing.Point(619, 52);
-            this.htProgressBar5.Name = "htProgressBar5";
-            this.htProgressBar5.Size = new System.Drawing.Size(153, 10);
-            this.htProgressBar5.TabIndex = 14;
-            this.htProgressBar5.Text = "label19";
-            this.htProgressBar5.Value = 34;
-            // 
-            // HTProgressBar1
-            // 
-            this.HTProgressBar1.BorderThickness = 0;
-            this.HTProgressBar1.Location = new System.Drawing.Point(619, 19);
-            this.HTProgressBar1.Name = "HTProgressBar1";
-            this.HTProgressBar1.Size = new System.Drawing.Size(153, 10);
-            this.HTProgressBar1.TabIndex = 15;
-            this.HTProgressBar1.Text = "label19";
-            this.HTProgressBar1.Value = 25;
+            this.tpForms.Controls.Add(this.label24);
+            this.tpForms.Controls.Add(this.hsFullScreen);
+            this.tpForms.Controls.Add(this.label21);
+            this.tpForms.Controls.Add(this.hsDrag);
+            this.tpForms.Controls.Add(this.button5);
+            this.tpForms.Controls.Add(this.button7);
+            this.tpForms.Location = new System.Drawing.Point(4, 20);
+            this.tpForms.Name = "tpForms";
+            this.tpForms.Padding = new System.Windows.Forms.Padding(3);
+            this.tpForms.Size = new System.Drawing.Size(792, 426);
+            this.tpForms.TabIndex = 3;
+            this.tpForms.Text = "Forms";
+            this.tpForms.UseVisualStyleBackColor = true;
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(66, 65);
+            this.label24.Location = new System.Drawing.Point(81, 73);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(104, 16);
             this.label24.TabIndex = 2;
             this.label24.Text = "Full Screen Mode";
-            this.label24.Click += new System.EventHandler(this.HTSwitch3_CheckedChanged);
             // 
-            // HTSwitch3
+            // hsFullScreen
             // 
-            this.HTSwitch3.Location = new System.Drawing.Point(9, 61);
-            this.HTSwitch3.Name = "HTSwitch3";
-            this.HTSwitch3.Size = new System.Drawing.Size(50, 19);
-            this.HTSwitch3.TabIndex = 1;
-            this.HTSwitch3.CheckedChanged += new HTAlt.WinForms.HTSwitch.CheckedChangedDelegate(this.HTSwitch3_CheckedChanged);
+            this.hsFullScreen.Location = new System.Drawing.Point(24, 69);
+            this.hsFullScreen.Name = "hsFullScreen";
+            this.hsFullScreen.Size = new System.Drawing.Size(50, 19);
+            this.hsFullScreen.TabIndex = 1;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(66, 39);
+            this.label21.Location = new System.Drawing.Point(81, 47);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(65, 16);
             this.label21.TabIndex = 2;
             this.label21.Text = "Draggable";
-            this.label21.Click += new System.EventHandler(this.HTSwitch2_CheckedChanged);
             // 
-            // HTSwitch2
+            // hsDrag
             // 
-            this.HTSwitch2.Location = new System.Drawing.Point(9, 36);
-            this.HTSwitch2.Name = "HTSwitch2";
-            this.HTSwitch2.Size = new System.Drawing.Size(50, 19);
-            this.HTSwitch2.TabIndex = 1;
-            this.HTSwitch2.CheckedChanged += new HTAlt.WinForms.HTSwitch.CheckedChangedDelegate(this.HTSwitch2_CheckedChanged);
+            this.hsDrag.Location = new System.Drawing.Point(24, 44);
+            this.hsDrag.Name = "hsDrag";
+            this.hsDrag.Size = new System.Drawing.Size(50, 19);
+            this.hsDrag.TabIndex = 1;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(206, 6);
+            this.button5.Location = new System.Drawing.Point(201, 6);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(187, 23);
             this.button5.TabIndex = 0;
@@ -1196,6 +981,69 @@ namespace HTAlt.Test
             this.button7.Text = "Spawn a HTForm";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // tpTools
+            // 
+            this.tpTools.Controls.Add(this.hbRandom);
+            this.tpTools.Controls.Add(this.lbRandom);
+            this.tpTools.Controls.Add(this.nudRandom);
+            this.tpTools.Location = new System.Drawing.Point(4, 20);
+            this.tpTools.Name = "tpTools";
+            this.tpTools.Size = new System.Drawing.Size(792, 426);
+            this.tpTools.TabIndex = 4;
+            this.tpTools.Text = "Tools";
+            this.tpTools.UseVisualStyleBackColor = true;
+            // 
+            // hbRandom
+            // 
+            this.hbRandom.ButtonText = "Generate Text";
+            this.hbRandom.FlatAppearance.BorderSize = 0;
+            this.hbRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hbRandom.Location = new System.Drawing.Point(8, 45);
+            this.hbRandom.Name = "hbRandom";
+            this.hbRandom.Size = new System.Drawing.Size(120, 23);
+            this.hbRandom.TabIndex = 2;
+            this.hbRandom.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.hbRandom.UseVisualStyleBackColor = true;
+            this.hbRandom.Click += new System.EventHandler(this.hbRandom_Click);
+            // 
+            // lbRandom
+            // 
+            this.lbRandom.AutoSize = true;
+            this.lbRandom.Location = new System.Drawing.Point(8, 71);
+            this.lbRandom.Name = "lbRandom";
+            this.lbRandom.Size = new System.Drawing.Size(90, 16);
+            this.lbRandom.TabIndex = 1;
+            this.lbRandom.Text = "<randomtext>";
+            // 
+            // nudRandom
+            // 
+            this.nudRandom.Location = new System.Drawing.Point(8, 16);
+            this.nudRandom.Maximum = new decimal(new int[] {
+            -1,
+            -1,
+            -1,
+            0});
+            this.nudRandom.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudRandom.Name = "nudRandom";
+            this.nudRandom.Size = new System.Drawing.Size(120, 23);
+            this.nudRandom.TabIndex = 0;
+            this.nudRandom.Value = new decimal(new int[] {
+            11,
+            0,
+            0,
+            0});
+            // 
+            // hsDefault
+            // 
+            this.hsDefault.Location = new System.Drawing.Point(238, 236);
+            this.hsDefault.Name = "hsDefault";
+            this.hsDefault.Size = new System.Drawing.Size(50, 19);
+            this.hsDefault.TabIndex = 31;
             // 
             // Form1
             // 
@@ -1215,10 +1063,13 @@ namespace HTAlt.Test
             ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tpControl1.ResumeLayout(false);
+            this.tpControl1.PerformLayout();
+            this.tpForms.ResumeLayout(false);
+            this.tpForms.PerformLayout();
+            this.tpTools.ResumeLayout(false);
+            this.tpTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRandom)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1227,7 +1078,7 @@ namespace HTAlt.Test
 
         private HTAlt.WinForms.HTTabControl HTTabControl1;
         private System.Windows.Forms.TabPage tpBoxes;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpControl1;
         private HTAlt.WinForms.HTSwitch HTSwitch1;
         private HTAlt.WinForms.HTSlider HTSlider1;
         private System.Windows.Forms.TextBox tbMessage;
@@ -1252,12 +1103,12 @@ namespace HTAlt.Test
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label sliderValue;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tpForms;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label24;
-        private HTAlt.WinForms.HTSwitch HTSwitch3;
+        private HTAlt.WinForms.HTSwitch hsFullScreen;
         private System.Windows.Forms.Label label21;
-        private HTAlt.WinForms.HTSwitch HTSwitch2;
+        private HTAlt.WinForms.HTSwitch hsDrag;
         private HTAlt.WinForms.HTListView HTListView2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -1272,23 +1123,8 @@ namespace HTAlt.Test
         private System.Windows.Forms.TextBox ibSetToDefault;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label12;
-        private HTProgressBar HTProgressBar8;
-        private HTProgressBar HTProgressBar4;
-        private HTProgressBar HTProgressBar7;
-        private HTProgressBar HTProgressBar3;
-        private HTProgressBar htProgressBar6;
-        private HTProgressBar HTProgressBar2;
         private HTProgressBar htProgressBar5;
-        private HTProgressBar HTProgressBar1;
-        private HTButton htButton2;
         private HTButton htButton1;
-        private HTButton htButton5;
-        private HTButton htButton4;
-        private HTButton htButton3;
-        private HTButton htButton7;
-        private HTButton htButton6;
-        private HTButton htButton9;
-        private HTButton htButton8;
         private System.Windows.Forms.TextBox tbRetry;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbIgnore;
@@ -1319,6 +1155,11 @@ namespace HTAlt.Test
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pbOverlayColor;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TabPage tpTools;
+        private HTButton hbRandom;
+        private System.Windows.Forms.Label lbRandom;
+        private System.Windows.Forms.NumericUpDown nudRandom;
+        private HTSwitch hsDefault;
     }
 }
 

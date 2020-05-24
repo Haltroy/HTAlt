@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HTAlt.Test
+namespace HTAlt.WinForms.Example
 {
     public partial class TabForm : HTTitleTabs
     {
@@ -23,7 +23,7 @@ namespace HTAlt.Test
         {
             return new HTTitleTab(this) 
             { 
-                RightImage = Properties.Resources.ht_logo_2020,
+                RightImage = Properties.Resources.logo,
                 BackColor = Color.White, 
                 UseDefaultBackColor = true, 
                 Content = new TabInnerForm() 

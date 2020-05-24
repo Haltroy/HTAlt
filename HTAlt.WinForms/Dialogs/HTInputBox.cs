@@ -71,7 +71,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// Background color of HTInputBox. Foreground color is auto-selected to White or Black.
         /// </summary>
-        public Color BackgroundColor;
+        public Color BackgroundColor = Color.FromArgb(255,255,255,255);
         /// <summary>
         /// Text to display on "Yes" button.
         /// </summary>
@@ -113,11 +113,11 @@ namespace HTAlt.WinForms
             get => defaultString;
             set => defaultString = value;
         }
-        private HTMsgBoxButtons msgbutton = new HTMsgBoxButtons() { OK = true,Cancel = true, };
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true,Cancel = true, };
         /// <summary>
         /// Gets or sets the list of visible buttons.
         /// </summary>
-        public HTMsgBoxButtons MsgBoxButtons
+        public HTDialogBoxContext MsgBoxButtons
         {
             get => msgbutton;
             set => msgbutton = value;
@@ -131,15 +131,6 @@ namespace HTAlt.WinForms
             get => message;
             set => message = value;
         }
-        private bool showDefaultButton = true;
-        /// <summary>
-        /// Gets or sets if "Set to Default" button is visible.
-        /// </summary>
-        public bool ShowSetToDefaultButton
-        {
-            get => showDefaultButton;
-            set => showDefaultButton = value;
-        }
         /// <summary>
         /// Creates new HTInputBox.
         /// </summary>
@@ -149,7 +140,7 @@ namespace HTAlt.WinForms
         /// <param name="defaultValue">Default value of the input box.</param>
         public HTInputBox(string title,
                                string message,
-                               HTMsgBoxButtons MessageBoxButtons,
+                               HTDialogBoxContext MessageBoxButtons,
                                string defaultValue = "")
         {
             
@@ -162,6 +153,7 @@ namespace HTAlt.WinForms
             label1.MaximumSize = new Size(Width - 25, 0);
             int buttonSize = 75;
             int Count = 0;
+            Count += msgbutton.SetToDefault ? 1 : 0;
             Count += msgbutton.Yes ? 1 : 0;
             Count += msgbutton.No ? 1 : 0;
             Count += msgbutton.Cancel ? 1 : 0;
@@ -169,7 +161,6 @@ namespace HTAlt.WinForms
             Count += msgbutton.Abort ? 1 : 0;
             Count += msgbutton.Retry ? 1 : 0;
             Count += msgbutton.Ignore ? 1 : 0;
-            Count += showDefaultButton ? 1 : 0;
             if (Count > 0)
             {
                 buttonSize += Count * 25;
@@ -186,25 +177,12 @@ namespace HTAlt.WinForms
         /// <param name="title">Title of the input box.</param>
         /// <param name="message">Description of the input box.</param>
         /// <param name="defaultValue">Default value of the input box.</param>
-        public HTInputBox(string title,string message,string defaultValue) : this(title,message,new HTMsgBoxButtons() { OK = true, Cancel = true,},defaultValue) { }
+        public HTInputBox(string title,string message,string defaultValue) : this(title,message,new HTDialogBoxContext() { OK = true, Cancel = true,},defaultValue) { }
         
         /// <summary>
         /// Value inside the textbox in this input box.
         /// </summary>
         public string TextValue => textBox1.Text;
-
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -218,7 +196,7 @@ namespace HTAlt.WinForms
             Count += msgbutton.Abort ? 1 : 0;
             Count += msgbutton.Retry ? 1 : 0;
             Count += msgbutton.Ignore ? 1 : 0;
-            Count += showDefaultButton ? 1 : 0;
+            Count += msgbutton.SetToDefault ? 1 : 0;
             if (Count > 0)
             {
                 buttonSize += Count * 25;
@@ -228,8 +206,8 @@ namespace HTAlt.WinForms
             Height = label1.Height + buttonSize;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             // Set to Default
-            btDefault.Visible = showDefaultButton;
-            btDefault.Enabled = showDefaultButton;
+            btDefault.Visible = msgbutton.SetToDefault;
+            btDefault.Enabled = msgbutton.SetToDefault;
             // Yes
             btYes.Visible = msgbutton.Yes;
             btYes.Enabled = msgbutton.Yes;
@@ -259,36 +237,41 @@ namespace HTAlt.WinForms
             btRetry.ButtonText = Retry;
             btAbort.ButtonText = Abort;
             btIgnore.ButtonText = Ignore;
-            ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
+            ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             BackColor = BackgroundColor;
-            btCancel.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btYes.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btYes.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btNo.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             btOK.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btOK.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btOK.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btAbort.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btAbort.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btRetry.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btRetry.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btIgnore.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
-            btDefault.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            btDefault.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btDefault.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            textBox1.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            textBox1.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+        }
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
         private void haltroyButton1_Click(object sender, EventArgs e)
         {
             textBox1.Text = defaultString;
-        }
-
-        private void HTInputBox_Load(object sender, EventArgs e)
-        {
-            timer1_Tick(sender,e);
         }
 
         private void btRetry_Click(object sender, EventArgs e)

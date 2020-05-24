@@ -1,7 +1,8 @@
-﻿namespace HTAlt.Test
+﻿namespace HTAlt.WinForms.Example
 {
     partial class TabInnerForm
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>

@@ -825,19 +825,19 @@ namespace HTAlt.WinForms
 				Color newTabColor = OverlayColor;
 				if (NewTabButton == TabColors.BackColor)
 				{
-					newTabColor = cursorOverAddButton ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(BackColor, 20, false) : BackColor;
+					newTabColor = cursorOverAddButton ? HTAlt.Tools.ShiftBrightness(BackColor, 20, false) : BackColor;
 				}
 				else if (NewTabButton == TabColors.ForeColor)
 				{
-					newTabColor = cursorOverAddButton ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(ForeColor, 20, false) : ForeColor;
+					newTabColor = cursorOverAddButton ? HTAlt.Tools.ShiftBrightness(ForeColor, 20, false) : ForeColor;
 				}
 				else if (NewTabButton == TabColors.OverlayColor)
 				{
-					newTabColor = cursorOverAddButton ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(OverlayColor, 20, false) : OverlayColor;
+					newTabColor = cursorOverAddButton ? HTAlt.Tools.ShiftBrightness(OverlayColor, 20, false) : OverlayColor;
 				}
 				else if (NewTabButton == TabColors.OverlayBackColor)
 				{
-					newTabColor = cursorOverAddButton ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(OverlayBackColor, 20, false) : OverlayBackColor;
+					newTabColor = cursorOverAddButton ? HTAlt.Tools.ShiftBrightness(OverlayBackColor, 20, false) : OverlayBackColor;
 				}
 				graphicsContext.DrawString("+", new Font(_parentWindow.Font.FontFamily, 25, FontStyle.Bold), new SolidBrush(newTabColor),_addButtonArea.X,_addButtonArea.Y - (_addButtonArea.Height/2));
 
@@ -868,10 +868,10 @@ namespace HTAlt.WinForms
 					Color backBrush = BackColor;
 					if (!tab.UseDefaultBackColor)
 					{
-						backBrush = tab.Active ? tab.BackColor : HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(tab.BackColor, 20, false);
+						backBrush = tab.Active ? tab.BackColor : HTAlt.Tools.ShiftBrightness(tab.BackColor, 20, false);
 					}else
 					{
-						backBrush = tab.Active ? BackColor : HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(BackColor, 20, false);
+						backBrush = tab.Active ? BackColor : HTAlt.Tools.ShiftBrightness(BackColor, 20, false);
 					}
 					tabGraphicsContext.FillRectangle(new SolidBrush(backBrush), new Rectangle(0, 0, LeftRightWidth, TabHeight));
 					tabGraphicsContext.FillRectangle(new SolidBrush(backBrush), new Rectangle(LeftRightWidth, 0, _tabContentWidth, TabHeight));
@@ -885,18 +885,18 @@ namespace HTAlt.WinForms
 						Color closeButtonColor = OverlayColor;
 						if (CloseTabButton == TabColors.BackColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(BackColor, 20, false) : BackColor;
+							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(BackColor, 20, false) : BackColor;
 						}else if (CloseTabButton == TabColors.ForeColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(ForeColor, 20, false) : ForeColor;
+							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(ForeColor, 20, false) : ForeColor;
 						}
 						else if (CloseTabButton == TabColors.OverlayColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(OverlayColor, 20, false) : OverlayColor;
+							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayColor, 20, false) : OverlayColor;
 						}
 						else if (CloseTabButton == TabColors.OverlayBackColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Standart.Tools.ShiftBrightnessIfNeeded(OverlayBackColor, 20, false) : OverlayBackColor;
+							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayBackColor, 20, false) : OverlayBackColor;
 						}
 						tabGraphicsContext.DrawString("X", new Font(_parentWindow.Font.FontFamily, 12, FontStyle.Bold),new SolidBrush(closeButtonColor),tab.CloseButtonArea);
 					}

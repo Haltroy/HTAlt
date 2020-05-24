@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,12 +72,12 @@ namespace HTAlt.WinForms
         /// <summary>
         /// Background color of HTMsgBox. Foreground color is auto-selected to White or Black.
         /// </summary>
-        public Color BackgroundColor;
-        private HTMsgBoxButtons msgbutton = new HTMsgBoxButtons(){ OK = true,};
+        public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(){ OK = true,};
         /// <summary>
         /// Gets or sets the list of visible buttons.
         /// </summary>
-        public HTMsgBoxButtons MsgBoxButtons
+        public HTDialogBoxContext MsgBoxButtons
         {
             get => msgbutton;
             set => msgbutton = value;
@@ -124,11 +123,10 @@ namespace HTAlt.WinForms
         /// <param name="MessageBoxButtons">Buttons to display.</param>
         public HTMsgBox(string Title,
                       string MsgBoxMessage,
-                      HTMsgBoxButtons MessageBoxButtons)
+                      HTDialogBoxContext MessageBoxButtons)
         {
             msgbutton = MessageBoxButtons;
             InitializeComponent();
-            
             Text = Title;
             Message = MsgBoxMessage;
             label1.Text = Message;
@@ -156,36 +154,15 @@ namespace HTAlt.WinForms
         /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="message">Text of message.</param>
-        public HTMsgBox(string message) : this("", message, new HTMsgBoxButtons() { OK = true, }) { }
+        public HTMsgBox(string message) : this("", message, new HTDialogBoxContext() { OK = true, }) { }
         /// <summary>
-        /// Creates new HaltroyMsgBox.
+        /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="title">Title of the message.</param>
-        /// <param name="message">Text of message.</param>
-        public HTMsgBox(string message,string title) : this(title, message, new HTMsgBoxButtons() { OK = true, }) { }
+        /// <param name="message">Text to display.</param>
+        public HTMsgBox(string message,string title) : this(title, message, new HTDialogBoxContext() { OK = true, }) { }
 
-        private void btYes_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Yes;
-            Close();
-        }
-
-        private void btNo_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.No;
-            Close();
-        }
-        private void btCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void btOK_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
+        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -242,23 +219,39 @@ namespace HTAlt.WinForms
             btOK.ButtonText = OK;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
-            btCancel.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btYes.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btYes.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btNo.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btNo.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             btOK.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btOK.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btOK.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btAbort.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btAbort.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btRetry.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btRetry.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btIgnore.BackColor = Tools.ShiftBrightnessIfNeeded(BackgroundColor, 20, false);
+            btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+        }
+        private void btYes_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Yes;
+            Close();
         }
 
-        private void btOK_Click_1(object sender, EventArgs e)
+        private void btNo_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+            Close();
+        }
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void btOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
@@ -283,10 +276,12 @@ namespace HTAlt.WinForms
         }
     }
     /// <summary>
-    /// Buttons to display in a HTMsgBox.
+    /// Buttons & other controls to display in a HT Dialog Box.
     /// </summary>
-    public class HTMsgBoxButtons
+    public class HTDialogBoxContext
     {
+        private bool _SetToDefault = false;
+        private bool _ProgressBar = false;
         private bool _OK = false;
         private bool _Yes = false;
         private bool _No = false;
@@ -295,7 +290,7 @@ namespace HTAlt.WinForms
         private bool _Abort = false;
         private bool _Retry = false;
         /// <summary>
-        /// OK Button.
+        /// "OK" Button.
         /// </summary>
         public bool OK
         {
@@ -308,9 +303,38 @@ namespace HTAlt.WinForms
                 _OK = value; 
             }
         }
-
         /// <summary>
-        /// Yes Button.
+        /// Progress Bar.
+        /// Only applies to <see cref="HTProgressBox"/>.
+        /// </summary>
+        public bool ProgressBar
+        {
+            get
+            {
+                return _ProgressBar;
+            }
+            set
+            {
+                _ProgressBar = value;
+            }
+        }
+        /// <summary>
+        /// "Set to Default" button..
+        /// Only applies to <see cref="HTInputBox"/>.
+        /// </summary>
+        public bool SetToDefault
+        {
+            get
+            {
+                return _SetToDefault;
+            }
+            set
+            {
+                _SetToDefault = value;
+            }
+        }
+        /// <summary>
+        /// "Yes" Button.
         /// </summary>
         public bool Yes
         {
@@ -324,7 +348,7 @@ namespace HTAlt.WinForms
             }
         }
         /// <summary>
-        /// No Button.
+        /// "No" Button.
         /// </summary>
         public bool No
         {
@@ -338,7 +362,7 @@ namespace HTAlt.WinForms
             }
         }
         /// <summary>
-        /// Cancel Button.
+        /// "Cancel" Button.
         /// </summary>
         public bool Cancel
         {
@@ -352,7 +376,7 @@ namespace HTAlt.WinForms
             }
         }
         /// <summary>
-        /// Abort Button.
+        /// "Abort" Button.
         /// </summary>
         public bool Abort
         {
@@ -366,7 +390,7 @@ namespace HTAlt.WinForms
             }
         }
         /// <summary>
-        /// Retry Button.
+        /// "Retry" Button.
         /// </summary>
         public bool Retry
         {
@@ -380,7 +404,7 @@ namespace HTAlt.WinForms
             }
         }
         /// <summary>
-        /// Ignore Button.
+        /// "Ignore" Button.
         /// </summary>
         public bool Ignore
         {

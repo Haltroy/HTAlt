@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace HTAlt.Test
+namespace HTAlt.WinForms.Example
 {
     static class Program
     {

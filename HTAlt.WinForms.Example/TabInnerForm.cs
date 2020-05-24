@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HTAlt.Test
+namespace HTAlt.WinForms.Example
 {
     public partial class TabInnerForm : Form
     {

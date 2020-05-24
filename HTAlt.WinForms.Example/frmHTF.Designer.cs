@@ -1,4 +1,6 @@
-﻿namespace HTAlt.Test
+﻿using HTAlt.WinForms;
+
+namespace HTAlt.WinForms.Example
 {
     partial class frmHTF : HTForms
     {

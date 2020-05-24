@@ -135,7 +135,7 @@ namespace HTAlt.WinForms
             this.btOK.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Visible = false;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click_1);
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btAbort
             // 

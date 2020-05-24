@@ -1,4 +1,4 @@
-﻿namespace HTAlt.Test
+﻿namespace HTAlt.WinForms.Example
 {
     partial class TabForm
     {
