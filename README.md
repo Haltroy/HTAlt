@@ -2,10 +2,11 @@
 |Standart|WinForms|
 |--|--|
 |[![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.Standart)|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.WinForms)|
+|[![GitHub](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.1/HTAlt.Standart.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.1/HTAlt.Standart.dll)|[![GitHub)](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.1/HTAlt.WinForms.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.1/HTAlt.WinForms.dll)|
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
-Latest Stable Version: [`b1.4`](https://github.com/Haltroy/HTAlt/releases/tag/b1.4)
+Latest Stable Version: [`b1.4.1`](https://github.com/Haltroy/HTAlt/releases/tag/b1.4.1)
 
 ## Features
  - Tab (Control)
@@ -25,6 +26,6 @@ Latest Stable Version: [`b1.4`](https://github.com/Haltroy/HTAlt/releases/tag/b1
 
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
-| [`master`](https://github.com/haltroy/htalt)              | Framework 4.6.1 | Development | ¯\_(ツ)_/¯ |
-| [`b1.4`](https://github.com/haltroy/htalt/tree/b1.4) | Framework 4.6.1 | **Latest Release** | 13.5.2020 |
-| `HaltroyFramework`,`b1.3h2` and lower | Framework 4.5 | Unsupported | Before 13.5.2020 |
+| [`master`](https://github.com/haltroy/htalt)              | Framework 4.6.1 | Development | |
+| [`b1.4.1`](https://github.com/haltroy/htalt/tree/b1.4.1) | Framework 4.6.1 | **Latest Release** | 13.5.2020 |
+| `b1.4` and lower | Framework 4.6.1 | Unsupported | Before 13.5.2020 |
