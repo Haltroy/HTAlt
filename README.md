@@ -2,7 +2,7 @@
 |Standart|WinForms|
 |--|--|
 |[![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.Standart)|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.WinForms)|
-|[![GitHub](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.2/HTAlt.Standart.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.1/HTAlt.Standart.dll)|[![GitHub)](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.2/HTAlt.WinForms.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.1/HTAlt.WinForms.dll)|
+|[![GitHub](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.2/HTAlt.Standart.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.2/HTAlt.Standart.dll)|[![GitHub)](https://img.shields.io/github/downloads/haltroy/htalt/b1.4.2/HTAlt.WinForms.dll?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.4.2/HTAlt.WinForms.dll)|
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
