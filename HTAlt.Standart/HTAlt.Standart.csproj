@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon>logo.ico</ApplicationIcon>
-    <Version>0.1.4.1</Version>
+    <Version>0.1.4.2</Version>
     <Authors>Haltroy</Authors>
     <Description>Standart library for HTAlt packages.</Description>
     <Copyright>Copyright © Haltroy 2020</Copyright>

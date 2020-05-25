@@ -114,6 +114,26 @@ namespace HTAlt
             return baseUri;
         }
         /// <summary>
+        /// Generates a random color.
+        /// </summary>
+        /// <param name="Transparency">Value of random generated color's alpha channel. This parameter is ignored if <paramref name="RandomTransparency"/> is set to true.</param>
+        /// <param name="RandomTransparency">True to randomize Alpha channel, otherwise use <paramref name="Transparency"/>.</param>
+        /// <returns>Random color.</returns>
+        public static Color RandomColor(int Transparency = 255,bool RandomTransparency = false)
+        {
+            Random rand = new Random();
+            int max = 256;
+            int a = Transparency;
+            if (RandomTransparency)
+            {
+                a = rand.Next(max);
+            }
+            int r = rand.Next(max);
+            int g = rand.Next(max);
+            int b = rand.Next(max);
+            return Color.FromArgb(a, r, g, b);
+        }
+        /// <summary>
         /// Converts Hexadecimal to Color
         /// </summary>
         /// <param name="hexString">Hex Code of Color</param>

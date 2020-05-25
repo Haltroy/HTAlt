@@ -143,7 +143,13 @@ namespace HTAlt.WinForms
 				Apply = true;
 			}
 			if (Apply) { RefreshColors(); }
-			_parentWindow._overlay.Render(true);
+			if (_parentWindow != null)
+			{
+				if (_parentWindow._overlay != null)
+				{
+					_parentWindow._overlay.Render(true);
+				}
+			}
 		}
 
 		/// <summary>Since Chrome tabs overlap, we set this property to the amount that they overlap by.</summary>
@@ -885,18 +891,18 @@ namespace HTAlt.WinForms
 						Color closeButtonColor = OverlayColor;
 						if (CloseTabButton == TabColors.BackColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(BackColor, 20, false) : BackColor;
+							closeButtonColor = tab.UseDefaultBackColor ? (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(BackColor, 20, false) : BackColor) : (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(tab.BackColor, 20, false) : tab.BackColor);
 						}else if (CloseTabButton == TabColors.ForeColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(ForeColor, 20, false) : ForeColor;
+							closeButtonColor = tab.UseDefaultForeColor ? (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(ForeColor, 20, false) : ForeColor) : (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(tab.ForeColor, 20, false) : tab.ForeColor);
 						}
 						else if (CloseTabButton == TabColors.OverlayColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayColor, 20, false) : OverlayColor;
+							closeButtonColor = tab.UseDefaultOverlayColor ? (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayColor, 20, false) : OverlayColor) : (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(tab.OverlayColor, 20, false) : tab.OverlayColor);
 						}
 						else if (CloseTabButton == TabColors.OverlayBackColor)
 						{
-							closeButtonColor = IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayBackColor, 20, false) : OverlayBackColor;
+							closeButtonColor = tab.UseDefaultOverlayBackColor ? (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(OverlayBackColor, 20, false) : OverlayBackColor) : (IsOverCloseButton(tab, cursor) ? HTAlt.Tools.ShiftBrightness(tab.OverlayBackColor, 20, false) : tab.OverlayBackColor);
 						}
 						tabGraphicsContext.DrawString("X", new Font(_parentWindow.Font.FontFamily, 12, FontStyle.Bold),new SolidBrush(closeButtonColor),tab.CloseButtonArea);
 					}
@@ -906,7 +912,6 @@ namespace HTAlt.WinForms
 						Rectangle ImageRect;
 						if (tab.ShowCloseButton)
 						{
-							Console.WriteLine("Close Button Shown");
 							ImageRect = new Rectangle(
 						area.Width - LeftRightWidth - CloseButtonMarginRight - closeButtonWH - 20, CloseButtonMarginTop, closeButtonWH,
 						closeButtonWH);
@@ -950,7 +955,7 @@ namespace HTAlt.WinForms
 					: 0))
 			{
 				graphicsContext.DrawString(
-					tab.Caption, SystemFonts.CaptionFont, new SolidBrush(ForeColor),
+					tab.Caption, SystemFonts.CaptionFont, new SolidBrush(tab.UseDefaultForeColor ? ForeColor: tab.ForeColor),
 					new Rectangle(
 						area.X + OverlapWidth + CaptionMarginLeft + (tab.Content.ShowIcon
 							? IconMarginLeft +

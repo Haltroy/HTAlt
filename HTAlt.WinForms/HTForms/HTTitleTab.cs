@@ -19,6 +19,367 @@ using Timer = System.Timers.Timer;
 
 namespace HTAlt.WinForms
 {
+		/// <summary>Wraps a <see cref="Form" /> instance (<see cref="_content" />), that represents the content that should be displayed within a tab instance.</summary>
+	public class HTTitleTab
+	{
+		#region HTControls
+		private readonly HTInfo info = new HTInfo();
+		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTab-Class");
+		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
+		private readonly string originProjectName = "EasyTabs";
+		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
+		private readonly string description = "Wraps a Form instance (_content), that represents the content that should be displayed within a tab instance.";
+		/// <summary>
+		/// This control's wiki link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's wiki link.")]
+		public Uri WikiLink => wikiLink;
+		/// <summary>
+		/// This control's origin project name.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project name.")]
+		public string OriginProjectName => originProjectName;
+		/// <summary>
+		/// This control's origin project link.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's origin project link.")]
+		public Uri OriginProjectLink => originProject;
+		/// <summary>
+		/// This control's first appearance version for HTAlt.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's first appearance version for HTAlt.")]
+		public Version FirstHTAltVersion => firstHTAltVersion;
+		/// <summary>
+		/// This control's description.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("This control's description.")]
+		public string Description => description;
+		/// <summary>
+		/// Information about this control's project.
+		/// </summary>
+		[Bindable(false)]
+		[Category("HTAlt")]
+		[Description("Information about this control's project.")]
+		[TypeConverter(typeof(ExpandableObjectConverter))]
+		public HTInfo ProjectInfo => info;
+		#endregion
+		/// <summary>
+		/// Image to display between Close button and text.
+		/// </summary>
+		public Image RightImage { get; set; }
+		/// <summary>
+		/// True to use the default color for overlay background.
+		/// </summary>
+		protected bool useDefaultOverlayBackColor = true;
+		/// <summary>
+		/// True to use the default color for background.
+		/// </summary>
+		protected bool useDefaultBackColor = true;
+		/// <summary>
+		/// True to use the default color for foreground.
+		/// </summary>
+		protected bool useDefaultForeColor = true;
+		/// <summary>
+		/// True to use the default color for overlay.
+		/// </summary>
+		protected bool useDefaultOverlayColor = true;
+		/// <summary>
+		/// Overlay color of the tab.
+		/// </summary>
+		protected Color _OverlayColor = Color.FromArgb(255, 20, 157, 204);
+		/// <summary>
+		/// Foreground color of the tab.
+		/// </summary>
+		protected Color _ForeColor = Color.FromArgb(255, 0, 0, 0);
+		/// <summary>
+		/// Overlay Background color of the tab.
+		/// </summary>
+		protected Color _OverlayBackColor = Color.FromArgb(255, 255, 255, 255);
+		/// <summary>
+		/// Background color of the tab.
+		/// </summary>
+		protected Color _BackColor = Color.FromArgb(255, 235, 235, 235);
+		/// <summary>
+		/// True to use the default color for all.
+		/// </summary>
+		public bool UseDefaultColor
+		{
+			get => (useDefaultBackColor && useDefaultForeColor && useDefaultOverlayColor && useDefaultOverlayBackColor);
+			set{
+				useDefaultOverlayBackColor = value;
+				useDefaultBackColor = value;
+				useDefaultForeColor = value;
+				useDefaultOverlayColor = value;
+			}
+		}
+		/// <summary>
+		/// True to use the default color for background.
+		/// </summary>
+		public bool UseDefaultBackColor
+		{
+			get => useDefaultBackColor;
+			set => useDefaultBackColor = value;
+		}
+		/// <summary>
+		/// True to use the default color for overlay background.
+		/// </summary>
+		public bool UseDefaultOverlayBackColor
+		{
+			get => useDefaultOverlayBackColor;
+			set => useDefaultOverlayBackColor = value;
+		}
+		/// <summary>
+		/// True to use the default color for foreground.
+		/// </summary>
+		public bool UseDefaultForeColor
+		{
+			get => useDefaultForeColor;
+			set => useDefaultForeColor = value;
+		}
+		/// <summary>
+		/// True to use the default color for overlay.
+		/// </summary>
+		public bool UseDefaultOverlayColor
+		{
+			get => useDefaultOverlayColor;
+			set => useDefaultOverlayColor = value;
+		}
+		/// <summary>
+		/// Background color of the Title Tab..
+		/// </summary>
+		public Color BackColor
+		{
+			get => _BackColor;
+			set => _BackColor = value;
+		}
+		/// <summary>
+		/// Overlay background color of the Title Tab..
+		/// </summary>
+		public Color OverlayBackColor
+		{
+			get => _OverlayBackColor;
+			set => _OverlayBackColor = value;
+		}
+		/// <summary>
+		/// Foreground color of the Title Tab..
+		/// </summary>
+		public Color ForeColor
+		{
+			get => _ForeColor;
+			set => _ForeColor = value;
+		}
+		/// <summary>
+		/// Overlayground color of the Title Tab..
+		/// </summary>
+		public Color OverlayColor
+		{
+			get => _OverlayColor;
+			set => _OverlayColor = value;
+		}
+		/// <summary>Flag indicating whether or not this tab is active.</summary>
+		protected bool _active;
+
+		/// <summary>Content that should be displayed within the tab.</summary>
+		protected Form _content;
+
+		/// <summary>Parent window that contains this tab.</summary>
+		protected HTTitleTabs _parent;
+
+		/// <summary>Default constructor that initializes the various properties.</summary>
+		/// <param name="parent">Parent window that contains this tab.</param>
+		public HTTitleTab(HTTitleTabs parent)
+		{
+			ShowCloseButton = true;
+			Parent = parent;
+		}
+
+		/// <summary>Parent window that contains this tab.</summary>
+		public HTTitleTabs Parent
+		{
+			get
+			{
+				return _parent;
+			}
+
+			internal set
+			{
+				_parent = value;
+
+				if (_content != null)
+				{
+					_content.Parent = _parent;
+				}
+			}
+		}
+
+		/// <summary>Flag indicating whether or not we should display the close button for this tab.</summary>
+		public bool ShowCloseButton
+		{
+			get;
+			set;
+		}
+
+		/// <summary>The caption that's displayed in the tab's title (simply uses the <see cref="Form.Text" /> of
+		/// <see cref="Content" />).</summary>
+		public string Caption
+		{
+			get
+			{
+				return Content.Text;
+			}
+
+			set
+			{
+				Content.Text = value;
+			}
+		}
+
+		/// <summary>Flag indicating whether or not this tab is active.</summary>
+		public bool Active
+		{
+			get
+			{
+				return _active;
+			}
+
+			internal set
+			{
+				// When the status of the tab changes, we null out the TabImage property so that it's recreated in the next rendering pass
+				_active = value;
+				TabImage = null;
+				Content.Visible = value;
+			}
+		}
+
+		/// <summary>The icon that's displayed in the tab's title (simply uses the <see cref="Form.Icon" /> of <see cref="Content" />).</summary>
+		public Icon Icon
+		{
+			get
+			{
+				return Content.Icon;
+			}
+
+			set
+			{
+				Content.Icon = value;
+			}
+		}
+
+		/// <summary>The area in which the tab is rendered in the client window.</summary>
+		internal Rectangle Area
+		{
+			get;
+			set;
+		}
+
+		/// <summary>The area of the close button for this tab in the client window.</summary>
+		internal Rectangle CloseButtonArea
+		{
+			get;
+			set;
+		}
+
+		/// <summary>Pre-rendered image of the tab's background.</summary>
+		internal Bitmap TabImage
+		{
+			get;
+			set;
+		}
+
+		/// <summary>The content that should be displayed for this tab.</summary>
+		public Form Content
+		{
+			get
+			{
+				return _content;
+			}
+
+			set
+			{
+				if (_content != null)
+				{
+					_content.FormClosing -= Content_Closing;
+					_content.TextChanged -= Content_TextChanged;
+				}
+
+				_content = value;
+
+				// We set the content form to a non-top-level child of the parent form.
+				Content.FormBorderStyle = FormBorderStyle.None;
+				Content.TopLevel = false;
+				Content.Parent = Parent;
+				Content.FormClosing += Content_Closing;
+				Content.TextChanged += Content_TextChanged;
+			}
+		}
+
+		/// <summary>
+		/// Called from <see cref="TornTabForm" /> when we need to generate a thumbnail for a tab when it is torn out of its parent window.  We simply call
+		/// <see cref="Graphics.CopyFromScreen(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)" /> to copy the screen contents to a
+		/// <see cref="Bitmap" />.
+		/// </summary>
+		/// <returns>An image of the tab's contents.</returns>
+		public virtual Bitmap GetImage()
+		{
+			Bitmap tabContents = new Bitmap(Content.Size.Width, Content.Size.Height);
+			Graphics contentsGraphics = Graphics.FromImage(tabContents);
+
+			contentsGraphics.CopyFromScreen(Content.PointToScreen(Point.Empty).X, Content.PointToScreen(Point.Empty).Y, 0, 0, Content.Size);
+
+			return tabContents;
+		}
+
+		/// <summary>Event that is fired when <see cref="Content" />'s <see cref="Form.Closing" /> event is fired.</summary>
+		public event CancelEventHandler Closing;
+
+		/// <summary>Event that is fired when <see cref="Content" />'s <see cref="Control.TextChanged" /> event is fired.</summary>
+		public event EventHandler TextChanged;
+
+		/// <summary>
+		/// Event handler that is invoked when <see cref="Content" />'s <see cref="Control.TextChanged" /> event is fired, which in turn fires this class'
+		/// <see cref="TextChanged" /> event.
+		/// </summary>
+		/// <param name="sender">Object from which this event originated (<see cref="Content" /> in this case).</param>
+		/// <param name="e">Arguments associated with the event.</param>
+		private void Content_TextChanged(object sender, EventArgs e)
+		{
+			if (TextChanged != null)
+			{
+				TextChanged(this, e);
+			}
+		}
+
+		/// <summary>
+		/// Event handler that is invoked when <see cref="Content" />'s <see cref="Form.Closing" /> event is fired, which in turn fires this class'
+		/// <see cref="Closing" /> event.
+		/// </summary>
+		/// <param name="sender">Object from which this event originated (<see cref="Content" /> in this case).</param>
+		/// <param name="e">Arguments associated with the event.</param>
+		protected void Content_Closing(object sender, CancelEventArgs e)
+		{
+			if (Closing != null)
+			{
+				Closing(this, e);
+			}
+		}
+
+		/// <summary>Unsubscribes the tab from any event handlers that may have been attached to its <see cref="Closing" /> or <see cref="TextChanged" /> events.</summary>
+		public void ClearSubscriptions()
+		{
+			Closing = null;
+			TextChanged = null;
+		}
+	}
 	/// <summary>
 	/// Borderless overlay window that is moved with and rendered on top of the non-client area of a  <see cref="HTTitleTabs" /> instance that's responsible
 	/// for rendering the actual tab content and responding to click events for those tabs.
@@ -1754,326 +2115,7 @@ namespace HTAlt.WinForms
 			}
 		}
 	}
-	/// <summary>Wraps a <see cref="Form" /> instance (<see cref="_content" />), that represents the content that should be displayed within a tab instance.</summary>
-	public class HTTitleTab
-	{
-		#region HTControls
-		private readonly HTInfo info = new HTInfo();
-		private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTitleTab-Class");
-		private readonly Version firstHTAltVersion = new Version("0.1.4.0");
-		private readonly string originProjectName = "EasyTabs";
-		private readonly Uri originProject = new Uri("https://github.com/lstratman/EasyTabs");
-		private readonly string description = "Wraps a Form instance (_content), that represents the content that should be displayed within a tab instance.";
-		/// <summary>
-		/// This control's wiki link.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("This control's wiki link.")]
-		public Uri WikiLink => wikiLink;
-		/// <summary>
-		/// This control's origin project name.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("This control's origin project name.")]
-		public string OriginProjectName => originProjectName;
-		/// <summary>
-		/// This control's origin project link.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("This control's origin project link.")]
-		public Uri OriginProjectLink => originProject;
-		/// <summary>
-		/// This control's first appearance version for HTAlt.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("This control's first appearance version for HTAlt.")]
-		public Version FirstHTAltVersion => firstHTAltVersion;
-		/// <summary>
-		/// This control's description.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("This control's description.")]
-		public string Description => description;
-		/// <summary>
-		/// Information about this control's project.
-		/// </summary>
-		[Bindable(false)]
-		[Category("HTAlt")]
-		[Description("Information about this control's project.")]
-		[TypeConverter(typeof(ExpandableObjectConverter))]
-		public HTInfo ProjectInfo => info;
-		#endregion
-		/// <summary>
-		/// Image to display between Close button and text.
-		/// </summary>
-		public Image RightImage { get; set; }
-		/// <summary>
-		/// True to use the default color for background.
-		/// </summary>
-		protected bool useDefaultBackColor = true;
-		/// <summary>
-		/// True to use the default color for foreground.
-		/// </summary>
-		protected bool useDefaultForeColor = true;
-		/// <summary>
-		/// True to use the default color for overlay.
-		/// </summary>
-		protected bool useDefaultOverlayColor = true;
-		/// <summary>
-		/// Overlay color of the tab.
-		/// </summary>
-		protected Color _OverlayColor = Color.FromArgb(255, 20, 157, 204);
-		/// <summary>
-		/// Foreground color of the tab.
-		/// </summary>
-		protected Color _ForeColor = Color.FromArgb(255, 0, 0, 0);
-		/// <summary>
-		/// Background color of the tab.
-		/// </summary>
-		protected Color _BackColor = Color.FromArgb(255, 255, 255, 255);
-		/// <summary>
-		/// True to use the default color for all.
-		/// </summary>
-		public bool UseDefaultColor
-		{
-			get => (useDefaultBackColor && useDefaultForeColor && useDefaultOverlayColor);
-			set{
-				useDefaultBackColor = value;
-				useDefaultForeColor = value;
-				useDefaultOverlayColor = value;
-			}
-		}
-		/// <summary>
-		/// True to use the default color for background.
-		/// </summary>
-		public bool UseDefaultBackColor
-		{
-			get => useDefaultBackColor;
-			set => useDefaultBackColor = value;
-		}
-		/// <summary>
-		/// True to use the default color for foreground.
-		/// </summary>
-		public bool UseDefaultForeColor
-		{
-			get => useDefaultForeColor;
-			set => useDefaultForeColor = value;
-		}
-		/// <summary>
-		/// True to use the default color for overlay.
-		/// </summary>
-		public bool UseDefaultOverlayColor
-		{
-			get => useDefaultOverlayColor;
-			set => useDefaultOverlayColor = value;
-		}
-		/// <summary>
-		/// Background color of the Title Bar Tab.
-		/// </summary>
-		public Color BackColor
-		{
-			get => _BackColor;
-			set => _BackColor = value;
-		}
-		/// <summary>Flag indicating whether or not this tab is active.</summary>
-		protected bool _active;
 
-		/// <summary>Content that should be displayed within the tab.</summary>
-		protected Form _content;
-
-		/// <summary>Parent window that contains this tab.</summary>
-		protected HTTitleTabs _parent;
-
-		/// <summary>Default constructor that initializes the various properties.</summary>
-		/// <param name="parent">Parent window that contains this tab.</param>
-		public HTTitleTab(HTTitleTabs parent)
-		{
-			ShowCloseButton = true;
-			Parent = parent;
-		}
-
-		/// <summary>Parent window that contains this tab.</summary>
-		public HTTitleTabs Parent
-		{
-			get
-			{
-				return _parent;
-			}
-
-			internal set
-			{
-				_parent = value;
-
-				if (_content != null)
-				{
-					_content.Parent = _parent;
-				}
-			}
-		}
-
-		/// <summary>Flag indicating whether or not we should display the close button for this tab.</summary>
-		public bool ShowCloseButton
-		{
-			get;
-			set;
-		}
-
-		/// <summary>The caption that's displayed in the tab's title (simply uses the <see cref="Form.Text" /> of
-		/// <see cref="Content" />).</summary>
-		public string Caption
-		{
-			get
-			{
-				return Content.Text;
-			}
-
-			set
-			{
-				Content.Text = value;
-			}
-		}
-
-		/// <summary>Flag indicating whether or not this tab is active.</summary>
-		public bool Active
-		{
-			get
-			{
-				return _active;
-			}
-
-			internal set
-			{
-				// When the status of the tab changes, we null out the TabImage property so that it's recreated in the next rendering pass
-				_active = value;
-				TabImage = null;
-				Content.Visible = value;
-			}
-		}
-
-		/// <summary>The icon that's displayed in the tab's title (simply uses the <see cref="Form.Icon" /> of <see cref="Content" />).</summary>
-		public Icon Icon
-		{
-			get
-			{
-				return Content.Icon;
-			}
-
-			set
-			{
-				Content.Icon = value;
-			}
-		}
-
-		/// <summary>The area in which the tab is rendered in the client window.</summary>
-		internal Rectangle Area
-		{
-			get;
-			set;
-		}
-
-		/// <summary>The area of the close button for this tab in the client window.</summary>
-		internal Rectangle CloseButtonArea
-		{
-			get;
-			set;
-		}
-
-		/// <summary>Pre-rendered image of the tab's background.</summary>
-		internal Bitmap TabImage
-		{
-			get;
-			set;
-		}
-
-		/// <summary>The content that should be displayed for this tab.</summary>
-		public Form Content
-		{
-			get
-			{
-				return _content;
-			}
-
-			set
-			{
-				if (_content != null)
-				{
-					_content.FormClosing -= Content_Closing;
-					_content.TextChanged -= Content_TextChanged;
-				}
-
-				_content = value;
-
-				// We set the content form to a non-top-level child of the parent form.
-				Content.FormBorderStyle = FormBorderStyle.None;
-				Content.TopLevel = false;
-				Content.Parent = Parent;
-				Content.FormClosing += Content_Closing;
-				Content.TextChanged += Content_TextChanged;
-			}
-		}
-
-		/// <summary>
-		/// Called from <see cref="TornTabForm" /> when we need to generate a thumbnail for a tab when it is torn out of its parent window.  We simply call
-		/// <see cref="Graphics.CopyFromScreen(System.Drawing.Point,System.Drawing.Point,System.Drawing.Size)" /> to copy the screen contents to a
-		/// <see cref="Bitmap" />.
-		/// </summary>
-		/// <returns>An image of the tab's contents.</returns>
-		public virtual Bitmap GetImage()
-		{
-			Bitmap tabContents = new Bitmap(Content.Size.Width, Content.Size.Height);
-			Graphics contentsGraphics = Graphics.FromImage(tabContents);
-
-			contentsGraphics.CopyFromScreen(Content.PointToScreen(Point.Empty).X, Content.PointToScreen(Point.Empty).Y, 0, 0, Content.Size);
-
-			return tabContents;
-		}
-
-		/// <summary>Event that is fired when <see cref="Content" />'s <see cref="Form.Closing" /> event is fired.</summary>
-		public event CancelEventHandler Closing;
-
-		/// <summary>Event that is fired when <see cref="Content" />'s <see cref="Control.TextChanged" /> event is fired.</summary>
-		public event EventHandler TextChanged;
-
-		/// <summary>
-		/// Event handler that is invoked when <see cref="Content" />'s <see cref="Control.TextChanged" /> event is fired, which in turn fires this class'
-		/// <see cref="TextChanged" /> event.
-		/// </summary>
-		/// <param name="sender">Object from which this event originated (<see cref="Content" /> in this case).</param>
-		/// <param name="e">Arguments associated with the event.</param>
-		private void Content_TextChanged(object sender, EventArgs e)
-		{
-			if (TextChanged != null)
-			{
-				TextChanged(this, e);
-			}
-		}
-
-		/// <summary>
-		/// Event handler that is invoked when <see cref="Content" />'s <see cref="Form.Closing" /> event is fired, which in turn fires this class'
-		/// <see cref="Closing" /> event.
-		/// </summary>
-		/// <param name="sender">Object from which this event originated (<see cref="Content" /> in this case).</param>
-		/// <param name="e">Arguments associated with the event.</param>
-		protected void Content_Closing(object sender, CancelEventArgs e)
-		{
-			if (Closing != null)
-			{
-				Closing(this, e);
-			}
-		}
-
-		/// <summary>Unsubscribes the tab from any event handlers that may have been attached to its <see cref="Closing" /> or <see cref="TextChanged" /> events.</summary>
-		public void ClearSubscriptions()
-		{
-			Closing = null;
-			TextChanged = null;
-		}
-	}
 	/// <summary>Provides data for the <see cref="ListWithEvents{T}.ItemAdded" /> events.</summary>
 	[Serializable]
 	public class ListItemEventArgs : EventArgs
