@@ -26,6 +26,6 @@ Latest Stable Version: [`b1.4.2`](https://github.com/Haltroy/HTAlt/releases/tag/
 
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
-| [`master`](https://github.com/haltroy/htalt)              | Standart 2.0 & Framework 4.6.1 | Development | |
+| [`master`](https://github.com/haltroy/htalt)              | Standart 2.0 & Framework 4.6.1 | Development | (•_•) |
 | [`b1.4.2`](https://github.com/haltroy/htalt/tree/b1.4.2) | Standart 2.0 & Framework 4.6.1 | **Latest Release** | 25.5.2020 |
 | `b1.4.1` and lower | Framework 4.6.1 | Unsupported | Before 25.5.2020 |
