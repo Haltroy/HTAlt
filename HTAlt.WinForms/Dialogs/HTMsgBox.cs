@@ -20,12 +20,9 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using Win32Interop.Methods;
 
 namespace HTAlt.WinForms
 {
@@ -35,10 +32,12 @@ namespace HTAlt.WinForms
     public partial class HTMsgBox : Form
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTMsgBox-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTMsgBox");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Customizable System.Windows.Forms.MessageBox.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -46,6 +45,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -53,6 +53,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -60,6 +61,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -68,12 +70,16 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         /// <summary>
         /// Background color of HTMsgBox. Foreground color is auto-selected to White or Black.
         /// </summary>
         public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(){ OK = true,};
+
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, };
+
         /// <summary>
         /// Gets or sets the list of visible buttons.
         /// </summary>
@@ -82,34 +88,42 @@ namespace HTAlt.WinForms
             get => msgbutton;
             set => msgbutton = value;
         }
+
         /// <summary>
         /// Text to display on "Yes" button.
         /// </summary>
         public string Yes = "Yes";
+
         /// <summary>
         /// Text to display on "Retry" button.
         /// </summary>
         public string Retry = "Retry";
+
         /// <summary>
         /// Text to display on "Abort" button.
         /// </summary>
         public string Abort = "Abort";
+
         /// <summary>
         /// Text to display on "Ignore" button.
         /// </summary>
         public string Ignore = "Ignore";
+
         /// <summary>
         /// Text to display on "No" button.
         /// </summary>
         public string No = "No";
+
         /// <summary>
         /// Text to display on "OK" button.
         /// </summary>
         public string OK = "OK";
+
         /// <summary>
         /// Text to display on "Cancel" button.
         /// </summary>
         public string Cancel = "Cancel";
+
         /// <summary>
         /// Text to display on top of buttons.
         /// </summary>
@@ -150,19 +164,19 @@ namespace HTAlt.WinForms
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             timer1_Tick(null, null);
         }
+
         /// <summary>
         /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="message">Text of message.</param>
         public HTMsgBox(string message) : this("", message, new HTDialogBoxContext() { OK = true, }) { }
+
         /// <summary>
         /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="title">Title of the message.</param>
         /// <param name="message">Text to display.</param>
-        public HTMsgBox(string message,string title) : this(title, message, new HTDialogBoxContext() { OK = true, }) { }
-
-        
+        public HTMsgBox(string message, string title) : this(title, message, new HTDialogBoxContext() { OK = true, }) { }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -210,13 +224,13 @@ namespace HTAlt.WinForms
             // Ignore
             btIgnore.Visible = msgbutton.Ignore;
             btIgnore.Enabled = msgbutton.Ignore;
-            btYes.ButtonText = Yes;
-            btNo.ButtonText = No;
-            btCancel.ButtonText = Cancel;
-            btAbort.ButtonText = Abort;
-            btRetry.ButtonText = Retry;
-            btIgnore.ButtonText = Ignore;
-            btOK.ButtonText = OK;
+            btYes.Text = Yes;
+            btNo.Text = No;
+            btCancel.Text = Cancel;
+            btAbort.Text = Abort;
+            btRetry.Text = Retry;
+            btIgnore.Text = Ignore;
+            btOK.Text = OK;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
@@ -234,6 +248,7 @@ namespace HTAlt.WinForms
             btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
         }
+
         private void btYes_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Yes;
@@ -245,6 +260,7 @@ namespace HTAlt.WinForms
             DialogResult = DialogResult.No;
             Close();
         }
+
         private void btCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -275,6 +291,7 @@ namespace HTAlt.WinForms
             Close();
         }
     }
+
     /// <summary>
     /// Buttons & other controls to display in a HT Dialog Box.
     /// </summary>
@@ -289,133 +306,88 @@ namespace HTAlt.WinForms
         private bool _Ignore = false;
         private bool _Abort = false;
         private bool _Retry = false;
+
         /// <summary>
         /// "OK" Button.
         /// </summary>
         public bool OK
         {
-            get
-            {
-                return _OK;
-            }
-            set 
-            { 
-                _OK = value; 
-            }
+            get => _OK;
+            set => _OK = value;
         }
+
         /// <summary>
         /// Progress Bar.
         /// Only applies to <see cref="HTProgressBox"/>.
         /// </summary>
         public bool ProgressBar
         {
-            get
-            {
-                return _ProgressBar;
-            }
-            set
-            {
-                _ProgressBar = value;
-            }
+            get => _ProgressBar;
+            set => _ProgressBar = value;
         }
+
         /// <summary>
         /// "Set to Default" button..
         /// Only applies to <see cref="HTInputBox"/>.
         /// </summary>
         public bool SetToDefault
         {
-            get
-            {
-                return _SetToDefault;
-            }
-            set
-            {
-                _SetToDefault = value;
-            }
+            get => _SetToDefault;
+            set => _SetToDefault = value;
         }
+
         /// <summary>
         /// "Yes" Button.
         /// </summary>
         public bool Yes
         {
-            get
-            {
-                return _Yes;
-            }
-            set
-            {
-                _Yes = value;
-            }
+            get => _Yes;
+            set => _Yes = value;
         }
+
         /// <summary>
         /// "No" Button.
         /// </summary>
         public bool No
         {
-            get
-            {
-                return _No;
-            }
-            set
-            {
-                _No = value;
-            }
+            get => _No;
+            set => _No = value;
         }
+
         /// <summary>
         /// "Cancel" Button.
         /// </summary>
         public bool Cancel
         {
-            get
-            {
-                return _Cancel;
-            }
-            set
-            {
-                _Cancel = value;
-            }
+            get => _Cancel;
+            set => _Cancel = value;
         }
+
         /// <summary>
         /// "Abort" Button.
         /// </summary>
         public bool Abort
         {
-            get
-            {
-                return _Abort;
-            }
-            set
-            {
-                _Abort = value;
-            }
+            get => _Abort;
+            set => _Abort = value;
         }
+
         /// <summary>
         /// "Retry" Button.
         /// </summary>
         public bool Retry
         {
-            get
-            {
-                return _Retry;
-            }
-            set
-            {
-                _Retry = value;
-            }
+            get => _Retry;
+            set => _Retry = value;
         }
+
         /// <summary>
         /// "Ignore" Button.
         /// </summary>
         public bool Ignore
         {
-            get
-            {
-                return _Ignore;
-            }
-            set
-            {
-                _Ignore = value;
-            }
+            get => _Ignore;
+            set => _Ignore = value;
         }
     }
 }

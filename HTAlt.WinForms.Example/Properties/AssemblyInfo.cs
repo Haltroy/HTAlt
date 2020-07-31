@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // denetlenir. Bütünleştirilmiş kod ile ilişkili bilgileri değiştirmek için
 // bu öznitelik değerlerini değiştirin.
 [assembly: AssemblyTitle("HTAlt.WinForms.Example")]
-[assembly: AssemblyDescription("Example application fro testing HTAlt.WinForms.dll")]
+[assembly: AssemblyDescription("Example application for testing HTAlt.WinForms.dll")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haltroy")]
 [assembly: AssemblyProduct("HTAlt.WinForms.Example")]

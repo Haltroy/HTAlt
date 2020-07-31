@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -34,10 +33,12 @@ namespace HTAlt.WinForms
     public class HTListView : System.Windows.Forms.ListView
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTListView-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTListView");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Customizable System.Windows.Forms.ListView Control.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -45,6 +46,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -52,6 +54,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -59,6 +62,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -67,10 +71,14 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         private bool updating;
         private int itemnumber;
+
         #region WM - Window Messages
+
         public enum WM
         {
             WM_NULL = 0x0000,
@@ -92,10 +100,12 @@ namespace HTAlt.WinForms
             WM_QUIT = 0x0012,
             WM_QUERYOPEN = 0x0013,
             WM_ERASEBKGND = 0x0014,
-
         }
-        #endregion
+
+        #endregion WM - Window Messages
+
         #region RECT
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public struct RECT
         {
@@ -104,11 +114,16 @@ namespace HTAlt.WinForms
             public int right;
             public int bottom;
         }
-        #endregion
+
+        #endregion RECT
+
         #region Imported User32.DLL functions
+
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool ValidateRect(IntPtr handle, ref RECT rect);
-        #endregion
+
+        #endregion Imported User32.DLL functions
+
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new bool OwnerDraw
         {
@@ -118,13 +133,10 @@ namespace HTAlt.WinForms
 
         public HTListView()
         {
-            
-
             DrawItem += this_DrawItem;
             DrawSubItem += this_DrawSubItem;
             DrawColumnHeader += this_DrawColumnHeaders;
             ColumnWidthChanged += this_ColumnWidthChanged;
-
         }
 
         /// <summary>
@@ -133,12 +145,12 @@ namespace HTAlt.WinForms
         /// <param name="iIndex">Index of the item just added</param>
         public void UpdateItem(int iIndex)
         {
-
             updating = true;
             itemnumber = iIndex;
             Update();
             updating = false;
         }
+
         private Color headerBackColor = Color.FromArgb(255, 235, 235, 235);
         private Color headerForeColor = Color.Black;
         private Color overlayColor = Color.DodgerBlue;
@@ -153,6 +165,7 @@ namespace HTAlt.WinForms
 
             set => headerBackColor = value;
         }
+
         /// <summary>
         /// The text color of the headers.
         /// </summary>
@@ -163,6 +176,7 @@ namespace HTAlt.WinForms
 
             set => headerForeColor = value;
         }
+
         /// <summary>
         /// The overlay color.
         /// </summary>
@@ -173,7 +187,9 @@ namespace HTAlt.WinForms
 
             set => overlayColor = value;
         }
+
         private int _barThiccness = 2;
+
         /// <summary>
         /// The thickness of column header border.
         /// </summary>
@@ -183,9 +199,9 @@ namespace HTAlt.WinForms
             get => _barThiccness;
             set => _barThiccness = value;
         }
+
         private void this_DrawColumnHeaders(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-
             using (StringFormat sf = new StringFormat())
             {
                 // Store the column text alignment, letting it default
@@ -195,6 +211,7 @@ namespace HTAlt.WinForms
                     case HorizontalAlignment.Center:
                         sf.Alignment = StringAlignment.Center;
                         break;
+
                     case HorizontalAlignment.Right:
                         sf.Alignment = StringAlignment.Far;
                         break;
@@ -212,21 +229,22 @@ namespace HTAlt.WinForms
                 e.Graphics.DrawLine(new Pen(new SolidBrush(overlayColor), _barThiccness), e.Bounds.X, e.Bounds.Y + e.Bounds.Height, e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
             }
         }
+
         private void this_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
-
             e.DrawDefault = true;
         }
+
         private void this_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-
             e.DrawDefault = true;
         }
+
         private void this_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-
             Invalidate();
         }
+
         protected override void WndProc(ref Message messg)
         {
             if (updating)
@@ -239,16 +257,16 @@ namespace HTAlt.WinForms
                 else if ((int)WM.WM_PAINT == messg.Msg)
                 {
                     RECT vrect = GetWindowRECT();
-                    // validate the entire window				
+                    // validate the entire window
                     ValidateRect(Handle, ref vrect);
 
                     //Invalidate only the new item
                     Invalidate(Items[itemnumber].Bounds);
                 }
-
             }
             base.WndProc(ref messg);
         }
+
         #region private helperfunctions
 
         // Get the listview's rectangle and return it as a RECT structure
@@ -264,8 +282,6 @@ namespace HTAlt.WinForms
             return rect;
         }
 
-        #endregion
+        #endregion private helperfunctions
     }
-
-
 }

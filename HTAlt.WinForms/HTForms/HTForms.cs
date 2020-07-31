@@ -31,10 +31,12 @@ namespace HTAlt.WinForms
     public partial class HTForms : Form
     {
         #region HTControls
+
         private readonly HTAlt.HTInfo info = new HTAlt.HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTForms-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTForms");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "A System.Windows.Forms.Form alternative if you want a borderless resizable form.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -42,6 +44,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -49,6 +52,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -56,6 +60,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -64,9 +69,12 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTAlt.HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         private bool useFullScreen = false;
         private bool draggable = true;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -84,10 +92,13 @@ namespace HTAlt.WinForms
             }
             base.Dispose(disposing);
         }
+
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
+
         protected override System.Windows.Forms.CreateParams CreateParams
         {
             get
@@ -138,8 +149,10 @@ namespace HTAlt.WinForms
                 return cp;
             }
         }
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -158,6 +171,7 @@ namespace HTAlt.WinForms
             }
             Invalidate();
         }
+
         protected override void OnMouseDoubleClick(MouseEventArgs e)
         {
             base.OnMouseDoubleClick(e);
@@ -179,6 +193,7 @@ namespace HTAlt.WinForms
             }
             Invalidate();
         }
+
         /// <summary>
         /// Maximizes to entire screen on double-click if enabled. Maximizes to Working Area if disabled.
         /// </summary>
@@ -189,6 +204,7 @@ namespace HTAlt.WinForms
 
             set => useFullScreen = value;
         }
+
         /// <summary>
         /// Enables dragging.
         /// </summary>
@@ -199,9 +215,9 @@ namespace HTAlt.WinForms
 
             set => draggable = value;
         }
+
         public HTForms()
         {
-            
         }
     }
 }

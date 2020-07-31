@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -49,11 +48,14 @@ namespace HTAlt.WinForms
         private Color textColor = Color.FromArgb(255, 255, 255);
         private Color upDownBackColor = Color.FromArgb(63, 63, 70);
         private Color upDownTextColor = Color.FromArgb(109, 109, 112);
+
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTTabControl-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTTabControl");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Customizable System.Windows.Forms.TabControl with Drag & Close features.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -61,6 +63,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -68,6 +71,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -75,6 +79,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -83,7 +88,9 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         /// <summary>
         /// The back color.
         /// </summary>
@@ -94,6 +101,7 @@ namespace HTAlt.WinForms
 
             set => backgroundColor = value;
         }
+
         /// <summary>
         /// The color of the selected tab.
         /// </summary>
@@ -104,6 +112,7 @@ namespace HTAlt.WinForms
 
             set => selectedTabColor = value;
         }
+
         /// <summary>
         /// The color of the unselected tab.
         /// </summary>
@@ -114,6 +123,7 @@ namespace HTAlt.WinForms
 
             set => unselectedTabColor = value;
         }
+
         /// <summary>
         /// The color of the tab when hovered.
         /// </summary>
@@ -124,6 +134,7 @@ namespace HTAlt.WinForms
 
             set => hoverTabColor = value;
         }
+
         /// <summary>
         /// The button color of the hovered tab.
         /// </summary>
@@ -134,6 +145,7 @@ namespace HTAlt.WinForms
 
             set => hoverTabButtonColor = value;
         }
+
         /// <summary>
         /// The button color of the hovered unselected tab.
         /// </summary>
@@ -144,6 +156,7 @@ namespace HTAlt.WinForms
 
             set => hoverUnselectedTabButtonColor = value;
         }
+
         /// <summary>
         /// The button color of the selected tab.
         /// </summary>
@@ -154,6 +167,7 @@ namespace HTAlt.WinForms
 
             set => selectedTabButtonColor = value;
         }
+
         /// <summary>
         /// The border line color of the unselected tab.
         /// </summary>
@@ -164,6 +178,7 @@ namespace HTAlt.WinForms
 
             set => unselectedBorderTabLineColor = value;
         }
+
         /// <summary>
         /// The border line color of the tab.
         /// </summary>
@@ -174,6 +189,7 @@ namespace HTAlt.WinForms
 
             set => borderTabLineColor = value;
         }
+
         /// <summary>
         /// The border line color of the under tab.
         /// </summary>
@@ -184,6 +200,7 @@ namespace HTAlt.WinForms
 
             set => underBorderTabLineColor = value;
         }
+
         /// <summary>
         /// The text color.
         /// </summary>
@@ -194,6 +211,7 @@ namespace HTAlt.WinForms
 
             set => textColor = value;
         }
+
         /// <summary>
         /// The back color of up down.
         /// </summary>
@@ -204,6 +222,7 @@ namespace HTAlt.WinForms
 
             set => upDownBackColor = value;
         }
+
         /// <summary>
         /// The text color of up down.
         /// </summary>
@@ -214,11 +233,13 @@ namespace HTAlt.WinForms
 
             set => upDownTextColor = value;
         }
+
         /// <summary>
         /// This option disables closing tabs.
         /// </summary>
         [Category("HTTabControl"), Browsable(true), Description("This option disables closing tabs.")]
         public bool DisableClose { get; set; }
+
         /// <summary>
         /// This option disables dragging tabs.
         /// </summary>
@@ -235,7 +256,6 @@ namespace HTAlt.WinForms
 
         public HTTabControl()
         {
-            
             base.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             DoubleBuffered = true;
             CenterSF = new StringFormat
@@ -698,7 +718,9 @@ namespace HTAlt.WinForms
     internal class SubClass : NativeWindow
     {
         public delegate int SubClassWndProcEventHandler(ref System.Windows.Forms.Message m);
+
         public event SubClassWndProcEventHandler SubClassedWndProc;
+
         private bool IsSubClassed = false;
 
         public SubClass(IntPtr Handle, bool _SubClass)

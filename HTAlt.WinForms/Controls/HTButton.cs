@@ -19,13 +19,9 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms
@@ -36,14 +32,7 @@ namespace HTAlt.WinForms
     public class HTButton : Button
     {
         #region "Enums"
-        public enum ButtonTextImageRelation
-        {
-            None,
-            JustImage,
-            JustText,
-            TextBelowImage,
-            TextAboveImage
-        }
+
         public enum ButtonImageSizeMode
         {
             None,
@@ -52,39 +41,23 @@ namespace HTAlt.WinForms
             Tile,
             Zoom
         }
-        #endregion
+
+        #endregion "Enums"
+
         public HTButton() : base()
         {
+            ImageAlign = ContentAlignment.MiddleCenter;
+            TextAlign = ContentAlignment.MiddleCenter;
             FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             FlatAppearance.BorderSize = 0;
             FlatAppearance.CheckedBackColor = Color.Empty;
             FlatAppearance.MouseOverBackColor = Color.Empty;
-            
-        }
-        private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
-        private ButtonTextImageRelation tiRelation = ButtonTextImageRelation.TextBelowImage;
-        #region Not Browsable
-        /// <summary>
-        /// This property is not in use.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new Image BackgroundImage
-        {
-            get => null;
-            set => BackgroundImage = null;
         }
 
-        /// <summary>
-        /// This property is not in use.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new TextAlignment TextAlign
-        {
-            get => TextAlignment.Center;
-            set => value = TextAlignment.Center;
-        }
+        private ButtonImageSizeMode imgSizeMode = ButtonImageSizeMode.None;
+
+        #region Not Browsable
+
         /// <summary>
         /// This property is not in use.
         /// </summary>
@@ -95,16 +68,7 @@ namespace HTAlt.WinForms
             get => ImageLayout.None;
             set => value = ImageLayout.None;
         }
-        /// <summary>
-        /// This property is not in use.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new string Text
-        {
-            get => string.Empty;
-            set => value = string.Empty;
-        }
+
         // <summary>
         /// This property is not in use.
         /// </summary>
@@ -115,32 +79,16 @@ namespace HTAlt.WinForms
             get => null;
             set => value = null;
         }
-        // <summary>
-        /// This property is not in use.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool AutoSize
-        {
-            get => false;
-            set => value = false;
-        }
-        // <summary>
-        /// This property is not in use.
-        /// </summary>
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new AutoSizeMode AutoSizeMode
-        {
-            get => AutoSizeMode.GrowOnly;
-            set => value = AutoSizeMode.GrowOnly;
-        }
-        #endregion
+
+        #endregion Not Browsable
+
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTButton-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTButton");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Flat button. Imidates System.Windows.Forms.Button.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -148,6 +96,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -155,6 +104,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -162,6 +112,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -170,19 +121,24 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
+        private bool _drawImage = false;
+
         /// <summary>
         /// Determines how to display image and text.
         /// </summary>
         [Bindable(false)]
-        [DefaultValue(typeof(ButtonTextImageRelation), "Normal")]
+        [DefaultValue(typeof(bool), "false")]
         [Category("Appearance")]
-        [Description("Determines how to display image and text.")]
-        public new ButtonTextImageRelation TextImageRelation
+        [Description("Determines if the ButtonImage should be displayed or not.")]
+        public bool DrawImage
         {
-            get => tiRelation;
-            set { tiRelation = value; Update(); }
+            get => _drawImage;
+            set { _drawImage = value; Update(); }
         }
+
         /// <summary>
         /// Determines how to display image.
         /// </summary>
@@ -193,8 +149,9 @@ namespace HTAlt.WinForms
         public ButtonImageSizeMode ImageSizeMode
         {
             get => imgSizeMode;
-            set {imgSizeMode = value; Update(); }
+            set { imgSizeMode = value; Update(); }
         }
+
         /// <summary>
         /// Determines the display image.
         /// </summary>
@@ -206,49 +163,15 @@ namespace HTAlt.WinForms
         {
             get => _Image;
             set { _Image = value; Update(); }
-}
-        /// <summary>
-        /// Determines the display text.
-        /// </summary>
-        [Bindable(false)]
-        [DefaultValue(null)]
-        [Category("Appearance")]
-        [Description("Determines the display text.")]
-        public string ButtonText
-        {
-            get => _Text;
-            set { _Text = value; Update(); }
         }
-        private string _Text;
+
         private Image _Image;
+
         #region "Paint"
 
         #region "Image Draw Modes"
-        private static Bitmap ResizeImage(Image image, int width, int height)
-        {
-            Rectangle destRect = new Rectangle(0, 0, width, height);
-            Bitmap destImage = new Bitmap(width, height);
 
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (Graphics graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (ImageAttributes wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-
-            return destImage;
-        }
-        private void DrawImage(PaintEventArgs e)
+        private void EDrawImage(PaintEventArgs e)
         {
             if (imgSizeMode == ButtonImageSizeMode.None)
             {
@@ -271,6 +194,7 @@ namespace HTAlt.WinForms
                 DrawZoomImage(e);
             }
         }
+
         private void DrawZoomImage(PaintEventArgs p)
         {
             if (_Image == null) { return; }
@@ -278,23 +202,23 @@ namespace HTAlt.WinForms
             Image resizedImage = _Image;
             if (Width > Height)
             {
-                resizedImage = ResizeImage(_Image, Height, Height);
+                resizedImage = Tools.ResizeImage(_Image, Height, Height);
             }
             else if (Height > Width)
             {
-                resizedImage = ResizeImage(_Image, Width, Width);
+                resizedImage = Tools.ResizeImage(_Image, Width, Width);
             }
             else
             {
-                resizedImage = ResizeImage(_Image, Width, Height);
+                resizedImage = Tools.ResizeImage(_Image, Width, Height);
             }
             g.DrawImage(_Image,
                         new Rectangle((Width / 2) - (resizedImage.Width / 2),
                                       (Height / 2) - (resizedImage.Height / 2),
                                       resizedImage.Width,
                                       resizedImage.Height));
-
         }
+
         private void DrawCenterImage(PaintEventArgs p)
         {
             if (_Image == null) { return; }
@@ -312,41 +236,26 @@ namespace HTAlt.WinForms
                 DrawZoomImage(p);
             }
         }
+
         private void DrawTileImage(PaintEventArgs p)
         {
             if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            FillPattern(g, _Image, Bounds);
+            Tools.FillPattern(_Image, Bounds);
         }
-        private static void FillPattern(Graphics g, Image image, Rectangle rect)
-        {
-            Rectangle _ImageRect;
-            Rectangle drawRect;
 
-            for (int x = rect.X; x < rect.Right; x += image.Width)
-            {
-                for (int y = rect.Y; y < rect.Bottom; y += image.Height)
-                {
-                    drawRect = new Rectangle(x, y, Math.Min(image.Width, rect.Right - x),
-                                   Math.Min(image.Height, rect.Bottom - y));
-                    _ImageRect = new Rectangle(0, 0, drawRect.Width, drawRect.Height);
-
-                    g.DrawImage(image, drawRect, _ImageRect, GraphicsUnit.Pixel);
-                }
-            }
-        }
         private void DrawStretchImage(PaintEventArgs p)
         {
             if (_Image == null) { return; }
             Graphics g = p.Graphics;
-            Image resizedImage = ResizeImage(_Image, Width, Height);
+            Image resizedImage = Tools.ResizeImage(_Image, Width, Height);
             g.DrawImage(resizedImage,
                         new Rectangle(0,
                                       0,
                                       Width,
                                       Height));
-
         }
+
         private void DrawNoneImage(PaintEventArgs p)
         {
             if (_Image == null) { return; }
@@ -356,40 +265,20 @@ namespace HTAlt.WinForms
                                       0,
                                       Width,
                                       Height), new Rectangle(0, 0, Width, Height), GraphicsUnit.Pixel);
+        }
 
-        }
-        #endregion
-        private void DrawText(PaintEventArgs p)
-        {
-            TextFormatFlags flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter;
-            TextRenderer.DrawText(p.Graphics, _Text, Font, new System.Drawing.Point(Width + 3, Height / 2), ForeColor, flags);
-        }
+        #endregion "Image Draw Modes"
+
         protected override void OnPaint(PaintEventArgs pevent)
         {
-            //Paint the base
             base.OnPaint(pevent);
-            //Draw text and image
-            if (tiRelation == ButtonTextImageRelation.None) { }
-            else if (tiRelation == ButtonTextImageRelation.JustText)
+            if (_drawImage)
             {
-                DrawText(pevent);
-            }
-            else if (tiRelation == ButtonTextImageRelation.JustImage)
-            {
-                DrawImage(pevent);
-            }
-            else if (tiRelation == ButtonTextImageRelation.TextAboveImage)
-            {
-                DrawImage(pevent);
-                DrawText(pevent);
-            }
-            else if (tiRelation == ButtonTextImageRelation.TextBelowImage)
-            {
-                DrawText(pevent);
-                DrawImage(pevent);
+                EDrawImage(pevent);
             }
             pevent.Graphics.ResetClip();
         }
+
         protected override void OnBackColorChanged(EventArgs e)
         {
             if (this != null)
@@ -398,6 +287,7 @@ namespace HTAlt.WinForms
             }
             base.OnBackColorChanged(e);
         }
-        #endregion
+
+        #endregion "Paint"
     }
 }

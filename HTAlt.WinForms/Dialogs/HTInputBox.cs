@@ -19,11 +19,9 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms
@@ -34,10 +32,12 @@ namespace HTAlt.WinForms
     public partial class HTInputBox : Form
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTInputBox-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTInputBox");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Customizable Input Box.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -45,6 +45,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -52,6 +53,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -59,6 +61,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -67,44 +70,56 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         /// <summary>
         /// Background color of HTInputBox. Foreground color is auto-selected to White or Black.
         /// </summary>
-        public Color BackgroundColor = Color.FromArgb(255,255,255,255);
+        public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
+
         /// <summary>
         /// Text to display on "Yes" button.
         /// </summary>
         public string Yes = "Yes";
+
         /// <summary>
         /// Text to display on "Retry" button.
         /// </summary>
         public string Retry = "Retry";
+
         /// <summary>
         /// Text to display on "Abort" button.
         /// </summary>
         public string Abort = "Abort";
+
         /// <summary>
         /// Text to display on "Ignore" button.
         /// </summary>
         public string Ignore = "Ignore";
+
         /// <summary>
         /// Text to display on "No" button.
         /// </summary>
         public string No = "No";
+
         /// <summary>
         /// Text to display on "OK" button.
         /// </summary>
         public string OK = "OK";
+
         /// <summary>
         /// Text to display on "Cancel" button.
         /// </summary>
         public string Cancel = "Cancel";
+
         /// <summary>
         /// Text to display on "Set to default" button.
         /// </summary>
         public string SetToDefault = "Set to default";
+
         private string defaultString = "";
+
         /// <summary>
         /// Gets or sets the default answer.
         /// </summary>
@@ -113,7 +128,9 @@ namespace HTAlt.WinForms
             get => defaultString;
             set => defaultString = value;
         }
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true,Cancel = true, };
+
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, Cancel = true, };
+
         /// <summary>
         /// Gets or sets the list of visible buttons.
         /// </summary>
@@ -122,7 +139,9 @@ namespace HTAlt.WinForms
             get => msgbutton;
             set => msgbutton = value;
         }
+
         private string message = "";
+
         /// <summary>
         /// Text to display on top of buttons and text area.
         /// </summary>
@@ -131,6 +150,7 @@ namespace HTAlt.WinForms
             get => message;
             set => message = value;
         }
+
         /// <summary>
         /// Creates new HTInputBox.
         /// </summary>
@@ -143,7 +163,6 @@ namespace HTAlt.WinForms
                                HTDialogBoxContext MessageBoxButtons,
                                string defaultValue = "")
         {
-            
             InitializeComponent();
             defaultString = defaultValue;
             msgbutton = MessageBoxButtons;
@@ -171,14 +190,15 @@ namespace HTAlt.WinForms
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             timer1_Tick(null, null);
         }
+
         /// <summary>
         /// Creates new HTInputBox
         /// </summary>
         /// <param name="title">Title of the input box.</param>
         /// <param name="message">Description of the input box.</param>
         /// <param name="defaultValue">Default value of the input box.</param>
-        public HTInputBox(string title,string message,string defaultValue) : this(title,message,new HTDialogBoxContext() { OK = true, Cancel = true,},defaultValue) { }
-        
+        public HTInputBox(string title, string message, string defaultValue) : this(title, message, new HTDialogBoxContext() { OK = true, Cancel = true, }, defaultValue) { }
+
         /// <summary>
         /// Value inside the textbox in this input box.
         /// </summary>
@@ -229,14 +249,14 @@ namespace HTAlt.WinForms
             // Ignore
             btIgnore.Visible = msgbutton.Ignore;
             btIgnore.Enabled = msgbutton.Ignore;
-            btOK.ButtonText = OK;
-            btCancel.ButtonText = Cancel;
-            btDefault.ButtonText = SetToDefault;
-            btYes.ButtonText = Yes;
-            btNo.ButtonText = No;
-            btRetry.ButtonText = Retry;
-            btAbort.ButtonText = Abort;
-            btIgnore.ButtonText = Ignore;
+            btOK.Text = OK;
+            btCancel.Text = Cancel;
+            btDefault.Text = SetToDefault;
+            btYes.Text = Yes;
+            btNo.Text = No;
+            btRetry.Text = Retry;
+            btAbort.Text = Abort;
+            btIgnore.Text = Ignore;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
@@ -258,6 +278,7 @@ namespace HTAlt.WinForms
             textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             textBox1.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
         }
+
         private void Button1_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -269,6 +290,7 @@ namespace HTAlt.WinForms
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
         private void haltroyButton1_Click(object sender, EventArgs e)
         {
             textBox1.Text = defaultString;

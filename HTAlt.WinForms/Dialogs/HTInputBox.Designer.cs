@@ -93,7 +93,7 @@ namespace HTAlt.WinForms
             // 
             // btDefault
             // 
-            this.btDefault.ButtonText = "Set to Default";
+            this.btDefault.Text = "Set to Default";
             this.btDefault.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btDefault.FlatAppearance.BorderSize = 0;
             this.btDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -101,13 +101,13 @@ namespace HTAlt.WinForms
             this.btDefault.Name = "btDefault";
             this.btDefault.Size = new System.Drawing.Size(384, 23);
             this.btDefault.TabIndex = 2;
-            this.btDefault.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btDefault.DrawImage = true;
             this.btDefault.UseVisualStyleBackColor = true;
             this.btDefault.Click += new System.EventHandler(this.haltroyButton1_Click);
             // 
             // btOK
             // 
-            this.btOK.ButtonText = "OK";
+            this.btOK.Text = "OK";
             this.btOK.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btOK.FlatAppearance.BorderSize = 0;
             this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -115,13 +115,13 @@ namespace HTAlt.WinForms
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(384, 23);
             this.btOK.TabIndex = 3;
-            this.btOK.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btOK.DrawImage = true;
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btCancel
             // 
-            this.btCancel.ButtonText = "Cancel";
+            this.btCancel.Text = "Cancel";
             this.btCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btCancel.FlatAppearance.BorderSize = 0;
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -129,13 +129,13 @@ namespace HTAlt.WinForms
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(384, 23);
             this.btCancel.TabIndex = 4;
-            this.btCancel.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btCancel.DrawImage = true;
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.Button2_Click);
             // 
             // btYes
             // 
-            this.btYes.ButtonText = "Yes";
+            this.btYes.Text = "Yes";
             this.btYes.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btYes.FlatAppearance.BorderSize = 0;
             this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -143,13 +143,13 @@ namespace HTAlt.WinForms
             this.btYes.Name = "btYes";
             this.btYes.Size = new System.Drawing.Size(384, 23);
             this.btYes.TabIndex = 5;
-            this.btYes.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btYes.DrawImage = true;
             this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btNo
             // 
-            this.btNo.ButtonText = "No";
+            this.btNo.Text = "No";
             this.btNo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btNo.FlatAppearance.BorderSize = 0;
             this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -157,13 +157,13 @@ namespace HTAlt.WinForms
             this.btNo.Name = "btNo";
             this.btNo.Size = new System.Drawing.Size(384, 23);
             this.btNo.TabIndex = 6;
-            this.btNo.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btNo.DrawImage = true;
             this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
             // 
             // btAbort
             // 
-            this.btAbort.ButtonText = "Abort";
+            this.btAbort.Text = "Abort";
             this.btAbort.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btAbort.FlatAppearance.BorderSize = 0;
             this.btAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -171,13 +171,13 @@ namespace HTAlt.WinForms
             this.btAbort.Name = "btAbort";
             this.btAbort.Size = new System.Drawing.Size(384, 23);
             this.btAbort.TabIndex = 7;
-            this.btAbort.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btAbort.DrawImage = true;
             this.btAbort.UseVisualStyleBackColor = true;
             this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
             // 
             // btIgnore
             // 
-            this.btIgnore.ButtonText = "Ignore";
+            this.btIgnore.Text = "Ignore";
             this.btIgnore.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btIgnore.FlatAppearance.BorderSize = 0;
             this.btIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -185,13 +185,13 @@ namespace HTAlt.WinForms
             this.btIgnore.Name = "btIgnore";
             this.btIgnore.Size = new System.Drawing.Size(384, 23);
             this.btIgnore.TabIndex = 8;
-            this.btIgnore.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btIgnore.DrawImage = true;
             this.btIgnore.UseVisualStyleBackColor = true;
             this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
             // 
             // btRetry
             // 
-            this.btRetry.ButtonText = "Retry";
+            this.btRetry.Text = "Retry";
             this.btRetry.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btRetry.FlatAppearance.BorderSize = 0;
             this.btRetry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -199,7 +199,7 @@ namespace HTAlt.WinForms
             this.btRetry.Name = "btRetry";
             this.btRetry.Size = new System.Drawing.Size(384, 23);
             this.btRetry.TabIndex = 9;
-            this.btRetry.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btRetry.DrawImage = true;
             this.btRetry.UseVisualStyleBackColor = true;
             this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
             // 

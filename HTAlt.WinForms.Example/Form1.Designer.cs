@@ -52,6 +52,7 @@ namespace HTAlt.WinForms.Example
             this.hsNo = new HTAlt.WinForms.HTSwitch();
             this.hsYes = new HTAlt.WinForms.HTSwitch();
             this.hsIgnore = new HTAlt.WinForms.HTSwitch();
+            this.hsDefault = new HTAlt.WinForms.HTSwitch();
             this.hsAbort = new HTAlt.WinForms.HTSwitch();
             this.label16 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -115,7 +116,6 @@ namespace HTAlt.WinForms.Example
             this.hbRandom = new HTAlt.WinForms.HTButton();
             this.lbRandom = new System.Windows.Forms.Label();
             this.nudRandom = new System.Windows.Forms.NumericUpDown();
-            this.hsDefault = new HTAlt.WinForms.HTSwitch();
             this.HTTabControl1.SuspendLayout();
             this.tpBoxes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBorder)).BeginInit();
@@ -316,7 +316,7 @@ namespace HTAlt.WinForms.Example
             this.lbBorder.AutoSize = true;
             this.lbBorder.Location = new System.Drawing.Point(156, 349);
             this.lbBorder.Name = "lbBorder";
-            this.lbBorder.Size = new System.Drawing.Size(75, 16);
+            this.lbBorder.Size = new System.Drawing.Size(68, 15);
             this.lbBorder.TabIndex = 36;
             this.lbBorder.Text = "Border Size:";
             // 
@@ -325,7 +325,7 @@ namespace HTAlt.WinForms.Example
             this.lbVal.AutoSize = true;
             this.lbVal.Location = new System.Drawing.Point(23, 349);
             this.lbVal.Name = "lbVal";
-            this.lbVal.Size = new System.Drawing.Size(41, 16);
+            this.lbVal.Size = new System.Drawing.Size(38, 15);
             this.lbVal.TabIndex = 35;
             this.lbVal.Text = "Value:";
             // 
@@ -334,7 +334,7 @@ namespace HTAlt.WinForms.Example
             this.lbMax.AutoSize = true;
             this.lbMax.Location = new System.Drawing.Point(156, 319);
             this.lbMax.Name = "lbMax";
-            this.lbMax.Size = new System.Drawing.Size(34, 16);
+            this.lbMax.Size = new System.Drawing.Size(33, 15);
             this.lbMax.TabIndex = 34;
             this.lbMax.Text = "Max:";
             // 
@@ -343,7 +343,7 @@ namespace HTAlt.WinForms.Example
             this.lbMin.AutoSize = true;
             this.lbMin.Location = new System.Drawing.Point(23, 319);
             this.lbMin.Name = "lbMin";
-            this.lbMin.Size = new System.Drawing.Size(32, 16);
+            this.lbMin.Size = new System.Drawing.Size(31, 15);
             this.lbMin.TabIndex = 34;
             this.lbMin.Text = "Min:";
             // 
@@ -366,7 +366,7 @@ namespace HTAlt.WinForms.Example
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(23, 384);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(82, 16);
+            this.label15.Size = new System.Drawing.Size(75, 15);
             this.label15.TabIndex = 32;
             this.label15.Text = "Draw Border:";
             // 
@@ -375,7 +375,7 @@ namespace HTAlt.WinForms.Example
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(22, 285);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 16);
+            this.label3.Size = new System.Drawing.Size(107, 15);
             this.label3.TabIndex = 32;
             this.label3.Text = "Show Progress Bar:";
             // 
@@ -421,6 +421,13 @@ namespace HTAlt.WinForms.Example
             this.hsIgnore.Size = new System.Drawing.Size(50, 19);
             this.hsIgnore.TabIndex = 31;
             // 
+            // hsDefault
+            // 
+            this.hsDefault.Location = new System.Drawing.Point(238, 236);
+            this.hsDefault.Name = "hsDefault";
+            this.hsDefault.Size = new System.Drawing.Size(50, 19);
+            this.hsDefault.TabIndex = 31;
+            // 
             // hsAbort
             // 
             this.hsAbort.Location = new System.Drawing.Point(314, 231);
@@ -433,7 +440,7 @@ namespace HTAlt.WinForms.Example
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(615, 256);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(97, 16);
+            this.label16.Size = new System.Drawing.Size(90, 15);
             this.label16.TabIndex = 30;
             this.label16.Text = "HTProgressBox:";
             // 
@@ -442,7 +449,7 @@ namespace HTAlt.WinForms.Example
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(615, 147);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 16);
+            this.label20.Size = new System.Drawing.Size(73, 15);
             this.label20.TabIndex = 30;
             this.label20.Text = "HTInputBox:";
             // 
@@ -451,7 +458,7 @@ namespace HTAlt.WinForms.Example
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(612, 28);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 16);
+            this.label19.Size = new System.Drawing.Size(68, 15);
             this.label19.TabIndex = 30;
             this.label19.Text = "HTMsgBox:";
             // 
@@ -460,7 +467,7 @@ namespace HTAlt.WinForms.Example
             this.ibResult.AutoSize = true;
             this.ibResult.Location = new System.Drawing.Point(615, 212);
             this.ibResult.Name = "ibResult";
-            this.ibResult.Size = new System.Drawing.Size(73, 16);
+            this.ibResult.Size = new System.Drawing.Size(69, 15);
             this.ibResult.TabIndex = 29;
             this.ibResult.Text = "<no result>";
             this.ibResult.Visible = false;
@@ -470,7 +477,7 @@ namespace HTAlt.WinForms.Example
             this.ibResultTitle.AutoSize = true;
             this.ibResultTitle.Location = new System.Drawing.Point(615, 193);
             this.ibResultTitle.Name = "ibResultTitle";
-            this.ibResultTitle.Size = new System.Drawing.Size(48, 16);
+            this.ibResultTitle.Size = new System.Drawing.Size(42, 15);
             this.ibResultTitle.TabIndex = 28;
             this.ibResultTitle.Text = "Result:";
             this.ibResultTitle.Visible = false;
@@ -526,7 +533,7 @@ namespace HTAlt.WinForms.Example
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(18, 169);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(87, 16);
+            this.label22.Size = new System.Drawing.Size(79, 15);
             this.label22.TabIndex = 18;
             this.label22.Text = "Default Value:";
             // 
@@ -535,7 +542,7 @@ namespace HTAlt.WinForms.Example
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(18, 237);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(172, 16);
+            this.label12.Size = new System.Drawing.Size(153, 15);
             this.label12.TabIndex = 19;
             this.label12.Text = "\"Set to default\" Button Text:";
             // 
@@ -544,7 +551,7 @@ namespace HTAlt.WinForms.Example
             this.lResult.AutoSize = true;
             this.lResult.Location = new System.Drawing.Point(615, 93);
             this.lResult.Name = "lResult";
-            this.lResult.Size = new System.Drawing.Size(73, 16);
+            this.lResult.Size = new System.Drawing.Size(69, 15);
             this.lResult.TabIndex = 8;
             this.lResult.Text = "<no result>";
             this.lResult.Visible = false;
@@ -554,7 +561,7 @@ namespace HTAlt.WinForms.Example
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(615, 73);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 16);
+            this.label10.Size = new System.Drawing.Size(42, 15);
             this.label10.TabIndex = 8;
             this.label10.Text = "Result:";
             this.label10.Visible = false;
@@ -575,7 +582,7 @@ namespace HTAlt.WinForms.Example
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(431, 67);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(81, 16);
+            this.label17.Size = new System.Drawing.Size(79, 15);
             this.label17.TabIndex = 5;
             this.label17.Text = "OverlayColor:";
             // 
@@ -595,7 +602,7 @@ namespace HTAlt.WinForms.Example
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(312, 67);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 16);
+            this.label5.Size = new System.Drawing.Size(64, 15);
             this.label5.TabIndex = 5;
             this.label5.Text = "BackColor:";
             // 
@@ -604,7 +611,7 @@ namespace HTAlt.WinForms.Example
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(310, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 16);
+            this.label4.Size = new System.Drawing.Size(33, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "Icon:";
             // 
@@ -653,7 +660,7 @@ namespace HTAlt.WinForms.Example
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(368, 184);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(121, 16);
+            this.label9.Size = new System.Drawing.Size(109, 15);
             this.label9.TabIndex = 2;
             this.label9.Text = "Cancel Button Text:";
             // 
@@ -694,7 +701,7 @@ namespace HTAlt.WinForms.Example
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(371, 159);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 16);
+            this.label8.Size = new System.Drawing.Size(89, 15);
             this.label8.TabIndex = 2;
             this.label8.Text = "OK Button Text:";
             // 
@@ -711,7 +718,7 @@ namespace HTAlt.WinForms.Example
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(368, 134);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 16);
+            this.label7.Size = new System.Drawing.Size(89, 15);
             this.label7.TabIndex = 2;
             this.label7.Text = "No Button Text:";
             // 
@@ -720,7 +727,7 @@ namespace HTAlt.WinForms.Example
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 16);
+            this.label2.Size = new System.Drawing.Size(56, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Message:";
             // 
@@ -729,7 +736,7 @@ namespace HTAlt.WinForms.Example
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(368, 256);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(119, 16);
+            this.label14.Size = new System.Drawing.Size(107, 15);
             this.label14.TabIndex = 2;
             this.label14.Text = "Ignore Button Text:";
             // 
@@ -738,7 +745,7 @@ namespace HTAlt.WinForms.Example
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(368, 232);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 16);
+            this.label13.Size = new System.Drawing.Size(103, 15);
             this.label13.TabIndex = 2;
             this.label13.Text = "Abort Button Text:";
             // 
@@ -747,7 +754,7 @@ namespace HTAlt.WinForms.Example
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(371, 207);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 16);
+            this.label11.Size = new System.Drawing.Size(100, 15);
             this.label11.TabIndex = 2;
             this.label11.Text = "Retry Button Text:";
             // 
@@ -756,7 +763,7 @@ namespace HTAlt.WinForms.Example
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(368, 108);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 16);
+            this.label6.Size = new System.Drawing.Size(90, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "Yes Button Text:";
             // 
@@ -765,7 +772,7 @@ namespace HTAlt.WinForms.Example
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 16);
+            this.label1.Size = new System.Drawing.Size(32, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Title:";
             // 
@@ -818,7 +825,6 @@ namespace HTAlt.WinForms.Example
             // htButton1
             // 
             this.htButton1.ButtonImage = global::HTAlt.WinForms.Example.Properties.Resources.logo;
-            this.htButton1.ButtonText = "Sample Text";
             this.htButton1.FlatAppearance.BorderSize = 0;
             this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
@@ -826,7 +832,7 @@ namespace HTAlt.WinForms.Example
             this.htButton1.Name = "htButton1";
             this.htButton1.Size = new System.Drawing.Size(124, 49);
             this.htButton1.TabIndex = 16;
-            this.htButton1.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextAboveImage;
+            this.htButton1.Text = "Sample Text";
             this.htButton1.UseVisualStyleBackColor = true;
             // 
             // htProgressBar5
@@ -885,7 +891,7 @@ namespace HTAlt.WinForms.Example
             this.sliderValue.AutoSize = true;
             this.sliderValue.Location = new System.Drawing.Point(232, 12);
             this.sliderValue.Name = "sliderValue";
-            this.sliderValue.Size = new System.Drawing.Size(50, 16);
+            this.sliderValue.Size = new System.Drawing.Size(51, 15);
             this.sliderValue.TabIndex = 2;
             this.sliderValue.Text = "<value>";
             // 
@@ -935,7 +941,7 @@ namespace HTAlt.WinForms.Example
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(81, 73);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(104, 16);
+            this.label24.Size = new System.Drawing.Size(98, 15);
             this.label24.TabIndex = 2;
             this.label24.Text = "Full Screen Mode";
             // 
@@ -951,7 +957,7 @@ namespace HTAlt.WinForms.Example
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(81, 47);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 16);
+            this.label21.Size = new System.Drawing.Size(61, 15);
             this.label21.TabIndex = 2;
             this.label21.Text = "Draggable";
             // 
@@ -996,14 +1002,13 @@ namespace HTAlt.WinForms.Example
             // 
             // hbRandom
             // 
-            this.hbRandom.ButtonText = "Generate Text";
             this.hbRandom.FlatAppearance.BorderSize = 0;
             this.hbRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.hbRandom.Location = new System.Drawing.Point(8, 45);
             this.hbRandom.Name = "hbRandom";
             this.hbRandom.Size = new System.Drawing.Size(120, 23);
             this.hbRandom.TabIndex = 2;
-            this.hbRandom.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.hbRandom.Text = "Generate Text";
             this.hbRandom.UseVisualStyleBackColor = true;
             this.hbRandom.Click += new System.EventHandler(this.hbRandom_Click);
             // 
@@ -1012,7 +1017,7 @@ namespace HTAlt.WinForms.Example
             this.lbRandom.AutoSize = true;
             this.lbRandom.Location = new System.Drawing.Point(8, 71);
             this.lbRandom.Name = "lbRandom";
-            this.lbRandom.Size = new System.Drawing.Size(90, 16);
+            this.lbRandom.Size = new System.Drawing.Size(85, 15);
             this.lbRandom.TabIndex = 1;
             this.lbRandom.Text = "<randomtext>";
             // 
@@ -1037,13 +1042,6 @@ namespace HTAlt.WinForms.Example
             0,
             0,
             0});
-            // 
-            // hsDefault
-            // 
-            this.hsDefault.Location = new System.Drawing.Point(238, 236);
-            this.hsDefault.Name = "hsDefault";
-            this.hsDefault.Size = new System.Drawing.Size(50, 19);
-            this.hsDefault.TabIndex = 31;
             // 
             // Form1
             // 
@@ -1075,7 +1073,6 @@ namespace HTAlt.WinForms.Example
         }
 
         #endregion
-
         private HTAlt.WinForms.HTTabControl HTTabControl1;
         private System.Windows.Forms.TabPage tpBoxes;
         private System.Windows.Forms.TabPage tpControl1;

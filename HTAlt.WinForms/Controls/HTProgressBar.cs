@@ -1,5 +1,4 @@
-﻿using HTAlt.Standart;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,10 +11,12 @@ namespace HTAlt.WinForms
     public class HTProgressBar : Control
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTProgressBar-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTProgressBar");
         private readonly Version firstHTAltVersion = new Version("0.1.2.0");
         private readonly string description = "Customizable System.Windows.Forms.ProgressBar.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -23,6 +24,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -30,6 +32,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -37,6 +40,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -45,18 +49,26 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         #region Constructor
-        public HTProgressBar() : this(100, 0, 0) { }
+
+        public HTProgressBar() : this(100, 0, 0)
+        {
+        }
+
         public HTProgressBar(int max, int min, int value)
         {
-            
             _Value = value;
             _Max = max;
             _Min = min;
         }
-        #endregion
+
+        #endregion Constructor
+
         #region Events
+
         /// <summary>
         /// Used in MaximumChanged, MinimumChanged & ValueChanged events.
         /// </summary>
@@ -66,26 +78,31 @@ namespace HTAlt.WinForms
             /// Old value of the control's property.
             /// </summary>
             public int oldValue { get; set; }
+
             /// <summary>
             /// New value of the control's property.
             /// </summary>
             public int newValue { get; set; }
         }
+
         /// <summary>
         /// This event is called when Maximum value changes.
         /// </summary>
         [Description("This event is called when Maximum value changes."), Category("HTProgressBar")]
         public event EventHandler<IntChangedEventArgs> MaximumChanged;
+
         /// <summary>
         /// This event is called when Minimum value changes.
         /// </summary>
         [Description("This event is called when Minimum value changes."), Category("HTProgressBar")]
         public event EventHandler<IntChangedEventArgs> MinimumChanged;
+
         /// <summary>
         /// This event is called when Value changes.
         /// </summary>
         [Description("This event is called when Value changes."), Category("HTProgressBar")]
         public event EventHandler<IntChangedEventArgs> ValueChanged;
+
         protected virtual void OnValueChanged(IntChangedEventArgs e)
         {
             EventHandler<IntChangedEventArgs> handler = ValueChanged;
@@ -94,6 +111,7 @@ namespace HTAlt.WinForms
                 handler(this, e);
             }
         }
+
         protected virtual void OnMaximumChanged(IntChangedEventArgs e)
         {
             EventHandler<IntChangedEventArgs> handler = MaximumChanged;
@@ -102,6 +120,7 @@ namespace HTAlt.WinForms
                 handler(this, e);
             }
         }
+
         protected virtual void OnMinimumChanged(IntChangedEventArgs e)
         {
             EventHandler<IntChangedEventArgs> handler = MinimumChanged;
@@ -110,8 +129,11 @@ namespace HTAlt.WinForms
                 handler(this, e);
             }
         }
-        #endregion
+
+        #endregion Events
+
         #region Enums
+
         public enum ProgressDirection
         {
             LeftToRight,
@@ -119,8 +141,11 @@ namespace HTAlt.WinForms
             RightToLeft,
             TopToBottom
         }
-        #endregion
+
+        #endregion Enums
+
         #region Properties
+
         /// <summary>
         /// Color of the background.
         /// </summary>
@@ -133,6 +158,7 @@ namespace HTAlt.WinForms
             get => _BackColor;
             set { _BackColor = value; Update(); }
         }
+
         /// <summary>
         /// Color of the border.
         /// </summary>
@@ -145,6 +171,7 @@ namespace HTAlt.WinForms
             get => _BorderColor;
             set { _BorderColor = value; Update(); }
         }
+
         /// <summary>
         /// <c>true</c> if a border should be drawn, otherwise <c>false</c>.
         /// </summary>
@@ -157,6 +184,7 @@ namespace HTAlt.WinForms
             get => _DrawBorder;
             set { _DrawBorder = value; Update(); }
         }
+
         /// <summary>
         /// Thickness of the border.
         /// </summary>
@@ -169,6 +197,7 @@ namespace HTAlt.WinForms
             get => _BorderThiccness;
             set { _BorderThiccness = value; Update(); }
         }
+
         /// <summary>
         /// Color of the loading bar.
         /// </summary>
@@ -181,6 +210,7 @@ namespace HTAlt.WinForms
             get => _Overlay;
             set { _Overlay = value; Update(); }
         }
+
         /// <summary>
         /// Color of the loading bar.
         /// </summary>
@@ -193,6 +223,7 @@ namespace HTAlt.WinForms
             get => _Direction;
             set { _Direction = value; Update(); }
         }
+
         /// <summary>
         /// Maximum value of the progress bar.
         /// </summary>
@@ -222,6 +253,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Minimum value of the progress bar.
         /// </summary>
@@ -251,6 +283,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Value of the progress bar.
         /// </summary>
@@ -280,6 +313,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         private ProgressDirection _Direction = ProgressDirection.LeftToRight;
         private int _Min = 0;
         private int _Max = 100;
@@ -289,8 +323,11 @@ namespace HTAlt.WinForms
         private bool _DrawBorder = false;
         private Color _BorderColor = Color.Black;
         private Color _BackColor = Color.White;
-        #endregion
+
+        #endregion Properties
+
         #region Paint
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -320,6 +357,7 @@ namespace HTAlt.WinForms
             }
             e.Graphics.ResetClip();
         }
+
         protected void DPLR(PaintEventArgs e)
         {
             if (_Value == _Max)
@@ -338,6 +376,7 @@ namespace HTAlt.WinForms
                 e.Graphics.FillRectangle(new SolidBrush(_Overlay), loadbar);
             }
         }
+
         protected void DPRL(PaintEventArgs e)
         {
             if (_Value == _Max)
@@ -357,6 +396,7 @@ namespace HTAlt.WinForms
                 e.Graphics.FillRectangle(new SolidBrush(_Overlay), loadbar);
             }
         }
+
         protected void DPBT(PaintEventArgs e)
         {
             if (_Value == _Max)
@@ -376,6 +416,7 @@ namespace HTAlt.WinForms
                 e.Graphics.FillRectangle(new SolidBrush(_Overlay), loadbar);
             }
         }
+
         protected void DPTB(PaintEventArgs e)
         {
             if (_Value == _Max)
@@ -395,6 +436,7 @@ namespace HTAlt.WinForms
                 e.Graphics.FillRectangle(new SolidBrush(_Overlay), loadbar);
             }
         }
-        #endregion
+
+        #endregion Paint
     }
 }

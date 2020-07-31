@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -28,7 +27,6 @@ using System.Windows.Forms;
 
 namespace HTAlt.WinForms
 {
-
     /// <summary>
     /// Customizable <see cref="System.Windows.Forms.TrackBar"/> Control.
     /// </summary>
@@ -37,10 +35,12 @@ namespace HTAlt.WinForms
     public partial class HTSlider : Control
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTSlider-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTSlider");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Customizable System.Windows.Forms.TrackBar Control.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -48,6 +48,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -55,6 +56,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -62,6 +64,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -70,7 +73,9 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
+
         #region Events
 
         /// <summary>
@@ -87,7 +92,8 @@ namespace HTAlt.WinForms
         [Category("Behavior")]
         public event ScrollEventHandler Scroll;
 
-        #endregion
+        #endregion Events
+
         #region Properties
 
         private Rectangle barRect; //bounding rectangle of bar area
@@ -98,6 +104,7 @@ namespace HTAlt.WinForms
         #region thumb
 
         private Rectangle thumbRect; //bounding rectangle of thumb area
+
         /// <summary>
         /// Gets the thumb rect. Usefull to determine bounding rectangle when creating custom thumb shape.
         /// </summary>
@@ -137,6 +144,7 @@ namespace HTAlt.WinForms
         }
 
         private GraphicsPath _thumbCustomShape = null;
+
         /// <summary>
         /// Gets or sets the thumb custom shape. Use ThumbRect property to determine bounding rectangle.
         /// </summary>
@@ -159,6 +167,7 @@ namespace HTAlt.WinForms
         }
 
         private Size _thumbRoundRectSize = new Size(16, 16);
+
         /// <summary>
         /// Gets or sets the size of the thumb round rectangle edges.
         /// </summary>
@@ -188,6 +197,7 @@ namespace HTAlt.WinForms
         }
 
         private Size _borderRoundRectSize = new Size(8, 8);
+
         /// <summary>
         /// Gets or sets the size of the border round rect.
         /// </summary>
@@ -217,6 +227,7 @@ namespace HTAlt.WinForms
         }
 
         private bool _drawSemitransparentThumb = true;
+
         /// <summary>
         /// Gets or sets a value indicating whether to draw semitransparent thumb.
         /// </summary>
@@ -235,11 +246,12 @@ namespace HTAlt.WinForms
         }
 
         private Image _thumbImage = null;
+
         //private Image _thumbImage = Properties.Resources.BTN_Thumb_Blue;
         /// <summary>
         /// Gets or sets the Image used to render the thumb.
         /// </summary>
-        /// <value>the thumb Image</value> 
+        /// <value>the thumb Image</value>
         [Description("Set to use a specific Image for the thumb")]
         [Category("HTSlider")]
         [DefaultValue(null)]
@@ -261,12 +273,12 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
-
+        #endregion thumb
 
         #region Appearance
 
         private Orientation _barOrientation = Orientation.Horizontal;
+
         /// <summary>
         /// Gets or sets the orientation of Slider.
         /// </summary>
@@ -297,6 +309,7 @@ namespace HTAlt.WinForms
         }
 
         private bool _drawFocusRectangle = false;
+
         /// <summary>
         /// Gets or sets a value indicating whether to draw focus rectangle.
         /// </summary>
@@ -315,6 +328,7 @@ namespace HTAlt.WinForms
         }
 
         private bool _mouseEffects = true;
+
         /// <summary>
         /// Gets or sets whether mouse entry and exit actions have impact on how control look.
         /// </summary>
@@ -332,12 +346,12 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
-
+        #endregion Appearance
 
         #region values
 
         private int _trackerValue = 30;
+
         /// <summary>
         /// Gets or sets the value of Slider.
         /// </summary>
@@ -369,6 +383,7 @@ namespace HTAlt.WinForms
         }
 
         private int _minimum = 0;
+
         /// <summary>
         /// Gets or sets the minimum value.
         /// </summary>
@@ -403,6 +418,7 @@ namespace HTAlt.WinForms
         }
 
         private int _maximum = 100;
+
         /// <summary>
         /// Gets or sets the maximum value.
         /// </summary>
@@ -434,6 +450,7 @@ namespace HTAlt.WinForms
         }
 
         private uint _smallChange = 1;
+
         /// <summary>
         /// Gets or sets trackbar's small change. It affects how to behave when directional keys are pressed
         /// </summary>
@@ -448,6 +465,7 @@ namespace HTAlt.WinForms
         }
 
         private uint _largeChange = 5;
+
         /// <summary>
         /// Gets or sets trackbar's large change. It affects how to behave when PageUp/PageDown keys are pressed
         /// </summary>
@@ -462,6 +480,7 @@ namespace HTAlt.WinForms
         }
 
         private int _mouseWheelBarPartitions = 10;
+
         /// <summary>
         /// Gets or sets the mouse wheel bar partitions.
         /// </summary>
@@ -486,14 +505,12 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
-
+        #endregion values
 
         #region colors
 
-
-
         private Color _overlayColor = Color.FromArgb(255, 20, 157, 204);
+
         /// <summary>
         /// Gets or sets the bottom color of the elapsed
         /// </summary>
@@ -509,18 +526,10 @@ namespace HTAlt.WinForms
             }
         }
 
+        #endregion colors
 
+        #endregion Properties
 
-
-        #endregion
-
-
-
-
-
-
-
-        #endregion
         #region Constructors
 
         /// <summary>
@@ -531,7 +540,6 @@ namespace HTAlt.WinForms
         /// <param name="value">The current value.</param>
         public HTSlider(int min, int max, int value)
         {
-            
             InitializeComponent();
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.ResizeRedraw | ControlStyles.Selectable |
@@ -557,7 +565,8 @@ namespace HTAlt.WinForms
         /// </summary>
         public HTSlider() : this(0, 100, 30) { }
 
-        #endregion
+        #endregion Constructors
+
         #region Paint
 
         /// <summary>
@@ -631,6 +640,7 @@ namespace HTAlt.WinForms
                 if (_barOrientation == Orientation.Horizontal)
                 {
                     #region horizontal
+
                     if (_thumbImage != null)
                     {
                         int TrackX = (((_trackerValue - _minimum) * (ClientRectangle.Width - _thumbImage.Width)) / (_maximum - _minimum));
@@ -641,11 +651,13 @@ namespace HTAlt.WinForms
                         int TrackX = (((_trackerValue - _minimum) * (ClientRectangle.Width - _thumbSize.Width)) / (_maximum - _minimum));
                         thumbRect = new Rectangle(TrackX, ClientRectangle.Y + ClientRectangle.Height / 2 - _thumbSize.Height / 2, _thumbSize.Width, _thumbSize.Height);
                     }
-                    #endregion
+
+                    #endregion horizontal
                 }
                 else
                 {
                     #region vertical
+
                     if (_thumbImage != null)
                     {
                         int TrackY = (((_maximum - (_trackerValue)) * (ClientRectangle.Height - _thumbImage.Height)) / (_maximum - _minimum));
@@ -656,36 +668,37 @@ namespace HTAlt.WinForms
                         int TrackY = (((_maximum - (_trackerValue)) * (ClientRectangle.Height - _thumbSize.Height)) / (_maximum - _minimum));
                         thumbRect = new Rectangle(ClientRectangle.X + ClientRectangle.Width / 2 - _thumbSize.Width / 2, TrackY, _thumbSize.Width, _thumbSize.Height);
                     }
-                    #endregion
-                }
 
+                    #endregion vertical
+                }
 
                 //adjust drawing rects
                 barRect = ClientRectangle;
-                // TODO : make barRect rectangle smaller than Control rectangle  
+                // TODO : make barRect rectangle smaller than Control rectangle
                 // barRect = new Rectangle(ClientRectangle.X + 5, ClientRectangle.Y + 5, ClientRectangle.Width - 10, ClientRectangle.Height - 10);
                 thumbHalfRect = thumbRect;
                 LinearGradientMode gradientOrientation;
 
-
                 if (_barOrientation == Orientation.Horizontal)
                 {
                     #region horizontal
+
                     barRect.Inflate(-1, -barRect.Height / 3);
                     barHalfRect = barRect;
                     barHalfRect.Height /= 2;
 
                     gradientOrientation = LinearGradientMode.Vertical;
 
-
                     thumbHalfRect.Height /= 2;
                     elapsedRect = barRect;
                     elapsedRect.Width = thumbRect.Left + _thumbSize.Width / 2;
-                    #endregion
+
+                    #endregion horizontal
                 }
                 else
                 {
                     #region vertical
+
                     barRect.Inflate(-barRect.Width / 3, -1);
                     barHalfRect = barRect;
                     barHalfRect.Width /= 2;
@@ -697,10 +710,10 @@ namespace HTAlt.WinForms
                     elapsedRect.Height = barRect.Height - (thumbRect.Top + ThumbSize.Height / 2);
                     elapsedRect.Y = 1 + thumbRect.Top + ThumbSize.Height / 2;
 
-                    #endregion
+                    #endregion vertical
                 }
 
-                //get thumb shape path 
+                //get thumb shape path
                 GraphicsPath thumbPath;
                 if (_thumbCustomShape == null)
                 {
@@ -714,12 +727,11 @@ namespace HTAlt.WinForms
                     thumbPath.Transform(m);
                 }
 
-
                 //draw bar
 
                 #region draw inner bar
 
-                // inner bar is a single line 
+                // inner bar is a single line
                 // draw the line on the whole lenght of the control
                 if (_barOrientation == Orientation.Horizontal)
                 {
@@ -729,12 +741,12 @@ namespace HTAlt.WinForms
                 {
                     e.Graphics.DrawLine(new Pen(barInnerColorPaint, 1f), barRect.X + barRect.Width / 2, barRect.Y, barRect.X + barRect.Width / 2, barRect.Y + barRect.Height);
                 }
-                #endregion
 
+                #endregion draw inner bar
 
                 #region draw elapsed bar
 
-                //draw elapsed inner bar (single line too)                               
+                //draw elapsed inner bar (single line too)
                 if (_barOrientation == Orientation.Horizontal)
                 {
                     e.Graphics.DrawLine(new Pen(elapsedInnerColorPaint, 1f), barRect.X, barRect.Y + barRect.Height / 2, barRect.X + elapsedRect.Width, barRect.Y + barRect.Height / 2);
@@ -746,63 +758,58 @@ namespace HTAlt.WinForms
 
                 #endregion draw elapsed bar
 
-
                 #region draw external contours
 
-                //draw external bar band 
+                //draw external bar band
                 // 2 lines: top and bottom
                 if (_barOrientation == Orientation.Horizontal)
                 {
                     #region horizontal
+
                     // Elapsed top
                     e.Graphics.DrawLine(new Pen(ElapsedTopPenColorPaint, 1f), barRect.X, barRect.Y - 1 + barRect.Height / 2, barRect.X + elapsedRect.Width, barRect.Y - 1 + barRect.Height / 2);
                     // Elapsed bottom
                     e.Graphics.DrawLine(new Pen(ElapsedBottomPenColorPaint, 1f), barRect.X, barRect.Y + 1 + barRect.Height / 2, barRect.X + elapsedRect.Width, barRect.Y + 1 + barRect.Height / 2);
-
 
                     // Remain top
                     e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X + elapsedRect.Width, barRect.Y - 1 + barRect.Height / 2, barRect.X + barRect.Width, barRect.Y - 1 + barRect.Height / 2);
                     // Remain bottom
                     e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X + elapsedRect.Width, barRect.Y + 1 + barRect.Height / 2, barRect.X + barRect.Width, barRect.Y + 1 + barRect.Height / 2);
 
-
                     // Left vertical (dark)
                     e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X, barRect.Y - 1 + barRect.Height / 2, barRect.X, barRect.Y + barRect.Height / 2 + 1);
 
-                    // Right vertical (light)                        
+                    // Right vertical (light)
                     e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X + barRect.Width, barRect.Y - 1 + barRect.Height / 2, barRect.X + barRect.Width, barRect.Y + 1 + barRect.Height / 2);
-                    #endregion
+
+                    #endregion horizontal
                 }
                 else
                 {
                     #region vertical
+
                     // Elapsed top
                     e.Graphics.DrawLine(new Pen(ElapsedTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height);
 
                     // Elapsed bottom
                     e.Graphics.DrawLine(new Pen(ElapsedBottomPenColorPaint, 1f), barRect.X + 1 + barRect.Width / 2, barRect.Y + (barRect.Height - elapsedRect.Height), barRect.X + 1 + barRect.Width / 2, barRect.Y + barRect.Height);
 
-
                     // Remain top
                     e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y, barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height - elapsedRect.Height);
-
 
                     // Remain bottom
                     e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X + 1 + barRect.Width / 2, barRect.Y, barRect.X + 1 + barRect.Width / 2, barRect.Y + barRect.Height - elapsedRect.Height);
 
-
-                    // top horizontal (dark) 
+                    // top horizontal (dark)
                     e.Graphics.DrawLine(new Pen(barTopPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y, barRect.X + 1 + barRect.Width / 2, barRect.Y);
 
                     // bottom horizontal (light)
                     e.Graphics.DrawLine(new Pen(barBottomPenColorPaint, 1f), barRect.X - 1 + barRect.Width / 2, barRect.Y + barRect.Height, barRect.X + 1 + barRect.Width / 2, barRect.Y + barRect.Height);
-                    #endregion
 
+                    #endregion vertical
                 }
 
-                #endregion draw contours
-
-
+                #endregion draw external contours
 
                 #region draw thumb
 
@@ -840,7 +847,6 @@ namespace HTAlt.WinForms
 
                     using (Pen thumbPen = new Pen(newThumbPenColor))
                     {
-
                         if (_thumbImage != null)
                         {
                             Bitmap bmp = new Bitmap(_thumbImage);
@@ -849,19 +855,18 @@ namespace HTAlt.WinForms
 
                             e.Graphics.DrawImage(bmp, thumbRect, srceRect, GraphicsUnit.Pixel);
                             bmp.Dispose();
-
                         }
                         else
                         {
                             e.Graphics.DrawPath(thumbPen, thumbPath);
                         }
                     }
-
                 }
+
                 #endregion draw thumb
 
-
                 #region draw focusing rectangle
+
                 //draw focusing rectangle
                 if (Focused & _drawFocusRectangle)
                 {
@@ -880,12 +885,8 @@ namespace HTAlt.WinForms
                         }
                     }
                 }
+
                 #endregion draw focusing rectangle
-
-
-
-
-
             }
             catch (Exception Err)
             {
@@ -896,10 +897,12 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
+        #endregion Paint
+
         #region Overided events
 
         private bool mouseInRegion = false;
+
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.EnabledChanged"></see> event.
         /// </summary>
@@ -978,9 +981,7 @@ namespace HTAlt.WinForms
                              (float)
                              ((_barOrientation == Orientation.Horizontal ? ClientSize.Width : ClientSize.Height) - 2 * margin);
 
-
                 _trackerValue = _barOrientation == Orientation.Horizontal ? (int)(p * coef + _minimum) : (_maximum - (int)(p * coef));
-
 
                 if (_trackerValue <= _minimum)
                 {
@@ -1084,6 +1085,7 @@ namespace HTAlt.WinForms
                     }
 
                     break;
+
                 case Keys.Up:
                 case Keys.Right:
                     SetProperValue(Value + (int)_smallChange);
@@ -1093,12 +1095,15 @@ namespace HTAlt.WinForms
                     }
 
                     break;
+
                 case Keys.Home:
                     Value = _minimum;
                     break;
+
                 case Keys.End:
                     Value = _maximum;
                     break;
+
                 case Keys.PageDown:
                     SetProperValue(Value - (int)_largeChange);
                     if (Scroll != null)
@@ -1107,6 +1112,7 @@ namespace HTAlt.WinForms
                     }
 
                     break;
+
                 case Keys.PageUp:
                     SetProperValue(Value + (int)_largeChange);
                     if (Scroll != null)
@@ -1150,10 +1156,12 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
+        #endregion Overided events
+
         #region Help routines
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -1162,6 +1170,7 @@ namespace HTAlt.WinForms
             Size = new System.Drawing.Size(200, 48);
             ResumeLayout(false);
         }
+
         /// <summary>
         /// Creates the round rect path.
         /// </summary>
@@ -1258,6 +1267,6 @@ namespace HTAlt.WinForms
             }
         }
 
-        #endregion
+        #endregion Help routines
     }
 }

@@ -21,10 +21,13 @@
 //SOFTWARE.
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HTAlt
 {
@@ -33,6 +36,92 @@ namespace HTAlt
     /// </summary>
     public class Tools
     {
+        /// <summary>
+        /// Resizes an <paramref name="image"/> to a certain <paramref name="height"/> and <paramref name="width"/>.
+        /// </summary>
+        /// <param name="image">Image to resize</param>
+        /// <param name="width">Width of result.</param>
+        /// <param name="height">Height of result.</param>
+        /// <returns>Resized image.</returns>
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            Rectangle destRect = new Rectangle(0, 0, width, height);
+            Bitmap destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (Graphics graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (ImageAttributes wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+            return destImage;
+        }
+        /// <summary>
+        /// Resizes an <paramref name="image"/> to a certain <paramref name="size"/>.
+        /// </summary>
+        /// <param name="image">Image to resize</param>
+        /// <param name="size">Size to resize to.</param>
+        /// <returns>Resized image.</returns>
+        public static Bitmap ResizeImage(Image image, Size size)
+        {
+            Rectangle destRect = new Rectangle(0, 0, size.Width, size.Height);
+            Bitmap destImage = new Bitmap(size.Width, size.Height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (Graphics graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (ImageAttributes wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+            return destImage;
+        }
+        /// <summary>
+        /// Fills <paramref name="rect"/> with a repeated pattern of <paramref name="image"/>.
+        /// </summary>
+        /// <param name="image">Patter image.</param>
+        /// <param name="rect">Rectangle for size reference.</param>
+        /// <returns>Image with the size of <paramref name="rect"/> filled with a pattern of <paramref name="image"/>.</returns>
+        public static Bitmap FillPattern(Image image, Rectangle rect)
+        {
+            Rectangle _ImageRect;
+            Rectangle drawRect;
+            Bitmap result = new Bitmap(image,rect.Size);
+            using (Graphics g = Graphics.FromImage(result))
+            {
+                for (int x = rect.X; x < rect.Right; x += image.Width)
+                {
+                    for (int y = rect.Y; y < rect.Bottom; y += image.Height)
+                    {
+                        drawRect = new Rectangle(x, y, Math.Min(image.Width, rect.Right - x),
+                                       Math.Min(image.Height, rect.Bottom - y));
+                        _ImageRect = new Rectangle(0, 0, drawRect.Width, drawRect.Height);
+
+                        g.DrawImage(image, drawRect, _ImageRect, GraphicsUnit.Pixel);
+                    }
+                }
+            }
+            return result;
+        }
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>
@@ -46,6 +135,47 @@ namespace HTAlt
                 byte[] imageBytes = m.ToArray();
                 return Convert.ToBase64String(imageBytes);
             }
+        }
+        /// <summary>
+        /// Determines if a site is an actually from Haltroy.
+        /// </summary>
+        /// <param name="SiteUrl">Site URL</param>
+        /// <returns><c>true</c> if <paramref name="SiteUrl"/> is actually a Haltroy website, otherwise <c>false</c>.</returns>
+        public static bool ValidHaltroyWebsite(string SiteUrl)
+        {
+            string Pattern = @"(?:http\:\/\/haltroy\.com)|(?:https\:\/\/haltroy\.com)";
+            Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            return Rgx.IsMatch(SiteUrl.Substring(0, 19));
+        }
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
+        public static bool ValidUrl(string Url, string[] CustomProtocols)
+        {
+            string CustomProtocolPattern = @"";
+            int i = 0; int C = CustomProtocols.Length - 1;
+            while (i != C)
+            {
+                CustomProtocolPattern += (i == 0 ? @"^(?:": @"|(?:") + CustomProtocols[i] + @"\:\/\/)|";
+                i++;
+            }
+            string Pattern = CustomProtocolPattern +  @"|(?:\:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+            Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex Rgx2 = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            return Rgx2.IsMatch(Url) || Rgx.IsMatch(Url);
+        }
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default protocol rules, otherwise <c>false</c>.</returns>
+        public static bool ValidUrl(string Url)
+        {
+            string[] defaults = { "http","https","about","ftp","smtp","pop" };
+            return ValidUrl(Url, defaults);
         }
         /// <summary>
         /// Converts Base 64 code to an image.

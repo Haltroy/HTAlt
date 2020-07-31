@@ -19,13 +19,11 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-
 
 namespace HTAlt.WinForms
 {
@@ -36,10 +34,12 @@ namespace HTAlt.WinForms
     public class HTSwitch : Control
     {
         #region HTControls
+
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://github.com/Haltroy/HTAlt/wiki/HTSwitch-Class");
+        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTSwitch");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Custom Switch control that imidates System.Windows.Forms.CheckBox.";
+
         /// <summary>
         /// This control's wiki link.
         /// </summary>
@@ -47,6 +47,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's wiki link.")]
         public Uri WikiLink => wikiLink;
+
         /// <summary>
         /// This control's first appearance version for HTAlt.
         /// </summary>
@@ -54,6 +55,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's first appearance version for HTAlt.")]
         public Version FirstHTAltVersion => firstHTAltVersion;
+
         /// <summary>
         /// This control's description.
         /// </summary>
@@ -61,6 +63,7 @@ namespace HTAlt.WinForms
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
+
         /// <summary>
         /// Information about this control's project.
         /// </summary>
@@ -69,11 +72,13 @@ namespace HTAlt.WinForms
         [Description("Information about this control's project.")]
         [TypeConverter(typeof(ExpandableObjectConverter))]
         public HTInfo ProjectInfo => info;
-        #endregion
+
+        #endregion HTControls
 
         #region Delegate and Event declarations
 
         public delegate void CheckedChangedDelegate(object sender, EventArgs e);
+
         [Description("Raised when the HTSwitch has changed state")]
         public event CheckedChangedDelegate CheckedChanged;
 
@@ -123,7 +128,6 @@ namespace HTAlt.WinForms
 
         public HTSwitch()
         {
-            
             SetStyle(ControlStyles.ResizeRedraw |
                         ControlStyles.SupportsTransparentBackColor |
                         ControlStyles.AllPaintingInWmPaint |
@@ -139,7 +143,6 @@ namespace HTAlt.WinForms
         #endregion Constructor Etc.
 
         #region Public Properties
-
 
         /// <summary>
         /// Gets or sets the Checked value of the HTSwitch
@@ -174,6 +177,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets whether the user can change the value of the button or not.
         /// </summary>
@@ -186,9 +190,11 @@ namespace HTAlt.WinForms
             get => _allowUserChange;
             set => _allowUserChange = value;
         }
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Rectangle ButtonRectangle => GetButtonRectangle();
+
         /// <summary>
         /// Gets or sets if the HTSwitch should be grayed out when disabled.
         /// </summary>
@@ -212,6 +218,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets if the HTSwitch should toggle when the button is clicked.
         /// </summary>
@@ -224,6 +231,7 @@ namespace HTAlt.WinForms
             get => _toggleOnButtonClick;
             set => _toggleOnButtonClick = value;
         }
+
         /// <summary>
         /// Gets or sets if the HTSwitch should toggle when the track besides the button is clicked.
         /// </summary>
@@ -236,6 +244,7 @@ namespace HTAlt.WinForms
             get => _toggleOnSideClick;
             set => _toggleOnSideClick = value;
         }
+
         /// <summary>
         /// Gets or sets how much the button need to be on the other side (in percent) before it snaps.
         /// </summary>
@@ -248,6 +257,7 @@ namespace HTAlt.WinForms
             get => _thresholdPercentage;
             set => _thresholdPercentage = value;
         }
+
         /// <summary>
         /// Gets or sets the back color when Checked = true.
         /// </summary>
@@ -267,6 +277,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the back color when Checked = false.
         /// </summary>
@@ -286,6 +297,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the back color of button.
         /// </summary>
@@ -305,6 +317,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the back color of button when hovered.
         /// </summary>
@@ -324,6 +337,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets the back color of button when pressed.
         /// </summary>
@@ -343,6 +357,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets whether the button image should be scaled to fit.
         /// </summary>
@@ -362,6 +377,7 @@ namespace HTAlt.WinForms
                 }
             }
         }
+
         /// <summary>
         /// Gets or sets whether the toggle change should be animated or not.
         /// </summary>
@@ -374,6 +390,7 @@ namespace HTAlt.WinForms
             get => _useAnimation;
             set => _useAnimation = value;
         }
+
         /// <summary>
         /// Gets or sets the interval in ms between animation frames.
         /// </summary>
@@ -394,6 +411,7 @@ namespace HTAlt.WinForms
                 _animationInterval = value;
             }
         }
+
         /// <summary>
         /// Gets or sets the step in pixels the button should be moved between each animation interval.
         /// </summary>
@@ -427,6 +445,7 @@ namespace HTAlt.WinForms
             get => "";
             set => base.Text = "";
         }
+
         /// <summary>
         /// Not in use.
         /// </summary>
@@ -437,6 +456,7 @@ namespace HTAlt.WinForms
             get => Color.Black;
             set => base.ForeColor = Color.Black;
         }
+
         /// <summary>
         /// Not in use.
         /// </summary>
@@ -527,7 +547,7 @@ namespace HTAlt.WinForms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal bool AnimationResult => _animationResult;
 
-        #endregion Private Properties
+        #endregion Internal Properties
 
         #region Overridden Control Methods
 
@@ -540,6 +560,7 @@ namespace HTAlt.WinForms
             base.OnPaintBackground(pevent);
             RenderBackground(pevent);
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.ResetClip();
@@ -931,6 +952,7 @@ namespace HTAlt.WinForms
                 g.FillRectangle(backBrush, controlRectangle);
             }
         }
+
         public void RenderLeftToggleField(Graphics g, Rectangle leftRectangle, int totalToggleFieldWidth)
         {
             g.SmoothingMode = SmoothingMode.HighQuality;
@@ -1022,6 +1044,7 @@ namespace HTAlt.WinForms
 
             g.ResetClip();
         }
+
         public void RenderRightToggleField(Graphics g, Rectangle rightRectangle, int totalToggleFieldWidth)
         {
             g.SmoothingMode = SmoothingMode.HighQuality;
@@ -1112,6 +1135,7 @@ namespace HTAlt.WinForms
             }
             g.ResetClip();
         }
+
         public void RenderButton(Graphics g, Rectangle buttonRectangle)
         {
             if (IsButtonOnLeftSide)
@@ -1248,6 +1272,7 @@ namespace HTAlt.WinForms
         #endregion Render Methods
 
         #region Helper Methods
+
         public GraphicsPath GetButtonClipPath()
         {
             Rectangle buttonRectangle = GetButtonRectangle();
@@ -1258,6 +1283,7 @@ namespace HTAlt.WinForms
 
             return buttonPath;
         }
+
         public GraphicsPath GetControlClipPath(Rectangle controlRectangle)
         {
             GraphicsPath borderPath = new GraphicsPath();
@@ -1267,15 +1293,18 @@ namespace HTAlt.WinForms
 
             return borderPath;
         }
+
         public int GetButtonWidth()
         {
             return Height - 2;
         }
+
         public Rectangle GetButtonRectangle()
         {
             int buttonWidth = GetButtonWidth();
             return GetButtonRectangle(buttonWidth);
         }
+
         public Rectangle GetButtonRectangle(int buttonWidth)
         {
             Rectangle buttonRect = new Rectangle(ButtonValue, 1, buttonWidth, buttonWidth);
@@ -1283,6 +1312,7 @@ namespace HTAlt.WinForms
         }
 
         #endregion Helper Methods
-        #endregion
+
+        #endregion "Renderer"
     }
 }

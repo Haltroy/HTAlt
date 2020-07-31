@@ -79,7 +79,7 @@ namespace HTAlt.WinForms
             // 
             // btYes
             // 
-            this.btYes.ButtonText = "Yes";
+            this.btYes.Text = "Yes";
             this.btYes.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btYes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -87,14 +87,14 @@ namespace HTAlt.WinForms
             this.btYes.Name = "btYes";
             this.btYes.Size = new System.Drawing.Size(370, 25);
             this.btYes.TabIndex = 0;
-            this.btYes.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btYes.DrawImage = true;
             this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Visible = false;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btCancel
             // 
-            this.btCancel.ButtonText = "Cancel";
+            this.btCancel.Text = "Cancel";
             this.btCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -102,14 +102,14 @@ namespace HTAlt.WinForms
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(370, 25);
             this.btCancel.TabIndex = 0;
-            this.btCancel.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btCancel.DrawImage = true;
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Visible = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // btNo
             // 
-            this.btNo.ButtonText = "No";
+            this.btNo.Text = "No";
             this.btNo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -117,14 +117,14 @@ namespace HTAlt.WinForms
             this.btNo.Name = "btNo";
             this.btNo.Size = new System.Drawing.Size(370, 25);
             this.btNo.TabIndex = 0;
-            this.btNo.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btNo.DrawImage = true;
             this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Visible = false;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
             // 
             // btOK
             // 
-            this.btOK.ButtonText = "OK";
+            this.btOK.Text = "OK";
             this.btOK.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -132,14 +132,14 @@ namespace HTAlt.WinForms
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(370, 25);
             this.btOK.TabIndex = 1;
-            this.btOK.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btOK.DrawImage = true;
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Visible = false;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btAbort
             // 
-            this.btAbort.ButtonText = "Abort";
+            this.btAbort.Text = "Abort";
             this.btAbort.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAbort.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -147,14 +147,14 @@ namespace HTAlt.WinForms
             this.btAbort.Name = "btAbort";
             this.btAbort.Size = new System.Drawing.Size(370, 25);
             this.btAbort.TabIndex = 2;
-            this.btAbort.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btAbort.DrawImage = true;
             this.btAbort.UseVisualStyleBackColor = true;
             this.btAbort.Visible = false;
             this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
             // 
             // btRetry
             // 
-            this.btRetry.ButtonText = "Retry";
+            this.btRetry.Text = "Retry";
             this.btRetry.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btRetry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btRetry.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -162,14 +162,14 @@ namespace HTAlt.WinForms
             this.btRetry.Name = "btRetry";
             this.btRetry.Size = new System.Drawing.Size(370, 25);
             this.btRetry.TabIndex = 3;
-            this.btRetry.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btRetry.DrawImage = true;
             this.btRetry.UseVisualStyleBackColor = true;
             this.btRetry.Visible = false;
             this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
             // 
             // btIgnore
             // 
-            this.btIgnore.ButtonText = "Ignore";
+            this.btIgnore.Text = "Ignore";
             this.btIgnore.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btIgnore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -177,7 +177,7 @@ namespace HTAlt.WinForms
             this.btIgnore.Name = "btIgnore";
             this.btIgnore.Size = new System.Drawing.Size(370, 25);
             this.btIgnore.TabIndex = 4;
-            this.btIgnore.TextImageRelation = HTAlt.WinForms.HTButton.ButtonTextImageRelation.TextBelowImage;
+            this.btIgnore.DrawImage = true;
             this.btIgnore.UseVisualStyleBackColor = true;
             this.btIgnore.Visible = false;
             this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
