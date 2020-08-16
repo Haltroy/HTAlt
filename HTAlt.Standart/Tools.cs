@@ -19,7 +19,9 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
+using HTAlt.Standart;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -65,6 +67,51 @@ namespace HTAlt
                 }
             }
             return destImage;
+        }
+        /// <summary>
+        /// Removes <paramref name="RemoveText"/> from files names in <paramref name="folder"/>.
+        /// </summary>
+        /// <param name="folder">Work folder</param>
+        /// <param name="RemoveText">Text to remove</param>
+        /// <returns><c>true</c> if successfully removes <paramref name="RemoveText"/>, otherwise <c>false</c>.</returns>
+        public static bool RemoveFromFileNames(string folder,string RemoveText)
+        {
+            bool isSuccess = false;
+            int success = 0;
+            int C = 0;
+            List<Exception> errors = new List<Exception>();
+            try
+            {
+                foreach (string x in Directory.GetFiles(folder))
+                {
+                    string pathName = Path.GetFileName(x);
+                    C++;
+                    if (pathName.Contains(RemoveText))
+                    {
+                        string newName = folder + pathName.Replace(RemoveText, "");
+                        try
+                        {
+                            File.Move(x, newName);
+                            success++;
+                        }
+                        catch (Exception ex)
+                        {
+                            errors.Add(ex);
+                        }
+                    }
+                }
+                Console.WriteLine("Count: " + C + " Success: " + success + " Error: " + errors.Count);
+                foreach (Exception ex in errors)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                isSuccess = true;
+                return isSuccess;
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
         }
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="size"/>.
