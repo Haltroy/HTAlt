@@ -194,14 +194,30 @@ namespace HTAlt
             Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             return Rgx.IsMatch(SiteUrl.Substring(0, 19));
         }
+        
+
+        
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
         /// <param name="Url">Address to determine.</param>
         /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="options">Regex options to check </param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string Url, string[] CustomProtocols)
+        public static bool ValidUrl(string Url, string[] CustomProtocols, RegexOptions options, bool ignoreDefaults)
         {
+            if (!ignoreDefaults) 
+            {
+                int startL = CustomProtocols.Lenght;
+                Array.Resize(CustomProtocols, startL + 6);
+                CustomProtocols[L + 1] = "http";
+                CustomProtocols[L + 1] = "https";
+                CustomProtocols[L + 1] = "about";
+                CustomProtocols[L + 1] = "ftp";
+                CustomProtocols[L + 1] = "smtp";
+                CustomProtocols[L + 1] = "pop";
+            }
             string CustomProtocolPattern = @"";
             int i = 0; int C = CustomProtocols.Length - 1;
             while (i != C)
@@ -211,7 +227,7 @@ namespace HTAlt
             }
             string Pattern = CustomProtocolPattern +  @"|(?:\:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$";
             Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            Regex Rgx2 = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex Rgx2 = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b", options);
             return Rgx2.IsMatch(Url) || Rgx.IsMatch(Url);
         }
         /// <summary>
@@ -221,9 +237,45 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default protocol rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string Url)
         {
-            string[] defaults = { "http","https","about","ftp","smtp","pop" };
-            return ValidUrl(Url, defaults);
+            return ValidUrl(Url, string[] defaults = { "http","https","about","ftp","smtp","pop" }, false);
         }
+        
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
+        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default rules, otherwise <c>false</c>.</returns>
+        public static bool ValidUrl(string Url, bool ignoreDefaults)
+        {
+            return ValidUrl(Url, new string[] = { }, ignoreDefaults);
+        }
+        
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
+        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
+        public static bool ValidUrl(string url, string[] CustomProtocols, bool ignoreDefaults)
+        {
+           return ValidUrl(Url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , ignoreDefaults);    
+        }
+        
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="options">Regex options to check </param>
+        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
+        public static bool ValidUrl(string url, string[] CustomProtocols)
+        {
+           return ValidUrl(Url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , false);    
+        }
+            
+        
         /// <summary>
         /// Converts Base 64 code to an image.
         /// </summary>
