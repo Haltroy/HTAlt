@@ -209,14 +209,14 @@ namespace HTAlt
         {
             if (!ignoreDefaults) 
             {
-                int startL = CustomProtocols.Lenght;
-                Array.Resize(CustomProtocols, startL + 6);
-                CustomProtocols[L + 1] = "http";
-                CustomProtocols[L + 1] = "https";
-                CustomProtocols[L + 1] = "about";
-                CustomProtocols[L + 1] = "ftp";
-                CustomProtocols[L + 1] = "smtp";
-                CustomProtocols[L + 1] = "pop";
+                int startL = CustomProtocols.Length;
+                Array.Resize<string>(ref CustomProtocols, startL + 6);
+                CustomProtocols[startL + 1] = "http";
+                CustomProtocols[startL + 1] = "https";
+                CustomProtocols[startL + 1] = "about";
+                CustomProtocols[startL + 1] = "ftp";
+                CustomProtocols[startL + 1] = "smtp";
+                CustomProtocols[startL + 1] = "pop";
             }
             string CustomProtocolPattern = @"";
             int i = 0; int C = CustomProtocols.Length - 1;
@@ -237,7 +237,8 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default protocol rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string Url)
         {
-            return ValidUrl(Url, string[] defaults = { "http","https","about","ftp","smtp","pop" }, false);
+            string[] defaults = { "http", "https", "about", "ftp", "smtp", "pop" };
+            return ValidUrl(Url, defaults, false);
         }
         
         /// <summary>
@@ -248,7 +249,8 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string Url, bool ignoreDefaults)
         {
-            return ValidUrl(Url, new string[] = { }, ignoreDefaults);
+            string[] empty = { };
+            return ValidUrl(Url, empty, ignoreDefaults);
         }
         
         /// <summary>
@@ -260,7 +262,7 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string url, string[] CustomProtocols, bool ignoreDefaults)
         {
-           return ValidUrl(Url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , ignoreDefaults);    
+           return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , ignoreDefaults);    
         }
         
         /// <summary>
@@ -272,7 +274,7 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string url, string[] CustomProtocols)
         {
-           return ValidUrl(Url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , false);    
+           return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , false);    
         }
             
         
