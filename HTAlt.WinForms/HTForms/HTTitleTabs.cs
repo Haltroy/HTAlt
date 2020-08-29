@@ -967,7 +967,6 @@ namespace HTAlt.WinForms
         /// <returns>One of the <see cref="HT" /> values, depending on where the user clicked.</returns>
         private HT HitTest(Point point, IntPtr windowHandle)
         {
-
             User32.GetWindowRect(windowHandle, out RECT rect);
             Rectangle area = new Rectangle(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 

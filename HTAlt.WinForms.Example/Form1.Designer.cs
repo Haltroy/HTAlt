@@ -113,6 +113,14 @@ namespace HTAlt.WinForms.Example
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.tpTools = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pbValidUrl = new System.Windows.Forms.PictureBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.hbRandom = new HTAlt.WinForms.HTButton();
             this.lbRandom = new System.Windows.Forms.Label();
             this.nudRandom = new System.Windows.Forms.NumericUpDown();
@@ -127,6 +135,7 @@ namespace HTAlt.WinForms.Example
             this.tpControl1.SuspendLayout();
             this.tpForms.SuspendLayout();
             this.tpTools.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbValidUrl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandom)).BeginInit();
             this.SuspendLayout();
             // 
@@ -990,6 +999,14 @@ namespace HTAlt.WinForms.Example
             // 
             // tpTools
             // 
+            this.tpTools.Controls.Add(this.textBox2);
+            this.tpTools.Controls.Add(this.checkBox1);
+            this.tpTools.Controls.Add(this.pbValidUrl);
+            this.tpTools.Controls.Add(this.label26);
+            this.tpTools.Controls.Add(this.label25);
+            this.tpTools.Controls.Add(this.textBox1);
+            this.tpTools.Controls.Add(this.label23);
+            this.tpTools.Controls.Add(this.label18);
             this.tpTools.Controls.Add(this.hbRandom);
             this.tpTools.Controls.Add(this.lbRandom);
             this.tpTools.Controls.Add(this.nudRandom);
@@ -1000,11 +1017,93 @@ namespace HTAlt.WinForms.Example
             this.tpTools.Text = "Tools";
             this.tpTools.UseVisualStyleBackColor = true;
             // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox2.Location = new System.Drawing.Point(11, 278);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox2.Size = new System.Drawing.Size(166, 140);
+            this.textBox2.TabIndex = 8;
+            this.textBox2.Text = "korot;";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(11, 229);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(105, 19);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "ignore defaults";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // pbValidUrl
+            // 
+            this.pbValidUrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbValidUrl.Location = new System.Drawing.Point(9, 165);
+            this.pbValidUrl.Name = "pbValidUrl";
+            this.pbValidUrl.Size = new System.Drawing.Size(23, 23);
+            this.pbValidUrl.TabIndex = 6;
+            this.pbValidUrl.TabStop = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(8, 251);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(135, 15);
+            this.label26.TabIndex = 5;
+            this.label26.Text = "Protocols (divide with ; )";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(8, 202);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(124, 15);
+            this.label25.TabIndex = 5;
+            this.label25.Text = "Red: false , Green: true";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(31, 165);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(146, 23);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.label23.Location = new System.Drawing.Point(7, 142);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(68, 20);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "Valid Url";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(7, 14);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(170, 20);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Generate Random Text";
+            // 
             // hbRandom
             // 
             this.hbRandom.FlatAppearance.BorderSize = 0;
             this.hbRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.hbRandom.Location = new System.Drawing.Point(8, 45);
+            this.hbRandom.Location = new System.Drawing.Point(11, 77);
             this.hbRandom.Name = "hbRandom";
             this.hbRandom.Size = new System.Drawing.Size(120, 23);
             this.hbRandom.TabIndex = 2;
@@ -1015,7 +1114,7 @@ namespace HTAlt.WinForms.Example
             // lbRandom
             // 
             this.lbRandom.AutoSize = true;
-            this.lbRandom.Location = new System.Drawing.Point(8, 71);
+            this.lbRandom.Location = new System.Drawing.Point(11, 103);
             this.lbRandom.Name = "lbRandom";
             this.lbRandom.Size = new System.Drawing.Size(85, 15);
             this.lbRandom.TabIndex = 1;
@@ -1023,7 +1122,7 @@ namespace HTAlt.WinForms.Example
             // 
             // nudRandom
             // 
-            this.nudRandom.Location = new System.Drawing.Point(8, 16);
+            this.nudRandom.Location = new System.Drawing.Point(11, 48);
             this.nudRandom.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -1067,6 +1166,7 @@ namespace HTAlt.WinForms.Example
             this.tpForms.PerformLayout();
             this.tpTools.ResumeLayout(false);
             this.tpTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbValidUrl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandom)).EndInit();
             this.ResumeLayout(false);
 
@@ -1157,6 +1257,14 @@ namespace HTAlt.WinForms.Example
         private System.Windows.Forms.Label lbRandom;
         private System.Windows.Forms.NumericUpDown nudRandom;
         private HTSwitch hsDefault;
+        private System.Windows.Forms.PictureBox pbValidUrl;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label26;
     }
 }
 

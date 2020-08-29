@@ -19,7 +19,6 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-using HTAlt.Standart;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,7 +26,6 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -68,13 +66,14 @@ namespace HTAlt
             }
             return destImage;
         }
+
         /// <summary>
         /// Removes <paramref name="RemoveText"/> from files names in <paramref name="folder"/>.
         /// </summary>
         /// <param name="folder">Work folder</param>
         /// <param name="RemoveText">Text to remove</param>
         /// <returns><c>true</c> if successfully removes <paramref name="RemoveText"/>, otherwise <c>false</c>.</returns>
-        public static bool RemoveFromFileNames(string folder,string RemoveText)
+        public static bool RemoveFromFileNames(string folder, string RemoveText)
         {
             bool isSuccess = false;
             int success = 0;
@@ -107,12 +106,14 @@ namespace HTAlt
                 }
                 isSuccess = true;
                 return isSuccess;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 return false;
             }
         }
+
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="size"/>.
         /// </summary>
@@ -142,6 +143,7 @@ namespace HTAlt
             }
             return destImage;
         }
+
         /// <summary>
         /// Fills <paramref name="rect"/> with a repeated pattern of <paramref name="image"/>.
         /// </summary>
@@ -152,7 +154,7 @@ namespace HTAlt
         {
             Rectangle _ImageRect;
             Rectangle drawRect;
-            Bitmap result = new Bitmap(image,rect.Size);
+            Bitmap result = new Bitmap(image, rect.Size);
             using (Graphics g = Graphics.FromImage(result))
             {
                 for (int x = rect.X; x < rect.Right; x += image.Width)
@@ -169,6 +171,7 @@ namespace HTAlt
             }
             return result;
         }
+
         /// <summary>
         /// Converts the image to Base 64 code.
         /// </summary>
@@ -183,6 +186,7 @@ namespace HTAlt
                 return Convert.ToBase64String(imageBytes);
             }
         }
+
         /// <summary>
         /// Determines if a site is an actually from Haltroy.
         /// </summary>
@@ -194,9 +198,7 @@ namespace HTAlt
             Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
             return Rgx.IsMatch(SiteUrl.Substring(0, 19));
         }
-        
 
-        
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
@@ -207,29 +209,34 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string Url, string[] CustomProtocols, RegexOptions options, bool ignoreDefaults)
         {
-            if (!ignoreDefaults) 
+            if (string.IsNullOrWhiteSpace(Url) || Url.Contains(" "))
+            { return false; }
+            else
             {
-                int startL = CustomProtocols.Length;
-                Array.Resize<string>(ref CustomProtocols, startL + 6);
-                CustomProtocols[startL + 1] = "http";
-                CustomProtocols[startL + 1] = "https";
-                CustomProtocols[startL + 1] = "about";
-                CustomProtocols[startL + 1] = "ftp";
-                CustomProtocols[startL + 1] = "smtp";
-                CustomProtocols[startL + 1] = "pop";
+                if (!ignoreDefaults)
+                {
+                    int startL = CustomProtocols.Length;
+                    Array.Resize<string>(ref CustomProtocols, startL + 7);
+                    CustomProtocols[startL + 1] = "http";
+                    CustomProtocols[startL + 2] = "https";
+                    CustomProtocols[startL + 3] = "about";
+                    CustomProtocols[startL + 4] = "ftp";
+                    CustomProtocols[startL + 5] = "smtp";
+                    CustomProtocols[startL + 6] = "pop";
+                }
+                string CustomProtocolPattern = @"(";
+                int i = 0; int C = CustomProtocols.Length - 1;
+                while (i != C)
+                {
+                    CustomProtocolPattern += (i == 0 ? @"^(?:" : @"|(?:") + CustomProtocols[i] + @"\:\/\/)|";
+                    i++;
+                }
+                string Pattern = CustomProtocolPattern + @"|(?:\:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$)|(\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b)";
+                Regex Rgx = new Regex(Pattern, options);
+                return Rgx.IsMatch(Url);
             }
-            string CustomProtocolPattern = @"";
-            int i = 0; int C = CustomProtocols.Length - 1;
-            while (i != C)
-            {
-                CustomProtocolPattern += (i == 0 ? @"^(?:": @"|(?:") + CustomProtocols[i] + @"\:\/\/)|";
-                i++;
-            }
-            string Pattern = CustomProtocolPattern +  @"|(?:\:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$";
-            Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            Regex Rgx2 = new Regex(@"\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b", options);
-            return Rgx2.IsMatch(Url) || Rgx.IsMatch(Url);
         }
+
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
@@ -240,7 +247,7 @@ namespace HTAlt
             string[] defaults = { "http", "https", "about", "ftp", "smtp", "pop" };
             return ValidUrl(Url, defaults, false);
         }
-        
+
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
@@ -252,7 +259,7 @@ namespace HTAlt
             string[] empty = { };
             return ValidUrl(Url, empty, ignoreDefaults);
         }
-        
+
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
@@ -262,9 +269,9 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string url, string[] CustomProtocols, bool ignoreDefaults)
         {
-           return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , ignoreDefaults);    
+            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, ignoreDefaults);
         }
-        
+
         /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
@@ -274,10 +281,9 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
         public static bool ValidUrl(string url, string[] CustomProtocols)
         {
-           return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase , false);    
+            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, false);
         }
-            
-        
+
         /// <summary>
         /// Converts Base 64 code to an image.
         /// </summary>
@@ -291,6 +297,7 @@ namespace HTAlt
             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
             return image;
         }
+
         /// <summary>
         /// Crops an image to a rectangle.
         /// </summary>
@@ -302,6 +309,7 @@ namespace HTAlt
             Bitmap bmpImage = new Bitmap(img);
             return bmpImage.Clone(cropArea, bmpImage.PixelFormat);
         }
+
         /// <summary>
         /// Crops a bitmap to a rectangle.
         /// </summary>
@@ -312,6 +320,7 @@ namespace HTAlt
         {
             return bm.Clone(cropArea, bm.PixelFormat);
         }
+
         /// <summary>
         /// Generates a random text with random characters with length.
         /// </summary>
@@ -327,12 +336,13 @@ namespace HTAlt
                .Range(65, 26)
                 .Select(e => ((char)e).ToString())
                 .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
-                .Concat(Enumerable.Range(0,length - 1).Select(e => e.ToString()))
+                .Concat(Enumerable.Range(0, length - 1).Select(e => e.ToString()))
                 .OrderBy(e => Guid.NewGuid())
                 .Take(length)
                 .ToList().ForEach(e => builder.Append(e));
             return builder.ToString();
         }
+
         /// <summary>
         /// Gets the base URL of an URL.
         /// </summary>
@@ -344,13 +354,14 @@ namespace HTAlt
             string baseUri = uri.GetLeftPart(System.UriPartial.Authority);
             return baseUri;
         }
+
         /// <summary>
         /// Generates a random color.
         /// </summary>
         /// <param name="Transparency">Value of random generated color's alpha channel. This parameter is ignored if <paramref name="RandomTransparency"/> is set to true.</param>
         /// <param name="RandomTransparency">True to randomize Alpha channel, otherwise use <paramref name="Transparency"/>.</param>
         /// <returns>Random color.</returns>
-        public static Color RandomColor(int Transparency = 255,bool RandomTransparency = false)
+        public static Color RandomColor(int Transparency = 255, bool RandomTransparency = false)
         {
             Random rand = new Random();
             int max = 256;
@@ -364,6 +375,7 @@ namespace HTAlt
             int b = rand.Next(max);
             return Color.FromArgb(a, r, g, b);
         }
+
         /// <summary>
         /// Converts Hexadecimal to Color
         /// </summary>
@@ -373,6 +385,7 @@ namespace HTAlt
         {
             return ColorTranslator.FromHtml(hexString);
         }
+
         /// <summary>
         /// Converts Color to Hexadecimal
         /// </summary>
@@ -382,6 +395,7 @@ namespace HTAlt
         {
             return ColorTranslator.ToHtml(Color.FromArgb(color.ToArgb()));
         }
+
         /// <summary>
         /// Gets Image from Url
         /// </summary>
@@ -397,6 +411,7 @@ namespace HTAlt
                 }
             }
         }
+
         /// <summary>
         /// Return <c>true</c> if path directory is empty.
         /// </summary>
@@ -410,6 +425,7 @@ namespace HTAlt
             }
             else { return true; }
         }
+
         /// <summary>
         /// Gets Brightness level between 0-255.
         /// </summary>
@@ -422,6 +438,7 @@ namespace HTAlt
                c.G * c.G * .691 +
                c.B * c.B * .068);
         }
+
         /// <summary>
         /// Gets Transparency level between 0-255.
         /// </summary>
@@ -431,6 +448,7 @@ namespace HTAlt
         {
             return Convert.ToInt32(c.A);
         }
+
         /// <summary>
         /// Returns true if the color is not so opaque, owtherwise false.
         /// </summary>
@@ -440,6 +458,7 @@ namespace HTAlt
         {
             return Transparency(c) < 130;
         }
+
         /// <summary>
         /// Returns true if the color is opaque, otherwise false.
         /// </summary>
@@ -449,6 +468,7 @@ namespace HTAlt
         {
             return Transparency(c) == 255;
         }
+
         /// <summary>
         /// Returns true if the color is invisible due to high transparency.
         /// </summary>
@@ -458,6 +478,7 @@ namespace HTAlt
         {
             return Transparency(c) == 0;
         }
+
         /// <summary>
         /// Replaces a color from an image to another color.
         /// </summary>
@@ -546,6 +567,7 @@ namespace HTAlt
 
             return outputImage;
         }
+
         /// <summary>
         /// Applies a texture to an Image.
         /// </summary>
@@ -604,6 +626,7 @@ namespace HTAlt
                 return outputImage;
             }
         }
+
         /// <summary>
         /// Determines which color (Black or White) to use for foreground of the color.
         /// </summary>
@@ -613,6 +636,7 @@ namespace HTAlt
         {
             return IsBright(c) ? Color.Black : Color.White;
         }
+
         /// <summary>
         /// Determies which color (Black or White) is closer to the color.
         /// </summary>
@@ -622,6 +646,7 @@ namespace HTAlt
         {
             return IsBright(c) ? Color.White : Color.Black;
         }
+
         /// <summary>
         /// Returns <c>true</c> if the color is bright.
         /// </summary>
@@ -631,6 +656,7 @@ namespace HTAlt
         {
             return Brightness(c) > 130;
         }
+
         /// <summary>
         /// Subtracts the number if possible.
         /// </summary>
@@ -642,6 +668,7 @@ namespace HTAlt
         {
             return limit == 0 ? (number > subtract ? number - subtract : number) : (number - subtract < limit ? number : number - subtract);
         }
+
         /// <summary>
         /// Add the number if the result is going to be smaller or equal to limit.
         /// </summary>
@@ -649,10 +676,11 @@ namespace HTAlt
         /// <param name="add">Integer to add.</param>
         /// <param name="limit">Integer for limit.</param>
         /// <returns>Adds the number if added number is smaller than the limit, otherwise returns the number untouched.</returns>
-        public static int AddIfNeeded(int number, int add, int limit = ((2^31) -1))
+        public static int AddIfNeeded(int number, int add, int limit = ((2 ^ 31) - 1))
         {
             return number + add > limit ? number : number + add;
         }
+
         /// <summary>
         /// Reverses a color.
         /// </summary>
@@ -666,6 +694,7 @@ namespace HTAlt
                                   255 - c.G,
                                   255 - c.B);
         }
+
         /// <summary>
         /// Shifts brightness of a color.
         /// </summary>
@@ -680,6 +709,7 @@ namespace HTAlt
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.G, value) : AddIfNeeded(baseColor.G, value, 255),
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.B, value) : AddIfNeeded(baseColor.B, value, 255));
         }
+
         /// <summary>
         /// Reads a file without locking it.
         /// </summary>
@@ -694,6 +724,7 @@ namespace HTAlt
             sr.Close();
             return result;
         }
+
         /// <summary>
         /// Reads a file without locking it.
         /// </summary>
@@ -704,6 +735,7 @@ namespace HTAlt
             FileStream fs = new FileStream(fileLocation, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             return fs;
         }
+
         /// <summary>
         /// Reads a file without locking it.
         /// </summary>
@@ -719,6 +751,7 @@ namespace HTAlt
             Image img = Image.FromStream(ReadFile(fileLocation));
             return img;
         }
+
         /// <summary>
         /// Reads a file without locking it.
         /// </summary>
@@ -733,6 +766,7 @@ namespace HTAlt
             }
             return new Bitmap(ReadFile(fileLocation, format: null));
         }
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>
@@ -753,6 +787,7 @@ namespace HTAlt
             writer.Close();
             return true;
         }
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>
@@ -778,6 +813,7 @@ namespace HTAlt
             writer.Close();
             return true;
         }
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>
@@ -790,6 +826,7 @@ namespace HTAlt
             Bitmap bitmap = new Bitmap(image);
             return WriteFile(fileLocation, bitmap, format);
         }
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>
@@ -809,6 +846,7 @@ namespace HTAlt
             writer.Close();
             return true;
         }
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>

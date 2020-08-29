@@ -1,10 +1,5 @@
-﻿using HTAlt.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms.Example
@@ -56,23 +51,24 @@ namespace HTAlt.WinForms.Example
             if (System.IO.File.Exists(tbIcon.Text))
             {
                 mesajicon = new Icon(tbIcon.Text);
-            } else
+            }
+            else
             {
                 mesajicon = this.Icon;
             }
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                           tbMessage.Text,
                                           mesajbuton)
-            { 
-                Icon = mesajicon, 
-                BackgroundColor = pbBackColor.BackColor, 
-                Abort = tbAbort.Text, 
-                Retry = tbRetry.Text, 
-                Ignore = tbIgnore.Text, 
-                Yes = tbYes.Text, 
-                No = tbNo.Text, 
-                OK = tbOK.Text, 
-                Cancel = tbCancel.Text, 
+            {
+                Icon = mesajicon,
+                BackgroundColor = pbBackColor.BackColor,
+                Abort = tbAbort.Text,
+                Retry = tbRetry.Text,
+                Ignore = tbIgnore.Text,
+                Yes = tbYes.Text,
+                No = tbNo.Text,
+                OK = tbOK.Text,
+                Cancel = tbCancel.Text,
             };
             mesaj.Show();
         }
@@ -106,13 +102,13 @@ namespace HTAlt.WinForms.Example
             {
                 Icon = mesajicon,
                 BackgroundColor = pbBackColor.BackColor,
-                Abort = tbAbort.Text, 
-                Retry = tbRetry.Text, 
-                Ignore = tbIgnore.Text, 
-                Yes = tbYes.Text, 
-                No = tbNo.Text, 
-                OK = tbOK.Text, 
-                Cancel = tbCancel.Text, 
+                Abort = tbAbort.Text,
+                Retry = tbRetry.Text,
+                Ignore = tbIgnore.Text,
+                Yes = tbYes.Text,
+                No = tbNo.Text,
+                OK = tbOK.Text,
+                Cancel = tbCancel.Text,
             };
             DialogResult diares = mesaj.ShowDialog();
             if (diares == DialogResult.OK)
@@ -142,7 +138,8 @@ namespace HTAlt.WinForms.Example
             else if (diares == DialogResult.Ignore)
             {
                 lResult.Text = "Ignore - " + tbIgnore.Text;
-            }else
+            }
+            else
             {
                 lResult.Text = "None";
             }
@@ -170,23 +167,24 @@ namespace HTAlt.WinForms.Example
                 mesajicon = new Icon(tbIcon.Text);
             }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
-            { 
-                Icon = mesajicon, 
-                BackgroundColor = pbBackColor.BackColor, 
-                Abort = tbAbort.Text, 
-                Retry = tbRetry.Text, 
-                Ignore = tbIgnore.Text, 
-                Yes = tbYes.Text, 
-                No = tbNo.Text, 
-                OK = tbOK.Text, 
-                Cancel = tbCancel.Text, 
-                SetToDefault = ibSetToDefault.Text, 
+            {
+                Icon = mesajicon,
+                BackgroundColor = pbBackColor.BackColor,
+                Abort = tbAbort.Text,
+                Retry = tbRetry.Text,
+                Ignore = tbIgnore.Text,
+                Yes = tbYes.Text,
+                No = tbNo.Text,
+                OK = tbOK.Text,
+                Cancel = tbCancel.Text,
+                SetToDefault = ibSetToDefault.Text,
             };
             DialogResult diagres = inputbox.ShowDialog();
             if (diagres == DialogResult.OK)
             {
                 ibResult.Text = inputbox.TextValue;
-            } else
+            }
+            else
             {
                 ibResult.Text = "Cancelled.";
             }
@@ -213,7 +211,7 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
-            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text,mesajbuton, ibDefault.Text)
+            HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
             { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
             inputbox.Show();
         }
@@ -222,6 +220,7 @@ namespace HTAlt.WinForms.Example
         {
             sliderValue.Text = HTSlider1.Value.ToString();
         }
+
         private void button7_Click(object sender, EventArgs e)
         {
             frmHTF newform = new frmHTF();
@@ -258,7 +257,7 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
-            HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text,mesajbuton)
+            HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text, mesajbuton)
             {
                 OverlayColor = pbOverlayColor.BackColor,
                 Icon = mesajicon,
@@ -290,9 +289,40 @@ namespace HTAlt.WinForms.Example
             try
             {
                 lbRandom.Text = HTAlt.Tools.GenerateRandomText(Convert.ToInt32(nudRandom.Value));
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 lbRandom.Text = ex.Message;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Tools.ValidUrl(textBox1.Text, textBox2.Text.Split(';'), checkBox1.Checked))
+            {
+                pbValidUrl.BackColor = Color.Green;
+            }
+            else
+            {
+                pbValidUrl.BackColor = Color.Red;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1_TextChanged(sender, e);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            textBox1_TextChanged(sender, e);
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox1_TextChanged(sender, e);
             }
         }
     }

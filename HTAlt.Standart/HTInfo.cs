@@ -8,11 +8,12 @@ namespace HTAlt
     /// </summary>
     public class HTInfo
     {
-        private static readonly string version = "0.1.5.0";
-        private static readonly string codeName = "Swingtheory";
+        private static readonly string version = "0.1.5.1";
+        private static readonly string codeName = "Swingtheory 1";
         private static readonly string name = "HTAlt";
         private static readonly string link = "https://github.com/haltroy/HTAlt";
         private static readonly string developer = "Haltroy";
+
         /// <summary>
         /// The Project's Name.
         /// </summary>
@@ -20,6 +21,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("The Project's Name.")]
         public string ProjectName => name;
+
         /// <summary>
         /// The Project's Code Name.
         /// </summary>
@@ -27,6 +29,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("The Project's Code Name.")]
         public string ProjectCodeName => codeName;
+
         /// <summary>
         /// The Project's version.
         /// </summary>
@@ -34,6 +37,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("The Project's version.")]
         public Version ProjectVersion => new Version(version);
+
         /// <summary>
         /// The Project's developer.
         /// </summary>
@@ -41,6 +45,7 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("The Project's developer.")]
         public string ProjectDeveloper => developer;
+
         /// <summary>
         /// The Project's website.
         /// </summary>

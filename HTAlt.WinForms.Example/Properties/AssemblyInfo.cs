@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Bir bütünleştirilmiş koda ilişkin Genel Bilgiler aşağıdaki öznitelikler kümesiyle
@@ -25,7 +24,7 @@ using System.Runtime.InteropServices;
 // Bir derlemenin sürüm bilgileri aşağıdaki dört değerden oluşur:
 //
 //      Ana Sürüm
-//      İkincil Sürüm 
+//      İkincil Sürüm
 //      Yapı Numarası
 //      Düzeltme
 //

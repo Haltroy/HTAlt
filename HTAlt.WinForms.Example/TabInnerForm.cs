@@ -1,13 +1,5 @@
-﻿using HTAlt.Standart;
-using HTAlt.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms.Example
@@ -21,6 +13,7 @@ namespace HTAlt.WinForms.Example
                 return (ParentForm as HTTitleTabs);
             }
         }
+
         protected HTTitleTab ParentTab
         {
             get
@@ -33,6 +26,7 @@ namespace HTAlt.WinForms.Example
                 return (tabIndexes.Count > 0 ? ParentTabs.Tabs[tabIndexes[0]] : null);
             }
         }
+
         public TabInnerForm()
         {
             InitializeComponent();
