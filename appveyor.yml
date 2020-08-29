@@ -1,0 +1,10 @@
+version: appveyor-{build}
+configuration: Release
+platform: x64
+only_commits:
+ message: /BUILD/
+before_build:
+- cmd: nuget restore
+build:
+  project: HTAlt.WinForms/HTAlt.WinForms.csproj
+  verbosity: minimal
