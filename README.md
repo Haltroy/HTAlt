@@ -6,7 +6,7 @@
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and [`Playtroy`](https://github.com/haltroy/Playtroy).
 
-Latest Stable Version: [`b1.5`](https://github.com/Haltroy/HTAlt/releases/tag/b1.5)
+Latest Stable Version: [`b1.5.1`](https://github.com/Haltroy/HTAlt/releases/tag/b1.5.1)
 
 ## Features
  - Tab (Control)
