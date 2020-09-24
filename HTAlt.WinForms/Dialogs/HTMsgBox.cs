@@ -78,7 +78,7 @@ namespace HTAlt.WinForms
         /// </summary>
         public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
 
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, };
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(MessageBoxButtons.OK) { };
 
         /// <summary>
         /// Gets or sets the list of visible buttons.
@@ -145,19 +145,8 @@ namespace HTAlt.WinForms
             Message = MsgBoxMessage;
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 50;
-            int Count = 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 50 + flowLayoutPanel1.Height;
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
@@ -169,14 +158,14 @@ namespace HTAlt.WinForms
         /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="message">Text of message.</param>
-        public HTMsgBox(string message) : this("", message, new HTDialogBoxContext() { OK = true, }) { }
+        public HTMsgBox(string message) : this("", message, new HTDialogBoxContext(MessageBoxButtons.OK) { }) { }
 
         /// <summary>
         /// Creates new HTMsgBox.
         /// </summary>
         /// <param name="title">Title of the message.</param>
         /// <param name="message">Text to display.</param>
-        public HTMsgBox(string message, string title) : this(title, message, new HTDialogBoxContext() { OK = true, }) { }
+        public HTMsgBox(string message, string title) : this(title, message, new HTDialogBoxContext(MessageBoxButtons.OK) {}) { }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -184,46 +173,31 @@ namespace HTAlt.WinForms
             {
                 FormBorderStyle = FormBorderStyle.FixedToolWindow;
             }
+            flowLayoutPanel1.SuspendLayout();
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 50;
-            int Count = 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
-            MaximumSize = new Size(Width, label1.Height + buttonSize);
-            MinimumSize = new Size(Width, label1.Height + buttonSize);
-            Height = label1.Height + buttonSize;
-            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
             // Yes
-            btYes.Visible = msgbutton.Yes;
-            btYes.Enabled = msgbutton.Yes;
+            btYes.Visible = msgbutton.ShowYesButton;
+            btYes.Enabled = msgbutton.ShowYesButton;
             // No
-            btNo.Visible = msgbutton.No;
-            btNo.Enabled = msgbutton.No;
+            btNo.Visible = msgbutton.ShowNoButton;
+            btNo.Enabled = msgbutton.ShowNoButton;
             // Cancel
-            btCancel.Visible = msgbutton.Cancel;
-            btCancel.Enabled = msgbutton.Cancel;
+            btCancel.Visible = msgbutton.ShowCancelButton;
+            btCancel.Enabled = msgbutton.ShowCancelButton;
             // OK
-            btOK.Visible = msgbutton.OK;
-            btOK.Enabled = msgbutton.OK;
+            btOK.Visible = msgbutton.ShowOKButton;
+            btOK.Enabled = msgbutton.ShowOKButton;
             // Abort
-            btAbort.Visible = msgbutton.Abort;
-            btAbort.Enabled = msgbutton.Abort;
+            btAbort.Visible = msgbutton.ShowAbortButton;
+            btAbort.Enabled = msgbutton.ShowAbortButton;
             // Retry
-            btRetry.Visible = msgbutton.Retry;
-            btRetry.Enabled = msgbutton.Retry;
+            btRetry.Visible = msgbutton.ShowRetryButton;
+            btRetry.Enabled = msgbutton.ShowRetryButton;
             // Ignore
-            btIgnore.Visible = msgbutton.Ignore;
-            btIgnore.Enabled = msgbutton.Ignore;
+            btIgnore.Visible = msgbutton.ShowIgnoreButton;
+            btIgnore.Enabled = msgbutton.ShowIgnoreButton;
             btYes.Text = Yes;
             btNo.Text = No;
             btCancel.Text = Cancel;
@@ -231,6 +205,16 @@ namespace HTAlt.WinForms
             btRetry.Text = Retry;
             btIgnore.Text = Ignore;
             btOK.Text = OK;
+            int buttonSize = 50 + flowLayoutPanel1.Height;
+
+            flowLayoutPanel1.Width = Width - 25;
+            flowLayoutPanel1.Location = new Point((Width - (flowLayoutPanel1.Width + 25)), label1.Location.Y + label1.Height + 2);
+
+
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
@@ -247,6 +231,7 @@ namespace HTAlt.WinForms
             btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            flowLayoutPanel1.ResumeLayout(true);
         }
 
         private void btYes_Click(object sender, EventArgs e)
@@ -307,10 +292,53 @@ namespace HTAlt.WinForms
         private bool _Abort = false;
         private bool _Retry = false;
 
+        public HTDialogBoxContext() : this(null) { }
+
+        public HTDialogBoxContext(MessageBoxButtons? buttons,bool showProgressBar = false, bool showSetToDefaultButton = false)
+        {
+            ShowProgressBar = showProgressBar;
+            ShowSetToDefaultButton = showSetToDefaultButton;
+            if (buttons is null)
+            {
+
+            }else
+            {
+                MessageBoxButtons _b = buttons.Value;
+                switch (_b)
+                {
+                    case MessageBoxButtons.OK:
+                        ShowOKButton = true;
+                        break;
+                    case MessageBoxButtons.OKCancel:
+                        ShowOKButton = true;
+                        ShowCancelButton = true;
+                        break;
+                    case MessageBoxButtons.AbortRetryIgnore:
+                        ShowAbortButton = true;
+                        ShowRetryButton = true;
+                        ShowIgnoreButton = true;
+                        break;
+                    case MessageBoxButtons.YesNoCancel:
+                        ShowYesButton = true;
+                        ShowNoButton = true;
+                        ShowCancelButton = true;
+                        break;
+                    case MessageBoxButtons.YesNo:
+                        ShowYesButton = true;
+                        ShowNoButton = true;
+                        break;
+                    case MessageBoxButtons.RetryCancel:
+                        ShowRetryButton = true;
+                        ShowCancelButton = true;
+                        break;
+                }
+            }
+        }
+
         /// <summary>
         /// "OK" Button.
         /// </summary>
-        public bool OK
+        public bool ShowOKButton
         {
             get => _OK;
             set => _OK = value;
@@ -320,7 +348,7 @@ namespace HTAlt.WinForms
         /// Progress Bar.
         /// Only applies to <see cref="HTProgressBox"/>.
         /// </summary>
-        public bool ProgressBar
+        public bool ShowProgressBar
         {
             get => _ProgressBar;
             set => _ProgressBar = value;
@@ -330,7 +358,7 @@ namespace HTAlt.WinForms
         /// "Set to Default" button..
         /// Only applies to <see cref="HTInputBox"/>.
         /// </summary>
-        public bool SetToDefault
+        public bool ShowSetToDefaultButton
         {
             get => _SetToDefault;
             set => _SetToDefault = value;
@@ -339,7 +367,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "Yes" Button.
         /// </summary>
-        public bool Yes
+        public bool ShowYesButton
         {
             get => _Yes;
             set => _Yes = value;
@@ -348,7 +376,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "No" Button.
         /// </summary>
-        public bool No
+        public bool ShowNoButton
         {
             get => _No;
             set => _No = value;
@@ -357,7 +385,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "Cancel" Button.
         /// </summary>
-        public bool Cancel
+        public bool ShowCancelButton
         {
             get => _Cancel;
             set => _Cancel = value;
@@ -366,7 +394,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "Abort" Button.
         /// </summary>
-        public bool Abort
+        public bool ShowAbortButton
         {
             get => _Abort;
             set => _Abort = value;
@@ -375,7 +403,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "Retry" Button.
         /// </summary>
-        public bool Retry
+        public bool ShowRetryButton
         {
             get => _Retry;
             set => _Retry = value;
@@ -384,7 +412,7 @@ namespace HTAlt.WinForms
         /// <summary>
         /// "Ignore" Button.
         /// </summary>
-        public bool Ignore
+        public bool ShowIgnoreButton
         {
             get => _Ignore;
             set => _Ignore = value;

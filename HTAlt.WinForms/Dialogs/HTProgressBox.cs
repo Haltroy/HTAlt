@@ -83,7 +83,7 @@ namespace HTAlt.WinForms
         /// </summary>
         public Color OverlayColor;
 
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, };
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(MessageBoxButtons.OK,true,false) { };
 
         /// <summary>
         /// Gets or sets the list of visible buttons.
@@ -175,20 +175,8 @@ namespace HTAlt.WinForms
             Message = BoxMessage;
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 75;
-            int Count = 0;
-            Count += msgbutton.ProgressBar ? 1 : 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 80 + flowLayoutPanel1.Height + ( msgbutton.ShowProgressBar ? htProgressBar1.Height : 0);
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
@@ -200,14 +188,14 @@ namespace HTAlt.WinForms
         /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="message">Text to display.</param>
-        public HTProgressBox(string message) : this("", message, new HTDialogBoxContext() { ProgressBar = true, Abort = true, }) { }
+        public HTProgressBox(string message) : this("", message, new HTDialogBoxContext(MessageBoxButtons.OK,true,false) {  }) { }
 
         /// <summary>
         /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="title">Title of message.</param>
         /// <param name="message">Text to display.</param>
-        public HTProgressBox(string title, string message) : this("", message, new HTDialogBoxContext() { ProgressBar = true, Abort = true, }) { }
+        public HTProgressBox(string title, string message) : this("", message, new HTDialogBoxContext(MessageBoxButtons.OK, true, false) { }) { }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -215,57 +203,35 @@ namespace HTAlt.WinForms
             {
                 FormBorderStyle = FormBorderStyle.FixedToolWindow;
             }
+            flowLayoutPanel1.SuspendLayout();
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 75;
-            int Count = 0;
-            Count += msgbutton.ProgressBar ? 1 : 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
-            MaximumSize = new Size(Width, label1.Height + buttonSize);
-            MinimumSize = new Size(Width, label1.Height + buttonSize);
-            Height = label1.Height + buttonSize;
-            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
-            htProgressBar1.Location = new Point(htProgressBar1.Location.X, label1.Location.X + label1.Height + 20);
-            htProgressBar1.Maximum = Max;
-            htProgressBar1.Minimum = Min;
-            htProgressBar1.Value = Value;
-            htProgressBar1.DrawBorder = ShowBorder;
-            htProgressBar1.BorderThickness = BorderThickness;
-            htProgressBar1.BarColor = OverlayColor;
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
+
             /// ProgressBar
-            htProgressBar1.Visible = msgbutton.ProgressBar;
-            htProgressBar1.Enabled = msgbutton.ProgressBar;
+            htProgressBar1.Visible = msgbutton.ShowProgressBar;
+            htProgressBar1.Enabled = msgbutton.ShowProgressBar;
             // Yes
-            btYes.Visible = msgbutton.Yes;
-            btYes.Enabled = msgbutton.Yes;
+            btYes.Visible = msgbutton.ShowYesButton;
+            btYes.Enabled = msgbutton.ShowYesButton;
             // No
-            btNo.Visible = msgbutton.No;
-            btNo.Enabled = msgbutton.No;
+            btNo.Visible = msgbutton.ShowNoButton;
+            btNo.Enabled = msgbutton.ShowNoButton;
             // Cancel
-            btCancel.Visible = msgbutton.Cancel;
-            btCancel.Enabled = msgbutton.Cancel;
+            btCancel.Visible = msgbutton.ShowCancelButton;
+            btCancel.Enabled = msgbutton.ShowCancelButton;
             // OK
-            btOK.Visible = msgbutton.OK;
-            btOK.Enabled = msgbutton.OK;
+            btOK.Visible = msgbutton.ShowOKButton;
+            btOK.Enabled = msgbutton.ShowOKButton;
             // Abort
-            btAbort.Visible = msgbutton.Abort;
-            btAbort.Enabled = msgbutton.Abort;
+            btAbort.Visible = msgbutton.ShowAbortButton;
+            btAbort.Enabled = msgbutton.ShowAbortButton;
             // Retry
-            btRetry.Visible = msgbutton.Retry;
-            btRetry.Enabled = msgbutton.Retry;
+            btRetry.Visible = msgbutton.ShowRetryButton;
+            btRetry.Enabled = msgbutton.ShowRetryButton;
             // Ignore
-            btIgnore.Visible = msgbutton.Ignore;
-            btIgnore.Enabled = msgbutton.Ignore;
+            btIgnore.Visible = msgbutton.ShowIgnoreButton;
+            btIgnore.Enabled = msgbutton.ShowIgnoreButton;
             btYes.Text = Yes;
             btNo.Text = No;
             btCancel.Text = Cancel;
@@ -273,6 +239,24 @@ namespace HTAlt.WinForms
             btRetry.Text = Retry;
             btIgnore.Text = Ignore;
             btOK.Text = OK;
+
+            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowProgressBar ? htProgressBar1.Height + 5 : 0);
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            htProgressBar1.Width = Width - 50;
+            htProgressBar1.Location = new Point(htProgressBar1.Location.X, label1.Location.Y + label1.Height + 10);
+            flowLayoutPanel1.Width = Width - 25;
+            flowLayoutPanel1.Location = new Point((Width - (flowLayoutPanel1.Width + 25)), msgbutton.ShowProgressBar ? (htProgressBar1.Location.Y + htProgressBar1.Height + 2) : (label1.Location.Y + label1.Height + 10));
+            htProgressBar1.Maximum = Max;
+            htProgressBar1.Minimum = Min;
+            htProgressBar1.Value = Value;
+            htProgressBar1.DrawBorder = ShowBorder;
+            htProgressBar1.BackColor = Tools.ShiftBrightness(BackColor, 20, false);
+            htProgressBar1.BorderThickness = BorderThickness;
+            htProgressBar1.BarColor = OverlayColor;
+
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
@@ -289,6 +273,7 @@ namespace HTAlt.WinForms
             btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
             btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            flowLayoutPanel1.ResumeLayout(true);
         }
 
         private void btYes_Click(object sender, EventArgs e)

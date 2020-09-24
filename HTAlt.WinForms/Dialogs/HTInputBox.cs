@@ -129,7 +129,7 @@ namespace HTAlt.WinForms
             set => defaultString = value;
         }
 
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext() { OK = true, Cancel = true, };
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(MessageBoxButtons.OKCancel);
 
         /// <summary>
         /// Gets or sets the list of visible buttons.
@@ -170,20 +170,8 @@ namespace HTAlt.WinForms
             Message = message;
             label1.Text = Message;
             label1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 75;
-            int Count = 0;
-            Count += msgbutton.SetToDefault ? 1 : 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
+            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowSetToDefaultButton ? btDefault.Height + 5 : 0);
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
@@ -197,7 +185,7 @@ namespace HTAlt.WinForms
         /// <param name="title">Title of the input box.</param>
         /// <param name="message">Description of the input box.</param>
         /// <param name="defaultValue">Default value of the input box.</param>
-        public HTInputBox(string title, string message, string defaultValue) : this(title, message, new HTDialogBoxContext() { OK = true, Cancel = true, }, defaultValue) { }
+        public HTInputBox(string title, string message, string defaultValue) : this(title, message, new HTDialogBoxContext(MessageBoxButtons.OKCancel), defaultValue) { }
 
         /// <summary>
         /// Value inside the textbox in this input box.
@@ -207,48 +195,31 @@ namespace HTAlt.WinForms
         private void timer1_Tick(object sender, EventArgs e)
         {
             label1.Text = Message;
-            int buttonSize = 75;
-            int Count = 0;
-            Count += msgbutton.Yes ? 1 : 0;
-            Count += msgbutton.No ? 1 : 0;
-            Count += msgbutton.Cancel ? 1 : 0;
-            Count += msgbutton.OK ? 1 : 0;
-            Count += msgbutton.Abort ? 1 : 0;
-            Count += msgbutton.Retry ? 1 : 0;
-            Count += msgbutton.Ignore ? 1 : 0;
-            Count += msgbutton.SetToDefault ? 1 : 0;
-            if (Count > 0)
-            {
-                buttonSize += Count * 25;
-            }
-            MaximumSize = new Size(Width, label1.Height + buttonSize);
-            MinimumSize = new Size(Width, label1.Height + buttonSize);
-            Height = label1.Height + buttonSize;
-            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+            flowLayoutPanel1.SuspendLayout();
             // Set to Default
-            btDefault.Visible = msgbutton.SetToDefault;
-            btDefault.Enabled = msgbutton.SetToDefault;
+            btDefault.Visible = msgbutton.ShowSetToDefaultButton;
+            btDefault.Enabled = msgbutton.ShowSetToDefaultButton;
             // Yes
-            btYes.Visible = msgbutton.Yes;
-            btYes.Enabled = msgbutton.Yes;
+            btYes.Visible = msgbutton.ShowYesButton;
+            btYes.Enabled = msgbutton.ShowYesButton;
             // No
-            btNo.Visible = msgbutton.No;
-            btNo.Enabled = msgbutton.No;
+            btNo.Visible = msgbutton.ShowNoButton;
+            btNo.Enabled = msgbutton.ShowNoButton;
             // Cancel
-            btCancel.Visible = msgbutton.Cancel;
-            btCancel.Enabled = msgbutton.Cancel;
+            btCancel.Visible = msgbutton.ShowCancelButton;
+            btCancel.Enabled = msgbutton.ShowCancelButton;
             // OK
-            btOK.Visible = msgbutton.OK;
-            btOK.Enabled = msgbutton.OK;
+            btOK.Visible = msgbutton.ShowOKButton;
+            btOK.Enabled = msgbutton.ShowOKButton;
             // Abort
-            btAbort.Visible = msgbutton.Abort;
-            btAbort.Enabled = msgbutton.Abort;
+            btAbort.Visible = msgbutton.ShowAbortButton;
+            btAbort.Enabled = msgbutton.ShowAbortButton;
             // Retry
-            btRetry.Visible = msgbutton.Retry;
-            btRetry.Enabled = msgbutton.Retry;
+            btRetry.Visible = msgbutton.ShowRetryButton;
+            btRetry.Enabled = msgbutton.ShowRetryButton;
             // Ignore
-            btIgnore.Visible = msgbutton.Ignore;
-            btIgnore.Enabled = msgbutton.Ignore;
+            btIgnore.Visible = msgbutton.ShowIgnoreButton;
+            btIgnore.Enabled = msgbutton.ShowIgnoreButton;
             btOK.Text = OK;
             btCancel.Text = Cancel;
             btDefault.Text = SetToDefault;
@@ -257,6 +228,25 @@ namespace HTAlt.WinForms
             btRetry.Text = Retry;
             btAbort.Text = Abort;
             btIgnore.Text = Ignore;
+
+            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowSetToDefaultButton ? btDefault.Height + 5 : 0);
+
+            textBox1.Width = Width - 25;
+            textBox1.Location = new Point(label1.Location.X, label1.Location.Y + label1.Height + 2);
+
+            btDefault.Width = Width - 25;
+            btDefault.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Height + 2);
+
+            flowLayoutPanel1.Width = Width - 25;
+            flowLayoutPanel1.Location = new Point((Width - (flowLayoutPanel1.Width + 25)), msgbutton.ShowSetToDefaultButton ? (btDefault.Location.Y + btDefault.Height) : (textBox1.Location.Y + textBox1.Height) + 2);
+
+
+
+            MaximumSize = new Size(Width, label1.Height + buttonSize);
+            MinimumSize = new Size(Width, label1.Height + buttonSize);
+            Height = label1.Height + buttonSize;
+            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+
             ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             BackColor = BackgroundColor;
             btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
@@ -277,6 +267,7 @@ namespace HTAlt.WinForms
             btDefault.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
             textBox1.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            flowLayoutPanel1.ResumeLayout(true);
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -113,6 +113,56 @@ namespace HTAlt
                 return false;
             }
         }
+        /// <summary>
+        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">Color for determining.</param>
+        /// <param name="white">White/Bright image to return.</param>
+        /// <param name="black">Black/Dark image  to return</param>
+        /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
+        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
+        public static Bitmap SelectImageFromColor(Color color, ref Bitmap white, ref Bitmap black,bool reverse = false)
+        {
+            return IsBright(color) ? (reverse ? white : black) : (reverse ? black : white);
+        }
+        /// <summary>
+        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">Color for determining.</param>
+        /// <param name="white">White/Bright image to return.</param>
+        /// <param name="black">Black/Dark image  to return</param>
+        /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
+        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
+        public static Image SelectImageFromColor(Color color, ref Image white, ref Image black, bool reverse = false) => SelectImageFromColor(color, ref white, ref black, reverse);
+        /// <summary>
+        /// Changes <paramref name="basecolor"/> and it's different shades to <paramref name="alteringColor"/> and responding shades in <paramref name="image"/>.
+        /// </summary>
+        /// <param name="image">Image to work on.</param>
+        /// <param name="basecolor">Color to change.</param>
+        /// <param name="alteringColor">New Color.</param>
+        /// <returns>Recolored <see cref="Bitmap"/></returns>
+        public static Bitmap ChangeColor(Bitmap image, Color basecolor, Color alteringColor)
+        {
+            Bitmap nbitmap = new Bitmap(image.Width, image.Height);
+            for(int i = 0; i < 256; i++)
+            {
+                Color workColor = ShiftBrightnessTo(basecolor, i,false);
+                Color changeColor = ShiftBrightnessTo(alteringColor, i,false);
+                nbitmap = ColorReplace(nbitmap, 0, workColor, changeColor);
+            }
+            return nbitmap;
+        }
+        /// <summary>
+        /// Changes <paramref name="basecolor"/> and it's different shades to <paramref name="alteringColor"/> and responding shades in <paramref name="image"/>.
+        /// </summary>
+        /// <param name="image">Image to work on.</param>
+        /// <param name="basecolor">Color to change.</param>
+        /// <param name="alteringColor">New Color.</param>
+        /// <returns>Recolored <see cref="Image"/></returns>
+        public static Image ChangeColor(Image image, Color basecolor, Color alteringColor)
+        {
+            return ChangeColor(image, basecolor, alteringColor);
+        }
 
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="size"/>.
@@ -194,9 +244,9 @@ namespace HTAlt
         /// <returns><c>true</c> if <paramref name="SiteUrl"/> is actually a Haltroy website, otherwise <c>false</c>.</returns>
         public static bool ValidHaltroyWebsite(string SiteUrl)
         {
-            string Pattern = @"(?:http\:\/\/haltroy\.com)|(?:https\:\/\/haltroy\.com)";
+            string Pattern = @"((?:http(s)?\:\/\/)?(.*\.)?haltroy\.com)";
             Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            return Rgx.IsMatch(SiteUrl.Substring(0, 19));
+            return ValidUrl(SiteUrl) && Rgx.IsMatch(SiteUrl.Substring(0, SiteUrl.ToLower().StartsWith("http") ? SiteUrl.IndexOf(@"\",10) : SiteUrl.IndexOf(@"\")));
         }
 
         /// <summary>
@@ -228,10 +278,10 @@ namespace HTAlt
                 int i = 0; int C = CustomProtocols.Length - 1;
                 while (i != C)
                 {
-                    CustomProtocolPattern += (i == 0 ? @"^(?:" : @"|(?:") + CustomProtocols[i] + @"\:\/\/)|";
+                    CustomProtocolPattern += (i % 2 == 0 ? "|" : "") + CustomProtocols[i];
                     i++;
                 }
-                string Pattern = CustomProtocolPattern + @"|(?:\:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$)|(\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b)";
+                string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4})|(.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4])";
                 Regex Rgx = new Regex(Pattern, options);
                 return Rgx.IsMatch(Url);
             }
@@ -326,7 +376,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="length">Length of random text./param>
         /// <returns>Random characters in a string.</returns>
-        public static string GenerateRandomText(int length = 11)
+        public static string GenerateRandomText(int length = 17)
         {
             if (length == 0) { throw new ArgumentOutOfRangeException("\"length\" must be greater than 0."); }
             if (length < 0) { length = length * -1; }
@@ -487,6 +537,95 @@ namespace HTAlt
         /// <param name="oldColor">Color to change from.</param>
         /// <param name="NewColor">Color to change to.</param>
         /// <returns>Final result of the image after processing it.</returns>
+        public static Bitmap ColorReplace(Bitmap inputImage, int tolerance, Color oldColor, Color NewColor)
+        {
+            Bitmap outputImage = new Bitmap(inputImage.Width, inputImage.Height);
+            Graphics G = Graphics.FromImage(outputImage);
+            G.DrawImage(inputImage, 0, 0);
+            for (int y = 0; y < outputImage.Height; y++)
+            {
+                for (int x = 0; x < outputImage.Width; x++)
+                {
+                    Color PixelColor = outputImage.GetPixel(x, y);
+                    if (PixelColor.R > oldColor.R - tolerance && PixelColor.R < oldColor.R + tolerance && PixelColor.G > oldColor.G - tolerance && PixelColor.G < oldColor.G + tolerance && PixelColor.B > oldColor.B - tolerance && PixelColor.B < oldColor.B + tolerance)
+                    {
+                        int RColorDiff = oldColor.R - PixelColor.R;
+                        int GColorDiff = oldColor.G - PixelColor.G;
+                        int BColorDiff = oldColor.B - PixelColor.B;
+
+                        if (PixelColor.R > oldColor.R)
+                        {
+                            RColorDiff = NewColor.R + RColorDiff;
+                        }
+                        else
+                        {
+                            RColorDiff = NewColor.R - RColorDiff;
+                        }
+
+                        if (RColorDiff > 255)
+                        {
+                            RColorDiff = 255;
+                        }
+
+                        if (RColorDiff < 0)
+                        {
+                            RColorDiff = 0;
+                        }
+
+                        if (PixelColor.G > oldColor.G)
+                        {
+                            GColorDiff = NewColor.G + GColorDiff;
+                        }
+                        else
+                        {
+                            GColorDiff = NewColor.G - GColorDiff;
+                        }
+
+                        if (GColorDiff > 255)
+                        {
+                            GColorDiff = 255;
+                        }
+
+                        if (GColorDiff < 0)
+                        {
+                            GColorDiff = 0;
+                        }
+
+                        if (PixelColor.B > oldColor.B)
+                        {
+                            BColorDiff = NewColor.B + BColorDiff;
+                        }
+                        else
+                        {
+                            BColorDiff = NewColor.B - BColorDiff;
+                        }
+
+                        if (BColorDiff > 255)
+                        {
+                            BColorDiff = 255;
+                        }
+
+                        if (BColorDiff < 0)
+                        {
+                            BColorDiff = 0;
+                        }
+
+                        outputImage.SetPixel(x, y, Color.FromArgb(RColorDiff, GColorDiff, BColorDiff));
+                    }
+                }
+            }
+
+            return outputImage;
+        }
+
+        /// <summary>
+        /// Replaces a color from an image to another color.
+        /// </summary>
+        /// <param name="inputImage">Image to work on.</param>
+        /// <param name="tolerance">The area of ​​relationship with color equivalents.</param>
+        /// <param name="oldColor">Color to change from.</param>
+        /// <param name="NewColor">Color to change to.</param>
+        /// <returns>Final result of the image after processing it.</returns>
         public static Image ColorReplace(Image inputImage, int tolerance, Color oldColor, Color NewColor)
         {
             Bitmap outputImage = new Bitmap(inputImage.Width, inputImage.Height);
@@ -577,54 +716,26 @@ namespace HTAlt
         /// <returns>Final result of the image after processing it.</returns>
         public static Image RepaintImage(Image input, Image texture, bool repeatable)
         {
-            if (repeatable)
+            Bitmap inputImage = new Bitmap(input);
+            Bitmap outputImage = new Bitmap(input.Width, input.Height);
+            Bitmap textureImage = repeatable ? new Bitmap(texture) : new Bitmap(original: texture, newSize: input.Size);
+            for (int y = 0; y < outputImage.Height; y++)
             {
-                Bitmap inputImage = new Bitmap(input);
-                Bitmap outputImage = new Bitmap(input.Width, input.Height);
-                Bitmap textureImage = new Bitmap(texture);
-                for (int y = 0; y < outputImage.Height; y++)
+                for (int x = 0; x < outputImage.Width; x++)
                 {
-                    for (int x = 0; x < outputImage.Width; x++)
+                    Color PixelColor = textureImage.GetPixel(repeatable ? (x % textureImage.Width) : x, repeatable ? (y % textureImage.Height) : y);
+                    Color PixelColor2 = inputImage.GetPixel(x, y);
+                    if (PixelColor2.A < PixelColor.A)
                     {
-                        Color PixelColor = textureImage.GetPixel(x % textureImage.Width, y % textureImage.Height);
-                        Color PixelColor2 = inputImage.GetPixel(x, y);
-                        if (PixelColor2.A < PixelColor.A)
-                        {
-                            outputImage.SetPixel(x, y, Color.FromArgb(PixelColor2.A, PixelColor.R, PixelColor.G, PixelColor.B));
-                        }
-                        else
-                        {
-                            outputImage.SetPixel(x, y, Color.FromArgb(PixelColor.A, PixelColor.R, PixelColor.G, PixelColor.B));
-                        }
+                        outputImage.SetPixel(x, y, Color.FromArgb(PixelColor2.A, PixelColor.R, PixelColor.G, PixelColor.B));
+                    }
+                    else
+                    {
+                        outputImage.SetPixel(x, y, Color.FromArgb(PixelColor.A, PixelColor.R, PixelColor.G, PixelColor.B));
                     }
                 }
-
-                return outputImage;
             }
-            else
-            {
-                Bitmap inputImage = new Bitmap(input);
-                Bitmap outputImage = new Bitmap(input.Width, input.Height);
-                Bitmap textureImage = new Bitmap(original: texture, newSize: input.Size);
-                for (int y = 0; y < outputImage.Height; y++)
-                {
-                    for (int x = 0; x < outputImage.Width; x++)
-                    {
-                        Color PixelColor = textureImage.GetPixel(x, y);
-                        Color PixelColor2 = inputImage.GetPixel(x, y);
-                        if (PixelColor2.A < PixelColor.A)
-                        {
-                            outputImage.SetPixel(x, y, Color.FromArgb(PixelColor2.A, PixelColor.R, PixelColor.G, PixelColor.B));
-                        }
-                        else
-                        {
-                            outputImage.SetPixel(x, y, Color.FromArgb(PixelColor.A, PixelColor.R, PixelColor.G, PixelColor.B));
-                        }
-                    }
-                }
-
-                return outputImage;
-            }
+            return outputImage;
         }
 
         /// <summary>
@@ -708,6 +819,24 @@ namespace HTAlt
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.R, value) : AddIfNeeded(baseColor.R, value, 255),
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.G, value) : AddIfNeeded(baseColor.G, value, 255),
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.B, value) : AddIfNeeded(baseColor.B, value, 255));
+        }
+        /// <summary>
+        /// Shifts brightness of a color to <paramref name="value"/>.
+        /// </summary>
+        /// <param name="baseColor">Color to work on.</param>
+        /// <param name="value">New brightness value.</param>
+        /// <param name="shiftAlpha"><c>true</c> to also shift Alpha (Transparency) channel.</param>
+        /// <returns>Color with shifted brightness.</returns>
+        public static Color ShiftBrightnessTo(Color baseColor, int value, bool shiftAlpha)
+        {
+            if (value == Brightness(baseColor)) { return baseColor; }
+            else if (value > Brightness(baseColor))
+            {
+                return ShiftBrightness(baseColor, (value - Brightness(baseColor)), shiftAlpha);
+            }else
+            {
+                return ShiftBrightness(baseColor, (Brightness(baseColor) - value), shiftAlpha);
+            }
         }
 
         /// <summary>

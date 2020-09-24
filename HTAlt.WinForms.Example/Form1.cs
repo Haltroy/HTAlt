@@ -39,13 +39,13 @@ namespace HTAlt.WinForms.Example
         {
             HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
-                OK = hsOK.Checked,
-                Cancel = hsCancel.Checked,
-                Yes = hsYes.Checked,
-                No = hsNo.Checked,
-                Abort = hsAbort.Checked,
-                Ignore = hsIgnore.Checked,
-                Retry = hsRetry.Checked,
+                ShowOKButton = hsOK.Checked,
+                ShowCancelButton = hsCancel.Checked,
+                ShowYesButton = hsYes.Checked,
+                ShowNoButton = hsNo.Checked,
+                ShowAbortButton = hsAbort.Checked,
+                ShowIgnoreButton = hsIgnore.Checked,
+                ShowRetryButton = hsRetry.Checked,
             };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
@@ -77,15 +77,15 @@ namespace HTAlt.WinForms.Example
         {
             HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
-                SetToDefault = hsDefault.Checked,
-                ProgressBar = hsPBar.Checked,
-                OK = hsOK.Checked,
-                Cancel = hsCancel.Checked,
-                Yes = hsYes.Checked,
-                No = hsNo.Checked,
-                Abort = hsAbort.Checked,
-                Ignore = hsIgnore.Checked,
-                Retry = hsRetry.Checked,
+                ShowSetToDefaultButton = hsDefault.Checked,
+                ShowProgressBar = hsPBar.Checked,
+                ShowOKButton = hsOK.Checked,
+                ShowCancelButton = hsCancel.Checked,
+                ShowYesButton = hsYes.Checked,
+                ShowNoButton = hsNo.Checked,
+                ShowAbortButton = hsAbort.Checked,
+                ShowIgnoreButton = hsIgnore.Checked,
+                ShowRetryButton = hsRetry.Checked,
             };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
@@ -151,15 +151,15 @@ namespace HTAlt.WinForms.Example
         {
             HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
-                SetToDefault = hsDefault.Checked,
-                ProgressBar = hsPBar.Checked,
-                OK = hsOK.Checked,
-                Cancel = hsCancel.Checked,
-                Yes = hsYes.Checked,
-                No = hsNo.Checked,
-                Abort = hsAbort.Checked,
-                Ignore = hsIgnore.Checked,
-                Retry = hsRetry.Checked,
+                ShowSetToDefaultButton = hsDefault.Checked,
+                ShowProgressBar = hsPBar.Checked,
+                ShowOKButton = hsOK.Checked,
+                ShowCancelButton = hsCancel.Checked,
+                ShowYesButton = hsYes.Checked,
+                ShowNoButton = hsNo.Checked,
+                ShowAbortButton = hsAbort.Checked,
+                ShowIgnoreButton = hsIgnore.Checked,
+                ShowRetryButton = hsRetry.Checked,
             };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
@@ -196,15 +196,15 @@ namespace HTAlt.WinForms.Example
         {
             HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
-                SetToDefault = hsDefault.Checked,
-                ProgressBar = hsPBar.Checked,
-                OK = hsOK.Checked,
-                Cancel = hsCancel.Checked,
-                Yes = hsYes.Checked,
-                No = hsNo.Checked,
-                Abort = hsAbort.Checked,
-                Ignore = hsIgnore.Checked,
-                Retry = hsRetry.Checked,
+                ShowSetToDefaultButton = hsDefault.Checked,
+                ShowProgressBar = hsPBar.Checked,
+                ShowOKButton = hsOK.Checked,
+                ShowCancelButton = hsCancel.Checked,
+                ShowYesButton = hsYes.Checked,
+                ShowNoButton = hsNo.Checked,
+                ShowAbortButton = hsAbort.Checked,
+                ShowIgnoreButton = hsIgnore.Checked,
+                ShowRetryButton = hsRetry.Checked,
             };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))
@@ -221,36 +221,19 @@ namespace HTAlt.WinForms.Example
             sliderValue.Text = HTSlider1.Value.ToString();
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            frmHTF newform = new frmHTF();
-            newform.EnableDrag = hsDrag.Checked;
-            newform.FullScreenMode = hsFullScreen.Checked;
-            newform.Show();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            TabForm tabForm = new TabForm();
-            tabForm.Tabs.Add(tabForm.CreateTab());
-            tabForm.SelectedTabIndex = 0;
-            HTTitleTabsApplicationContext appContext = new HTTitleTabsApplicationContext();
-            appContext.Start(tabForm);
-        }
-
         private void button8_Click(object sender, EventArgs e)
         {
             HTDialogBoxContext mesajbuton = new HTDialogBoxContext()
             {
-                SetToDefault = hsDefault.Checked,
-                ProgressBar = hsPBar.Checked,
-                OK = hsOK.Checked,
-                Cancel = hsCancel.Checked,
-                Yes = hsYes.Checked,
-                No = hsNo.Checked,
-                Abort = hsAbort.Checked,
-                Ignore = hsIgnore.Checked,
-                Retry = hsRetry.Checked,
+                ShowSetToDefaultButton = hsDefault.Checked,
+                ShowProgressBar = hsPBar.Checked,
+                ShowOKButton = hsOK.Checked,
+                ShowCancelButton = hsCancel.Checked,
+                ShowYesButton = hsYes.Checked,
+                ShowNoButton = hsNo.Checked,
+                ShowAbortButton = hsAbort.Checked,
+                ShowIgnoreButton = hsIgnore.Checked,
+                ShowRetryButton = hsRetry.Checked,
             };
             Icon mesajicon = null;
             if (System.IO.File.Exists(tbIcon.Text))

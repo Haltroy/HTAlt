@@ -61,6 +61,8 @@ namespace HTAlt.WinForms
             this.btYes = new HTAlt.WinForms.HTButton();
             this.btCancel = new HTAlt.WinForms.HTButton();
             this.btNo = new HTAlt.WinForms.HTButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -84,131 +86,154 @@ namespace HTAlt.WinForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.htProgressBar1.BorderThickness = 2;
             this.htProgressBar1.DrawBorder = true;
-            this.htProgressBar1.Location = new System.Drawing.Point(12, 35);
+            this.htProgressBar1.Location = new System.Drawing.Point(15, 36);
             this.htProgressBar1.Name = "htProgressBar1";
-            this.htProgressBar1.Size = new System.Drawing.Size(346, 20);
+            this.htProgressBar1.Size = new System.Drawing.Size(335, 20);
             this.htProgressBar1.TabIndex = 3;
             this.htProgressBar1.Text = "htProgressBar1";
             // 
             // btAbort
             // 
-            this.btAbort.Text = "Abort";
-            this.btAbort.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btAbort.AutoSize = true;
+            this.btAbort.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btAbort.DrawImage = true;
             this.btAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAbort.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btAbort.Location = new System.Drawing.Point(0, 211);
+            this.btAbort.Location = new System.Drawing.Point(233, 3);
             this.btAbort.Name = "btAbort";
-            this.btAbort.Size = new System.Drawing.Size(370, 25);
+            this.btAbort.Size = new System.Drawing.Size(44, 25);
             this.btAbort.TabIndex = 2;
-            this.btAbort.DrawImage = true;
+            this.btAbort.Text = "Abort";
             this.btAbort.UseVisualStyleBackColor = true;
             this.btAbort.Visible = false;
             this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
             // 
             // btIgnore
             // 
-            this.btIgnore.Text = "Ignore";
-            this.btIgnore.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btIgnore.AutoSize = true;
+            this.btIgnore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btIgnore.DrawImage = true;
             this.btIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btIgnore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btIgnore.Location = new System.Drawing.Point(0, 61);
+            this.btIgnore.Location = new System.Drawing.Point(283, 3);
             this.btIgnore.Name = "btIgnore";
-            this.btIgnore.Size = new System.Drawing.Size(370, 25);
+            this.btIgnore.Size = new System.Drawing.Size(49, 25);
             this.btIgnore.TabIndex = 10;
-            this.btIgnore.DrawImage = true;
+            this.btIgnore.Text = "Ignore";
             this.btIgnore.UseVisualStyleBackColor = true;
             this.btIgnore.Visible = false;
             this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
             // 
             // btRetry
             // 
-            this.btRetry.Text = "Retry";
-            this.btRetry.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btRetry.AutoSize = true;
+            this.btRetry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btRetry.DrawImage = true;
             this.btRetry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btRetry.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btRetry.Location = new System.Drawing.Point(0, 86);
+            this.btRetry.Location = new System.Drawing.Point(3, 3);
             this.btRetry.Name = "btRetry";
-            this.btRetry.Size = new System.Drawing.Size(370, 25);
+            this.btRetry.Size = new System.Drawing.Size(44, 25);
             this.btRetry.TabIndex = 9;
-            this.btRetry.DrawImage = true;
+            this.btRetry.Text = "Retry";
             this.btRetry.UseVisualStyleBackColor = true;
             this.btRetry.Visible = false;
             this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
             // 
             // btOK
             // 
-            this.btOK.Text = "OK";
-            this.btOK.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btOK.AutoSize = true;
+            this.btOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btOK.DrawImage = true;
             this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btOK.Location = new System.Drawing.Point(0, 111);
+            this.btOK.Location = new System.Drawing.Point(53, 3);
             this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(370, 25);
+            this.btOK.Size = new System.Drawing.Size(34, 25);
             this.btOK.TabIndex = 8;
-            this.btOK.DrawImage = true;
+            this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Visible = false;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btYes
             // 
-            this.btYes.Text = "Yes";
-            this.btYes.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btYes.AutoSize = true;
+            this.btYes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btYes.DrawImage = true;
             this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btYes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btYes.Location = new System.Drawing.Point(0, 136);
+            this.btYes.Location = new System.Drawing.Point(93, 3);
             this.btYes.Name = "btYes";
-            this.btYes.Size = new System.Drawing.Size(370, 25);
+            this.btYes.Size = new System.Drawing.Size(37, 25);
             this.btYes.TabIndex = 5;
-            this.btYes.DrawImage = true;
+            this.btYes.Text = "Yes";
             this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Visible = false;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btCancel
             // 
-            this.btCancel.Text = "Cancel";
-            this.btCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btCancel.AutoSize = true;
+            this.btCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.DrawImage = true;
             this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btCancel.Location = new System.Drawing.Point(0, 161);
+            this.btCancel.Location = new System.Drawing.Point(136, 3);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(370, 25);
+            this.btCancel.Size = new System.Drawing.Size(52, 25);
             this.btCancel.TabIndex = 6;
-            this.btCancel.DrawImage = true;
+            this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Visible = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // btNo
             // 
-            this.btNo.Text = "No";
-            this.btNo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btNo.AutoSize = true;
+            this.btNo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btNo.DrawImage = true;
             this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btNo.Location = new System.Drawing.Point(0, 186);
+            this.btNo.Location = new System.Drawing.Point(194, 3);
             this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(370, 25);
+            this.btNo.Size = new System.Drawing.Size(33, 25);
             this.btNo.TabIndex = 7;
-            this.btNo.DrawImage = true;
+            this.btNo.Text = "No";
             this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Visible = false;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.btIgnore);
+            this.flowLayoutPanel1.Controls.Add(this.btAbort);
+            this.flowLayoutPanel1.Controls.Add(this.btNo);
+            this.flowLayoutPanel1.Controls.Add(this.btCancel);
+            this.flowLayoutPanel1.Controls.Add(this.btYes);
+            this.flowLayoutPanel1.Controls.Add(this.btOK);
+            this.flowLayoutPanel1.Controls.Add(this.btRetry);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 71);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(335, 31);
+            this.flowLayoutPanel1.TabIndex = 11;
+            // 
             // HTProgressBox
             // 
+            this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(370, 236);
-            this.Controls.Add(this.btIgnore);
-            this.Controls.Add(this.btRetry);
-            this.Controls.Add(this.btOK);
-            this.Controls.Add(this.btYes);
-            this.Controls.Add(this.btCancel);
-            this.Controls.Add(this.btNo);
+            this.CancelButton = this.btCancel;
+            this.ClientSize = new System.Drawing.Size(370, 114);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.htProgressBar1);
-            this.Controls.Add(this.btAbort);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -217,6 +242,8 @@ namespace HTAlt.WinForms
             this.Name = "HTProgressBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "title";
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,5 +261,6 @@ namespace HTAlt.WinForms
         internal HTButton btYes;
         internal HTButton btCancel;
         internal HTButton btNo;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

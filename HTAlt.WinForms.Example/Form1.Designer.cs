@@ -105,13 +105,6 @@ namespace HTAlt.WinForms.Example
             this.sliderValue = new System.Windows.Forms.Label();
             this.HTSwitch1 = new HTAlt.WinForms.HTSwitch();
             this.HTSlider1 = new HTAlt.WinForms.HTSlider();
-            this.tpForms = new System.Windows.Forms.TabPage();
-            this.label24 = new System.Windows.Forms.Label();
-            this.hsFullScreen = new HTAlt.WinForms.HTSwitch();
-            this.label21 = new System.Windows.Forms.Label();
-            this.hsDrag = new HTAlt.WinForms.HTSwitch();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.tpTools = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -133,7 +126,6 @@ namespace HTAlt.WinForms.Example
             ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
             this.tpControl1.SuspendLayout();
-            this.tpForms.SuspendLayout();
             this.tpTools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbValidUrl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRandom)).BeginInit();
@@ -146,7 +138,6 @@ namespace HTAlt.WinForms.Example
             this.HTTabControl1.BorderTabLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.HTTabControl1.Controls.Add(this.tpBoxes);
             this.HTTabControl1.Controls.Add(this.tpControl1);
-            this.HTTabControl1.Controls.Add(this.tpForms);
             this.HTTabControl1.Controls.Add(this.tpTools);
             this.HTTabControl1.DisableClose = false;
             this.HTTabControl1.DisableDragging = false;
@@ -833,7 +824,6 @@ namespace HTAlt.WinForms.Example
             // 
             // htButton1
             // 
-            this.htButton1.ButtonImage = global::HTAlt.WinForms.Example.Properties.Resources.logo;
             this.htButton1.FlatAppearance.BorderSize = 0;
             this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
@@ -929,74 +919,6 @@ namespace HTAlt.WinForms.Example
             this.HTSlider1.ThumbSize = new System.Drawing.Size(16, 16);
             this.HTSlider1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HTSlider1_Scroll);
             // 
-            // tpForms
-            // 
-            this.tpForms.Controls.Add(this.label24);
-            this.tpForms.Controls.Add(this.hsFullScreen);
-            this.tpForms.Controls.Add(this.label21);
-            this.tpForms.Controls.Add(this.hsDrag);
-            this.tpForms.Controls.Add(this.button5);
-            this.tpForms.Controls.Add(this.button7);
-            this.tpForms.Location = new System.Drawing.Point(4, 20);
-            this.tpForms.Name = "tpForms";
-            this.tpForms.Padding = new System.Windows.Forms.Padding(3);
-            this.tpForms.Size = new System.Drawing.Size(792, 426);
-            this.tpForms.TabIndex = 3;
-            this.tpForms.Text = "Forms";
-            this.tpForms.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(81, 73);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(98, 15);
-            this.label24.TabIndex = 2;
-            this.label24.Text = "Full Screen Mode";
-            // 
-            // hsFullScreen
-            // 
-            this.hsFullScreen.Location = new System.Drawing.Point(24, 69);
-            this.hsFullScreen.Name = "hsFullScreen";
-            this.hsFullScreen.Size = new System.Drawing.Size(50, 19);
-            this.hsFullScreen.TabIndex = 1;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(81, 47);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(61, 15);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Draggable";
-            // 
-            // hsDrag
-            // 
-            this.hsDrag.Location = new System.Drawing.Point(24, 44);
-            this.hsDrag.Name = "hsDrag";
-            this.hsDrag.Size = new System.Drawing.Size(50, 19);
-            this.hsDrag.TabIndex = 1;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(201, 6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(187, 23);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Spawn a HTTabForm";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(8, 6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(187, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Spawn a HTForm";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // tpTools
             // 
             this.tpTools.Controls.Add(this.textBox2);
@@ -1025,7 +947,7 @@ namespace HTAlt.WinForms.Example
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(166, 140);
+            this.textBox2.Size = new System.Drawing.Size(166, 0);
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = "korot;";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -1162,8 +1084,6 @@ namespace HTAlt.WinForms.Example
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
             this.tpControl1.ResumeLayout(false);
             this.tpControl1.PerformLayout();
-            this.tpForms.ResumeLayout(false);
-            this.tpForms.PerformLayout();
             this.tpTools.ResumeLayout(false);
             this.tpTools.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbValidUrl)).EndInit();
@@ -1200,12 +1120,6 @@ namespace HTAlt.WinForms.Example
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label sliderValue;
-        private System.Windows.Forms.TabPage tpForms;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label24;
-        private HTAlt.WinForms.HTSwitch hsFullScreen;
-        private System.Windows.Forms.Label label21;
-        private HTAlt.WinForms.HTSwitch hsDrag;
         private HTAlt.WinForms.HTListView HTListView2;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -1235,7 +1149,6 @@ namespace HTAlt.WinForms.Example
         private HTSwitch hsIgnore;
         private HTSwitch hsAbort;
         private HTSwitch hsRetry;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.NumericUpDown nudBorder;
