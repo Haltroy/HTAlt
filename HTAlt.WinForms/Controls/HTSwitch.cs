@@ -36,7 +36,7 @@ namespace HTAlt.WinForms
         #region HTControls
 
         private readonly HTInfo info = new HTInfo();
-        private readonly Uri wikiLink = new Uri("https://haltroy.com/htalt/HTAlt.WinForms/HTSwitch");
+        private readonly Uri wikiLink = new Uri("https://htalt.haltroy.com/api/HTAlt.WinForms/HTSwitch");
         private readonly Version firstHTAltVersion = new Version("0.1.1.0");
         private readonly string description = "Custom Switch control that imidates System.Windows.Forms.CheckBox.";
 
