@@ -79,7 +79,7 @@ namespace HTAlt.WinForms
         public bool AutoForeColor = false;
 
         /// <summary>
-        /// Image to display near message. 
+        /// Image to display near message.
         /// </summary>
         public Image Image;
 
@@ -88,7 +88,7 @@ namespace HTAlt.WinForms
         /// </summary>
         public Color OverlayColor;
 
-        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(MessageBoxButtons.OK,true,false) { };
+        private HTDialogBoxContext msgbutton = new HTDialogBoxContext(MessageBoxButtons.OK, true, false) { };
 
         /// <summary>
         /// Gets or sets the list of visible buttons.
@@ -187,7 +187,7 @@ namespace HTAlt.WinForms
         /// Creates new HTProgressBox.
         /// </summary>
         /// <param name="message">Text to display.</param>
-        public HTProgressBox(string message) : this("", message, new HTDialogBoxContext(MessageBoxButtons.OK,true,false) {  }) { }
+        public HTProgressBox(string message) : this("", message, new HTDialogBoxContext(MessageBoxButtons.OK, true, false) { }) { }
 
         /// <summary>
         /// Creates new HTProgressBox.
@@ -265,7 +265,6 @@ namespace HTAlt.WinForms
 
             htProgressBar1.Width = Width - 50;
             htProgressBar1.Location = new Point(htProgressBar1.Location.X, locy + 10);
-
 
             flowLayoutPanel1.Location = new Point(locx, msgbutton.ShowProgressBar ? (htProgressBar1.Location.Y + htProgressBar1.Height + 2) : locy + 10);
             htProgressBar1.Maximum = Max;

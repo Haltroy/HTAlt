@@ -79,7 +79,7 @@ namespace HTAlt.WinForms
         public bool AutoForeColor = false;
 
         /// <summary>
-        /// Image to display near message. 
+        /// Image to display near message.
         /// </summary>
         public Image Image;
 
@@ -134,8 +134,6 @@ namespace HTAlt.WinForms
         /// </summary>
         public string Message = "";
 
-
-
         /// <summary>
         /// Creates new HTMsgBox.
         /// </summary>
@@ -169,7 +167,7 @@ namespace HTAlt.WinForms
         /// </summary>
         /// <param name="title">Title of the message.</param>
         /// <param name="message">Text to display.</param>
-        public HTMsgBox(string message, string title) : this(title, message, new HTDialogBoxContext(MessageBoxButtons.OK) {}) { }
+        public HTMsgBox(string message, string title) : this(title, message, new HTDialogBoxContext(MessageBoxButtons.OK) { }) { }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -305,16 +303,18 @@ namespace HTAlt.WinForms
         private bool _Abort = false;
         private bool _Retry = false;
 
-        public HTDialogBoxContext() : this(null) { }
+        public HTDialogBoxContext() : this(null)
+        {
+        }
 
-        public HTDialogBoxContext(MessageBoxButtons? buttons,bool showProgressBar = false, bool showSetToDefaultButton = false)
+        public HTDialogBoxContext(MessageBoxButtons? buttons, bool showProgressBar = false, bool showSetToDefaultButton = false)
         {
             ShowProgressBar = showProgressBar;
             ShowSetToDefaultButton = showSetToDefaultButton;
             if (buttons is null)
             {
-
-            }else
+            }
+            else
             {
                 MessageBoxButtons _b = buttons.Value;
                 switch (_b)
@@ -322,24 +322,29 @@ namespace HTAlt.WinForms
                     case MessageBoxButtons.OK:
                         ShowOKButton = true;
                         break;
+
                     case MessageBoxButtons.OKCancel:
                         ShowOKButton = true;
                         ShowCancelButton = true;
                         break;
+
                     case MessageBoxButtons.AbortRetryIgnore:
                         ShowAbortButton = true;
                         ShowRetryButton = true;
                         ShowIgnoreButton = true;
                         break;
+
                     case MessageBoxButtons.YesNoCancel:
                         ShowYesButton = true;
                         ShowNoButton = true;
                         ShowCancelButton = true;
                         break;
+
                     case MessageBoxButtons.YesNo:
                         ShowYesButton = true;
                         ShowNoButton = true;
                         break;
+
                     case MessageBoxButtons.RetryCancel:
                         ShowRetryButton = true;
                         ShowCancelButton = true;

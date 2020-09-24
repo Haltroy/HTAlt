@@ -79,7 +79,7 @@ namespace HTAlt.WinForms
         public bool AutoForeColor = false;
 
         /// <summary>
-        /// Image to display near message. 
+        /// Image to display near message.
         /// </summary>
         public Image Image;
 
@@ -249,7 +249,6 @@ namespace HTAlt.WinForms
 
             int locx = Width - (flowLayoutPanel1.Width + 25);
             int locy = imagenull ? (label1.Location.Y + label1.Height) : (pbImage.Height > label1.Height ? (pbImage.Location.Y + pbImage.Height) : (pbImage.Location.Y + label1.Height)) + 2;
-
 
             textBox1.Width = Width - 40;
             textBox1.Location = new Point(pbImage.Location.X, locy);

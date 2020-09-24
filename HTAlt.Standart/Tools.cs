@@ -113,6 +113,7 @@ namespace HTAlt
                 return false;
             }
         }
+
         /// <summary>
         /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
         /// </summary>
@@ -121,10 +122,11 @@ namespace HTAlt
         /// <param name="black">Black/Dark image  to return</param>
         /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
         /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
-        public static Bitmap SelectImageFromColor(Color color, ref Bitmap white, ref Bitmap black,bool reverse = false)
+        public static Bitmap SelectImageFromColor(Color color, ref Bitmap white, ref Bitmap black, bool reverse = false)
         {
             return IsBright(color) ? (reverse ? white : black) : (reverse ? black : white);
         }
+
         /// <summary>
         /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
         /// </summary>
@@ -133,7 +135,11 @@ namespace HTAlt
         /// <param name="black">Black/Dark image  to return</param>
         /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
         /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
-        public static Image SelectImageFromColor(Color color, ref Image white, ref Image black, bool reverse = false) => SelectImageFromColor(color, ref white, ref black, reverse);
+        public static Image SelectImageFromColor(Color color, ref Image white, ref Image black, bool reverse = false)
+        {
+            return SelectImageFromColor(color, ref white, ref black, reverse);
+        }
+
         /// <summary>
         /// Changes <paramref name="basecolor"/> and it's different shades to <paramref name="alteringColor"/> and responding shades in <paramref name="image"/>.
         /// </summary>
@@ -144,14 +150,15 @@ namespace HTAlt
         public static Bitmap ChangeColor(Bitmap image, Color basecolor, Color alteringColor)
         {
             Bitmap nbitmap = new Bitmap(image.Width, image.Height);
-            for(int i = 0; i < 256; i++)
+            for (int i = 0; i < 256; i++)
             {
-                Color workColor = ShiftBrightnessTo(basecolor, i,false);
-                Color changeColor = ShiftBrightnessTo(alteringColor, i,false);
+                Color workColor = ShiftBrightnessTo(basecolor, i, false);
+                Color changeColor = ShiftBrightnessTo(alteringColor, i, false);
                 nbitmap = ColorReplace(nbitmap, 0, workColor, changeColor);
             }
             return nbitmap;
         }
+
         /// <summary>
         /// Changes <paramref name="basecolor"/> and it's different shades to <paramref name="alteringColor"/> and responding shades in <paramref name="image"/>.
         /// </summary>
@@ -246,7 +253,7 @@ namespace HTAlt
         {
             string Pattern = @"((?:http(s)?\:\/\/)?(.*\.)?haltroy\.com)";
             Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            return ValidUrl(SiteUrl) && Rgx.IsMatch(SiteUrl.Substring(0, SiteUrl.ToLower().StartsWith("http") ? SiteUrl.IndexOf(@"\",10) : SiteUrl.IndexOf(@"\")));
+            return ValidUrl(SiteUrl) && Rgx.IsMatch(SiteUrl.Substring(0, SiteUrl.ToLower().StartsWith("http") ? SiteUrl.IndexOf(@"\", 10) : SiteUrl.IndexOf(@"\")));
         }
 
         /// <summary>
@@ -820,6 +827,7 @@ namespace HTAlt
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.G, value) : AddIfNeeded(baseColor.G, value, 255),
                                   IsBright(baseColor) ? SubtractIfNeeded(baseColor.B, value) : AddIfNeeded(baseColor.B, value, 255));
         }
+
         /// <summary>
         /// Shifts brightness of a color to <paramref name="value"/>.
         /// </summary>
@@ -833,7 +841,8 @@ namespace HTAlt
             else if (value > Brightness(baseColor))
             {
                 return ShiftBrightness(baseColor, (value - Brightness(baseColor)), shiftAlpha);
-            }else
+            }
+            else
             {
                 return ShiftBrightness(baseColor, (Brightness(baseColor) - value), shiftAlpha);
             }
