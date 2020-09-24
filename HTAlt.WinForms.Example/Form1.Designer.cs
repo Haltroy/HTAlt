@@ -42,8 +42,10 @@ namespace HTAlt.WinForms.Example
             this.lbVal = new System.Windows.Forms.Label();
             this.lbMax = new System.Windows.Forms.Label();
             this.lbMin = new System.Windows.Forms.Label();
+            this.hsForeColor = new HTAlt.WinForms.HTSwitch();
             this.hsBorder = new HTAlt.WinForms.HTSwitch();
             this.hsPBar = new HTAlt.WinForms.HTSwitch();
+            this.label27 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.hsRetry = new HTAlt.WinForms.HTSwitch();
@@ -70,9 +72,13 @@ namespace HTAlt.WinForms.Example
             this.label10 = new System.Windows.Forms.Label();
             this.pbOverlayColor = new System.Windows.Forms.PictureBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.pbForeColor = new System.Windows.Forms.PictureBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.pbBackColor = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbImage = new System.Windows.Forms.TextBox();
             this.tbMessage = new System.Windows.Forms.TextBox();
             this.tbIcon = new System.Windows.Forms.TextBox();
             this.tbCancel = new System.Windows.Forms.TextBox();
@@ -92,6 +98,7 @@ namespace HTAlt.WinForms.Example
             this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -124,6 +131,7 @@ namespace HTAlt.WinForms.Example
             ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbForeColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).BeginInit();
             this.tpControl1.SuspendLayout();
             this.tpTools.SuspendLayout();
@@ -172,8 +180,10 @@ namespace HTAlt.WinForms.Example
             this.tpBoxes.Controls.Add(this.lbVal);
             this.tpBoxes.Controls.Add(this.lbMax);
             this.tpBoxes.Controls.Add(this.lbMin);
+            this.tpBoxes.Controls.Add(this.hsForeColor);
             this.tpBoxes.Controls.Add(this.hsBorder);
             this.tpBoxes.Controls.Add(this.hsPBar);
+            this.tpBoxes.Controls.Add(this.label27);
             this.tpBoxes.Controls.Add(this.label15);
             this.tpBoxes.Controls.Add(this.label3);
             this.tpBoxes.Controls.Add(this.hsRetry);
@@ -200,9 +210,13 @@ namespace HTAlt.WinForms.Example
             this.tpBoxes.Controls.Add(this.label10);
             this.tpBoxes.Controls.Add(this.pbOverlayColor);
             this.tpBoxes.Controls.Add(this.label17);
+            this.tpBoxes.Controls.Add(this.pbForeColor);
+            this.tpBoxes.Controls.Add(this.label21);
             this.tpBoxes.Controls.Add(this.pbBackColor);
             this.tpBoxes.Controls.Add(this.label5);
+            this.tpBoxes.Controls.Add(this.label24);
             this.tpBoxes.Controls.Add(this.label4);
+            this.tpBoxes.Controls.Add(this.tbImage);
             this.tpBoxes.Controls.Add(this.tbMessage);
             this.tpBoxes.Controls.Add(this.tbIcon);
             this.tpBoxes.Controls.Add(this.tbCancel);
@@ -222,6 +236,7 @@ namespace HTAlt.WinForms.Example
             this.tpBoxes.Controls.Add(this.label11);
             this.tpBoxes.Controls.Add(this.label6);
             this.tpBoxes.Controls.Add(this.label1);
+            this.tpBoxes.Controls.Add(this.button5);
             this.tpBoxes.Controls.Add(this.button2);
             this.tpBoxes.Controls.Add(this.button3);
             this.tpBoxes.Controls.Add(this.button1);
@@ -230,12 +245,12 @@ namespace HTAlt.WinForms.Example
             this.tpBoxes.Padding = new System.Windows.Forms.Padding(3);
             this.tpBoxes.Size = new System.Drawing.Size(792, 426);
             this.tpBoxes.TabIndex = 0;
-            this.tpBoxes.Text = "MsgBox & InputBox";
+            this.tpBoxes.Text = "Dialog Boxes";
             this.tpBoxes.UseVisualStyleBackColor = true;
             // 
             // nudBorder
             // 
-            this.nudBorder.Location = new System.Drawing.Point(237, 347);
+            this.nudBorder.Location = new System.Drawing.Point(236, 314);
             this.nudBorder.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -252,7 +267,7 @@ namespace HTAlt.WinForms.Example
             // 
             // nudVal
             // 
-            this.nudVal.Location = new System.Drawing.Point(70, 347);
+            this.nudVal.Location = new System.Drawing.Point(69, 314);
             this.nudVal.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -274,7 +289,7 @@ namespace HTAlt.WinForms.Example
             // 
             // nudMax
             // 
-            this.nudMax.Location = new System.Drawing.Point(196, 317);
+            this.nudMax.Location = new System.Drawing.Point(195, 284);
             this.nudMax.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -296,7 +311,7 @@ namespace HTAlt.WinForms.Example
             // 
             // nudMin
             // 
-            this.nudMin.Location = new System.Drawing.Point(70, 317);
+            this.nudMin.Location = new System.Drawing.Point(69, 284);
             this.nudMin.Maximum = new decimal(new int[] {
             -1,
             -1,
@@ -314,7 +329,7 @@ namespace HTAlt.WinForms.Example
             // lbBorder
             // 
             this.lbBorder.AutoSize = true;
-            this.lbBorder.Location = new System.Drawing.Point(156, 349);
+            this.lbBorder.Location = new System.Drawing.Point(155, 316);
             this.lbBorder.Name = "lbBorder";
             this.lbBorder.Size = new System.Drawing.Size(68, 15);
             this.lbBorder.TabIndex = 36;
@@ -323,7 +338,7 @@ namespace HTAlt.WinForms.Example
             // lbVal
             // 
             this.lbVal.AutoSize = true;
-            this.lbVal.Location = new System.Drawing.Point(23, 349);
+            this.lbVal.Location = new System.Drawing.Point(22, 316);
             this.lbVal.Name = "lbVal";
             this.lbVal.Size = new System.Drawing.Size(38, 15);
             this.lbVal.TabIndex = 35;
@@ -332,7 +347,7 @@ namespace HTAlt.WinForms.Example
             // lbMax
             // 
             this.lbMax.AutoSize = true;
-            this.lbMax.Location = new System.Drawing.Point(156, 319);
+            this.lbMax.Location = new System.Drawing.Point(155, 286);
             this.lbMax.Name = "lbMax";
             this.lbMax.Size = new System.Drawing.Size(33, 15);
             this.lbMax.TabIndex = 34;
@@ -341,30 +356,46 @@ namespace HTAlt.WinForms.Example
             // lbMin
             // 
             this.lbMin.AutoSize = true;
-            this.lbMin.Location = new System.Drawing.Point(23, 319);
+            this.lbMin.Location = new System.Drawing.Point(22, 286);
             this.lbMin.Name = "lbMin";
             this.lbMin.Size = new System.Drawing.Size(31, 15);
             this.lbMin.TabIndex = 34;
             this.lbMin.Text = "Min:";
             // 
+            // hsForeColor
+            // 
+            this.hsForeColor.Location = new System.Drawing.Point(519, 99);
+            this.hsForeColor.Name = "hsForeColor";
+            this.hsForeColor.Size = new System.Drawing.Size(50, 19);
+            this.hsForeColor.TabIndex = 33;
+            // 
             // hsBorder
             // 
-            this.hsBorder.Location = new System.Drawing.Point(111, 383);
+            this.hsBorder.Location = new System.Drawing.Point(110, 350);
             this.hsBorder.Name = "hsBorder";
             this.hsBorder.Size = new System.Drawing.Size(50, 19);
             this.hsBorder.TabIndex = 33;
             // 
             // hsPBar
             // 
-            this.hsPBar.Location = new System.Drawing.Point(140, 285);
+            this.hsPBar.Location = new System.Drawing.Point(139, 252);
             this.hsPBar.Name = "hsPBar";
             this.hsPBar.Size = new System.Drawing.Size(50, 19);
             this.hsPBar.TabIndex = 33;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(425, 100);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(88, 15);
+            this.label27.TabIndex = 32;
+            this.label27.Text = "AutoForeColor:";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(23, 384);
+            this.label15.Location = new System.Drawing.Point(22, 351);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 15);
             this.label15.TabIndex = 32;
@@ -373,7 +404,7 @@ namespace HTAlt.WinForms.Example
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 285);
+            this.label3.Location = new System.Drawing.Point(21, 252);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 15);
             this.label3.TabIndex = 32;
@@ -381,56 +412,56 @@ namespace HTAlt.WinForms.Example
             // 
             // hsRetry
             // 
-            this.hsRetry.Location = new System.Drawing.Point(315, 206);
+            this.hsRetry.Location = new System.Drawing.Point(305, 260);
             this.hsRetry.Name = "hsRetry";
             this.hsRetry.Size = new System.Drawing.Size(50, 19);
             this.hsRetry.TabIndex = 31;
             // 
             // hsCancel
             // 
-            this.hsCancel.Location = new System.Drawing.Point(315, 181);
+            this.hsCancel.Location = new System.Drawing.Point(305, 235);
             this.hsCancel.Name = "hsCancel";
             this.hsCancel.Size = new System.Drawing.Size(50, 19);
             this.hsCancel.TabIndex = 31;
             // 
             // hsOK
             // 
-            this.hsOK.Location = new System.Drawing.Point(315, 156);
+            this.hsOK.Location = new System.Drawing.Point(305, 210);
             this.hsOK.Name = "hsOK";
             this.hsOK.Size = new System.Drawing.Size(50, 19);
             this.hsOK.TabIndex = 31;
             // 
             // hsNo
             // 
-            this.hsNo.Location = new System.Drawing.Point(315, 131);
+            this.hsNo.Location = new System.Drawing.Point(305, 185);
             this.hsNo.Name = "hsNo";
             this.hsNo.Size = new System.Drawing.Size(50, 19);
             this.hsNo.TabIndex = 31;
             // 
             // hsYes
             // 
-            this.hsYes.Location = new System.Drawing.Point(314, 106);
+            this.hsYes.Location = new System.Drawing.Point(304, 160);
             this.hsYes.Name = "hsYes";
             this.hsYes.Size = new System.Drawing.Size(50, 19);
             this.hsYes.TabIndex = 31;
             // 
             // hsIgnore
             // 
-            this.hsIgnore.Location = new System.Drawing.Point(315, 256);
+            this.hsIgnore.Location = new System.Drawing.Point(305, 310);
             this.hsIgnore.Name = "hsIgnore";
             this.hsIgnore.Size = new System.Drawing.Size(50, 19);
             this.hsIgnore.TabIndex = 31;
             // 
             // hsDefault
             // 
-            this.hsDefault.Location = new System.Drawing.Point(238, 236);
+            this.hsDefault.Location = new System.Drawing.Point(305, 335);
             this.hsDefault.Name = "hsDefault";
             this.hsDefault.Size = new System.Drawing.Size(50, 19);
             this.hsDefault.TabIndex = 31;
             // 
             // hsAbort
             // 
-            this.hsAbort.Location = new System.Drawing.Point(314, 231);
+            this.hsAbort.Location = new System.Drawing.Point(304, 285);
             this.hsAbort.Name = "hsAbort";
             this.hsAbort.Size = new System.Drawing.Size(50, 19);
             this.hsAbort.TabIndex = 31;
@@ -438,7 +469,7 @@ namespace HTAlt.WinForms.Example
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(615, 256);
+            this.label16.Location = new System.Drawing.Point(595, 263);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(90, 15);
             this.label16.TabIndex = 30;
@@ -447,7 +478,7 @@ namespace HTAlt.WinForms.Example
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(615, 147);
+            this.label20.Location = new System.Drawing.Point(595, 154);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(73, 15);
             this.label20.TabIndex = 30;
@@ -456,7 +487,7 @@ namespace HTAlt.WinForms.Example
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(612, 28);
+            this.label19.Location = new System.Drawing.Point(592, 35);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(68, 15);
             this.label19.TabIndex = 30;
@@ -465,7 +496,7 @@ namespace HTAlt.WinForms.Example
             // ibResult
             // 
             this.ibResult.AutoSize = true;
-            this.ibResult.Location = new System.Drawing.Point(615, 212);
+            this.ibResult.Location = new System.Drawing.Point(595, 219);
             this.ibResult.Name = "ibResult";
             this.ibResult.Size = new System.Drawing.Size(69, 15);
             this.ibResult.TabIndex = 29;
@@ -475,7 +506,7 @@ namespace HTAlt.WinForms.Example
             // ibResultTitle
             // 
             this.ibResultTitle.AutoSize = true;
-            this.ibResultTitle.Location = new System.Drawing.Point(615, 193);
+            this.ibResultTitle.Location = new System.Drawing.Point(595, 200);
             this.ibResultTitle.Name = "ibResultTitle";
             this.ibResultTitle.Size = new System.Drawing.Size(42, 15);
             this.ibResultTitle.TabIndex = 28;
@@ -484,7 +515,7 @@ namespace HTAlt.WinForms.Example
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(711, 253);
+            this.button8.Location = new System.Drawing.Point(691, 260);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 26;
@@ -494,7 +525,7 @@ namespace HTAlt.WinForms.Example
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(696, 166);
+            this.button4.Location = new System.Drawing.Point(676, 173);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(90, 23);
             this.button4.TabIndex = 27;
@@ -504,7 +535,7 @@ namespace HTAlt.WinForms.Example
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(615, 166);
+            this.button6.Location = new System.Drawing.Point(595, 173);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 26;
@@ -517,14 +548,14 @@ namespace HTAlt.WinForms.Example
             this.ibDefault.Location = new System.Drawing.Point(21, 188);
             this.ibDefault.Multiline = true;
             this.ibDefault.Name = "ibDefault";
-            this.ibDefault.Size = new System.Drawing.Size(268, 46);
+            this.ibDefault.Size = new System.Drawing.Size(268, 45);
             this.ibDefault.TabIndex = 20;
             // 
             // ibSetToDefault
             // 
-            this.ibSetToDefault.Location = new System.Drawing.Point(21, 256);
+            this.ibSetToDefault.Location = new System.Drawing.Point(305, 360);
             this.ibSetToDefault.Name = "ibSetToDefault";
-            this.ibSetToDefault.Size = new System.Drawing.Size(268, 23);
+            this.ibSetToDefault.Size = new System.Drawing.Size(265, 23);
             this.ibSetToDefault.TabIndex = 21;
             this.ibSetToDefault.Text = "Set to default";
             // 
@@ -540,7 +571,7 @@ namespace HTAlt.WinForms.Example
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(18, 237);
+            this.label12.Location = new System.Drawing.Point(361, 337);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(153, 15);
             this.label12.TabIndex = 19;
@@ -549,7 +580,7 @@ namespace HTAlt.WinForms.Example
             // lResult
             // 
             this.lResult.AutoSize = true;
-            this.lResult.Location = new System.Drawing.Point(615, 93);
+            this.lResult.Location = new System.Drawing.Point(595, 100);
             this.lResult.Name = "lResult";
             this.lResult.Size = new System.Drawing.Size(69, 15);
             this.lResult.TabIndex = 8;
@@ -559,7 +590,7 @@ namespace HTAlt.WinForms.Example
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(615, 73);
+            this.label10.Location = new System.Drawing.Point(595, 80);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 15);
             this.label10.TabIndex = 8;
@@ -570,7 +601,7 @@ namespace HTAlt.WinForms.Example
             // 
             this.pbOverlayColor.BackColor = System.Drawing.Color.DodgerBlue;
             this.pbOverlayColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbOverlayColor.Location = new System.Drawing.Point(518, 60);
+            this.pbOverlayColor.Location = new System.Drawing.Point(535, 60);
             this.pbOverlayColor.Name = "pbOverlayColor";
             this.pbOverlayColor.Size = new System.Drawing.Size(30, 30);
             this.pbOverlayColor.TabIndex = 6;
@@ -580,17 +611,37 @@ namespace HTAlt.WinForms.Example
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(431, 67);
+            this.label17.Location = new System.Drawing.Point(434, 67);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(79, 15);
             this.label17.TabIndex = 5;
             this.label17.Text = "OverlayColor:";
             // 
+            // pbForeColor
+            // 
+            this.pbForeColor.BackColor = System.Drawing.Color.Black;
+            this.pbForeColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbForeColor.Location = new System.Drawing.Point(386, 93);
+            this.pbForeColor.Name = "pbForeColor";
+            this.pbForeColor.Size = new System.Drawing.Size(30, 30);
+            this.pbForeColor.TabIndex = 6;
+            this.pbForeColor.TabStop = false;
+            this.pbForeColor.Click += new System.EventHandler(this.pictureBox1_Click_2);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(312, 100);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(62, 15);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "ForeColor:";
+            // 
             // pbBackColor
             // 
             this.pbBackColor.BackColor = System.Drawing.Color.White;
             this.pbBackColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbBackColor.Location = new System.Drawing.Point(382, 60);
+            this.pbBackColor.Location = new System.Drawing.Point(386, 60);
             this.pbBackColor.Name = "pbBackColor";
             this.pbBackColor.Size = new System.Drawing.Size(30, 30);
             this.pbBackColor.TabIndex = 6;
@@ -606,6 +657,15 @@ namespace HTAlt.WinForms.Example
             this.label5.TabIndex = 5;
             this.label5.Text = "BackColor:";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(311, 132);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(43, 15);
+            this.label24.TabIndex = 5;
+            this.label24.Text = "Image:";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -614,6 +674,13 @@ namespace HTAlt.WinForms.Example
             this.label4.Size = new System.Drawing.Size(33, 15);
             this.label4.TabIndex = 5;
             this.label4.Text = "Icon:";
+            // 
+            // tbImage
+            // 
+            this.tbImage.Location = new System.Drawing.Point(360, 129);
+            this.tbImage.Name = "tbImage";
+            this.tbImage.Size = new System.Drawing.Size(177, 23);
+            this.tbImage.TabIndex = 3;
             // 
             // tbMessage
             // 
@@ -628,12 +695,12 @@ namespace HTAlt.WinForms.Example
             // 
             this.tbIcon.Location = new System.Drawing.Point(313, 31);
             this.tbIcon.Name = "tbIcon";
-            this.tbIcon.Size = new System.Drawing.Size(235, 23);
+            this.tbIcon.Size = new System.Drawing.Size(224, 23);
             this.tbIcon.TabIndex = 3;
             // 
             // tbCancel
             // 
-            this.tbCancel.Location = new System.Drawing.Point(495, 180);
+            this.tbCancel.Location = new System.Drawing.Point(485, 234);
             this.tbCancel.Name = "tbCancel";
             this.tbCancel.Size = new System.Drawing.Size(85, 23);
             this.tbCancel.TabIndex = 3;
@@ -641,7 +708,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbOK
             // 
-            this.tbOK.Location = new System.Drawing.Point(475, 156);
+            this.tbOK.Location = new System.Drawing.Point(465, 210);
             this.tbOK.Name = "tbOK";
             this.tbOK.Size = new System.Drawing.Size(105, 23);
             this.tbOK.TabIndex = 3;
@@ -649,7 +716,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbNo
             // 
-            this.tbNo.Location = new System.Drawing.Point(473, 131);
+            this.tbNo.Location = new System.Drawing.Point(463, 185);
             this.tbNo.Name = "tbNo";
             this.tbNo.Size = new System.Drawing.Size(107, 23);
             this.tbNo.TabIndex = 3;
@@ -658,7 +725,7 @@ namespace HTAlt.WinForms.Example
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(368, 184);
+            this.label9.Location = new System.Drawing.Point(358, 238);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 15);
             this.label9.TabIndex = 2;
@@ -666,7 +733,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbIgnore
             // 
-            this.tbIgnore.Location = new System.Drawing.Point(491, 253);
+            this.tbIgnore.Location = new System.Drawing.Point(481, 307);
             this.tbIgnore.Name = "tbIgnore";
             this.tbIgnore.Size = new System.Drawing.Size(89, 23);
             this.tbIgnore.TabIndex = 3;
@@ -674,7 +741,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbAbort
             // 
-            this.tbAbort.Location = new System.Drawing.Point(491, 229);
+            this.tbAbort.Location = new System.Drawing.Point(481, 283);
             this.tbAbort.Name = "tbAbort";
             this.tbAbort.Size = new System.Drawing.Size(89, 23);
             this.tbAbort.TabIndex = 3;
@@ -682,7 +749,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbRetry
             // 
-            this.tbRetry.Location = new System.Drawing.Point(491, 204);
+            this.tbRetry.Location = new System.Drawing.Point(481, 258);
             this.tbRetry.Name = "tbRetry";
             this.tbRetry.Size = new System.Drawing.Size(89, 23);
             this.tbRetry.TabIndex = 3;
@@ -690,7 +757,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tbYes
             // 
-            this.tbYes.Location = new System.Drawing.Point(476, 105);
+            this.tbYes.Location = new System.Drawing.Point(466, 159);
             this.tbYes.Name = "tbYes";
             this.tbYes.Size = new System.Drawing.Size(104, 23);
             this.tbYes.TabIndex = 3;
@@ -699,7 +766,7 @@ namespace HTAlt.WinForms.Example
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(371, 159);
+            this.label8.Location = new System.Drawing.Point(361, 213);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 15);
             this.label8.TabIndex = 2;
@@ -716,7 +783,7 @@ namespace HTAlt.WinForms.Example
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(368, 134);
+            this.label7.Location = new System.Drawing.Point(358, 188);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 15);
             this.label7.TabIndex = 2;
@@ -734,7 +801,7 @@ namespace HTAlt.WinForms.Example
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(368, 256);
+            this.label14.Location = new System.Drawing.Point(358, 310);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(107, 15);
             this.label14.TabIndex = 2;
@@ -743,7 +810,7 @@ namespace HTAlt.WinForms.Example
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(368, 232);
+            this.label13.Location = new System.Drawing.Point(358, 286);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(103, 15);
             this.label13.TabIndex = 2;
@@ -752,7 +819,7 @@ namespace HTAlt.WinForms.Example
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(371, 207);
+            this.label11.Location = new System.Drawing.Point(361, 261);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(100, 15);
             this.label11.TabIndex = 2;
@@ -761,7 +828,7 @@ namespace HTAlt.WinForms.Example
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(368, 108);
+            this.label6.Location = new System.Drawing.Point(358, 162);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 15);
             this.label6.TabIndex = 2;
@@ -776,9 +843,19 @@ namespace HTAlt.WinForms.Example
             this.label1.TabIndex = 2;
             this.label1.Text = "Title:";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(535, 129);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(35, 24);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "...";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(696, 47);
+            this.button2.Location = new System.Drawing.Point(676, 54);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 23);
             this.button2.TabIndex = 1;
@@ -788,7 +865,7 @@ namespace HTAlt.WinForms.Example
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(545, 30);
+            this.button3.Location = new System.Drawing.Point(535, 30);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 24);
             this.button3.TabIndex = 1;
@@ -798,7 +875,7 @@ namespace HTAlt.WinForms.Example
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(615, 47);
+            this.button1.Location = new System.Drawing.Point(595, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -1081,6 +1158,7 @@ namespace HTAlt.WinForms.Example
             ((System.ComponentModel.ISupportInitialize)(this.nudMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOverlayColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbForeColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBackColor)).EndInit();
             this.tpControl1.ResumeLayout(false);
             this.tpControl1.PerformLayout();
@@ -1178,6 +1256,13 @@ namespace HTAlt.WinForms.Example
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.PictureBox pbForeColor;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox tbImage;
+        private System.Windows.Forms.Button button5;
+        private HTSwitch hsForeColor;
+        private System.Windows.Forms.Label label27;
     }
 }
 

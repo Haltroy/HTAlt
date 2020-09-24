@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms.Example
@@ -56,12 +57,20 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = this.Icon;
             }
+            Image mesajimage = null;
+            if (System.IO.File.Exists(tbImage.Text))
+            {
+                mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
+            }
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                           tbMessage.Text,
                                           mesajbuton)
             {
                 Icon = mesajicon,
-                BackgroundColor = pbBackColor.BackColor,
+                ForeColor = pbForeColor.BackColor,
+                AutoForeColor = hsForeColor.Checked,
+                Image = mesajimage,
+                BackColor = pbBackColor.BackColor,
                 Abort = tbAbort.Text,
                 Retry = tbRetry.Text,
                 Ignore = tbIgnore.Text,
@@ -96,12 +105,20 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = this.Icon;
             }
+            Image mesajimage = null;
+            if (System.IO.File.Exists(tbImage.Text))
+            {
+                mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
+            }
             HTMsgBox mesaj = new HTMsgBox(tbTitle.Text,
                                           tbMessage.Text,
                                           mesajbuton)
             {
                 Icon = mesajicon,
-                BackgroundColor = pbBackColor.BackColor,
+                ForeColor = pbForeColor.BackColor,
+                AutoForeColor = hsForeColor.Checked,
+                Image = mesajimage,
+                BackColor = pbBackColor.BackColor,
                 Abort = tbAbort.Text,
                 Retry = tbRetry.Text,
                 Ignore = tbIgnore.Text,
@@ -166,10 +183,18 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
+            Image mesajimage = null;
+            if (System.IO.File.Exists(tbImage.Text))
+            {
+                mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
+            }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
             {
                 Icon = mesajicon,
-                BackgroundColor = pbBackColor.BackColor,
+                ForeColor = pbForeColor.BackColor,
+                AutoForeColor = hsForeColor.Checked,
+                Image = mesajimage,
+                BackColor = pbBackColor.BackColor,
                 Abort = tbAbort.Text,
                 Retry = tbRetry.Text,
                 Ignore = tbIgnore.Text,
@@ -211,8 +236,27 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
+            Image mesajimage = null;
+            if (System.IO.File.Exists(tbImage.Text))
+            {
+                mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
+            }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
-            { Icon = mesajicon, BackgroundColor = pbBackColor.BackColor, Abort = tbAbort.Text, Retry = tbRetry.Text, Ignore = tbIgnore.Text, Yes = tbYes.Text, No = tbNo.Text, OK = tbOK.Text, Cancel = tbCancel.Text, SetToDefault = ibSetToDefault.Text, }; ;
+            { 
+                Icon = mesajicon,
+                ForeColor = pbForeColor.BackColor,
+                AutoForeColor = hsForeColor.Checked,
+                Image = mesajimage,
+                BackColor = pbBackColor.BackColor,
+                Abort = tbAbort.Text, 
+                Retry = tbRetry.Text, 
+                Ignore = tbIgnore.Text, 
+                Yes = tbYes.Text, 
+                No = tbNo.Text, 
+                OK = tbOK.Text, 
+                Cancel = tbCancel.Text, 
+                SetToDefault = ibSetToDefault.Text, 
+            }; 
             inputbox.Show();
         }
 
@@ -240,11 +284,19 @@ namespace HTAlt.WinForms.Example
             {
                 mesajicon = new Icon(tbIcon.Text);
             }
+            Image mesajimage = null;
+            if (System.IO.File.Exists(tbImage.Text))
+            {
+                mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
+            }
             HTProgressBox inputbox = new HTProgressBox(tbTitle.Text, tbMessage.Text, mesajbuton)
             {
                 OverlayColor = pbOverlayColor.BackColor,
                 Icon = mesajicon,
-                BackgroundColor = pbBackColor.BackColor,
+                ForeColor = pbForeColor.BackColor,
+                AutoForeColor = hsForeColor.Checked,
+                Image = mesajimage,
+                BackColor = pbBackColor.BackColor,
                 Abort = tbAbort.Text,
                 Min = Convert.ToInt32(nudMin.Value),
                 Max = Convert.ToInt32(nudMax.Value),
@@ -306,6 +358,29 @@ namespace HTAlt.WinForms.Example
             if (e.KeyCode == Keys.Enter)
             {
                 textBox1_TextChanged(sender, e);
+            }
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog filedlg = new OpenFileDialog();
+            filedlg.Title = "Select an Image";
+            filedlg.Filter = "Image Files|*.ico;*.bmp;*.png;*.jpg;*.png|All Files|*.*";
+            filedlg.Multiselect = false;
+            if (filedlg.ShowDialog() == DialogResult.OK)
+            {
+                tbImage.Text = filedlg.FileName;
+            }
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+            ColorDialog colordlg = new ColorDialog();
+            colordlg.Color = pbForeColor.BackColor;
+            colordlg.AllowFullOpen = true;
+            colordlg.AnyColor = true;
+            if (colordlg.ShowDialog() == DialogResult.OK)
+            {
+                pbForeColor.BackColor = colordlg.Color;
             }
         }
     }

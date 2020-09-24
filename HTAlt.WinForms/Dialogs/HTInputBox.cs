@@ -74,9 +74,14 @@ namespace HTAlt.WinForms
         #endregion HTControls
 
         /// <summary>
-        /// Background color of HTInputBox. Foreground color is auto-selected to White or Black.
+        /// If <c>true</c>, picks text color using <see cref="Tools.AutoWhiteBlack(Color)"/> with BackColor. Otherwise, allows for setting ForeColor.
         /// </summary>
-        public Color BackgroundColor = Color.FromArgb(255, 255, 255, 255);
+        public bool AutoForeColor = false;
+
+        /// <summary>
+        /// Image to display near message. 
+        /// </summary>
+        public Image Image;
 
         /// <summary>
         /// Text to display on "Yes" button.
@@ -169,13 +174,6 @@ namespace HTAlt.WinForms
             Text = title;
             Message = message;
             label1.Text = Message;
-            label1.MaximumSize = new Size(Width - 25, 0);
-            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
-            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowSetToDefaultButton ? btDefault.Height + 5 : 0);
-            MaximumSize = new Size(Width, label1.Height + buttonSize);
-            MinimumSize = new Size(Width, label1.Height + buttonSize);
-            Height = label1.Height + buttonSize;
-            MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             timer1_Tick(null, null);
         }
 
@@ -194,6 +192,18 @@ namespace HTAlt.WinForms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (Image is null)
+            {
+                pbImage.Visible = false;
+                pbImage.Enabled = false;
+                pbImage.Image = null;
+            }
+            else
+            {
+                pbImage.Visible = true;
+                pbImage.Enabled = true;
+                pbImage.Image = Image;
+            }
             label1.Text = Message;
             flowLayoutPanel1.SuspendLayout();
             // Set to Default
@@ -228,45 +238,52 @@ namespace HTAlt.WinForms
             btRetry.Text = Retry;
             btAbort.Text = Abort;
             btIgnore.Text = Ignore;
+            bool imagenull = Image == null || Image is null;
+            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowSetToDefaultButton ? btDefault.Height + 5 : 0) + (imagenull ? 0 : 40);
 
-            int buttonSize = 75 + flowLayoutPanel1.Height + (msgbutton.ShowSetToDefaultButton ? btDefault.Height + 5 : 0);
+            label1.MaximumSize = new Size(Width - (25 + (imagenull ? 0 : 40)), 0);
 
-            textBox1.Width = Width - 25;
-            textBox1.Location = new Point(label1.Location.X, label1.Location.Y + label1.Height + 2);
+            label1.Location = new Point(imagenull ? pbImage.Location.X : (pbImage.Location.X + pbImage.Width + 5), label1.Location.Y);
 
-            btDefault.Width = Width - 25;
+            flowLayoutPanel1.MaximumSize = new Size(Width - 25, 0);
+
+            int locx = Width - (flowLayoutPanel1.Width + 25);
+            int locy = imagenull ? (label1.Location.Y + label1.Height) : (pbImage.Height > label1.Height ? (pbImage.Location.Y + pbImage.Height) : (pbImage.Location.Y + label1.Height)) + 2;
+
+
+            textBox1.Width = Width - 40;
+            textBox1.Location = new Point(pbImage.Location.X, locy);
+
+            btDefault.Width = Width - 40;
             btDefault.Location = new Point(textBox1.Location.X, textBox1.Location.Y + textBox1.Height + 2);
 
-            flowLayoutPanel1.Width = Width - 25;
-            flowLayoutPanel1.Location = new Point((Width - (flowLayoutPanel1.Width + 25)), msgbutton.ShowSetToDefaultButton ? (btDefault.Location.Y + btDefault.Height) : (textBox1.Location.Y + textBox1.Height) + 2);
-
-
+            flowLayoutPanel1.Location = new Point(locx, msgbutton.ShowSetToDefaultButton ? (btDefault.Location.Y + btDefault.Height) : (textBox1.Location.Y + textBox1.Height) + 2);
 
             MaximumSize = new Size(Width, label1.Height + buttonSize);
             MinimumSize = new Size(Width, label1.Height + buttonSize);
             Height = label1.Height + buttonSize;
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
 
-            ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            BackColor = BackgroundColor;
-            btCancel.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btCancel.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btYes.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btYes.ForeColor = Tools.AutoWhiteBlack(BackgroundColor); ;
-            btNo.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btNo.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btOK.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btOK.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btAbort.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btAbort.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btRetry.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btRetry.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btIgnore.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            btIgnore.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btDefault.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
-            btDefault.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            textBox1.ForeColor = Tools.AutoWhiteBlack(BackgroundColor);
-            textBox1.BackColor = Tools.ShiftBrightness(BackgroundColor, 20, false);
+            ForeColor = AutoForeColor ? Tools.AutoWhiteBlack(BackColor) : ForeColor;
+            Color bc2 = Tools.ShiftBrightness(BackColor, 20, false);
+            btCancel.BackColor = bc2;
+            btCancel.ForeColor = ForeColor;
+            btYes.BackColor = bc2;
+            btYes.ForeColor = ForeColor;
+            btNo.BackColor = bc2;
+            btNo.ForeColor = ForeColor;
+            btOK.ForeColor = ForeColor;
+            btOK.BackColor = bc2;
+            btAbort.ForeColor = ForeColor;
+            btAbort.BackColor = bc2;
+            btRetry.ForeColor = ForeColor;
+            btRetry.BackColor = bc2;
+            btIgnore.ForeColor = ForeColor;
+            btIgnore.BackColor = bc2;
+            btDefault.BackColor = bc2;
+            btDefault.ForeColor = ForeColor;
+            textBox1.ForeColor = ForeColor;
+            textBox1.BackColor = bc2;
             flowLayoutPanel1.ResumeLayout(true);
         }
 

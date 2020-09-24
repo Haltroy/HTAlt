@@ -61,13 +61,15 @@ namespace HTAlt.WinForms
             this.btRetry = new HTAlt.WinForms.HTButton();
             this.btIgnore = new HTAlt.WinForms.HTButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(53, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
@@ -206,10 +208,19 @@ namespace HTAlt.WinForms
             this.flowLayoutPanel1.Controls.Add(this.btRetry);
             this.flowLayoutPanel1.Controls.Add(this.btIgnore);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 33);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 56);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(335, 31);
             this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(15, 9);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(32, 32);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImage.TabIndex = 6;
+            this.pbImage.TabStop = false;
             // 
             // HTMsgBox
             // 
@@ -218,7 +229,8 @@ namespace HTAlt.WinForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(370, 78);
+            this.ClientSize = new System.Drawing.Size(370, 99);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -230,6 +242,7 @@ namespace HTAlt.WinForms
             this.Text = "title";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,5 +260,6 @@ namespace HTAlt.WinForms
         internal HTButton btRetry;
         internal HTButton btIgnore;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }

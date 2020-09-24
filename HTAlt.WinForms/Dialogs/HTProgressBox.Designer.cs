@@ -62,13 +62,15 @@ namespace HTAlt.WinForms
             this.btCancel = new HTAlt.WinForms.HTButton();
             this.btNo = new HTAlt.WinForms.HTButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(53, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
@@ -86,7 +88,7 @@ namespace HTAlt.WinForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.htProgressBar1.BorderThickness = 2;
             this.htProgressBar1.DrawBorder = true;
-            this.htProgressBar1.Location = new System.Drawing.Point(15, 36);
+            this.htProgressBar1.Location = new System.Drawing.Point(15, 60);
             this.htProgressBar1.Name = "htProgressBar1";
             this.htProgressBar1.Size = new System.Drawing.Size(335, 20);
             this.htProgressBar1.TabIndex = 3;
@@ -219,10 +221,19 @@ namespace HTAlt.WinForms
             this.flowLayoutPanel1.Controls.Add(this.btOK);
             this.flowLayoutPanel1.Controls.Add(this.btRetry);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 71);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 95);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(335, 31);
             this.flowLayoutPanel1.TabIndex = 11;
+            // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(15, 12);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(32, 32);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImage.TabIndex = 12;
+            this.pbImage.TabStop = false;
             // 
             // HTProgressBox
             // 
@@ -231,7 +242,8 @@ namespace HTAlt.WinForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(370, 114);
+            this.ClientSize = new System.Drawing.Size(370, 138);
+            this.Controls.Add(this.pbImage);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.htProgressBar1);
             this.Controls.Add(this.label1);
@@ -244,6 +256,7 @@ namespace HTAlt.WinForms
             this.Text = "title";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,5 +275,6 @@ namespace HTAlt.WinForms
         internal HTButton btCancel;
         internal HTButton btNo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }
