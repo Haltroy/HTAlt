@@ -281,14 +281,8 @@ namespace HTAlt
                     CustomProtocols[startL + 5] = "smtp";
                     CustomProtocols[startL + 6] = "pop";
                 }
-                string CustomProtocolPattern = @"(";
-                int i = 0; int C = CustomProtocols.Length - 1;
-                while (i != C)
-                {
-                    CustomProtocolPattern += (i % 2 == 0 ? "|" : "") + CustomProtocols[i];
-                    i++;
-                }
-                string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4}\:.{1,4})|(.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4]\:.[1,4])";
+                string CustomProtocolPattern = string.Join("|",CustomProtocols);
+                string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(\d{1,4}(\:\d{1,4}){3,7})";
                 Regex Rgx = new Regex(Pattern, options);
                 return Rgx.IsMatch(Url);
             }
