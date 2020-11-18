@@ -169,12 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HTAlt.ico" />
-    <None Include="Resources\korotleft.png" />
-    <None Include="Resources\korotclose.png" />
-    <None Include="Resources\korotcenter.png" />
-    <None Include="Resources\korotbackground.png" />
-    <None Include="Resources\korotadd.png" />
-    <None Include="Resources\korotright.png" />
     <None Include="logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
