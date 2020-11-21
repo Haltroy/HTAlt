@@ -1,4 +1,5 @@
 ﻿using HTAlt.WinForms;
+using System.Drawing;
 
 namespace HTAlt.WinForms.Example
 {
@@ -901,15 +902,18 @@ namespace HTAlt.WinForms.Example
             // 
             // htButton1
             // 
-            this.htButton1.FlatAppearance.BorderSize = 0;
-            this.htButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.htButton1.ButtonImage = null;
+            this.htButton1.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.htButton1.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+            this.htButton1.DrawImage = false;
+            this.htButton1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
             this.htButton1.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.Zoom;
             this.htButton1.Location = new System.Drawing.Point(8, 65);
             this.htButton1.Name = "htButton1";
+            this.htButton1.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.htButton1.Size = new System.Drawing.Size(124, 49);
             this.htButton1.TabIndex = 16;
             this.htButton1.Text = "Sample Text";
-            this.htButton1.UseVisualStyleBackColor = true;
             // 
             // htProgressBar5
             // 
@@ -998,6 +1002,7 @@ namespace HTAlt.WinForms.Example
             // 
             // tpTools
             // 
+            this.tpTools.BackColor = System.Drawing.Color.White;
             this.tpTools.Controls.Add(this.textBox2);
             this.tpTools.Controls.Add(this.checkBox1);
             this.tpTools.Controls.Add(this.pbValidUrl);
@@ -1014,17 +1019,16 @@ namespace HTAlt.WinForms.Example
             this.tpTools.Size = new System.Drawing.Size(792, 426);
             this.tpTools.TabIndex = 4;
             this.tpTools.Text = "Tools";
-            this.tpTools.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox2.Location = new System.Drawing.Point(11, 278);
+            this.textBox2.Location = new System.Drawing.Point(11, 269);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(166, 0);
+            this.textBox2.Size = new System.Drawing.Size(166, 149);
             this.textBox2.TabIndex = 8;
             this.textBox2.Text = "korot;";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -1100,20 +1104,25 @@ namespace HTAlt.WinForms.Example
             // 
             // hbRandom
             // 
-            this.hbRandom.FlatAppearance.BorderSize = 0;
-            this.hbRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hbRandom.ButtonImage = null;
+            this.hbRandom.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.hbRandom.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+            this.hbRandom.DrawImage = false;
+            this.hbRandom.ForeColor = System.Drawing.Color.Black;
+            this.hbRandom.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.hbRandom.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
             this.hbRandom.Location = new System.Drawing.Point(11, 77);
             this.hbRandom.Name = "hbRandom";
-            this.hbRandom.Size = new System.Drawing.Size(120, 23);
+            this.hbRandom.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.hbRandom.Size = new System.Drawing.Size(158, 34);
             this.hbRandom.TabIndex = 2;
             this.hbRandom.Text = "Generate Text";
-            this.hbRandom.UseVisualStyleBackColor = true;
             this.hbRandom.Click += new System.EventHandler(this.hbRandom_Click);
             // 
             // lbRandom
             // 
             this.lbRandom.AutoSize = true;
-            this.lbRandom.Location = new System.Drawing.Point(11, 103);
+            this.lbRandom.Location = new System.Drawing.Point(8, 114);
             this.lbRandom.Name = "lbRandom";
             this.lbRandom.Size = new System.Drawing.Size(85, 15);
             this.lbRandom.TabIndex = 1;
@@ -1133,7 +1142,7 @@ namespace HTAlt.WinForms.Example
             0,
             0});
             this.nudRandom.Name = "nudRandom";
-            this.nudRandom.Size = new System.Drawing.Size(120, 23);
+            this.nudRandom.Size = new System.Drawing.Size(158, 23);
             this.nudRandom.TabIndex = 0;
             this.nudRandom.Value = new decimal(new int[] {
             11,

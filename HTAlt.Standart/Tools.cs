@@ -281,7 +281,7 @@ namespace HTAlt
                     CustomProtocols[startL + 5] = "smtp";
                     CustomProtocols[startL + 6] = "pop";
                 }
-                string CustomProtocolPattern = string.Join("|",CustomProtocols);
+                string CustomProtocolPattern = string.Join("|", CustomProtocols);
                 string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(\d{1,4}(\:\d{1,4}){3,7})";
                 Regex Rgx = new Regex(Pattern, options);
                 return Rgx.IsMatch(Url);

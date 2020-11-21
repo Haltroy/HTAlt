@@ -22,6 +22,7 @@ namespace HTAlt.WinForms.Example
             {
                 tbIcon.Text = filedlg.FileName;
             }
+            button3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)

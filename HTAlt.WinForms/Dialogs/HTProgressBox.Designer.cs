@@ -97,113 +97,91 @@ namespace HTAlt.WinForms
             // btAbort
             // 
             this.btAbort.AutoSize = true;
-            this.btAbort.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btAbort.DrawImage = true;
-            this.btAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAbort.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btAbort.Location = new System.Drawing.Point(233, 3);
             this.btAbort.Name = "btAbort";
             this.btAbort.Size = new System.Drawing.Size(44, 25);
             this.btAbort.TabIndex = 2;
             this.btAbort.Text = "Abort";
-            this.btAbort.UseVisualStyleBackColor = true;
             this.btAbort.Visible = false;
             this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
             // 
             // btIgnore
             // 
             this.btIgnore.AutoSize = true;
-            this.btIgnore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btIgnore.DrawImage = true;
-            this.btIgnore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btIgnore.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btIgnore.Location = new System.Drawing.Point(283, 3);
             this.btIgnore.Name = "btIgnore";
             this.btIgnore.Size = new System.Drawing.Size(49, 25);
             this.btIgnore.TabIndex = 10;
             this.btIgnore.Text = "Ignore";
-            this.btIgnore.UseVisualStyleBackColor = true;
             this.btIgnore.Visible = false;
             this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
             // 
             // btRetry
             // 
             this.btRetry.AutoSize = true;
-            this.btRetry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btRetry.DrawImage = true;
-            this.btRetry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btRetry.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btRetry.Location = new System.Drawing.Point(3, 3);
             this.btRetry.Name = "btRetry";
             this.btRetry.Size = new System.Drawing.Size(44, 25);
             this.btRetry.TabIndex = 9;
             this.btRetry.Text = "Retry";
-            this.btRetry.UseVisualStyleBackColor = true;
             this.btRetry.Visible = false;
             this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
             // 
             // btOK
             // 
             this.btOK.AutoSize = true;
-            this.btOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btOK.DrawImage = true;
-            this.btOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btOK.Location = new System.Drawing.Point(53, 3);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(34, 25);
             this.btOK.TabIndex = 8;
             this.btOK.Text = "OK";
-            this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Visible = false;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btYes
             // 
             this.btYes.AutoSize = true;
-            this.btYes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btYes.DrawImage = true;
-            this.btYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btYes.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btYes.Location = new System.Drawing.Point(93, 3);
             this.btYes.Name = "btYes";
             this.btYes.Size = new System.Drawing.Size(37, 25);
             this.btYes.TabIndex = 5;
             this.btYes.Text = "Yes";
-            this.btYes.UseVisualStyleBackColor = true;
             this.btYes.Visible = false;
             this.btYes.Click += new System.EventHandler(this.btYes_Click);
             // 
             // btCancel
             // 
             this.btCancel.AutoSize = true;
-            this.btCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.DrawImage = true;
-            this.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btCancel.Location = new System.Drawing.Point(136, 3);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(52, 25);
             this.btCancel.TabIndex = 6;
             this.btCancel.Text = "Cancel";
-            this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Visible = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // btNo
             // 
             this.btNo.AutoSize = true;
-            this.btNo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btNo.DrawImage = true;
-            this.btNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btNo.Location = new System.Drawing.Point(194, 3);
             this.btNo.Name = "btNo";
             this.btNo.Size = new System.Drawing.Size(33, 25);
             this.btNo.TabIndex = 7;
             this.btNo.Text = "No";
-            this.btNo.UseVisualStyleBackColor = true;
             this.btNo.Visible = false;
             this.btNo.Click += new System.EventHandler(this.btNo_Click);
             // 
@@ -237,11 +215,9 @@ namespace HTAlt.WinForms
             // 
             // HTProgressBox
             // 
-            this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(370, 138);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.flowLayoutPanel1);
