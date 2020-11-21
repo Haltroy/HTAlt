@@ -38,4 +38,4 @@ Current Features:
 
 This Project is used in these Haltroy projects:
 -Korot (Desktop)
--Playtroy (Desktop)
+-Backupster (Desktop)
