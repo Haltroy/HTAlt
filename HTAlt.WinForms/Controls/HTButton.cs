@@ -138,6 +138,31 @@ namespace HTAlt.WinForms
 
         #endregion HTControls
 
+        private bool _AutoColor = true;
+        /// <summary>
+        /// <c>true</c> if <see cref="HTButton"/> is auto-colored from shades of <see cref="Control.BackColor"/>, otherwise <c>false</c>.
+        /// </summary>
+        [Bindable(false), Browsable(true), Description("true if button is auto-colored from shades of BackColor, otherwise false."), EditorBrowsable(EditorBrowsableState.Always), Category("HTButton")]
+        public bool AutoColor
+        {
+            get => _AutoColor;
+            set
+            {
+                if (value)
+                {
+                    Recolor();
+                }
+                _AutoColor = value;
+            }
+        }
+
+        private void Recolor()
+        {
+            _NormalColor = Tools.ShiftBrightness(BackColor, 20, false);
+            _HoverColor = Tools.ShiftBrightness(_NormalColor, 20, false);
+            _ClickColor = Tools.ShiftBrightness(_HoverColor, 20, false);
+        }
+
         /// <summary>
         /// <c>true</c> if <see cref="HTButton"/> is auto-sized to <see cref="Text"/> or <see cref="ButtonImage"/>, otherwise <c>false</c>.
         /// </summary>
@@ -207,11 +232,18 @@ namespace HTAlt.WinForms
         {
             get
             {
+                if (_AutoColor) { return Tools.ShiftBrightness(BackColor, 20, false); }
                 return _NormalColor;
             }
             set
             {
-                _NormalColor = value;
+                if (!_AutoColor)
+                {
+                    _NormalColor = value;
+                }else
+                {
+                    _NormalColor = Tools.ShiftBrightness(BackColor, 20, false);
+                }
                 this.Invalidate();
             }
         }
@@ -221,11 +253,19 @@ namespace HTAlt.WinForms
         {
             get
             {
+                if (_AutoColor) { return Tools.ShiftBrightness(BackColor, 40, false); }
                 return _HoverColor;
             }
             set
             {
-                _HoverColor = value;
+                if (!_AutoColor)
+                {
+                    _HoverColor = value;
+                }
+                else
+                {
+                    _HoverColor = Tools.ShiftBrightness(BackColor, 40, false);
+                }
                 this.Invalidate();
             }
         }
@@ -235,11 +275,19 @@ namespace HTAlt.WinForms
         {
             get
             {
+                if (_AutoColor) { return Tools.ShiftBrightness(BackColor, 60, false); }
                 return _ClickColor;
             }
             set
             {
-                _ClickColor = value;
+                if (!_AutoColor)
+                {
+                    _ClickColor = value;
+                }
+                else
+                {
+                    _ClickColor = Tools.ShiftBrightness(BackColor, 60, false);
+                }
                 this.Invalidate();
             }
         }
@@ -504,6 +552,10 @@ namespace HTAlt.WinForms
         protected override void OnPaint(PaintEventArgs pevent)
         {
             SolidBrush brush;
+            if (_AutoColor)
+            {
+                Recolor();
+            }
             // set SmoothingMode
             pevent.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             SizeF textSize = pevent.Graphics.MeasureString(this.Text, base.Font);
@@ -605,7 +657,6 @@ namespace HTAlt.WinForms
 
             protected override void PostFilterProperties(IDictionary Properties)
             {
-                Properties.Remove("BackColor");
                 Properties.Remove("AllowDrop");
                 Properties.Remove("BackgroundImage");
                 Properties.Remove("ContextMenu");

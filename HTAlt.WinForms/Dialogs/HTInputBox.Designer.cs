@@ -55,7 +55,6 @@ namespace HTAlt.WinForms
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pbImage = new System.Windows.Forms.PictureBox();
             this.btRetry = new HTAlt.WinForms.HTButton();
             this.btCancel = new HTAlt.WinForms.HTButton();
             this.btOK = new HTAlt.WinForms.HTButton();
@@ -63,6 +62,7 @@ namespace HTAlt.WinForms
             this.btNo = new HTAlt.WinForms.HTButton();
             this.btAbort = new HTAlt.WinForms.HTButton();
             this.btIgnore = new HTAlt.WinForms.HTButton();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.btDefault = new HTAlt.WinForms.HTButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
@@ -86,7 +86,7 @@ namespace HTAlt.WinForms
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(11, 55);
+            this.textBox1.Location = new System.Drawing.Point(12, 48);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(321, 20);
             this.textBox1.TabIndex = 1;
@@ -110,10 +110,129 @@ namespace HTAlt.WinForms
             this.flowLayoutPanel1.Controls.Add(this.btAbort);
             this.flowLayoutPanel1.Controls.Add(this.btIgnore);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 74);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 114);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(288, 64);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(275, 52);
             this.flowLayoutPanel1.TabIndex = 10;
+            // 
+            // btRetry
+            // 
+            this.btRetry.AutoColor = true;
+            this.btRetry.ButtonImage = null;
+            this.btRetry.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btRetry.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btRetry.DrawImage = true;
+            this.btRetry.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btRetry.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btRetry.Location = new System.Drawing.Point(227, 3);
+            this.btRetry.Name = "btRetry";
+            this.btRetry.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btRetry.Size = new System.Drawing.Size(45, 20);
+            this.btRetry.TabIndex = 9;
+            this.btRetry.Text = "Retry";
+            this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.AutoColor = true;
+            this.btCancel.ButtonImage = null;
+            this.btCancel.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btCancel.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btCancel.DrawImage = true;
+            this.btCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btCancel.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btCancel.Location = new System.Drawing.Point(164, 3);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btCancel.Size = new System.Drawing.Size(57, 20);
+            this.btCancel.TabIndex = 4;
+            this.btCancel.Text = "Cancel";
+            this.btCancel.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // btOK
+            // 
+            this.btOK.AutoColor = true;
+            this.btOK.ButtonImage = null;
+            this.btOK.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btOK.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btOK.DrawImage = true;
+            this.btOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btOK.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btOK.Location = new System.Drawing.Point(128, 3);
+            this.btOK.Name = "btOK";
+            this.btOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btOK.Size = new System.Drawing.Size(30, 20);
+            this.btOK.TabIndex = 3;
+            this.btOK.Text = "OK";
+            this.btOK.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // btYes
+            // 
+            this.btYes.AutoColor = true;
+            this.btYes.ButtonImage = null;
+            this.btYes.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btYes.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btYes.DrawImage = true;
+            this.btYes.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btYes.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btYes.Location = new System.Drawing.Point(87, 3);
+            this.btYes.Name = "btYes";
+            this.btYes.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btYes.Size = new System.Drawing.Size(35, 20);
+            this.btYes.TabIndex = 5;
+            this.btYes.Text = "Yes";
+            this.btYes.Click += new System.EventHandler(this.btYes_Click);
+            // 
+            // btNo
+            // 
+            this.btNo.AutoColor = true;
+            this.btNo.ButtonImage = null;
+            this.btNo.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btNo.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btNo.DrawImage = true;
+            this.btNo.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btNo.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btNo.Location = new System.Drawing.Point(54, 3);
+            this.btNo.Name = "btNo";
+            this.btNo.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btNo.Size = new System.Drawing.Size(27, 20);
+            this.btNo.TabIndex = 6;
+            this.btNo.Text = "No";
+            this.btNo.Click += new System.EventHandler(this.btNo_Click);
+            // 
+            // btAbort
+            // 
+            this.btAbort.AutoColor = true;
+            this.btAbort.ButtonImage = null;
+            this.btAbort.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btAbort.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btAbort.DrawImage = true;
+            this.btAbort.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btAbort.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btAbort.Location = new System.Drawing.Point(3, 3);
+            this.btAbort.Name = "btAbort";
+            this.btAbort.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btAbort.Size = new System.Drawing.Size(45, 20);
+            this.btAbort.TabIndex = 7;
+            this.btAbort.Text = "Abort";
+            this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
+            // 
+            // btIgnore
+            // 
+            this.btIgnore.AutoColor = true;
+            this.btIgnore.ButtonImage = null;
+            this.btIgnore.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
+            this.btIgnore.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btIgnore.DrawImage = true;
+            this.btIgnore.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.btIgnore.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btIgnore.Location = new System.Drawing.Point(219, 29);
+            this.btIgnore.Name = "btIgnore";
+            this.btIgnore.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.btIgnore.Size = new System.Drawing.Size(53, 20);
+            this.btIgnore.TabIndex = 8;
+            this.btIgnore.Text = "Ignore";
+            this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
             // 
             // pbImage
             // 
@@ -124,107 +243,20 @@ namespace HTAlt.WinForms
             this.pbImage.TabIndex = 11;
             this.pbImage.TabStop = false;
             // 
-            // btRetry
-            // 
-            this.btRetry.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btRetry.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btRetry.DrawImage = true;
-            this.btRetry.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btRetry.Location = new System.Drawing.Point(225, 3);
-            this.btRetry.Name = "btRetry";
-            this.btRetry.Size = new System.Drawing.Size(60, 26);
-            this.btRetry.TabIndex = 9;
-            this.btRetry.Text = "Retry";
-            this.btRetry.Click += new System.EventHandler(this.btRetry_Click);
-            // 
-            // btCancel
-            // 
-            this.btCancel.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btCancel.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btCancel.DrawImage = true;
-            this.btCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btCancel.Location = new System.Drawing.Point(143, 3);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(76, 26);
-            this.btCancel.TabIndex = 4;
-            this.btCancel.Text = "Cancel";
-            this.btCancel.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // btOK
-            // 
-            this.btOK.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btOK.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btOK.DrawImage = true;
-            this.btOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btOK.Location = new System.Drawing.Point(97, 3);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(40, 26);
-            this.btOK.TabIndex = 3;
-            this.btOK.Text = "OK";
-            this.btOK.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // btYes
-            // 
-            this.btYes.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btYes.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btYes.DrawImage = true;
-            this.btYes.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btYes.Location = new System.Drawing.Point(45, 3);
-            this.btYes.Name = "btYes";
-            this.btYes.Size = new System.Drawing.Size(46, 26);
-            this.btYes.TabIndex = 5;
-            this.btYes.Text = "Yes";
-            this.btYes.Click += new System.EventHandler(this.btYes_Click);
-            // 
-            // btNo
-            // 
-            this.btNo.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btNo.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btNo.DrawImage = true;
-            this.btNo.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btNo.Location = new System.Drawing.Point(3, 3);
-            this.btNo.Name = "btNo";
-            this.btNo.Size = new System.Drawing.Size(36, 26);
-            this.btNo.TabIndex = 6;
-            this.btNo.Text = "No";
-            this.btNo.Click += new System.EventHandler(this.btNo_Click);
-            // 
-            // btAbort
-            // 
-            this.btAbort.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btAbort.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btAbort.DrawImage = true;
-            this.btAbort.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btAbort.Location = new System.Drawing.Point(225, 35);
-            this.btAbort.Name = "btAbort";
-            this.btAbort.Size = new System.Drawing.Size(60, 26);
-            this.btAbort.TabIndex = 7;
-            this.btAbort.Text = "Abort";
-            this.btAbort.Click += new System.EventHandler(this.btAbort_Click);
-            // 
-            // btIgnore
-            // 
-            this.btIgnore.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btIgnore.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
-            this.btIgnore.DrawImage = true;
-            this.btIgnore.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btIgnore.Location = new System.Drawing.Point(149, 35);
-            this.btIgnore.Name = "btIgnore";
-            this.btIgnore.Size = new System.Drawing.Size(70, 26);
-            this.btIgnore.TabIndex = 8;
-            this.btIgnore.Text = "Ignore";
-            this.btIgnore.Click += new System.EventHandler(this.btIgnore_Click);
-            // 
             // btDefault
             // 
             this.btDefault.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefault.AutoColor = true;
+            this.btDefault.ButtonImage = null;
             this.btDefault.ButtonShape = HTAlt.WinForms.HTButton.ButtonShapes.Rectangle;
-            this.btDefault.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(175)))), ((int)(((byte)(175)))));
+            this.btDefault.ClickColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.btDefault.DrawImage = true;
             this.btDefault.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-            this.btDefault.Location = new System.Drawing.Point(11, 80);
+            this.btDefault.ImageSizeMode = HTAlt.WinForms.HTButton.ButtonImageSizeMode.None;
+            this.btDefault.Location = new System.Drawing.Point(12, 73);
             this.btDefault.Name = "btDefault";
+            this.btDefault.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
             this.btDefault.Size = new System.Drawing.Size(321, 23);
             this.btDefault.TabIndex = 2;
             this.btDefault.Text = "Set to Default";
@@ -235,7 +267,7 @@ namespace HTAlt.WinForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(344, 150);
+            this.ClientSize = new System.Drawing.Size(344, 180);
             this.Controls.Add(this.pbImage);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textBox1);

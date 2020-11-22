@@ -115,6 +115,17 @@ namespace HTAlt
         }
 
         /// <summary>
+        /// Creates an Internet shortcut (Windows).
+        /// </summary>
+        /// <param name="Url">Location on Internet.</param>
+        /// <param name="FileLocation">Location of Internet address.</param>
+        public static void CreateInternetShortcut(string Url,string FileLocation)
+        {
+            if (!FileLocation.ToLower().EndsWith("url")) { FileLocation += ".url"; }
+            WriteFile(FileLocation, "[InternetSHortcut]" + Environment.NewLine + "Url=" + Url, Encoding.UTF8);
+        }
+
+        /// <summary>
         /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
         /// </summary>
         /// <param name="color">Color for determining.</param>
@@ -411,10 +422,11 @@ namespace HTAlt
         /// </summary>
         /// <param name="Transparency">Value of random generated color's alpha channel. This parameter is ignored if <paramref name="RandomTransparency"/> is set to true.</param>
         /// <param name="RandomTransparency">True to randomize Alpha channel, otherwise use <paramref name="Transparency"/>.</param>
+        /// <param name="Seed">Seed of random generator. Default is my current age in seconds (11/03/2001 20:00-22/11/2020 23:20) at the time of writing this parameter.</param>
         /// <returns>Random color.</returns>
-        public static Color RandomColor(int Transparency = 255, bool RandomTransparency = false)
+        public static Color RandomColor(int Transparency = 255, bool RandomTransparency = false,int Seed = 621656400)
         {
-            Random rand = new Random();
+            Random rand = new Random(Seed);
             int max = 256;
             int a = Transparency;
             if (RandomTransparency)
