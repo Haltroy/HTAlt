@@ -1,6 +1,6 @@
 ﻿//MIT License
 //
-//Copyright (c) 2020 Eren "Haltroy" Kanat
+//Copyright (c) 2020-2021 Eren "Haltroy" Kanat
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -52,5 +52,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.6.2")]
-[assembly: AssemblyFileVersion("0.1.6.2")]
+[assembly: AssemblyVersion("0.1.6.3")]
+[assembly: AssemblyFileVersion("0.1.6.3")]

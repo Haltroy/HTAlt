@@ -1,6 +1,6 @@
 ﻿//MIT License
 //
-//Copyright (c) 2020 Eren "Haltroy" Kanat
+//Copyright (c) 2020-2021 Eren "Haltroy" Kanat
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,8 @@ namespace HTAlt
     /// </summary>
     public class Tools
     {
+        #region Image
+
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="height"/> and <paramref name="width"/>.
         /// </summary>
@@ -65,90 +67,6 @@ namespace HTAlt
                 }
             }
             return destImage;
-        }
-
-        /// <summary>
-        /// Removes <paramref name="RemoveText"/> from files names in <paramref name="folder"/>.
-        /// </summary>
-        /// <param name="folder">Work folder</param>
-        /// <param name="RemoveText">Text to remove</param>
-        /// <returns><c>true</c> if successfully removes <paramref name="RemoveText"/>, otherwise <c>false</c>.</returns>
-        public static bool RemoveFromFileNames(string folder, string RemoveText)
-        {
-            bool isSuccess = false;
-            int success = 0;
-            int C = 0;
-            List<Exception> errors = new List<Exception>();
-            try
-            {
-                foreach (string x in Directory.GetFiles(folder))
-                {
-                    string pathName = Path.GetFileName(x);
-                    C++;
-                    if (pathName.Contains(RemoveText))
-                    {
-                        string newName = folder + pathName.Replace(RemoveText, "");
-                        try
-                        {
-                            File.Move(x, newName);
-                            success++;
-                        }
-                        catch (Exception ex)
-                        {
-                            errors.Add(ex);
-                        }
-                    }
-                }
-                Console.WriteLine("Count: " + C + " Success: " + success + " Error: " + errors.Count);
-                foreach (Exception ex in errors)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
-                isSuccess = true;
-                return isSuccess;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Creates an Internet shortcut (Windows).
-        /// </summary>
-        /// <param name="Url">Location on Internet.</param>
-        /// <param name="FileLocation">Location of Internet address.</param>
-        public static void CreateInternetShortcut(string Url,string FileLocation)
-        {
-            if (!FileLocation.ToLower().EndsWith("url")) { FileLocation += ".url"; }
-            WriteFile(FileLocation, "[InternetSHortcut]" + Environment.NewLine + "Url=" + Url, Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
-        /// </summary>
-        /// <param name="color">Color for determining.</param>
-        /// <param name="white">White/Bright image to return.</param>
-        /// <param name="black">Black/Dark image  to return</param>
-        /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
-        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
-        public static Bitmap SelectImageFromColor(Color color, ref Bitmap white, ref Bitmap black, bool reverse = false)
-        {
-            return IsBright(color) ? (reverse ? white : black) : (reverse ? black : white);
-        }
-
-        /// <summary>
-        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
-        /// </summary>
-        /// <param name="color">Color for determining.</param>
-        /// <param name="white">White/Bright image to return.</param>
-        /// <param name="black">Black/Dark image  to return</param>
-        /// <param name="reverse"><c>true</c> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <c>false</c>.</param>
-        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
-        public static Image SelectImageFromColor(Color color, ref Image white, ref Image black, bool reverse = false)
-        {
-            return SelectImageFromColor(color, ref white, ref black, reverse);
         }
 
         /// <summary>
@@ -256,97 +174,6 @@ namespace HTAlt
         }
 
         /// <summary>
-        /// Determines if a site is an actually from Haltroy.
-        /// </summary>
-        /// <param name="SiteUrl">Site URL</param>
-        /// <returns><c>true</c> if <paramref name="SiteUrl"/> is actually a Haltroy website, otherwise <c>false</c>.</returns>
-        public static bool ValidHaltroyWebsite(string SiteUrl)
-        {
-            string Pattern = @"((?:http(s)?\:\/\/)?(.*\.)?haltroy\.com)";
-            Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            return ValidUrl(SiteUrl) && Rgx.IsMatch(SiteUrl.Substring(0, SiteUrl.ToLower().StartsWith("http") ? SiteUrl.IndexOf(@"\", 10) : SiteUrl.IndexOf(@"\")));
-        }
-
-        /// <summary>
-        /// Determines if a string is an valid address to somewhere on the Internet.
-        /// </summary>
-        /// <param name="Url">Address to determine.</param>
-        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
-        /// <param name="options">Regex options to check </param>
-        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
-        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string Url, string[] CustomProtocols, RegexOptions options, bool ignoreDefaults)
-        {
-            if (string.IsNullOrWhiteSpace(Url) || Url.Contains(" "))
-            { return false; }
-            else
-            {
-                if (!ignoreDefaults)
-                {
-                    int startL = CustomProtocols.Length;
-                    Array.Resize<string>(ref CustomProtocols, startL + 7);
-                    CustomProtocols[startL + 1] = "http";
-                    CustomProtocols[startL + 2] = "https";
-                    CustomProtocols[startL + 3] = "about";
-                    CustomProtocols[startL + 4] = "ftp";
-                    CustomProtocols[startL + 5] = "smtp";
-                    CustomProtocols[startL + 6] = "pop";
-                }
-                string CustomProtocolPattern = string.Join("|", CustomProtocols);
-                string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(\d{1,4}(\:\d{1,4}){3,7})";
-                Regex Rgx = new Regex(Pattern, options);
-                return Rgx.IsMatch(Url);
-            }
-        }
-
-        /// <summary>
-        /// Determines if a string is an valid address to somewhere on the Internet.
-        /// </summary>
-        /// <param name="Url">Address to determine.</param>
-        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default protocol rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string Url)
-        {
-            string[] defaults = { "http", "https", "about", "ftp", "smtp", "pop" };
-            return ValidUrl(Url, defaults, false);
-        }
-
-        /// <summary>
-        /// Determines if a string is an valid address to somewhere on the Internet.
-        /// </summary>
-        /// <param name="Url">Address to determine.</param>
-        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
-        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within default rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string Url, bool ignoreDefaults)
-        {
-            string[] empty = { };
-            return ValidUrl(Url, empty, ignoreDefaults);
-        }
-
-        /// <summary>
-        /// Determines if a string is an valid address to somewhere on the Internet.
-        /// </summary>
-        /// <param name="Url">Address to determine.</param>
-        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
-        /// <param name="ignoreDefaults">Ignores default protocols if <c>true</c></param>
-        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string url, string[] CustomProtocols, bool ignoreDefaults)
-        {
-            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, ignoreDefaults);
-        }
-
-        /// <summary>
-        /// Determines if a string is an valid address to somewhere on the Internet.
-        /// </summary>
-        /// <param name="Url">Address to determine.</param>
-        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
-        /// <param name="options">Regex options to check </param>
-        /// <returns><c>true</c> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <c>false</c>.</returns>
-        public static bool ValidUrl(string url, string[] CustomProtocols)
-        {
-            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, false);
-        }
-
-        /// <summary>
         /// Converts Base 64 code to an image.
         /// </summary>
         /// <param name="base64String">Code to convert.</param>
@@ -384,82 +211,6 @@ namespace HTAlt
         }
 
         /// <summary>
-        /// Generates a random text with random characters with length.
-        /// </summary>
-        /// <param name="length">Length of random text./param>
-        /// <returns>Random characters in a string.</returns>
-        public static string GenerateRandomText(int length = 17)
-        {
-            if (length == 0) { throw new ArgumentOutOfRangeException("\"length\" must be greater than 0."); }
-            if (length < 0) { length = length * -1; }
-            if (length >= int.MaxValue) { throw new ArgumentOutOfRangeException("\"length\" must be smaller than the 32-bit integer limit."); }
-            StringBuilder builder = new StringBuilder();
-            Enumerable
-               .Range(65, 26)
-                .Select(e => ((char)e).ToString())
-                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
-                .Concat(Enumerable.Range(0, length - 1).Select(e => e.ToString()))
-                .OrderBy(e => Guid.NewGuid())
-                .Take(length)
-                .ToList().ForEach(e => builder.Append(e));
-            return builder.ToString();
-        }
-
-        /// <summary>
-        /// Gets the base URL of an URL.
-        /// </summary>
-        /// <param name="url">Address for getting the base address.</param>
-        /// <returns>Base URL.</returns>
-        public static string GetBaseURL(string url)
-        {
-            Uri uri = new Uri(url);
-            string baseUri = uri.GetLeftPart(System.UriPartial.Authority);
-            return baseUri;
-        }
-
-        /// <summary>
-        /// Generates a random color.
-        /// </summary>
-        /// <param name="Transparency">Value of random generated color's alpha channel. This parameter is ignored if <paramref name="RandomTransparency"/> is set to true.</param>
-        /// <param name="RandomTransparency">True to randomize Alpha channel, otherwise use <paramref name="Transparency"/>.</param>
-        /// <param name="Seed">Seed of random generator. Default is my current age in seconds (11/03/2001 20:00-22/11/2020 23:20) at the time of writing this parameter.</param>
-        /// <returns>Random color.</returns>
-        public static Color RandomColor(int Transparency = 255, bool RandomTransparency = false,int Seed = 621656400)
-        {
-            Random rand = new Random(Seed);
-            int max = 256;
-            int a = Transparency;
-            if (RandomTransparency)
-            {
-                a = rand.Next(max);
-            }
-            int r = rand.Next(max);
-            int g = rand.Next(max);
-            int b = rand.Next(max);
-            return Color.FromArgb(a, r, g, b);
-        }
-
-        /// <summary>
-        /// Converts Hexadecimal to Color
-        /// </summary>
-        /// <param name="hexString">Hex Code of Color</param>
-        /// <returns>Color representing the hex code.</returns>
-        public static Color HexToColor(string hexString)
-        {
-            return ColorTranslator.FromHtml(hexString);
-        }
-
-        /// <summary>
-        /// Converts Color to Hexadecimal
-        /// </summary>
-        /// <param name="color">Color to convert</param>
-        /// <returns>String representing the hex code of color.</returns>
-        public static string ColorToHex(Color color)
-        {
-            return ColorTranslator.ToHtml(Color.FromArgb(color.ToArgb()));
-        }
-
-        /// <summary>
         /// Gets Image from Url
         /// </summary>
         /// <param name="url">Address of image.</param>
@@ -473,73 +224,6 @@ namespace HTAlt
                     return Image.FromStream(stream);
                 }
             }
-        }
-
-        /// <summary>
-        /// Return <c>true</c> if path directory is empty.
-        /// </summary>
-        /// <param name="path">Directory path to check.</param>
-        /// <returns><c>true</c> if the directory is empty, otherwise <c>false</c>.</returns>
-        public static bool IsDirectoryEmpty(string path)
-        {
-            if (Directory.Exists(path))
-            {
-                if (Directory.GetDirectories(path).Length > 0) { return false; } else { return true; }
-            }
-            else { return true; }
-        }
-
-        /// <summary>
-        /// Gets Brightness level between 0-255.
-        /// </summary>
-        /// <param name="c">Color for checking brightness.</param>
-        /// <returns>Level of brightness between 0-255</returns>
-        public static int Brightness(Color c)
-        {
-            return (int)Math.Sqrt(
-               c.R * c.R * .241 +
-               c.G * c.G * .691 +
-               c.B * c.B * .068);
-        }
-
-        /// <summary>
-        /// Gets Transparency level between 0-255.
-        /// </summary>
-        /// <param name="c">Color for checking transparency.</param>
-        /// <returns>Level of transparency between 0-255</returns>
-        public static int Transparency(Color c)
-        {
-            return Convert.ToInt32(c.A);
-        }
-
-        /// <summary>
-        /// Returns true if the color is not so opaque, owtherwise false.
-        /// </summary>
-        /// <param name="c">Color for checking transparency.</param>
-        /// <returns>Returns true if the color is not so opaque, otherwise false.</returns>
-        public static bool IsTransparencyHigh(Color c)
-        {
-            return Transparency(c) < 130;
-        }
-
-        /// <summary>
-        /// Returns true if the color is opaque, otherwise false.
-        /// </summary>
-        /// <param name="c">Color for checking opacity.</param>
-        /// <returns>Returns true if the color is opaque, otherwise false.</returns>
-        public static bool IsOpaque(Color c)
-        {
-            return Transparency(c) == 255;
-        }
-
-        /// <summary>
-        /// Returns true if the color is invisible due to high transparency.
-        /// </summary>
-        /// <param name="c"></param>
-        /// <returns>Returns true if the color is invisible.</returns>
-        public static bool IsInvisible(Color c)
-        {
-            return Transparency(c) == 0;
         }
 
         /// <summary>
@@ -725,7 +409,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="input">Image to work on.</param>
         /// <param name="texture">Texture to apply.</param>
-        /// <param name="repeatable"><c>true</c> to repeat texture like a tile. <c>false</c> to resize texture to fit to image.</param>
+        /// <param name="repeatable"><sse cref=true"/> to repeat texture like a tile. <sse cref=false"/> to resize texture to fit to image.</param>
         /// <returns>Final result of the image after processing it.</returns>
         public static Image RepaintImage(Image input, Image texture, bool repeatable)
         {
@@ -751,6 +435,299 @@ namespace HTAlt
             return outputImage;
         }
 
+        #endregion Image
+
+        #region Internet & Strings
+
+        /// <summary>
+        /// Creates an Internet shortcut (Windows).
+        /// </summary>
+        /// <param name="Url">Location on Internet.</param>
+        /// <param name="FileLocation">Location of Internet address.</param>
+        public static void CreateInternetShortcut(string Url, string FileLocation)
+        {
+            if (!FileLocation.ToLower().EndsWith("url")) { FileLocation += ".url"; }
+            WriteFile(FileLocation, "[InternetSHortcut]" + Environment.NewLine + "Url=" + Url, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Determines if a site is an actually from Haltroy.
+        /// </summary>
+        /// <param name="SiteUrl">Site URL</param>
+        /// <returns><sse cref=true"/> if <paramref name="SiteUrl"/> is actually a Haltroy website, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidHaltroyWebsite(string SiteUrl)
+        {
+            string Pattern = @"((?:http(s)?\:\/\/)?(.*\.)?haltroy\.com)";
+            Regex Rgx = new Regex(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            return ValidUrl(SiteUrl) && Rgx.IsMatch(SiteUrl.Substring(0, SiteUrl.ToLower().StartsWith("http") ? SiteUrl.IndexOf(@"\", 10) : SiteUrl.IndexOf(@"\")));
+        }
+
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="options">Regex options to check </param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <sse cref=true"/></param>
+        /// <returns><sse cref=true"/> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidUrl(string Url, string[] CustomProtocols, RegexOptions options, bool ignoreDefaults)
+        {
+            if (string.IsNullOrWhiteSpace(Url) || Url.Contains(" "))
+            { return false; }
+            else
+            {
+                if (!ignoreDefaults)
+                {
+                    int startL = CustomProtocols.Length;
+                    Array.Resize<string>(ref CustomProtocols, startL + 7);
+                    CustomProtocols[startL + 1] = "http";
+                    CustomProtocols[startL + 2] = "https";
+                    CustomProtocols[startL + 3] = "about";
+                    CustomProtocols[startL + 4] = "ftp";
+                    CustomProtocols[startL + 5] = "smtp";
+                    CustomProtocols[startL + 6] = "pop";
+                }
+                string CustomProtocolPattern = string.Join("|", CustomProtocols);
+                string Pattern = @"^((" + CustomProtocolPattern + @"):(\/\/)?)|(^([\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$))|(\d{1,4}(\:\d{1,4}){3,7})";
+                Regex Rgx = new Regex(Pattern, options);
+                return Rgx.IsMatch(Url);
+            }
+        }
+
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <returns><sse cref=true"/> if <paramref name="Url"/> is a valid address within default protocol rules, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidUrl(string Url)
+        {
+            string[] defaults = { "http", "https", "about", "ftp", "smtp", "pop" };
+            return ValidUrl(Url, defaults, false);
+        }
+
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="Url">Address to determine.</param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <sse cref=true"/></param>
+        /// <returns><sse cref=true"/> if <paramref name="Url"/> is a valid address within default rules, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidUrl(string Url, bool ignoreDefaults)
+        {
+            string[] empty = { };
+            return ValidUrl(Url, empty, ignoreDefaults);
+        }
+
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="ignoreDefaults">Ignores default protocols if <sse cref=true"/></param>
+        /// <returns><sse cref=true"/> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidUrl(string url, string[] CustomProtocols, bool ignoreDefaults)
+        {
+            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, ignoreDefaults);
+        }
+
+        /// <summary>
+        /// Determines if a string is an valid address to somewhere on the Internet.
+        /// </summary>
+        /// <param name="url">Address to determine.</param>
+        /// <param name="CustomProtocols">Protocols (like <c>http</c>) to detect </param>
+        /// <param name="CustomProtocols">Regex options to check </param>
+        /// <returns><sse cref=true"/> if <paramref name="Url"/> is a valid address within <paramref name="CustomProtocols"/> rules, otherwise <sse cref=false"/>.</returns>
+        public static bool ValidUrl(string url, string[] CustomProtocols)
+        {
+            return ValidUrl(url, CustomProtocols, RegexOptions.Compiled | RegexOptions.IgnoreCase, false);
+        }
+
+        /// <summary>
+        /// Gets the base URL of an URL.
+        /// </summary>
+        /// <param name="url">Address for getting the base address.</param>
+        /// <returns>Base URL.</returns>
+        public static string GetBaseURL(string url)
+        {
+            Uri uri = new Uri(url);
+            string baseUri = uri.GetLeftPart(System.UriPartial.Authority);
+            return baseUri;
+        }
+
+        /// <summary>
+        /// Generates a random text with random characters with length.
+        /// </summary>
+        /// <param name="length">Length of random text./param>
+        /// <returns>Random characters in a string.</returns>
+        public static string GenerateRandomText(int length = 17)
+        {
+            if (length == 0) { throw new ArgumentOutOfRangeException("\"length\" must be greater than 0."); }
+            if (length < 0) { length = length * -1; }
+            if (length >= int.MaxValue) { throw new ArgumentOutOfRangeException("\"length\" must be smaller than the 32-bit integer limit."); }
+            StringBuilder builder = new StringBuilder();
+            Enumerable
+               .Range(65, 26)
+                .Select(e => ((char)e).ToString())
+                .Concat(Enumerable.Range(97, 26).Select(e => ((char)e).ToString()))
+                .Concat(Enumerable.Range(0, length - 1).Select(e => e.ToString()))
+                .OrderBy(e => Guid.NewGuid())
+                .Take(length)
+                .ToList().ForEach(e => builder.Append(e));
+            return builder.ToString();
+        }
+
+        #endregion Internet & Strings
+
+        #region Math
+
+        /// <summary>
+        /// Subtracts the number if possible.
+        /// </summary>
+        /// <param name="number">Integer to work on.</param>
+        /// <param name="subtract">Integer to subtract.</param>
+        /// <param name="limit">Integer for limit. Default is 0.</param>
+        /// <returns>Subtracts the number if subtract is smaller than the number, otherwise returns the number untouched.</returns>
+        public static int SubtractIfNeeded(int number, int subtract, int limit = 0)
+        {
+            return limit == 0 ? (number > subtract ? number - subtract : number) : (number - subtract < limit ? number : number - subtract);
+        }
+
+        /// <summary>
+        /// Add the number if the result is going to be smaller or equal to limit.
+        /// </summary>
+        /// <param name="number">Integer to work on.</param>
+        /// <param name="add">Integer to add.</param>
+        /// <param name="limit">Integer for limit. Default is the 32-bit integer limit.</param>
+        /// <returns>Adds the number if added number is smaller than the limit, otherwise returns the number untouched.</returns>
+        public static int AddIfNeeded(int number, int add, int limit = int.MaxValue)
+        {
+            return number + add > limit ? number : number + add;
+        }
+
+        #endregion Math
+
+        #region Color
+
+        /// <summary>
+        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">Color for determining.</param>
+        /// <param name="white">White/Bright image to return.</param>
+        /// <param name="black">Black/Dark image  to return</param>
+        /// <param name="reverse"><sse cref=true"/> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <sse cref=false"/>.</param>
+        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
+        public static Image SelectImageFromColor(Color color, ref Image white, ref Image black, bool reverse = false)
+        {
+            return SelectImageFromColor(color, ref white, ref black, reverse);
+        }
+
+        /// <summary>
+        /// Returns either <paramref name="black"/> or <paramref name="white"/> by determining with the brightess of <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">Color for determining.</param>
+        /// <param name="white">White/Bright image to return.</param>
+        /// <param name="black">Black/Dark image  to return</param>
+        /// <param name="reverse"><sse cref=true"/> to return <paramref name="black"/> on black/dark images and <paramref name="white"/> for white/bright images, otherwise <sse cref=false"/>.</param>
+        /// <returns><paramref name="black"/> or <paramref name="white"/>.</returns>
+        public static Bitmap SelectBitmapFromColor(Color color, ref Bitmap white, ref Bitmap black, bool reverse = false)
+        {
+            return IsBright(color) ? (reverse ? white : black) : (reverse ? black : white);
+        }
+
+        /// <summary>
+        /// Generates a random color.
+        /// </summary>
+        /// <param name="Transparency">Value of random generated color's alpha channel. This parameter is ignored if <paramref name="RandomTransparency"/> is set to true.</param>
+        /// <param name="RandomTransparency">True to randomize Alpha channel, otherwise use <paramref name="Transparency"/>.</param>
+        /// <param name="Seed">Seed of random generator. Default is 172703.</param>
+        /// <returns>Random color.</returns>
+        public static Color RandomColor(int Transparency = 255, bool RandomTransparency = false, int Seed = 172703)
+        {
+            Random rand = new Random(Seed);
+            int max = 256;
+            int a = Transparency;
+            if (RandomTransparency)
+            {
+                a = rand.Next(max);
+            }
+            int r = rand.Next(max);
+            int g = rand.Next(max);
+            int b = rand.Next(max);
+            return Color.FromArgb(a, r, g, b);
+        }
+
+        /// <summary>
+        /// Converts Hexadecimal to Color
+        /// </summary>
+        /// <param name="hexString">Hex Code of Color</param>
+        /// <returns>Color representing the hex code.</returns>
+        public static Color HexToColor(string hexString)
+        {
+            return ColorTranslator.FromHtml(hexString);
+        }
+
+        /// <summary>
+        /// Converts Color to Hexadecimal
+        /// </summary>
+        /// <param name="color">Color to convert</param>
+        /// <returns>String representing the hex code of color.</returns>
+        public static string ColorToHex(Color color)
+        {
+            return ColorTranslator.ToHtml(Color.FromArgb(color.ToArgb()));
+        }
+
+        /// <summary>
+        /// Gets Brightness level between 0-255.
+        /// </summary>
+        /// <param name="c">Color for checking brightness.</param>
+        /// <returns>Level of brightness between 0-255</returns>
+        public static int Brightness(Color c)
+        {
+            return (int)Math.Sqrt(
+               c.R * c.R * .241 +
+               c.G * c.G * .691 +
+               c.B * c.B * .068);
+        }
+
+        /// <summary>
+        /// Gets Transparency level between 0-255.
+        /// </summary>
+        /// <param name="c">Color for checking transparency.</param>
+        /// <returns>Level of transparency between 0-255</returns>
+        public static int Transparency(Color c)
+        {
+            return Convert.ToInt32(c.A);
+        }
+
+        /// <summary>
+        /// Returns true if the color is not so opaque, owtherwise false.
+        /// </summary>
+        /// <param name="c">Color for checking transparency.</param>
+        /// <returns>Returns true if the color is not so opaque, otherwise false.</returns>
+        public static bool IsTransparencyHigh(Color c)
+        {
+            return Transparency(c) < 130;
+        }
+
+        /// <summary>
+        /// Returns true if the color is opaque, otherwise false.
+        /// </summary>
+        /// <param name="c">Color for checking opacity.</param>
+        /// <returns>Returns true if the color is opaque, otherwise false.</returns>
+        public static bool IsOpaque(Color c)
+        {
+            return Transparency(c) == 255;
+        }
+
+        /// <summary>
+        /// Returns true if the color is invisible due to high transparency.
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>Returns true if the color is invisible.</returns>
+        public static bool IsInvisible(Color c)
+        {
+            return Transparency(c) == 0;
+        }
+
         /// <summary>
         /// Determines which color (Black or White) to use for foreground of the color.
         /// </summary>
@@ -772,44 +749,20 @@ namespace HTAlt
         }
 
         /// <summary>
-        /// Returns <c>true</c> if the color is bright.
+        /// Returns <sse cref=true"/> if the color is bright.
         /// </summary>
         /// <param name="c">Color to work on.</param>
-        /// <returns><c>true</c> if color is bright, otherwise <c>false</c></returns>
+        /// <returns><sse cref=true"/> if color is bright, otherwise <sse cref=false"/></returns>
         public static bool IsBright(Color c)
         {
             return Brightness(c) > 130;
         }
 
         /// <summary>
-        /// Subtracts the number if possible.
-        /// </summary>
-        /// <param name="number">Integer to work on.</param>
-        /// <param name="subtract">Integer to subtract.</param>
-        /// <param name="limit">Integer for limit.</param>
-        /// <returns>Subtracts the number if subtract is smaller than the number, otherwise returns the number untouched.</returns>
-        public static int SubtractIfNeeded(int number, int subtract, int limit = 0)
-        {
-            return limit == 0 ? (number > subtract ? number - subtract : number) : (number - subtract < limit ? number : number - subtract);
-        }
-
-        /// <summary>
-        /// Add the number if the result is going to be smaller or equal to limit.
-        /// </summary>
-        /// <param name="number">Integer to work on.</param>
-        /// <param name="add">Integer to add.</param>
-        /// <param name="limit">Integer for limit.</param>
-        /// <returns>Adds the number if added number is smaller than the limit, otherwise returns the number untouched.</returns>
-        public static int AddIfNeeded(int number, int add, int limit = ((2 ^ 31) - 1))
-        {
-            return number + add > limit ? number : number + add;
-        }
-
-        /// <summary>
         /// Reverses a color.
         /// </summary>
         /// <param name="c">Color to work on.</param>
-        /// <param name="reverseAlpha"><c>true</c> to also reverse Alpha (Transparency) channel.</param>
+        /// <param name="reverseAlpha"><sse cref=true"/> to also reverse Alpha (Transparency) channel.</param>
         /// <returns>Opposite of the color.</returns>
         public static Color ReverseColor(Color c, bool reverseAlpha)
         {
@@ -824,7 +777,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="baseColor">Color to work on.</param>
         /// <param name="value">Shift integer.</param>
-        /// <param name="shiftAlpha"><c>true</c> to also shift Alpha (Transparency) channel.</param>
+        /// <param name="shiftAlpha"><sse cref=true"/> to also shift Alpha (Transparency) channel.</param>
         /// <returns>Color with shifted brightness.</returns>
         public static Color ShiftBrightness(Color baseColor, int value, bool shiftAlpha)
         {
@@ -839,7 +792,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="baseColor">Color to work on.</param>
         /// <param name="value">New brightness value.</param>
-        /// <param name="shiftAlpha"><c>true</c> to also shift Alpha (Transparency) channel.</param>
+        /// <param name="shiftAlpha"><sse cref=true"/> to also shift Alpha (Transparency) channel.</param>
         /// <returns>Color with shifted brightness.</returns>
         public static Color ShiftBrightnessTo(Color baseColor, int value, bool shiftAlpha)
         {
@@ -853,6 +806,73 @@ namespace HTAlt
                 return ShiftBrightness(baseColor, (Brightness(baseColor) - value), shiftAlpha);
             }
         }
+
+        #endregion Color
+
+        #region Files & Directories
+
+        /// <summary>
+        /// Return <sse cref=true"/> if path directory is empty.
+        /// </summary>
+        /// <param name="path">Directory path to check.</param>
+        /// <returns><sse cref=true"/> if the directory is empty, otherwise <sse cref=false"/>.</returns>
+        public static bool IsDirectoryEmpty(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                if (Directory.GetDirectories(path).Length > 0) { return false; } else { return true; }
+            }
+            else { return true; }
+        }
+
+        /// <summary>
+        /// Removes <paramref name="RemoveText"/> from files names in <paramref name="folder"/>.
+        /// </summary>
+        /// <param name="folder">Work folder</param>
+        /// <param name="RemoveText">Text to remove</param>
+        /// <returns><sse cref=true"/> if successfully removes <paramref name="RemoveText"/>, otherwise <sse cref=false"/>.</returns>
+        public static bool RemoveFromFileNames(string folder, string RemoveText)
+        {
+            bool isSuccess = false;
+            int success = 0;
+            int C = 0;
+            List<Exception> errors = new List<Exception>();
+            try
+            {
+                foreach (string x in Directory.GetFiles(folder))
+                {
+                    string pathName = Path.GetFileName(x);
+                    C++;
+                    if (pathName.Contains(RemoveText))
+                    {
+                        string newName = folder + pathName.Replace(RemoveText, "");
+                        try
+                        {
+                            File.Move(x, newName);
+                            success++;
+                        }
+                        catch (Exception ex)
+                        {
+                            errors.Add(ex);
+                        }
+                    }
+                }
+                Console.WriteLine("Count: " + C + " Success: " + success + " Error: " + errors.Count);
+                foreach (Exception ex in errors)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                isSuccess = true;
+                return isSuccess;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        #region Read File
 
         /// <summary>
         /// Reads a file without locking it.
@@ -911,13 +931,17 @@ namespace HTAlt
             return new Bitmap(ReadFile(fileLocation, format: null));
         }
 
+        #endregion Read File
+
+        #region Write File
+
         /// <summary>
         /// Creates and writes a file without locking it.
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="input">Text to write on.</param>
         /// <param name="encode">Rules to follow while writing.</param>
-        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
+        /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, string input, Encoding encode)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -938,7 +962,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="bitmap">Bitmap to write on.</param>
         /// <param name="format">Format to use while writing.</param>
-        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
+        /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Bitmap bitmap, ImageFormat format)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -964,7 +988,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="image">Image to write on.</param>
         /// <param name="format">Format to use while writing.</param>
-        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
+        /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Image image, ImageFormat format)
         {
             Bitmap bitmap = new Bitmap(image);
@@ -976,7 +1000,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="input">Bytes to write on.</param>
-        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
+        /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, byte[] input)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -996,7 +1020,7 @@ namespace HTAlt
         /// </summary>
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="stream">Stream to write on.</param>
-        /// <returns><c>true</c> if successfully writes to file, otherwise throws an exception.</returns>
+        /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
         public static bool WriteFile(string fileLocation, Stream stream)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
@@ -1010,5 +1034,9 @@ namespace HTAlt
             writer.Close();
             return true;
         }
+
+        #endregion Write File
+
+        #endregion Files & Directories
     }
 }

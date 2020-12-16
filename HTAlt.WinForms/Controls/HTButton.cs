@@ -1,6 +1,6 @@
 //MIT License
 //
-//Copyright (c) 2020 Eren "Haltroy" Kanat
+//Copyright (c) 2020-2021 Eren "Haltroy" Kanat
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -139,6 +139,7 @@ namespace HTAlt.WinForms
         #endregion HTControls
 
         private bool _AutoColor = true;
+
         /// <summary>
         /// <c>true</c> if <see cref="HTButton"/> is auto-colored from shades of <see cref="Control.BackColor"/>, otherwise <c>false</c>.
         /// </summary>
@@ -240,7 +241,8 @@ namespace HTAlt.WinForms
                 if (!_AutoColor)
                 {
                     _NormalColor = value;
-                }else
+                }
+                else
                 {
                     _NormalColor = Tools.ShiftBrightness(BackColor, 20, false);
                 }
