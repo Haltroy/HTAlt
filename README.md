@@ -2,11 +2,11 @@
 |Standart|WinForms|
 |--|--|
 |[![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.Standart)|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.WinForms)|
-|[![GitHub](https://img.shields.io/github/downloads/haltroy/htalt/b1.6.2/HTAlt.Standart.zip?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.6.2/HTAlt.Standart.zip)|[![GitHub)](https://img.shields.io/github/downloads/haltroy/htalt/b1.6.2/HTAlt.WinForms.zip?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.6.2/HTAlt.WinForms.zip)|
+|[![GitHub](https://img.shields.io/github/downloads/haltroy/htalt/b1.6.3/HTAlt.Standart.zip?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.6.3/HTAlt.Standart.zip)|[![GitHub)](https://img.shields.io/github/downloads/haltroy/htalt/b1.6.3/HTAlt.WinForms.zip?label=GitHub&style=for-the-badge)](https://github.com/Haltroy/HTAlt/releases/download/b1.6.3/HTAlt.WinForms.zip)|
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Korot`](https://github.com/haltroy/korot) and upcoming [`Backupster`](https://haltroy.com/Backupster.html).
 
-Latest Stable Version: [`b1.6.2`](https://github.com/Haltroy/HTAlt/releases/tag/b1.6.2)
+Latest Stable Version: [`b1.6.3`](https://github.com/Haltroy/HTAlt/releases/tag/b1.6.3)
 
 ## Features
  - Tab (Control)
@@ -18,13 +18,15 @@ Latest Stable Version: [`b1.6.2`](https://github.com/Haltroy/HTAlt/releases/tag/
  - InputBox (Form)
  - ProgressBar (Control)
  - Tools (Class)
+ - Code Extensions
 
  ## Release Branches
 
 | Branch                                                               | .Net | Status | Release Time |
 |----------------------------------------------------------------------|------|----------|-------------------|
 | [`master`](https://github.com/haltroy/htalt)              | Standart 2.0 & Framework 4.6.1 | Development | (•_•) |
-| [`b1.6.2`](https://github.com/haltroy/htalt/tree/b1.6.2) | Standart 2.0 & Framework 4.6.1 | **Latest Release** | 22 November 2020 |
+| [`b1.6.3`](https://github.com/haltroy/htalt/tree/b1.6.3) | Standart 2.0 & Framework 4.6.1 | **Latest Release** | 16 December 2020 |
+| [`b1.6.2`](https://github.com/haltroy/htalt/tree/b1.6.2) | Standart 2.0 & Framework 4.6.1 | Unsupported | 22 November 2020 |
 | [`b1.6.1`](https://github.com/haltroy/htalt/tree/b1.6.1) | Standart 2.0 & Framework 4.6.1 | Unsupported | 21 November 2020 |
 | [`b1.6.0`](https://github.com/haltroy/htalt/tree/b1.6.0) | Standart 2.0 & Framework 4.6.1 | Unsupported | 24 September 2020 |
 | [`b1.5.1`](https://github.com/haltroy/htalt/tree/b1.5.1) | Standart 2.0 & Framework 4.6.1 | Unsupported | 29 August 2020 |
