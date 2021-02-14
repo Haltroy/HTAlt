@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haltroy")]
 [assembly: AssemblyProduct("HTAlt.WinForms.Example")]
-[assembly: AssemblyCopyright("Copyright © Haltroy 2020")]
+[assembly: AssemblyCopyright("Copyright © Haltroy 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -24,6 +24,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace HTAlt
 {
@@ -139,6 +140,33 @@ namespace HTAlt
         public static void RemoveStringFromFileNames(this string str, string stringToRemove)
         {
             Tools.RemoveFromFileNames(str, stringToRemove);
+        }
+        /// <summary>
+        /// Gets size of the directory located in this string.
+        /// </summary>
+        /// <param name="dir">Directory</param>
+        /// <returns><see cref="long"/></returns>
+        public static long GetDirectorySize(this string dir)
+        {
+            return Tools.DirectorySize(new DirectoryInfo(dir));
+        }
+        /// <summary>
+        /// Gets size of this directory.
+        /// </summary>
+        /// <param name="dir">Directory</param>
+        /// <returns><see cref="long"/></returns>
+        public static long Size(this DirectoryInfo dir)
+        {
+            return Tools.DirectorySize(dir);
+        }
+        /// <summary>
+        /// Detects if user can access <paramref name="dir"/> with try {} method.
+        /// </summary>
+        /// <param name="dir">Directory</param>
+        /// <returns><see cref="true"/> if can access to folder, <seealso cref="false"/> if user has no access to <paramref name="dir"/> and throws <see cref="Exception"/> on other scenarios.</returns>
+        public static bool HasWriteAccess(this string dir)
+        {
+            return Tools.HasWriteAccess(dir);
         }
 
         #endregion Files & Directories
@@ -442,32 +470,7 @@ namespace HTAlt
         /// <returns>An array of <see cref="int"/> containing prime multiplier <see cref="int"/> list.</returns>
         public static int[] PrimeMultipliers(this int n)
         {
-            // Teşekkürler : https://www.pinareser.com/c-ile-girilen-sayinin-asal-carpanlara-ayrilmasi/
-            int[] asallar = new int[] { };
-            int asal = 2;
-            int kontrol = 0;
-            while (n > 1)
-            {
-                if (n % asal == 0)
-                {
-                    if (asal != kontrol)
-                    {
-                        kontrol = asal;
-                        System.Array.Resize<int>(ref asallar, asallar.Length + 1);
-                        asallar[asallar.Length - 1] = asal;
-                        n = n / asal;
-                    }
-                    else
-                    {
-                        n = n / asal;
-                    }
-                }
-                else
-                {
-                    asal++;
-                }
-            }
-            return asallar;
+            return Tools.PrimeMultipliers(n);
         }
 
         /// <summary>
@@ -479,8 +482,7 @@ namespace HTAlt
         /// <returns><paramref name="n2"/> dividable close number of <paramref name="n1"/>.</returns>
         public static int MakeItDividable(this int n1, int n2, int balancePoint = 300)
         {
-            int kalan = n1 % n2;
-            return n1 < balancePoint ? n1 + (n2 - kalan) : n1 - kalan;
+            return Tools.MakeItDividable(n1, n2, balancePoint);
         }
 
         /// <summary>
@@ -491,8 +493,7 @@ namespace HTAlt
         /// <returns>Result of devision.</returns>
         public static int Divide(this int n1, int divider)
         {
-            int dividable = n1.MakeItDividable(divider);
-            return dividable / divider;
+            return Tools.Divide(n1, divider);
         }
 
         /// <summary>
@@ -503,15 +504,7 @@ namespace HTAlt
         /// <returns><see cref="int"/> representative of Largest Common Division between <paramref name="n1"/> and <paramref name="n2"/>.</returns>
         public static int LargestCommonDivision(this int n1, int n2)
         {
-            // Teşekkürler: https://www.bilisimogretmeni.com/visual-studio-c/c-dersleri-obeb-okek-bulma-hesaplama.html
-            while (n1 != n2)
-            {
-                if (n1 > n2)
-                    n1 = n1 - n2;
-                if (n2 > n1)
-                    n2 = n2 - n1;
-            }
-            return n1;
+            return Tools.LargestCommonDivision(n1, n2);
         }
         /// <summary>
         /// Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.
@@ -521,8 +514,7 @@ namespace HTAlt
         /// <returns><see cref="int"/> representative of Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.</returns>
         public static int SmallestOfCommonDenominator(this int n1, int n2)
         {
-            // Teşekkürler: https://www.bilisimogretmeni.com/visual-studio-c/c-dersleri-obeb-okek-bulma-hesaplama.html
-            return (n1 * n2) / n1.LargestCommonDivision(n2);
+            return Tools.SmallestOfCommonDenominator(n1, n2);
         }
 
 
@@ -533,8 +525,7 @@ namespace HTAlt
         /// <returns><see cref="int"/> as the biggest prime multiplier of <paramref name="n"/>.</returns>
         public static int BiggestPrimeMultiplier(this int n)
         {
-            int[] asallar = n.PrimeMultipliers();
-            return asallar[asallar.Length - 1];
+            return Tools.BiggestPrimeMultiplier(n);
         }
         /// <summary>
         /// Smallest prime multiplier number of <paramref name="n"/>.
@@ -543,8 +534,7 @@ namespace HTAlt
         /// <returns><see cref="int"/> as the smallest prime multiplier of <paramref name="n"/>.</returns>
         public static int SmallestPrimeMultiplier(this int n)
         {
-            int[] asallar = n.PrimeMultipliers();
-            return asallar[0];
+            return Tools.SmallestPrimeMultiplier(n);
         }
 
         /// <summary>
@@ -605,6 +595,36 @@ namespace HTAlt
         public static string GetBaseUrl(this string str)
         {
             return Tools.GetBaseURL(str);
+        }
+
+        /// <summary>
+        /// Prettifies XML code.
+        /// Thanks to S M Kamran & Bakudan from StackOverflow
+        /// </summary>
+        /// <param name="xml">XML code</param>
+        /// <returns>Prettified <paramref name="xml"/></returns>
+        public static string BeautifyXML(this string xml)
+        {
+            return Tools.BeautifyXML(xml);
+        }
+
+        /// <summary>
+        /// Prettifies XML code.
+        /// </summary>
+        /// <param name="node">XML node</param>
+        /// <returns>Prettified <paramref name="node"/></returns>
+        public static string BeautifyXML(this XmlNode node)
+        {
+            return Tools.BeautifyXML(node.OuterXml);
+        }
+        /// <summary>
+        /// Prettifies XML code.
+        /// </summary>
+        /// <param name="doc">XML Document</param>
+        /// <returns>Prettified <paramref name="doc"/></returns>
+        public static string BeautifyXML(this XmlDocument doc)
+        {
+            return Tools.BeautifyXML(doc.DocumentElement.OuterXml);
         }
 
         /// <summary>
@@ -708,6 +728,16 @@ namespace HTAlt
         public static Bitmap Resize(this Image image, int width, int height)
         {
             return Tools.ResizeImage(image, width, height);
+        }
+
+        /// <summary>
+        /// Converts <paramref name="img"/> to an <see cref="Icon"/>
+        /// </summary>
+        /// <param name="image">Image</param>
+        /// <returns><see cref="Icon"/></returns>
+        public static Icon ToIcon(this Image image)
+        {
+            return Tools.IconFromImage(image);
         }
 
         /// <summary>

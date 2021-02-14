@@ -34,10 +34,57 @@ namespace HTAlt
     /// <summary>
     /// Custom class to handle custom actions and events.
     /// </summary>
-    public class Tools
+    public static class Tools
     {
         #region Image
+        /// <summary>
+        /// Converts <paramref name="img"/> to an <see cref="Icon"/>
+        /// Thanks to Hans Passant from StackOverflow.
+        /// https://stackoverflow.com/a/21389253
+        /// </summary>
+        /// <param name="img">Convertion <see cref="Image"/></param>
+        /// <returns><seealso cref="Icon"/></returns>
+        public static System.Drawing.Icon IconFromImage(System.Drawing.Image img)
+        {
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            System.IO.BinaryWriter bw = new System.IO.BinaryWriter(ms);
+            // Header
+            bw.Write((short)0);   // 0 : reserved
+            bw.Write((short)1);   // 2 : 1=ico, 2=cur
+            bw.Write((short)1);   // 4 : number of images
+                                  // Image directory
+            int w = img.Width;
+            if (w >= 256)
+            {
+                w = 0;
+            }
 
+            bw.Write((byte)w);    // 0 : width of image
+            int h = img.Height;
+            if (h >= 256)
+            {
+                h = 0;
+            }
+
+            bw.Write((byte)h);    // 1 : height of image
+            bw.Write((byte)0);    // 2 : number of colors in palette
+            bw.Write((byte)0);    // 3 : reserved
+            bw.Write((short)0);   // 4 : number of color planes
+            bw.Write((short)0);   // 6 : bits per pixel
+            long sizeHere = ms.Position;
+            bw.Write(0);     // 8 : image size
+            int start = (int)ms.Position + 4;
+            bw.Write(start);      // 12: offset of image data
+                                  // Image data
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            int imageSize = (int)ms.Position - start;
+            ms.Seek(sizeHere, System.IO.SeekOrigin.Begin);
+            bw.Write(imageSize);
+            ms.Seek(0, System.IO.SeekOrigin.Begin);
+
+            // And load it
+            return new System.Drawing.Icon(ms);
+        }
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="height"/> and <paramref name="width"/>.
         /// </summary>
@@ -463,6 +510,49 @@ namespace HTAlt
         }
 
         /// <summary>
+        /// Prettifies XML code.
+        /// Thanks to S M Kamran & Bakudan from StackOverflow
+        /// https://stackoverflow.com/a/1123731
+        /// </summary>
+        /// <param name="xml">XML code</param>
+        /// <returns>Prettified <paramref name="xml"/></returns>
+        public static string BeautifyXML(string xml)
+        {
+            string result = "";
+
+            System.IO.MemoryStream mStream = new System.IO.MemoryStream();
+            System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter(mStream, System.Text.Encoding.Unicode);
+            System.Xml.XmlDocument document = new System.Xml.XmlDocument();
+
+            // Load the XmlDocument with the XML.
+            document.LoadXml(xml);
+
+            writer.Formatting = System.Xml.Formatting.Indented;
+
+            // Write the XML into a formatting XmlTextWriter
+            document.WriteContentTo(writer);
+            writer.Flush();
+            mStream.Flush();
+
+            // Have to rewind the MemoryStream in order to read
+            // its contents.
+            mStream.Position = 0;
+
+            // Read MemoryStream contents into a StreamReader.
+            System.IO.StreamReader sReader = new System.IO.StreamReader(mStream);
+
+            // Extract the text from the StreamReader.
+            string formattedXml = sReader.ReadToEnd();
+
+            result = formattedXml;
+
+            mStream.Close();
+            writer.Close();
+
+            return result;
+        }
+
+        /// <summary>
         /// Determines if a string is an valid address to somewhere on the Internet.
         /// </summary>
         /// <param name="Url">Address to determine.</param>
@@ -578,6 +668,15 @@ namespace HTAlt
         #endregion Internet & Strings
 
         #region Math
+        /// <summary>
+        /// Trims all non-numeric chars (except ",","." and "-")
+        /// </summary>
+        /// <param name="input">String</param>
+        /// <returns><see cref="string"/></returns>
+        public static string TrimToNumbers(this string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c) || c == ',' || c == '.' || c == '-').ToArray());
+        }
 
         /// <summary>
         /// Subtracts the number if possible.
@@ -602,7 +701,122 @@ namespace HTAlt
         {
             return number + add > limit ? number : number + add;
         }
+        /// <summary>
+        /// Finds the prime multiplier numbers of <paramref name="n"/>.
+        /// </summary>
+        /// <param name="n"><see cref="int"/> to search in.</param>
+        /// <returns>An array of <see cref="int"/> containing prime multiplier <see cref="int"/> list.</returns>
+        public static int[] PrimeMultipliers(int n)
+        {
+            // Teşekkürler : https://www.pinareser.com/c-ile-girilen-sayinin-asal-carpanlara-ayrilmasi/
+            int[] asallar = new int[] { };
+            int asal = 2;
+            int kontrol = 0;
+            while (n > 1)
+            {
+                if (n % asal == 0)
+                {
+                    if (asal != kontrol)
+                    {
+                        kontrol = asal;
+                        Array.Resize<int>(ref asallar, asallar.Length + 1);
+                        asallar[asallar.Length - 1] = asal;
+                        n = n / asal;
+                    }
+                    else
+                    {
+                        n = n / asal;
+                    }
+                }
+                else
+                {
+                    asal++;
+                }
+            }
+            return asallar;
+        }
 
+        /// <summary>
+        /// Gets a <paramref name="n2"/> dividable <see cref="int"/> from <paramref name="n1"/>.
+        /// </summary>
+        /// <param name="n1"><see cref="int"/> representative of a main number</param>
+        /// <param name="n2"><see cref="int"/> representative of a divider number</param>
+        /// <param name="balancePoint">Adds remainder of divison if <paramref name="n1"/> is smaller than this paramater. Otherwise, subtracts from <paramref name="n1"/>.</param>
+        /// <returns><paramref name="n2"/> dividable close number of <paramref name="n1"/>.</returns>
+        public static int MakeItDividable(int n1, int n2, int balancePoint = 300)
+        {
+            int kalan = n1 % n2;
+            return n1 < balancePoint ? n1 + (n2 - kalan) : n1 - kalan;
+        }
+
+        /// <summary>
+        /// Divides <paramref name="n1"/> to <paramref name="divider"/> without remainder.
+        /// </summary>
+        /// <param name="n1">Main number.</param>
+        /// <param name="divider">Divider number.</param>
+        /// <returns>Result of devision.</returns>
+        public static int Divide(int n1, int divider)
+        {
+            int dividable = MakeItDividable(n1, divider);
+            return dividable / divider;
+        }
+
+        /// <summary>
+        /// Largest Common Division between <paramref name="n1"/> and <paramref name="n2"/>.
+        /// </summary>
+        /// <param name="n1"><see cref="int"/> representative of a number</param>
+        /// <param name="n2"><see cref="int"/> representative of a number</param>
+        /// <returns><see cref="int"/> representative of Largest Common Division between <paramref name="n1"/> and <paramref name="n2"/>.</returns>
+        public static int LargestCommonDivision(int n1, int n2)
+        {
+            // Teşekkürler: https://www.bilisimogretmeni.com/visual-studio-c/c-dersleri-obeb-okek-bulma-hesaplama.html
+            while (n1 != n2)
+            {
+                if (n1 > n2)
+                {
+                    n1 = n1 - n2;
+                }
+
+                if (n2 > n1)
+                {
+                    n2 = n2 - n1;
+                }
+            }
+            return n1;
+        }
+        /// <summary>
+        /// Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.
+        /// </summary>
+        /// <param name="n1"><see cref="int"/> representative of a number</param>
+        /// <param name="n2"><see cref="int"/> representative of a number</param>
+        /// <returns><see cref="int"/> representative of Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.</returns>
+        public static int SmallestOfCommonDenominator(int n1, int n2)
+        {
+            // Teşekkürler: https://www.bilisimogretmeni.com/visual-studio-c/c-dersleri-obeb-okek-bulma-hesaplama.html
+            return (n1 * n2) / n1.LargestCommonDivision(n2);
+        }
+
+
+        /// <summary>
+        /// Biggest prime multiplier number of <paramref name="n"/>.
+        /// </summary>
+        /// <param name="n"><see cref="int"/> to search in.</param>
+        /// <returns><see cref="int"/> as the biggest prime multiplier of <paramref name="n"/>.</returns>
+        public static int BiggestPrimeMultiplier(int n)
+        {
+            int[] asallar = n.PrimeMultipliers();
+            return asallar[asallar.Length - 1];
+        }
+        /// <summary>
+        /// Smallest prime multiplier number of <paramref name="n"/>.
+        /// </summary>
+        /// <param name="n"><see cref="int"/> to search in.</param>
+        /// <returns><see cref="int"/> as the smallest prime multiplier of <paramref name="n"/>.</returns>
+        public static int SmallestPrimeMultiplier(int n)
+        {
+            int[] asallar = n.PrimeMultipliers();
+            return asallar[0];
+        }
         #endregion Math
 
         #region Color
@@ -826,6 +1040,62 @@ namespace HTAlt
         }
 
         /// <summary>
+        /// Gets directory size.
+        /// Thanks to hao & Alexandre Pepin from StackOverflow
+        /// https://stackoverflow.com/a/468131
+        /// </summary>
+        /// <param name="d">Directory</param>
+        /// <returns><see cref="long"/></returns>
+        public static long DirectorySize(System.IO.DirectoryInfo d)
+        {
+            long size = 0;
+            // Add file sizes.
+            System.IO.FileInfo[] fis = d.GetFiles();
+            foreach (System.IO.FileInfo fi in fis)
+            {
+                size += fi.Length;
+            }
+            // Add subdirectory sizes.
+            System.IO.DirectoryInfo[] dis = d.GetDirectories();
+            foreach (System.IO.DirectoryInfo di in dis)
+            {
+                size += DirectorySize(di);
+            }
+            return size;
+        }
+        /// <summary>
+        /// Detects if user can access <paramref name="dir"/> by try{} method.
+        /// </summary>
+        /// <param name="dir">Directory</param>
+        /// <returns><see cref="true"/> if can access to folder, <seealso cref="false"/> if user has no access to <paramref name="dir"/> and throws <see cref="Exception"/> on other scenarios.</returns>
+        public static bool HasWriteAccess(string dir)
+        {
+            try
+            {
+                string random = HTAlt.Tools.GenerateRandomText(17);
+                HTAlt.Tools.WriteFile(dir + "\\HTALT.TEST", random, System.Text.Encoding.Unicode);
+                string file = HTAlt.Tools.ReadFile(dir + "\\HTALT.TEST", System.Text.Encoding.Unicode);
+                System.IO.File.Delete(dir + "\\HTALT.TEST");
+                if (file == random)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Test file \"" + dir + "\\HTALT.TEST" + "\" was altered.");
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Removes <paramref name="RemoveText"/> from files names in <paramref name="folder"/>.
         /// </summary>
         /// <param name="folder">Work folder</param>
@@ -882,11 +1152,26 @@ namespace HTAlt
         /// <returns>Text inside the file.</returns>
         public static string ReadFile(string fileLocation, Encoding encode)
         {
-            FileStream fs = new FileStream(fileLocation, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            StreamReader sr = new StreamReader(fs, encode);
+            StreamReader sr = new StreamReader(ReadFile(fileLocation), encode);
             string result = sr.ReadToEnd();
             sr.Close();
             return result;
+        }
+
+        /// <summary>
+        /// Reads a file without locking it.
+        /// </summary>
+        /// <param name="fileLocation">Location of the file.</param>
+        /// <param name="ignored">Rules for reading the file.</param>
+        /// <returns>Bytes inside the file.</returns>
+        public static byte[] ReadFile(string fileLocation, bool ignored)
+        {
+            ignored = !ignored;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                ReadFile(fileLocation).CopyTo(ms);
+                return ms.ToArray();
+            }
         }
 
         /// <summary>
@@ -908,9 +1193,10 @@ namespace HTAlt
         /// <returns>Image from location.</returns>
         public static Image ReadFile(string fileLocation, ImageFormat format)
         {
-            if (format != null)
+            // Does absolutely nothing but still required.
+            if (format != ImageFormat.Png)
             {
-                format = null;
+                format = ImageFormat.Png;
             }
             Image img = Image.FromStream(ReadFile(fileLocation));
             return img;
@@ -924,7 +1210,8 @@ namespace HTAlt
         /// <returns>Bitmap from location.</returns>
         public static Bitmap ReadFile(string fileLocation, string ignored)
         {
-            if (!string.IsNullOrWhiteSpace(ignored))
+            // Does absolutely nothing but still reqired.
+            if (ignored != "")
             {
                 ignored = "";
             }
@@ -942,7 +1229,7 @@ namespace HTAlt
         /// <param name="input">Text to write on.</param>
         /// <param name="encode">Rules to follow while writing.</param>
         /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
-        public static bool WriteFile(string fileLocation, string input, Encoding encode)
+        public static void WriteFile(string fileLocation, string input, Encoding encode)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
             if (File.Exists(fileLocation))
@@ -950,10 +1237,12 @@ namespace HTAlt
                 File.Delete(fileLocation);
             }
             File.Create(fileLocation).Dispose();
-            FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(encode.GetBytes(input), 0, encode.GetBytes(input).Length);
-            writer.Close();
-            return true;
+            if (ReadFile(fileLocation, encode) != input)
+            {
+                FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+                writer.Write(encode.GetBytes(input), 0, encode.GetBytes(input).Length);
+                writer.Close();
+            }
         }
 
         /// <summary>
@@ -963,7 +1252,7 @@ namespace HTAlt
         /// <param name="bitmap">Bitmap to write on.</param>
         /// <param name="format">Format to use while writing.</param>
         /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
-        public static bool WriteFile(string fileLocation, Bitmap bitmap, ImageFormat format)
+        public static void WriteFile(string fileLocation, Bitmap bitmap, ImageFormat format)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
             if (File.Exists(fileLocation))
@@ -971,15 +1260,16 @@ namespace HTAlt
                 File.Delete(fileLocation);
             }
             File.Create(fileLocation).Dispose();
-            File.Create(fileLocation).Dispose();
-            FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
-            MemoryStream memoryStream = new MemoryStream();
-            bitmap.Save(memoryStream, format);
-            //memoryStream.CopyTo(writer);
-            writer.Write(memoryStream.ToArray(), 0, Convert.ToInt32(memoryStream.Length));
-            memoryStream.Close();
-            writer.Close();
-            return true;
+            if (ReadFile(fileLocation, "") != bitmap)
+            {
+                FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+                MemoryStream memoryStream = new MemoryStream();
+                bitmap.Save(memoryStream, format);
+                //memoryStream.CopyTo(writer);
+                writer.Write(memoryStream.ToArray(), 0, Convert.ToInt32(memoryStream.Length));
+                memoryStream.Close();
+                writer.Close();
+            }
         }
 
         /// <summary>
@@ -989,10 +1279,10 @@ namespace HTAlt
         /// <param name="image">Image to write on.</param>
         /// <param name="format">Format to use while writing.</param>
         /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
-        public static bool WriteFile(string fileLocation, Image image, ImageFormat format)
+        public static void WriteFile(string fileLocation, Image image, ImageFormat format)
         {
             Bitmap bitmap = new Bitmap(image);
-            return WriteFile(fileLocation, bitmap, format);
+            WriteFile(fileLocation, bitmap, format);
         }
 
         /// <summary>
@@ -1001,7 +1291,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="input">Bytes to write on.</param>
         /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
-        public static bool WriteFile(string fileLocation, byte[] input)
+        public static void WriteFile(string fileLocation, byte[] input)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
             if (File.Exists(fileLocation))
@@ -1009,10 +1299,12 @@ namespace HTAlt
                 File.Delete(fileLocation);
             }
             File.Create(fileLocation).Dispose();
-            FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
-            writer.Write(input, 0, input.Length);
-            writer.Close();
-            return true;
+            if (ReadFile(fileLocation, true) != input)
+            {
+                FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+                writer.Write(input, 0, input.Length);
+                writer.Close();
+            }
         }
 
         /// <summary>
@@ -1021,7 +1313,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="stream">Stream to write on.</param>
         /// <returns><sse cref=true"/> if successfully writes to file, otherwise throws an exception.</returns>
-        public static bool WriteFile(string fileLocation, Stream stream)
+        public static void WriteFile(string fileLocation, Stream stream)
         {
             if (!Directory.Exists(new FileInfo(fileLocation).DirectoryName)) { Directory.CreateDirectory(new FileInfo(fileLocation).DirectoryName); }
             if (File.Exists(fileLocation))
@@ -1029,10 +1321,12 @@ namespace HTAlt
                 File.Delete(fileLocation);
             }
             File.Create(fileLocation).Dispose();
-            FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
-            stream.CopyTo(writer);
-            writer.Close();
-            return true;
+            if (ReadFile(fileLocation) != stream)
+            {
+                FileStream writer = new FileStream(fileLocation, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+                stream.CopyTo(writer);
+                writer.Close();
+            }
         }
 
         #endregion Write File
