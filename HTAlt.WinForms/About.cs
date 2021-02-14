@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+
+Copyright © 2021 Eren "Haltroy" Kanat
+
+Use of this source code is governed by an MIT License that can be found in github.com/Haltroy/HTAlt/blob/master/LICENSE
+
+*/
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 

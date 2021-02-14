@@ -32,5 +32,5 @@ Current Features:
 -Code Extensions
 
 This Project is used in these Haltroy projects:
--Korot (Desktop)
--Backupster (Desktop)
+-Yorot
+-Backupster

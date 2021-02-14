@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+
+Copyright © 2021 Eren "Haltroy" Kanat
+
+Use of this source code is governed by an MIT License that can be found in github.com/Haltroy/HTAlt/blob/master/LICENSE
+
+*/
+
+using System;
 using System.ComponentModel;
 
 namespace HTAlt
@@ -8,8 +16,8 @@ namespace HTAlt
     /// </summary>
     public class HTInfo
     {
-        private static readonly string version = "0.1.6.3";
-        private static readonly string codeName = "Bothersome";
+        private static readonly string version = "0.1.6.4";
+        private static readonly string codeName = "Bothersome II";
         private static readonly string name = "HTAlt";
         private static readonly string link = "https://github.com/haltroy/HTAlt";
         private static readonly string developer = "Haltroy";
