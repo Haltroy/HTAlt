@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HTAlt.Standart\HTAlt.Standart.csproj" />
+    <ProjectReference Include="..\HTAlt.WinForms.Core\HTAlt.WinForms.Core.csproj" />
+  </ItemGroup>
+
+</Project>

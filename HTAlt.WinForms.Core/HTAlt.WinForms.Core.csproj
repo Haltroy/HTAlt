@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Haltroy</Authors>
+    <Company>Haltroy</Company>
+    <Version>0.1.7.4</Version>
+    <Description>Haltroy's alternatives.</Description>
+    <PackageProjectUrl>https://github.com/haltroy/htalt</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="license.txt" />
+    <None Remove="readme.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HTAlt.Standart\HTAlt.Standart.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\HTButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\HTListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\HTProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\HTSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\HTSwitch.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\HTTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Dialogs\HTInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\HTInputBox.Designer.cs">
+      <DependentUpon>HTInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Dialogs\HTMsgBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\HTMsgBox.Designer.cs">
+      <DependentUpon>HTMsgBox.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Dialogs\HTProgressBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialogs\HTProgressBox.Designer.cs">
+      <DependentUpon>HTProgressBox.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Dialogs\HTInputBox.resx">
+      <DependentUpon>HTInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\HTMsgBox.resx">
+      <DependentUpon>HTMsgBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\HTProgressBox.resx">
+      <DependentUpon>HTProgressBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
