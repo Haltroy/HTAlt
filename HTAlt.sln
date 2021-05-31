@@ -10,13 +10,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTAlt.Standart", "HTAlt.Sta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForms Framework", "WinForms Framework", "{C43759A6-AF84-44EC-9936-2BBD82CE39A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HT-Admin", "HT.Admin\HT-Admin.csproj", "{A511C1FF-5592-426F-B2A1-FFD120C89602}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForms Core", "WinForms Core", "{53419FFE-CE58-4DBA-AF4E-3F92600FC303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.WinForms.Core", "HTAlt.WinForms.Core\HTAlt.WinForms.Core.csproj", "{4C291EEB-464E-4A73-A0CD-5ACA6D7585AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTAlt.WinForms.Core", "HTAlt.WinForms.Core\HTAlt.WinForms.Core.csproj", "{4C291EEB-464E-4A73-A0CD-5ACA6D7585AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTAlt.WinForms.Core.Test", "HTAlt.WinForms.Core.Test\HTAlt.WinForms.Core.Test.csproj", "{991BEF27-9762-4A59-B0A1-ECED0CEC2063}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTAlt.WinForms.Core.Test", "HTAlt.WinForms.Core.Test\HTAlt.WinForms.Core.Test.csproj", "{991BEF27-9762-4A59-B0A1-ECED0CEC2063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,14 +48,6 @@ Global
 		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|x86.ActiveCfg = Release|Any CPU
 		{FD372B88-D2DF-4420-AC75-9F70E0F3032E}.Release|x86.Build.0 = Release|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Debug|x86.Build.0 = Debug|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Release|x86.ActiveCfg = Release|Any CPU
-		{A511C1FF-5592-426F-B2A1-FFD120C89602}.Release|x86.Build.0 = Release|Any CPU
 		{4C291EEB-464E-4A73-A0CD-5ACA6D7585AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C291EEB-464E-4A73-A0CD-5ACA6D7585AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C291EEB-464E-4A73-A0CD-5ACA6D7585AF}.Debug|x86.ActiveCfg = Debug|Any CPU

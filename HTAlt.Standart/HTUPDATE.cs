@@ -319,11 +319,12 @@ namespace HTAlt
                 OnBeforeUpdate(this, new EventArgs());
                 Log("OnBeforeUpdate() ended...", LogEventType.Info);
             }
-            if (force || CurrentVer != LatestVer)
+            int uType = GetUpdateType;
+            if (force || uType > 0)
             {
                 HTUPDATE_Arch download = null;
-                List<HTUPDATE_Arch> arch = LatestVersion.FindArch(Arch);
-                HTUPDATE_Arch noarch = LatestVersion.FindNoArch();
+                List<HTUPDATE_Arch> arch = uType > 1 ? LatestLTSVersion.FindArch(Arch) : LatestVersion.FindArch(Arch);
+                HTUPDATE_Arch noarch = uType > 1 ? LatestLTSVersion.FindNoArch() : LatestVersion.FindNoArch();
                 if (arch.Count > 0)
                 {
                     download = arch[0];
@@ -341,6 +342,7 @@ namespace HTAlt
                 }
                 if (download != null)
                 {
+                    bool minimal = CurrentVer > MinimalUpdateID;
                     string tempFile = System.IO.Path.Combine(TempFolder, Name + "-" + download.Version.Name + "-" + download.Arch + ".hup");
                     string backupFile = System.IO.Path.Combine(TempFolder, Name + "-backup.hup");
                     System.Net.WebClient webc = new System.Net.WebClient();
@@ -357,26 +359,64 @@ namespace HTAlt
                         }
                         else
                         {
-                            if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
+                            if (minimal)
                             {
-                                string stat = "";
-                                Log("Verifying...");
-                                if (!string.IsNullOrWhiteSpace(download.MD5Hash))
+                                if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash) || !string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
                                 {
-                                    stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
+                                    string stat = "";
+                                    Log("Verifying...");
+                                    if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash))
+                                    {
+                                        stat += tempFile.VerifyFile(download.MinimalMD5Hash) ? "m" : "M";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
+                                    {
+                                        stat += tempFile.VerifyFile(download.MinimalSHA256Hash, true) ? "s" : "S";
+                                    }
+                                    if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
+                                    {
+                                        Log("Verified.");
+                                    }
+                                    else if (string.IsNullOrWhiteSpace(stat))
+                                    {
+                                        Log("Cannot verify package, unknown error occurred.");
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        Log("Cannot verify package, different hash.");
+                                        return;
+                                    }
                                 }
-                                if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
                                 {
-                                    stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
-                                }
-                                if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                {
-                                    Log("Verified.");
-                                }
-                                else
-                                {
-                                    Log("Cannot verify package, different hash.");
-                                    return;
+                                    string stat = "";
+                                    Log("Verifying...");
+                                    if (!string.IsNullOrWhiteSpace(download.MD5Hash))
+                                    {
+                                        stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
+                                    {
+                                        stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
+                                    }
+                                    if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
+                                    {
+                                        Log("Verified.");
+                                    }
+                                    else if (string.IsNullOrWhiteSpace(stat))
+                                    {
+                                        Log("Cannot verify package, unknown error occurred.");
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        Log("Cannot verify package, different hash.");
+                                        return;
+                                    }
                                 }
                             }
                             try
@@ -412,7 +452,7 @@ namespace HTAlt
                             Log("Update finished in " + w.ElapsedMilliseconds + " ms.", LogEventType.Info);
                         }
                     });
-                    webc.DownloadFileAsync(new Uri(download.DownlaodUrl), tempFile);
+                    webc.DownloadFileAsync(new Uri(minimal ? download.MinimalUrl : download.DownloadUrl), tempFile);
                 }
                 else
                 {
@@ -470,6 +510,7 @@ namespace HTAlt
                     }
                     if (download != null)
                     {
+                        bool minimal = CurrentVer > MinimalUpdateID;
                         string tempFile = System.IO.Path.Combine(TempFolder, Name + "-" + download.Version.Name + "-" + download.Arch + ".hup");
                         string backupFile = System.IO.Path.Combine(TempFolder, Name + "-backup.hup");
                         System.Net.WebClient webc = new System.Net.WebClient();
@@ -486,26 +527,64 @@ namespace HTAlt
                             }
                             else
                             {
-                                if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
+                                if (minimal)
                                 {
-                                    string stat = "";
-                                    Log("Verifying...");
-                                    if (!string.IsNullOrWhiteSpace(download.MD5Hash))
+                                    if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash) || !string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
                                     {
-                                        stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
+                                        string stat = "";
+                                        Log("Verifying...");
+                                        if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash))
+                                        {
+                                            stat += tempFile.VerifyFile(download.MinimalMD5Hash) ? "m" : "M";
+                                        }
+                                        if (!string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
+                                        {
+                                            stat += tempFile.VerifyFile(download.MinimalSHA256Hash, true) ? "s" : "S";
+                                        }
+                                        if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
+                                        {
+                                            Log("Verified.");
+                                        }
+                                        else if (string.IsNullOrWhiteSpace(stat))
+                                        {
+                                            Log("Cannot verify package, unknown error occurred.");
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            Log("Cannot verify package, different hash.");
+                                            return;
+                                        }
                                     }
-                                    if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
+                                }
+                                else
+                                {
+                                    if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
                                     {
-                                        stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
-                                    }
-                                    if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                    {
-                                        Log("Verified.");
-                                    }
-                                    else
-                                    {
-                                        Log("Cannot verify package, different hash.");
-                                        return;
+                                        string stat = "";
+                                        Log("Verifying...");
+                                        if (!string.IsNullOrWhiteSpace(download.MD5Hash))
+                                        {
+                                            stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
+                                        }
+                                        if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
+                                        {
+                                            stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
+                                        }
+                                        if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
+                                        {
+                                            Log("Verified.");
+                                        }
+                                        else if (string.IsNullOrWhiteSpace(stat))
+                                        {
+                                            Log("Cannot verify package, unknown error occurred.");
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            Log("Cannot verify package, different hash.");
+                                            return;
+                                        }
                                     }
                                 }
                                 try
@@ -541,7 +620,7 @@ namespace HTAlt
                                 Log("Update finished in " + w.ElapsedMilliseconds + " ms.", LogEventType.Info);
                             }
                         });
-                        webc.DownloadFileAsync(new Uri(download.DownlaodUrl), tempFile);
+                        webc.DownloadFileAsync(new Uri(minimal ? download.MinimalUrl : download.DownloadUrl), tempFile);
                     }
                     else
                     {
@@ -589,6 +668,11 @@ namespace HTAlt
         public List<XmlNode> ThrownNodes { get; set; } = new List<XmlNode>();
 
         /// <summary>
+        /// Minimum version ID for minimal updates.
+        /// </summary>
+        public int MinimalUpdateID { get; set; }
+
+        /// <summary>
         /// Event raised before updating.
         /// </summary>
         public event EventHandler OnBeforeUpdate;
@@ -613,11 +697,6 @@ namespace HTAlt
         /// <c>true</c> to make all tasks asynchronous, otherwise <c>false</c>.
         /// </summary>
         public bool DoTaskAsAsync { get; set; }
-
-        /// <summary>
-        /// The current startus of the HTUPDATE.
-        /// </summary>
-        public UpdateStatus UpdateStatus { get; set; } = UpdateStatus.Unknown;
 
         /// <summary>
         /// Returns <c>true</c> if it's currently checking for updates, otherwise <c>false</c>.
@@ -759,6 +838,18 @@ namespace HTAlt
                                                 {
                                                     arch.SHA256Hash = subnode.Attributes["SHA256"].Value.XmlToString();
                                                 }
+                                                if (subnode.Attributes["MinimalUrl"] != null)
+                                                {
+                                                    arch.MinimalUrl = subnode.Attributes["MinimalUrl"].Value.XmlToString();
+                                                }
+                                                if (subnode.Attributes["MinMD5"] != null)
+                                                {
+                                                    arch.MinimalMD5Hash = subnode.Attributes["MinMD5"].Value.XmlToString();
+                                                }
+                                                if (subnode.Attributes["MinSHA256"] != null)
+                                                {
+                                                    arch.MinimalSHA256Hash = subnode.Attributes["MinSHA256"].Value.XmlToString();
+                                                }
                                                 Archs.Add(arch);
                                             }
                                         }
@@ -799,11 +890,6 @@ namespace HTAlt
         /// Display name of the version. This property is important.
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// Location of the version. This property is important.
-        /// </summary>
-        public string Url { get; set; }
 
         /// <summary>
         /// Flags associated with this version.
@@ -854,15 +940,15 @@ namespace HTAlt
         /// Creates a new <see cref="HTUPDATE_Arch"/>.
         /// </summary>
         /// <param name="arch">Processor architecture.</param>
-        /// <param name="downlaodUrl">Location of the package.</param>
+        /// <param name="downloadUrl">Location of the package.</param>
         /// <param name="ver"><see cref="HTUPDATE_Version"/></param>
         /// <param name="mD5Hash"><see cref="System.Security.Cryptography.MD5"/></param>
         /// <param name="sHA256Hash"><see cref="System.Security.Cryptography.SHA256"/></param>
-        public HTUPDATE_Arch(string arch, string downlaodUrl, HTUPDATE_Version ver, string mD5Hash = "", string sHA256Hash = "")
+        public HTUPDATE_Arch(string arch, string downloadUrl, HTUPDATE_Version ver, string mD5Hash = "", string sHA256Hash = "")
         {
             Arch = arch;
             Version = ver;
-            DownlaodUrl = downlaodUrl;
+            DownloadUrl = downloadUrl;
             MD5Hash = mD5Hash;
             SHA256Hash = sHA256Hash;
         }
@@ -887,7 +973,12 @@ namespace HTAlt
         /// <summary>
         /// Download location for the files
         /// </summary>
-        public string DownlaodUrl { get; set; }
+        public string DownloadUrl { get; set; }
+
+        /// <summary>
+        /// Location of the minimal upgrade packages.
+        /// </summary>
+        public string MinimalUrl { get; set; }
 
         /// <summary>
         /// <see cref="System.Security.Cryptography.MD5"/>
@@ -898,6 +989,16 @@ namespace HTAlt
         /// <see cref="System.Security.Cryptography.SHA256"/>
         /// </summary>
         public string SHA256Hash { get; set; }
+
+        /// <summary>
+        /// <see cref="System.Security.Cryptography.MD5"/>
+        /// </summary>
+        public string MinimalMD5Hash { get; set; }
+
+        /// <summary>
+        /// <see cref="System.Security.Cryptography.SHA256"/>
+        /// </summary>
+        public string MinimalSHA256Hash { get; set; }
 
         public bool isCompatible()
         {
