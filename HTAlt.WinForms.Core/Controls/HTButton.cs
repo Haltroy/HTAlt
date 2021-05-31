@@ -204,14 +204,11 @@ namespace HTAlt.WinForms
         [Bindable(false), Description("Shape of button."), Category("HTButton")]
         public ButtonShapes ButtonShape
         {
-            get
-            {
-                return _ButtonShape;
-            }
+            get => _ButtonShape;
             set
             {
                 _ButtonShape = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -233,7 +230,7 @@ namespace HTAlt.WinForms
                 {
                     _NormalColor = Tools.ShiftBrightness(BackColor, 20, false);
                 }
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -255,7 +252,7 @@ namespace HTAlt.WinForms
                 {
                     _HoverColor = Tools.ShiftBrightness(BackColor, 40, false);
                 }
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -277,21 +274,18 @@ namespace HTAlt.WinForms
                 {
                     _ClickColor = Tools.ShiftBrightness(BackColor, 60, false);
                 }
-                this.Invalidate();
+                Invalidate();
             }
         }
 
         // to make sure the control is invalidated(repainted) when the text is changed
         public override string Text
         {
-            get
-            {
-                return base.Text;
-            }
+            get => base.Text;
             set
             {
                 base.Text = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -367,7 +361,7 @@ namespace HTAlt.WinForms
                 BoundsSpecified specified)
         {
             //  Only when the size is affected...
-            if (this.AutoSize && (specified & BoundsSpecified.Size) != 0)
+            if (AutoSize && (specified & BoundsSpecified.Size) != 0)
             {
                 Size size = GetAutoSize();
 
@@ -387,7 +381,7 @@ namespace HTAlt.WinForms
             if (Enabled)
             {
                 _State = _States.Normal;
-                this.Invalidate();
+                Invalidate();
                 base.OnMouseLeave(e);
             }
         }
@@ -397,7 +391,7 @@ namespace HTAlt.WinForms
             if (Enabled)
             {
                 _State = _States.MouseOver;
-                this.Invalidate();
+                Invalidate();
                 base.OnMouseEnter(e);
             }
         }
@@ -407,7 +401,7 @@ namespace HTAlt.WinForms
             if (Enabled)
             {
                 _State = _States.MouseOver;
-                this.Invalidate();
+                Invalidate();
                 base.OnMouseUp(e);
             }
         }
@@ -417,7 +411,7 @@ namespace HTAlt.WinForms
             if (Enabled)
             {
                 _State = _States.Clicked;
-                this.Invalidate();
+                Invalidate();
                 base.OnMouseDown(e);
             }
         }
@@ -547,9 +541,9 @@ namespace HTAlt.WinForms
             }
             // set SmoothingMode
             pevent.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            SizeF textSize = pevent.Graphics.MeasureString(this.Text, base.Font);
-            int textX = (int)(base.Size.Width / 2) - (int)(textSize.Width / 2);
-            int textY = (int)(base.Size.Height / 2) - (int)(textSize.Height / 2);
+            SizeF textSize = pevent.Graphics.MeasureString(Text, base.Font);
+            int textX = base.Size.Width / 2 - (int)(textSize.Width / 2);
+            int textY = base.Size.Height / 2 - (int)(textSize.Height / 2);
             Rectangle newRect = new Rectangle(ClientRectangle.X + 1, ClientRectangle.Y + 1, ClientRectangle.Width - 3, ClientRectangle.Height - 3);
             if (Enabled)
             {
@@ -567,7 +561,7 @@ namespace HTAlt.WinForms
                                 pevent.Graphics.FillEllipse(brush, newRect);
                                 break;
                         }
-                        pevent.Graphics.DrawString(this.Text, base.Font, new SolidBrush(base.ForeColor), textX, textY);
+                        pevent.Graphics.DrawString(Text, base.Font, new SolidBrush(base.ForeColor), textX, textY);
                         break;
 
                     case _States.MouseOver:
@@ -582,7 +576,7 @@ namespace HTAlt.WinForms
                                 pevent.Graphics.FillEllipse(brush, newRect);
                                 break;
                         }
-                        pevent.Graphics.DrawString(this.Text, base.Font, new SolidBrush(base.ForeColor), textX, textY);
+                        pevent.Graphics.DrawString(Text, base.Font, new SolidBrush(base.ForeColor), textX, textY);
                         break;
 
                     case _States.Clicked:
@@ -597,7 +591,7 @@ namespace HTAlt.WinForms
                                 pevent.Graphics.FillEllipse(brush, newRect);
                                 break;
                         }
-                        pevent.Graphics.DrawString(this.Text, base.Font, new SolidBrush(base.ForeColor), textX + 1, textY + 1);
+                        pevent.Graphics.DrawString(Text, base.Font, new SolidBrush(base.ForeColor), textX + 1, textY + 1);
                         break;
                 }
             }
@@ -614,7 +608,7 @@ namespace HTAlt.WinForms
                         pevent.Graphics.FillEllipse(brush, newRect);
                         break;
                 }
-                pevent.Graphics.DrawString(this.Text, base.Font, new SolidBrush(ForeColor), textX, textY);
+                pevent.Graphics.DrawString(Text, base.Font, new SolidBrush(ForeColor), textX, textY);
             }
             if (_drawImage)
             {

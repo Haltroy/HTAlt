@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace HTAlt.WinForms.Example
 {
@@ -21,7 +21,8 @@ namespace HTAlt.WinForms.Example
             else if (args.Contains("-test"))
             {
                 Application.Run(new Form1());
-            }else
+            }
+            else
             {
                 Application.Run(new Form1());
             }

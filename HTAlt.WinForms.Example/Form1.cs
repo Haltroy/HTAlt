@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace HTAlt.WinForms.Example
@@ -14,10 +13,12 @@ namespace HTAlt.WinForms.Example
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            OpenFileDialog filedlg = new OpenFileDialog();
-            filedlg.Title = "Select an Icon";
-            filedlg.Filter = "Icon Fİle|*.ico|All Files|*.*";
-            filedlg.Multiselect = false;
+            OpenFileDialog filedlg = new OpenFileDialog
+            {
+                Title = "Select an Icon",
+                Filter = "Icon Fİle|*.ico|All Files|*.*",
+                Multiselect = false
+            };
             if (filedlg.ShowDialog() == DialogResult.OK)
             {
                 tbIcon.Text = filedlg.FileName;
@@ -27,10 +28,12 @@ namespace HTAlt.WinForms.Example
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-            ColorDialog colordlg = new ColorDialog();
-            colordlg.Color = pbBackColor.BackColor;
-            colordlg.AllowFullOpen = true;
-            colordlg.AnyColor = true;
+            ColorDialog colordlg = new ColorDialog
+            {
+                Color = pbBackColor.BackColor,
+                AllowFullOpen = true,
+                AnyColor = true
+            };
             if (colordlg.ShowDialog() == DialogResult.OK)
             {
                 pbBackColor.BackColor = colordlg.Color;
@@ -56,7 +59,7 @@ namespace HTAlt.WinForms.Example
             }
             else
             {
-                mesajicon = this.Icon;
+                mesajicon = Icon;
             }
             Image mesajimage = null;
             if (System.IO.File.Exists(tbImage.Text))
@@ -104,7 +107,7 @@ namespace HTAlt.WinForms.Example
             }
             else
             {
-                mesajicon = this.Icon;
+                mesajicon = Icon;
             }
             Image mesajimage = null;
             if (System.IO.File.Exists(tbImage.Text))
@@ -243,21 +246,21 @@ namespace HTAlt.WinForms.Example
                 mesajimage = Image.FromStream(Tools.ReadFile(tbImage.Text));
             }
             HTInputBox inputbox = new HTInputBox(tbTitle.Text, tbMessage.Text, mesajbuton, ibDefault.Text)
-            { 
+            {
                 Icon = mesajicon,
                 ForeColor = pbForeColor.BackColor,
                 AutoForeColor = hsForeColor.Checked,
                 Image = mesajimage,
                 BackColor = pbBackColor.BackColor,
-                Abort = tbAbort.Text, 
-                Retry = tbRetry.Text, 
-                Ignore = tbIgnore.Text, 
-                Yes = tbYes.Text, 
-                No = tbNo.Text, 
-                OK = tbOK.Text, 
-                Cancel = tbCancel.Text, 
-                SetToDefault = ibSetToDefault.Text, 
-            }; 
+                Abort = tbAbort.Text,
+                Retry = tbRetry.Text,
+                Ignore = tbIgnore.Text,
+                Yes = tbYes.Text,
+                No = tbNo.Text,
+                OK = tbOK.Text,
+                Cancel = tbCancel.Text,
+                SetToDefault = ibSetToDefault.Text,
+            };
             inputbox.Show();
         }
 
@@ -310,10 +313,12 @@ namespace HTAlt.WinForms.Example
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            ColorDialog colordlg = new ColorDialog();
-            colordlg.Color = pbOverlayColor.BackColor;
-            colordlg.AllowFullOpen = true;
-            colordlg.AnyColor = true;
+            ColorDialog colordlg = new ColorDialog
+            {
+                Color = pbOverlayColor.BackColor,
+                AllowFullOpen = true,
+                AnyColor = true
+            };
             if (colordlg.ShowDialog() == DialogResult.OK)
             {
                 pbOverlayColor.BackColor = colordlg.Color;
@@ -361,12 +366,15 @@ namespace HTAlt.WinForms.Example
                 textBox1_TextChanged(sender, e);
             }
         }
+
         private void button5_Click(object sender, EventArgs e)
         {
-            OpenFileDialog filedlg = new OpenFileDialog();
-            filedlg.Title = "Select an Image";
-            filedlg.Filter = "Image Files|*.ico;*.bmp;*.png;*.jpg;*.png|All Files|*.*";
-            filedlg.Multiselect = false;
+            OpenFileDialog filedlg = new OpenFileDialog
+            {
+                Title = "Select an Image",
+                Filter = "Image Files|*.ico;*.bmp;*.png;*.jpg;*.png|All Files|*.*",
+                Multiselect = false
+            };
             if (filedlg.ShowDialog() == DialogResult.OK)
             {
                 tbImage.Text = filedlg.FileName;
@@ -375,10 +383,12 @@ namespace HTAlt.WinForms.Example
 
         private void pictureBox1_Click_2(object sender, EventArgs e)
         {
-            ColorDialog colordlg = new ColorDialog();
-            colordlg.Color = pbForeColor.BackColor;
-            colordlg.AllowFullOpen = true;
-            colordlg.AnyColor = true;
+            ColorDialog colordlg = new ColorDialog
+            {
+                Color = pbForeColor.BackColor,
+                AllowFullOpen = true,
+                AnyColor = true
+            };
             if (colordlg.ShowDialog() == DialogResult.OK)
             {
                 pbForeColor.BackColor = colordlg.Color;

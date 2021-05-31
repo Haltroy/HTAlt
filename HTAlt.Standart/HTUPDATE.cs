@@ -158,10 +158,17 @@ namespace HTAlt
                                 applied.Add(node.Name.ToLowerEnglish());
                                 for (int _i = 0; _i < node.ChildNodes.Count; _i++)
                                 {
-                                    HTUPDATE_Version ver = new HTUPDATE_Version(node.ChildNodes[_i]);
-                                    if (!Versions.Contains(ver))
+                                    if (node.ChildNodes[_i].Name.ToLowerEnglish() != "version")
                                     {
-                                        Versions.Add(ver);
+                                        ThrownNodes.Add(node.ChildNodes[_i]);
+                                    }
+                                    else
+                                    {
+                                        HTUPDATE_Version ver = new HTUPDATE_Version(node.ChildNodes[_i]);
+                                        if (!Versions.Contains(ver))
+                                        {
+                                            Versions.Add(ver);
+                                        }
                                     }
                                 }
                                 break;
@@ -261,6 +268,7 @@ namespace HTAlt
                                     Versions.Add(ver);
                                 }
                             }
+                            Versions.Sort((x, y) => x.ID.CompareTo(y.ID));
                             break;
 
                         default:
@@ -417,6 +425,13 @@ namespace HTAlt
             }
         }
 
+        /// <summary>
+        /// 0 = No updates 1 = Normal Update 2 = LTS Update
+        /// </summary>
+        private int GetUpdateType => CurrentVersion.LTS
+                    ? CurrentVer < LatestLTSVer ? isLTSRevoked(LatestLTSVersion) ? 1 : 2 : isLTSRevoked(CurrentVersion) ? 1 : 0
+                    : CurrentVer < LatestVer ? 1 : 0;
+
         private async void DoAsyncUpdate(bool force = false)
         {
             await System.Threading.Tasks.Task.Run(() =>
@@ -432,11 +447,12 @@ namespace HTAlt
                     OnBeforeUpdate(this, new EventArgs());
                     Log("OnBeforeUpdate() ended...", LogEventType.Info);
                 }
-                if (force || CurrentVer != LatestVer)
+                int uType = GetUpdateType;
+                if (force || uType > 0)
                 {
                     HTUPDATE_Arch download = null;
-                    List<HTUPDATE_Arch> arch = LatestVersion.FindArch(Arch);
-                    HTUPDATE_Arch noarch = LatestVersion.FindNoArch();
+                    List<HTUPDATE_Arch> arch = uType > 1 ? LatestLTSVersion.FindArch(Arch) : LatestVersion.FindArch(Arch);
+                    HTUPDATE_Arch noarch = uType > 1 ? LatestLTSVersion.FindNoArch() : LatestVersion.FindNoArch();
                     if (arch.Count > 0)
                     {
                         download = arch[0];
@@ -554,6 +570,7 @@ namespace HTAlt
         }
 
         private int LatestVer { get; set; } = 1;
+        private int LatestLTSVer => LatestLTSVersion.ID;
         private int CurrentVer { get; set; } = 1;
 
         /// <summary>
@@ -643,6 +660,27 @@ namespace HTAlt
         public HTUPDATE_Version LatestVersion => Versions.FindAll(it => it.ID == LatestVer).Count > 0 ? Versions.FindAll(it => it.ID == LatestVer)[0] : null;
 
         /// <summary>
+        /// Gets a list of LTS versions.
+        /// </summary>
+        public List<HTUPDATE_Version> LTSVersions => Versions.FindAll(it => it.LTS);
+
+        /// <summary>
+        /// Gets the latest LTS version.
+        /// </summary>
+
+        public HTUPDATE_Version LatestLTSVersion => LTSVersions.Count > 0 ? LTSVersions[LTSVersions.Count - 1] : null;
+        /// <summary>
+        /// Checks if the <paramref name="ver"/> is revoked.
+        /// </summary>
+        /// <param name="ver"><see cref="HTUPDATE_Version"/></param>
+        /// <returns><see cref="bool"/></returns>
+
+        public bool isLTSRevoked(HTUPDATE_Version ver)
+        {
+            return DateTime.Now.CompareTo(DateTime.ParseExact(ver.LTSRevokeDate, "yyyy-MM-dd", null)) > 0;
+        }
+
+        /// <summary>
         /// Name of your product.
         /// </summary>
         public string Name { get; set; }
@@ -708,18 +746,21 @@ namespace HTAlt
                                     for (int _i = 0; i < node.ChildNodes.Count; _i++)
                                     {
                                         XmlNode subnode = node.ChildNodes[_i];
-                                        if (subnode.Attributes["Arch"] != null && subnode.Attributes["Url"] != null)
+                                        if (subnode.Name.ToLowerEnglish() == "arch")
                                         {
-                                            HTUPDATE_Arch arch = new HTUPDATE_Arch(subnode.Attributes["Arch"].Value.XmlToString().ToLowerEnglish(), subnode.Attributes["Url"].Value.XmlToString(), this);
-                                            if (subnode.Attributes["MD5"] != null)
+                                            if (subnode.Attributes["Arch"] != null && subnode.Attributes["Url"] != null)
                                             {
-                                                arch.MD5Hash = subnode.Attributes["MD5"].Value.XmlToString();
+                                                HTUPDATE_Arch arch = new HTUPDATE_Arch(subnode.Attributes["Arch"].Value.XmlToString().ToLowerEnglish(), subnode.Attributes["Url"].Value.XmlToString(), this);
+                                                if (subnode.Attributes["MD5"] != null)
+                                                {
+                                                    arch.MD5Hash = subnode.Attributes["MD5"].Value.XmlToString();
+                                                }
+                                                if (subnode.Attributes["SHA256"] != null)
+                                                {
+                                                    arch.SHA256Hash = subnode.Attributes["SHA256"].Value.XmlToString();
+                                                }
+                                                Archs.Add(arch);
                                             }
-                                            if (subnode.Attributes["SHA256"] != null)
-                                            {
-                                                arch.SHA256Hash = subnode.Attributes["SHA256"].Value.XmlToString();
-                                            }
-                                            Archs.Add(arch);
                                         }
                                     }
                                     break;
@@ -911,23 +952,6 @@ namespace HTAlt
         /// <summary>
         /// Error occurred while checking for updates.
         /// </summary>
-        Error
-    }
-
-    /// <summary>
-    /// Statuses used while updating HTUPDATE.
-    /// </summary>
-    public enum HTUPDATE_Status
-    {
-        /// <summary>
-        ///
-        /// </summary>
-        Stopped,
-
-        GettingInfo,
-        DownloadingFile,
-        Unzipping,
-        Done,
         Error
     }
 }

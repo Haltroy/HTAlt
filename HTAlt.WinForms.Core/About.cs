@@ -158,13 +158,13 @@ namespace HTAlt.WinForms
             base.Dispose(disposing);
         }
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private HTSwitch htSwitch1;
-        private System.Windows.Forms.TextBox textBox1;
+        private readonly System.Windows.Forms.PictureBox pictureBox1;
+        private readonly System.Windows.Forms.Label label1;
+        private readonly System.Windows.Forms.Label label2;
+        private readonly System.Windows.Forms.Label label3;
+        private readonly System.Windows.Forms.Label label5;
+        private readonly System.Windows.Forms.Label label6;
+        private readonly HTSwitch htSwitch1;
+        private readonly System.Windows.Forms.TextBox textBox1;
     }
 }
