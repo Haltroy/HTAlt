@@ -101,6 +101,7 @@ namespace HTAlt
             }
         }
     }
+
     /// <summary>
     /// The log level.
     /// </summary>
@@ -110,22 +111,27 @@ namespace HTAlt
         /// Hides date and log level marks.
         /// </summary>
         Hidden,
+
         /// <summary>
         /// No log level.
         /// </summary>
         None,
+
         /// <summary>
         /// Information
         /// </summary>
         Info,
+
         /// <summary>
         /// An exception or problem occurred but ignored.
         /// </summary>
         Warning,
+
         /// <summary>
         /// An exception or problem occurred (not ignored):
         /// </summary>
         Error,
+
         /// <summary>
         /// Ciritical exception occurred.
         /// </summary>

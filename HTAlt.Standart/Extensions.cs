@@ -6,6 +6,7 @@ Use of this source code is governed by an MIT License that can be found in githu
 
 */
 
+using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -89,6 +90,107 @@ namespace HTAlt
         #endregion Write File
 
         /// <summary>
+        /// Converts <paramref name="bytes"/> to <see cref="string"/>.
+        /// </summary>
+        /// <param name="bytes"><see cref="byte"/> <seealso cref="Array"/>.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string ToString(this byte[] bytes)
+        {
+            return Tools.BytesToString(bytes);
+        }
+
+        /// <summary>
+        /// Verifies file located in <paramref name="file"/> with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
+        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(this string file, string md5, string sha256)
+        {
+            return Tools.VerifyFile(file, md5, sha256);
+        }
+
+        /// <summary>
+        /// Verifies file located in <paramref name="file"/> with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="hash">File's supposedly hash.</param>
+        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(this string file, string hash, bool preferSha256 = false)
+        {
+            return Tools.VerifyFile(file, hash, preferSha256);
+        }
+
+        /// <summary>
+        /// Verifies file located in <paramref name="file"/> with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
+        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(this string file, byte[] md5, byte[] sha256)
+        {
+            return Tools.VerifyFile(file, md5, sha256);
+        }
+
+        /// <summary>
+        /// Verifies file located in <paramref name="file"/> with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="filehash">File's supposedly hash.</param>
+        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(this string file, byte[] filehash, bool preferSha256 = false)
+        {
+            return Tools.VerifyFile(file, filehash, preferSha256);
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="ignored">Ignored value.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string GetMd5Hash(this string file, bool ignored = false)
+        {
+            return Tools.GetMd5Hash(file, ignored);
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.SHA256"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="ignored">Ignored value.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string GetSha256Hash(this string file, bool ignored = false)
+        {
+            return Tools.GetSha256Hash(file, ignored);
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <returns><see cref="byte"/> <seealso cref="Array"/></returns>
+        public static byte[] GetMd5Hash(this string file)
+        {
+            return Tools.GetMd5Hash(file);
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.SHA256"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="ignored">Ignored value.</param>
+        /// <returns><see cref="byte"/> <seealso cref="Array"/></returns>
+        public static byte[] GetSha256Hash(string file)
+        {
+            return Tools.GetSha256Hash(file);
+        }
+
+        /// <summary>
         /// Checks if file exists by assuming this string is a path to a file.
         /// </summary>
         /// <param name="str">File location</param>
@@ -127,6 +229,7 @@ namespace HTAlt
         {
             Tools.RemoveFromFileNames(str, stringToRemove);
         }
+
         /// <summary>
         /// Gets size of the directory located in this string.
         /// </summary>
@@ -136,6 +239,7 @@ namespace HTAlt
         {
             return Tools.DirectorySize(new DirectoryInfo(dir));
         }
+
         /// <summary>
         /// Gets size of this directory.
         /// </summary>
@@ -145,6 +249,7 @@ namespace HTAlt
         {
             return Tools.DirectorySize(dir);
         }
+
         /// <summary>
         /// Detects if user can access <paramref name="dir"/> with try {} method.
         /// </summary>
@@ -492,6 +597,7 @@ namespace HTAlt
         {
             return Tools.LargestCommonDivision(n1, n2);
         }
+
         /// <summary>
         /// Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.
         /// </summary>
@@ -503,7 +609,6 @@ namespace HTAlt
             return Tools.SmallestOfCommonDenominator(n1, n2);
         }
 
-
         /// <summary>
         /// Biggest prime multiplier number of <paramref name="n"/>.
         /// </summary>
@@ -513,6 +618,7 @@ namespace HTAlt
         {
             return Tools.BiggestPrimeMultiplier(n);
         }
+
         /// <summary>
         /// Smallest prime multiplier number of <paramref name="n"/>.
         /// </summary>
@@ -603,6 +709,7 @@ namespace HTAlt
         {
             return Tools.BeautifyXML(node.OuterXml);
         }
+
         /// <summary>
         /// Prettifies XML code.
         /// </summary>
@@ -863,5 +970,71 @@ namespace HTAlt
         }
 
         #endregion Image
+
+        #region Text & XML
+
+        /// <summary>
+        /// Finds the root node of <paramref name="doc"/>.
+        /// </summary>
+        /// <param name="doc">the <see cref="XmlNode"/> (probably <seealso cref="XmlDocument.DocumentElement"/>) to search on.</param>
+        /// <returns>a <see cref="System.Xml.XmlNode"/> which represents as the root node.</returns>
+        public static System.Xml.XmlNode FindRoot(this System.Xml.XmlNode doc)
+        {
+            return Tools.FindRoot(doc);
+        }
+
+        /// <summary>
+        /// Tells if the <paramref name="node"/> is a comment node.
+        /// </summary>
+        /// <param name="node"><see cref="XmlNode"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool IsComment(this System.Xml.XmlNode node)
+        {
+            return Tools.NodeIsComment(node);
+        }
+
+        /// <summary>
+        /// Turns all characters to lowercase, using en-US culture information to avoid language-specific ToLower() errors such as:
+        /// <para>Turkish: I &lt;-&gt; ı , İ &lt;-&gt; i</para>
+        /// <para>English I &lt;-&gt; i</para>
+        /// </summary>
+        /// <param name="s"><see cref="string"/></param>
+        /// <returns><see cref="string"/></returns>
+        public static string ToLowerEnglish(this string s)
+        {
+            return Tools.ToLowerEnglish(s);
+        }
+
+        /// <summary>
+        /// Finds the root node of <paramref name="doc"/>.
+        /// </summary>
+        /// <param name="doc">The XML document.</param>
+        /// <returns>a <see cref="System.Xml.XmlNode"/> which represents as the root node.</returns>
+        public static System.Xml.XmlNode FindRoot(this System.Xml.XmlDocument doc)
+        {
+            return Tools.FindRoot(doc);
+        }
+
+        /// <summary>
+        /// Converts XML-formatted string to <see cref="string"/>.
+        /// </summary>
+        /// <param name="innerxml">XML-formatted string</param>
+        /// <returns>Formatted <paramref name="s"/>.</returns>
+        public static string XmlToString(this string innerxml)
+        {
+            return Tools.XmlToString(innerxml);
+        }
+
+        /// <summary>
+        /// Converts <paramref name="s"/> to <see cref="System.Xml"/> supported format.
+        /// </summary>
+        /// <param name="s"><see cref="string"/></param>
+        /// <returns>Formatted <paramref name="s"/>.</returns>
+        public static string ToXML(this string s)
+        {
+            return Tools.ToXML(s);
+        }
+
+        #endregion Text & XML
     }
 }

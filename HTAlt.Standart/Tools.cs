@@ -24,6 +24,7 @@ namespace HTAlt
     public static class Tools
     {
         #region Image
+
         /// <summary>
         /// Converts <paramref name="img"/> to an <see cref="Icon"/>
         /// Thanks to Hans Passant from StackOverflow.
@@ -72,6 +73,7 @@ namespace HTAlt
             // And load it
             return new System.Drawing.Icon(ms);
         }
+
         /// <summary>
         /// Resizes an <paramref name="image"/> to a certain <paramref name="height"/> and <paramref name="width"/>.
         /// </summary>
@@ -471,7 +473,85 @@ namespace HTAlt
 
         #endregion Image
 
-        #region Internet & Strings
+        #region Internet, XML & Strings
+
+        /// <summary>
+        /// Finds the root node of <paramref name="doc"/>.
+        /// </summary>
+        /// <param name="doc">the <see cref="XmlNode"/> (probably <seealso cref="XmlDocument.DocumentElement"/>) to search on.</param>
+        /// <returns>a <see cref="System.Xml.XmlNode"/> which represents as the root node.</returns>
+        public static System.Xml.XmlNode FindRoot(System.Xml.XmlNode doc)
+        {
+            System.Xml.XmlNode found = null;
+            if (ToLowerEnglish(doc.Name) == "root")
+            {
+                found = doc;
+            }
+            else
+            {
+                for (int i = 0; i < doc.ChildNodes.Count; i++)
+                {
+                    System.Xml.XmlNode node = doc.ChildNodes[i];
+                    if (ToLowerEnglish(node.Name) == "root")
+                    {
+                        found = node;
+                    }
+                }
+            }
+            return found;
+        }
+
+        /// <summary>
+        /// Tells if the <paramref name="node"/> is a comment node.
+        /// </summary>
+        /// <param name="node"><see cref="XmlNode"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool NodeIsComment(System.Xml.XmlNode node)
+        {
+            return node.OuterXml.StartsWith("<!--");
+        }
+
+        /// <summary>
+        /// Turns all characters to lowercase, using en-US culture information to avoid language-specific ToLower() errors such as:
+        /// <para>Turkish: I &lt;-&gt; ı , İ &lt;-&gt; i</para>
+        /// <para>English I &lt;-&gt; i</para>
+        /// </summary>
+        /// <param name="s"><see cref="string"/></param>
+        /// <returns><see cref="string"/></returns>
+        public static string ToLowerEnglish(string s)
+        {
+            return s.ToLower(new System.Globalization.CultureInfo("en-US", false));
+        }
+
+        /// <summary>
+        /// Finds the root node of <paramref name="doc"/>.
+        /// </summary>
+        /// <param name="doc">The XML document.</param>
+        /// <returns>a <see cref="System.Xml.XmlNode"/> which represents as the root node.</returns>
+        public static System.Xml.XmlNode FindRoot(System.Xml.XmlDocument doc)
+        {
+            return FindRoot(doc.DocumentElement);
+        }
+
+        /// <summary>
+        /// Converts XML-formatted string to <see cref="string"/>.
+        /// </summary>
+        /// <param name="innerxml">XML-formatted string</param>
+        /// <returns>Formatted <paramref name="s"/>.</returns>
+        public static string XmlToString(string innerxml)
+        {
+            return innerxml.Replace("&amp;", "&").Replace("&quot;", "\"").Replace("&apos;", "'").Replace("&lt;", "<").Replace("&gt;", ">");
+        }
+
+        /// <summary>
+        /// Converts <paramref name="s"/> to <see cref="System.Xml"/> supported format.
+        /// </summary>
+        /// <param name="s"><see cref="string"/></param>
+        /// <returns>Formatted <paramref name="s"/>.</returns>
+        public static string ToXML(string s)
+        {
+            return s.Replace("&", "&amp;").Replace("\"", "&quot;").Replace("'", "&apos;").Replace("<", "&lt;").Replace(">", "&gt;");
+        }
 
         /// <summary>
         /// Creates an Internet shortcut (Windows).
@@ -652,9 +732,10 @@ namespace HTAlt
             return builder.ToString();
         }
 
-        #endregion Internet & Strings
+        #endregion Internet, XML & Strings
 
         #region Math
+
         /// <summary>
         /// Trims all non-numeric chars (except ",","." and "-")
         /// </summary>
@@ -688,6 +769,7 @@ namespace HTAlt
         {
             return number + add > limit ? number : number + add;
         }
+
         /// <summary>
         /// Finds the prime multiplier numbers of <paramref name="n"/>.
         /// </summary>
@@ -771,6 +853,7 @@ namespace HTAlt
             }
             return n1;
         }
+
         /// <summary>
         /// Smallest of Common Denominator between <paramref name="n1"/> and <paramref name="n2"/>.
         /// </summary>
@@ -783,7 +866,6 @@ namespace HTAlt
             return (n1 * n2) / n1.LargestCommonDivision(n2);
         }
 
-
         /// <summary>
         /// Biggest prime multiplier number of <paramref name="n"/>.
         /// </summary>
@@ -794,6 +876,7 @@ namespace HTAlt
             int[] asallar = n.PrimeMultipliers();
             return asallar[asallar.Length - 1];
         }
+
         /// <summary>
         /// Smallest prime multiplier number of <paramref name="n"/>.
         /// </summary>
@@ -804,6 +887,7 @@ namespace HTAlt
             int[] asallar = n.PrimeMultipliers();
             return asallar[0];
         }
+
         #endregion Math
 
         #region Color
@@ -1013,6 +1097,117 @@ namespace HTAlt
         #region Files & Directories
 
         /// <summary>
+        /// Converts a byte array to <see cref="string"/>.
+        /// </summary>
+        /// <param name="bytes"><see cref="byte"/> <seealso cref="Array"/>.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string BytesToString(byte[] bytes)
+        {
+            string result = "";
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                result += bytes[i].ToString("x2");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
+        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(string file, string md5, string sha256)
+        {
+            return string.Equals(GetMd5Hash(file), md5) && string.Equals(GetSha256Hash(file), sha256);
+        }
+
+        /// <summary>
+        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="hash">File's supposedly hash.</param>
+        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(string file, string hash, bool preferSha256 = false)
+        {
+            return string.Equals(preferSha256 ? GetSha256Hash(file) : GetMd5Hash(file), hash);
+        }
+
+        /// <summary>
+        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
+        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(string file, byte[] md5, byte[] sha256)
+        {
+            return GetMd5Hash(file) == md5 && GetSha256Hash(file) == sha256;
+        }
+
+        /// <summary>
+        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="filehash">File's supposedly hash.</param>
+        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
+        /// <returns><see cref="bool"/></returns>
+        public static bool VerifyFile(string file, byte[] filehash, bool preferSha256 = false)
+        {
+            return preferSha256 ? GetSha256Hash(file) == filehash : GetMd5Hash(file) == filehash;
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="ignored">Ignored value.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string GetMd5Hash(string file, bool ignored = false)
+        {
+            return BytesToString(GetMd5Hash(file));
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.SHA256"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <param name="ignored">Ignored value.</param>
+        /// <returns><see cref="string"/></returns>
+        public static string GetSha256Hash(string file, bool ignored = false)
+        {
+            return BytesToString(GetSha256Hash(file));
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <returns><see cref="byte"/> <seealso cref="Array"/>.</returns>
+        public static byte[] GetMd5Hash(string file)
+        {
+            using (System.Security.Cryptography.MD5 m = System.Security.Cryptography.MD5.Create())
+            {
+                return m.ComputeHash(ReadFile(file));
+            }
+        }
+
+        /// <summary>
+        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// </summary>
+        /// <param name="file">File location.</param>
+        /// <returns><see cref="byte"/> <seealso cref="Array"/>.</returns>
+        public static byte[] GetSha256Hash(string file)
+        {
+            using (System.Security.Cryptography.SHA256 s = System.Security.Cryptography.SHA256.Create())
+            {
+                return s.ComputeHash(ReadFile(file));
+            }
+        }
+
+        /// <summary>
         /// Return <sse cref=true"/> if path directory is empty.
         /// </summary>
         /// <param name="path">Directory path to check.</param>
@@ -1050,6 +1245,7 @@ namespace HTAlt
             }
             return size;
         }
+
         /// <summary>
         /// Detects if user can access <paramref name="dir"/> by try{} method.
         /// </summary>
@@ -1151,7 +1347,7 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="ignored">Rules for reading the file.</param>
         /// <returns>Bytes inside the file.</returns>
-        public static byte[] ReadFile(string fileLocation, bool ignored)
+        public static byte[] ReadFile(string fileLocation, bool ignored = false)
         {
             ignored = !ignored;
             using (MemoryStream ms = new MemoryStream())
@@ -1178,13 +1374,8 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="format">Not used but required due to other overflows.</param>
         /// <returns>Image from location.</returns>
-        public static Image ReadFile(string fileLocation, ImageFormat format)
+        public static Image ReadFile(string fileLocation, ImageFormat format = null)
         {
-            // Does absolutely nothing but still required.
-            if (format != ImageFormat.Png)
-            {
-                format = ImageFormat.Png;
-            }
             Image img = Image.FromStream(ReadFile(fileLocation));
             return img;
         }
@@ -1195,13 +1386,8 @@ namespace HTAlt
         /// <param name="fileLocation">Location of the file.</param>
         /// <param name="ignored">Not used but required due to other overflows.</param>
         /// <returns>Bitmap from location.</returns>
-        public static Bitmap ReadFile(string fileLocation, string ignored)
+        public static Bitmap ReadFile(string fileLocation, string ignored = "")
         {
-            // Does absolutely nothing but still reqired.
-            if (ignored != "")
-            {
-                ignored = "";
-            }
             return new Bitmap(ReadFile(fileLocation, format: null));
         }
 
