@@ -45,7 +45,7 @@ HTAlt.WinForms can be installed on Windows Forms projects only. HTAlt.WinForms c
 | Branch                                                               | .NET Standard | .NET Framework/Core | Status | Release Time |
 |----------------------------------------------------------------------|---------------|---------------------|----------|------------|
 | [`master`](https://github.com/haltroy/htalt)              | Standart 2.0 | Framework 4.6.1 & Core 3.1 | *Development* | (•_•) |
-| [`b1.7.0`](https://github.com/haltroy/htalt/tree/b1.7.0) | Standart 2.0 | Framework 4.6.1 & Core 3.1 | **Latest Release** | 25 May 2021 |
+| [`b1.7.0`](https://github.com/haltroy/htalt/tree/b1.7.0) | Standart 2.0 | Framework 4.6.1 & Core 3.1 | **Latest Release** | 31 May 2021 |
 | [`b1.6.4`](https://github.com/haltroy/htalt/tree/b1.6.4) | Standart 2.0 | Framework 4.6.1 | Unsupproted | 14 February 2021 |
 | [`b1.6.3`](https://github.com/haltroy/htalt/tree/b1.6.3) | Standart 2.0 | Framework 4.6.1 | Unsupported | 16 December 2020 |
 | [`b1.6.2`](https://github.com/haltroy/htalt/tree/b1.6.2) | Standart 2.0 | Framework 4.6.1 | Unsupported | 22 November 2020 |
