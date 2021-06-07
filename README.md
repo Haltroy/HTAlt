@@ -1,11 +1,15 @@
 # HTAlt
-|Standart|WinForms|API|
-|-|-|-|
-|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.Standart)|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.WinForms)| [![API](https://img.shields.io/badge/HTAlt-API%20Docs-blue?style=for-the-badge)](http://htalt.haltroy.com) |
+|Standart|WinForms|API|Website|
+|-|-|-|-|
+|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.Standart?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.Standart)|[![Nuget](https://img.shields.io/nuget/dt/HTAlt.WinForms?label=Nuget&style=for-the-badge)](https://www.nuget.org/packages/HTAlt.WinForms)| [![API](https://img.shields.io/badge/HTAlt-API%20Docs-blue?style=for-the-badge)](http://htalt.haltroy.com) | [![Website](https://img.shields.io/badge/haltroy-Website-blue?style=for-the-badge)](https://haltroy.com) |
+
+
 
 A library which is used in [`Haltroy`](http://haltroy.com) apps like [`Yorot`](https://github.com/haltroy/Yorot) and [`Backupster`](https://haltroy.com/Backupster.html).
 
 Latest Stable Version: [`b1.7`](https://github.com/Haltroy/HTAlt/releases/tag/b1.7.0)
+
+In Development Version: [`b1.7.1`](https://github.com/Haltroy/HTAlt/releases/tag/b1.7.1)
 
 ## Requirements
 ### HTAlt.Standart
