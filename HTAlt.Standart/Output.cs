@@ -1,6 +1,6 @@
 ﻿/*
 
-Copyright © 2021 Eren "Haltroy" Kanat
+Copyright © 2018 - 2021 haltroy
 
 Use of this source code is governed by an MIT License that can be found in github.com/Haltroy/HTAlt/blob/master/LICENSE
 
@@ -14,6 +14,7 @@ namespace HTAlt
     public class Output
     {
         public static string LogDirPath = "";
+        public static bool DisableHTAltInfo { get; set; } = false;
 
         private static Output _outputSingleton;
 
@@ -45,7 +46,7 @@ namespace HTAlt
                 {
                     SW.Dispose();
                 }
-                catch (ObjectDisposedException) { } // object already disposed - ignore exception
+                catch (ObjectDisposedException) { }
             }
         }
 
@@ -72,13 +73,22 @@ namespace HTAlt
 
         private void InstantiateStreamWriter()
         {
-            string filePath = Path.Combine(LogDirPath, "Yorot." + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-FFFFFFF")) + ".txt";
+            string filePath = Path.Combine(LogDirPath, "Log." + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-FFFFFFF")) + ".txt";
             try
             {
                 SW = new StreamWriter(filePath)
                 {
                     AutoFlush = true,
                 };
+                SW.WriteLine("[I] [HTAlt] Logger Init Successful.");
+                if (!DisableHTAltInfo)
+                {
+                    if (!File.Exists(filePath))
+                    {
+                        SW.WriteLine("[I] [HTAlt] HTAlt Standart Library ver. " + HTInfo.ProjectVersion + " [" + HTInfo.ProjectCodeName + "]");
+                        SW.WriteLine("[I] [HTAlt] HTAlt Current Log System: Singleton (HTAlt.Standart/Output.cs)");
+                    }
+                }
             }
             catch (UnauthorizedAccessException ex)
             {

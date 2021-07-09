@@ -87,117 +87,26 @@ namespace HTAlt
             }
         }
 
-        private async void LoadUrlAsync()
+        /// <summary>
+        /// Loads URL without sync.
+        /// </summary>
+        public async void LoadUrlAsync()
         {
             await System.Threading.Tasks.Task.Run(() =>
             {
-                Log("Loading info from URL (async)...", LogEventType.Info);
-                System.Net.WebClient webC = new System.Net.WebClient();
-                if (string.IsNullOrWhiteSpace(URL)) { Log("URL was either null, empty or just whitespaces.", LogEventType.Error); return; }
-                string htu = string.Empty;
-                try
-                {
-                    htu = webC.DownloadString(URL);
-                }
-                catch (Exception ex)
-                {
-                    Log("Cannot get information, exception caught: " + ex.ToString(), LogEventType.Error); return;
-                }
-                if (string.IsNullOrWhiteSpace(htu)) { Log("The information received was either null, empty or just white spaces. ", LogEventType.Error); return; }
-                webC.Dispose();
-                webC = null;
-                try
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.LoadXml(htu);
-                    XmlNode rootNode = doc.FindRoot();
-                    List<string> applied = new List<string>();
-                    for (int i = 0; i < rootNode.ChildNodes.Count; i++)
-                    {
-                        XmlNode node = rootNode.ChildNodes[i];
-                        switch (node.Name.ToLowerEnglish())
-                        {
-                            case "mirror":
-                                if (applied.Contains(node.Name.ToLowerEnglish()))
-                                {
-                                    break;
-                                }
-                                applied.Add(node.Name.ToLowerEnglish());
-                                Log("Mirror found.");
-                                if (node.Attributes["URL"] == null)
-                                {
-                                    Log("Mirror link was null.", LogEventType.Error);
-                                }
-                                else
-                                {
-                                    URL = node.Attributes["URL"].ToString();
-                                    Log("Mirrored to \"" + URL + "\".");
-                                    LoadFromUrl();
-                                }
-                                return;
-
-                            case "version":
-                                if (applied.Contains(node.Name.ToLowerEnglish()))
-                                {
-                                    break;
-                                }
-                                applied.Add(node.Name.ToLowerEnglish());
-                                if (string.IsNullOrWhiteSpace(node.InnerXml))
-                                {
-                                    Log("Version InnerXML is empty.", LogEventType.Error);
-                                    return;
-                                }
-                                LatestVer = int.Parse(node.InnerXml.XmlToString());
-                                break;
-
-                            case "versions":
-                                if (applied.Contains(node.Name.ToLowerEnglish()))
-                                {
-                                    break;
-                                }
-                                applied.Add(node.Name.ToLowerEnglish());
-                                for (int _i = 0; _i < node.ChildNodes.Count; _i++)
-                                {
-                                    if (node.ChildNodes[_i].Name.ToLowerEnglish() != "version")
-                                    {
-                                        ThrownNodes.Add(node.ChildNodes[_i]);
-                                    }
-                                    else
-                                    {
-                                        HTUPDATE_Version ver = new HTUPDATE_Version(node.ChildNodes[_i]);
-                                        if (!Versions.Contains(ver))
-                                        {
-                                            Versions.Add(ver);
-                                        }
-                                    }
-                                }
-                                break;
-
-                            default:
-                                if (!node.IsComment())
-                                {
-                                    ThrownNodes.Add(node);
-                                }
-                                break;
-                        }
-                    }
-                }
-                catch (XmlException xe)
-                {
-                    Log("XML configuration has error(s): " + xe.ToString(), LogEventType.Error);
-                }
-                catch (Exception ex)
-                {
-                    Log("Cannot work on information, exception caught: " + ex.ToString(), LogEventType.Error); return;
-                }
+                Log("Loading info from URL (async)...", LogLevel.Info);
+                LoadUrlSync();
             });
         }
 
-        private void LoadUrlSync()
+        /// <summary>
+        /// Loads URL with sync.
+        /// </summary>
+        public void LoadUrlSync()
         {
-            Log("Loading info from URL (async)...", LogEventType.Info);
+            Log("Loading info from URL...", LogLevel.Info);
             System.Net.WebClient webC = new System.Net.WebClient();
-            if (string.IsNullOrWhiteSpace(URL)) { Log("URL was either null, empty or just whitespaces.", LogEventType.Error); return; }
+            if (string.IsNullOrWhiteSpace(URL)) { Log("URL was either null, empty or just whitespaces.", LogLevel.Error); return; }
             string htu = string.Empty;
             try
             {
@@ -205,9 +114,9 @@ namespace HTAlt
             }
             catch (Exception ex)
             {
-                Log("Cannot get information, exception caught: " + ex.ToString(), LogEventType.Error); return;
+                Log("Cannot get information, exception caught: " + ex.ToString(), LogLevel.Error); return;
             }
-            if (string.IsNullOrWhiteSpace(htu)) { Log("The information received was either null, empty or just white spaces. ", LogEventType.Error); return; }
+            if (string.IsNullOrWhiteSpace(htu)) { Log("The information received was either null, empty or just white spaces. ", LogLevel.Error); return; }
             webC.Dispose();
             webC = null;
             try
@@ -230,7 +139,7 @@ namespace HTAlt
                             Log("Mirror found.");
                             if (node.Attributes["URL"] == null)
                             {
-                                Log("Mirror link was null.", LogEventType.Error);
+                                Log("Mirror link was null.", LogLevel.Error);
                             }
                             else
                             {
@@ -248,7 +157,7 @@ namespace HTAlt
                             applied.Add(node.Name.ToLowerEnglish());
                             if (string.IsNullOrWhiteSpace(node.InnerXml))
                             {
-                                Log("Version InnerXML is empty.", LogEventType.Error);
+                                Log("Version InnerXML is empty.", LogLevel.Error);
                                 return;
                             }
                             LatestVer = int.Parse(node.InnerXml.XmlToString());
@@ -282,11 +191,11 @@ namespace HTAlt
             }
             catch (XmlException xe)
             {
-                Log("XML configuration has error(s): " + xe.ToString(), LogEventType.Error);
+                Log("XML configuration has error(s): " + xe.ToString(), LogLevel.Error);
             }
             catch (Exception ex)
             {
-                Log("Cannot work on information, exception caught: " + ex.ToString(), LogEventType.Error); return;
+                Log("Cannot work on information, exception caught: " + ex.ToString(), LogLevel.Error); return;
             }
         }
 
@@ -306,43 +215,28 @@ namespace HTAlt
             }
         }
 
-        private void DoSyncUpdate(bool force = false)
+        /// <summary>
+        /// Updates the packages with sync.
+        /// </summary>
+        /// <param name="force">Forces to do update even when it is already in the latest version.</param>
+        public void DoSyncUpdate(bool force = false)
         {
             Stopwatch w = new Stopwatch();
             w.Start();
-            Log("Syncing...", LogEventType.Info);
+            Log("Syncing...", LogLevel.Info);
             LoadFromUrl();
-            Log("Sync complete. Starting update...", LogEventType.Info);
+            Log("Sync complete. Starting update...", LogLevel.Info);
             if (OnBeforeUpdate != null)
             {
-                Log("OnBeforeUpdate() started...", LogEventType.Info);
+                Log("OnBeforeUpdate() started...", LogLevel.Info);
                 OnBeforeUpdate(this, new EventArgs());
-                Log("OnBeforeUpdate() ended...", LogEventType.Info);
+                Log("OnBeforeUpdate() ended...", LogLevel.Info);
             }
             int uType = GetUpdateType;
             if (force || uType > 0)
             {
-                HTUPDATE_Arch download = null;
-                List<HTUPDATE_Arch> arch = uType > 1 ? LatestLTSVersion.FindArch(Arch) : LatestVersion.FindArch(Arch);
-                HTUPDATE_Arch noarch = uType > 1 ? LatestLTSVersion.FindNoArch() : LatestVersion.FindNoArch();
-                if (arch.Count > 0)
-                {
-                    download = arch[0];
-                }
-                else
-                {
-                    if (noarch != null)
-                    {
-                        download = noarch;
-                    }
-                    else
-                    {
-                        download = null;
-                    }
-                }
                 if (download != null)
                 {
-                    bool minimal = CurrentVer > MinimalUpdateID;
                     string tempFile = System.IO.Path.Combine(TempFolder, Name + "-" + download.Version.Name + "-" + download.Arch + ".hup");
                     string backupFile = System.IO.Path.Combine(TempFolder, Name + "-backup.hup");
                     System.Net.WebClient webc = new System.Net.WebClient();
@@ -359,109 +253,72 @@ namespace HTAlt
                         }
                         else
                         {
-                            if (minimal)
+                            Exception error = null;
+                            if (download.Hashes.Count > 0)
                             {
-                                if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash) || !string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
+                                for (int i = 0; i < download.Hashes.Count; i++)
                                 {
-                                    string stat = "";
-                                    Log("Verifying...");
-                                    if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash))
+                                    try
                                     {
-                                        stat += tempFile.VerifyFile(download.MinimalMD5Hash) ? "m" : "M";
+                                        download.Hashes[i].Verify(tempFile);
                                     }
-                                    if (!string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
+                                    catch (Exception ex)
                                     {
-                                        stat += tempFile.VerifyFile(download.MinimalSHA256Hash, true) ? "s" : "S";
-                                    }
-                                    if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                    {
-                                        Log("Verified.");
-                                    }
-                                    else if (string.IsNullOrWhiteSpace(stat))
-                                    {
-                                        Log("Cannot verify package, unknown error occurred.");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        Log("Cannot verify package, different hash.");
-                                        return;
+                                        error = ex;
+                                        break;
                                     }
                                 }
+                            }
+                            if (error != null)
+                            {
+                                Log("Error on verifying package \"" + System.IO.Path.GetFileName(tempFile) + "\" exception caught: " + error.ToString(), LogLevel.Error);
                             }
                             else
                             {
-                                if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
-                                {
-                                    string stat = "";
-                                    Log("Verifying...");
-                                    if (!string.IsNullOrWhiteSpace(download.MD5Hash))
-                                    {
-                                        stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
-                                    }
-                                    if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
-                                    {
-                                        stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
-                                    }
-                                    if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                    {
-                                        Log("Verified.");
-                                    }
-                                    else if (string.IsNullOrWhiteSpace(stat))
-                                    {
-                                        Log("Cannot verify package, unknown error occurred.");
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        Log("Cannot verify package, different hash.");
-                                        return;
-                                    }
-                                }
-                            }
-                            try
-                            {
-                                Log("Getting a backup...");
-                                System.IO.Compression.ZipFile.CreateFromDirectory(WorkFolder, backupFile, System.IO.Compression.CompressionLevel.NoCompression, false, System.Text.Encoding.UTF8);
-                                Log("Backup created. Installing...");
                                 try
                                 {
-                                    System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, tempFile, System.Text.Encoding.UTF8);
-                                    Log("Installation finished with no error(s).", LogEventType.Info);
-                                    CurrentVer = LatestVer;
+                                    Log("Getting a backup...");
+                                    System.IO.Compression.ZipFile.CreateFromDirectory(WorkFolder, backupFile, System.IO.Compression.CompressionLevel.NoCompression, false, System.Text.Encoding.UTF8);
+                                    Log("Backup created. Installing...");
+                                    try
+                                    {
+                                        System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, tempFile, System.Text.Encoding.UTF8);
+                                        Log("Installation finished with no error(s).", LogLevel.Info);
+                                        CurrentVer = LatestVer;
+                                    }
+                                    catch (Exception _ex)
+                                    {
+                                        Log("Error while installing, error caught: " + _ex.ToString(), LogLevel.Info);
+                                        System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, backupFile, System.Text.Encoding.UTF8);
+                                        Log("Reverted back to previous state.", LogLevel.Info);
+                                    }
                                 }
-                                catch (Exception _ex)
+                                catch (Exception ex)
                                 {
-                                    Log("Error while installing, error caught: " + _ex.ToString(), LogEventType.Info);
-                                    System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, backupFile, System.Text.Encoding.UTF8);
-                                    Log("Reverted back to previous state.", LogEventType.Info);
+                                    Log("Error while installing, error caught: " + ex.ToString(), LogLevel.Info);
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                Log("Error while installing, error caught: " + ex.ToString(), LogEventType.Info);
-                            }
 
-                            Log("Finishing update...", LogEventType.Info);
-                            if (OnAfterUpdate != null)
-                            {
-                                Log("OnAfterUpdate() started...", LogEventType.Info);
-                                OnAfterUpdate(this, new EventArgs());
-                                Log("OnAfterUpdate() ended...", LogEventType.Info);
+                                Log("Finishing update...", LogLevel.Info);
+                                if (OnAfterUpdate != null)
+                                {
+                                    Log("OnAfterUpdate() started...", LogLevel.Info);
+                                    OnAfterUpdate(this, new EventArgs());
+                                    Log("OnAfterUpdate() ended...", LogLevel.Info);
+                                }
+                                Log("Update finished in " + w.ElapsedMilliseconds + " ms.", LogLevel.Info);
                             }
-                            Log("Update finished in " + w.ElapsedMilliseconds + " ms.", LogEventType.Info);
                         }
                     });
-                    webc.DownloadFileAsync(new Uri(minimal ? download.MinimalUrl : download.DownloadUrl), tempFile);
+                    webc.DownloadFileAsync(new Uri(download.Url), tempFile);
                 }
                 else
                 {
-                    Log("Cannot find suitable download for this version. Architectures are missing.", LogEventType.Info);
+                    Log("Cannot find suitable download for this version. Architectures are missing.", LogLevel.Info);
                 }
             }
             else
             {
-                Log("Package already up-to-date.", LogEventType.Info);
+                Log("Package already up-to-date.", LogLevel.Info);
             }
         }
 
@@ -472,185 +329,42 @@ namespace HTAlt
                     ? CurrentVer < LatestLTSVer ? isLTSRevoked(LatestLTSVersion) ? 1 : 2 : isLTSRevoked(CurrentVersion) ? 1 : 0
                     : CurrentVer < LatestVer ? 1 : 0;
 
-        private async void DoAsyncUpdate(bool force = false)
+        /// <summary>
+        /// Updates the packages without sync.
+        /// </summary>
+        /// <param name="force">Forces to do update even when it is already in the latest version.</param>
+        public async void DoAsyncUpdate(bool force = false)
         {
             await System.Threading.Tasks.Task.Run(() =>
             {
-                Stopwatch w = new Stopwatch();
-                w.Start();
-                Log("Syncing...", LogEventType.Info);
-                LoadFromUrl();
-                Log("Sync complete. Starting update...", LogEventType.Info);
-                if (OnBeforeUpdate != null)
-                {
-                    Log("OnBeforeUpdate() started...", LogEventType.Info);
-                    OnBeforeUpdate(this, new EventArgs());
-                    Log("OnBeforeUpdate() ended...", LogEventType.Info);
-                }
-                int uType = GetUpdateType;
-                if (force || uType > 0)
-                {
-                    HTUPDATE_Arch download = null;
-                    List<HTUPDATE_Arch> arch = uType > 1 ? LatestLTSVersion.FindArch(Arch) : LatestVersion.FindArch(Arch);
-                    HTUPDATE_Arch noarch = uType > 1 ? LatestLTSVersion.FindNoArch() : LatestVersion.FindNoArch();
-                    if (arch.Count > 0)
-                    {
-                        download = arch[0];
-                    }
-                    else
-                    {
-                        if (noarch != null)
-                        {
-                            download = noarch;
-                        }
-                        else
-                        {
-                            download = null;
-                        }
-                    }
-                    if (download != null)
-                    {
-                        bool minimal = CurrentVer > MinimalUpdateID;
-                        string tempFile = System.IO.Path.Combine(TempFolder, Name + "-" + download.Version.Name + "-" + download.Arch + ".hup");
-                        string backupFile = System.IO.Path.Combine(TempFolder, Name + "-backup.hup");
-                        System.Net.WebClient webc = new System.Net.WebClient();
-                        webc.DownloadProgressChanged += OnPackageDownloadProgress;
-                        webc.DownloadFileCompleted += new AsyncCompletedEventHandler((sender, e) =>
-                        {
-                            if (e.Error != null)
-                            {
-                                Log("Cannot download package, error caught: " + e.Error.ToString());
-                            }
-                            else if (e.Cancelled)
-                            {
-                                Log("Cannot download package, cancelled.");
-                            }
-                            else
-                            {
-                                if (minimal)
-                                {
-                                    if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash) || !string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
-                                    {
-                                        string stat = "";
-                                        Log("Verifying...");
-                                        if (!string.IsNullOrWhiteSpace(download.MinimalMD5Hash))
-                                        {
-                                            stat += tempFile.VerifyFile(download.MinimalMD5Hash) ? "m" : "M";
-                                        }
-                                        if (!string.IsNullOrWhiteSpace(download.MinimalSHA256Hash))
-                                        {
-                                            stat += tempFile.VerifyFile(download.MinimalSHA256Hash, true) ? "s" : "S";
-                                        }
-                                        if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                        {
-                                            Log("Verified.");
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(stat))
-                                        {
-                                            Log("Cannot verify package, unknown error occurred.");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            Log("Cannot verify package, different hash.");
-                                            return;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (!string.IsNullOrWhiteSpace(download.MD5Hash) || !string.IsNullOrWhiteSpace(download.SHA256Hash))
-                                    {
-                                        string stat = "";
-                                        Log("Verifying...");
-                                        if (!string.IsNullOrWhiteSpace(download.MD5Hash))
-                                        {
-                                            stat += tempFile.VerifyFile(download.MD5Hash) ? "m" : "M";
-                                        }
-                                        if (!string.IsNullOrWhiteSpace(download.SHA256Hash))
-                                        {
-                                            stat += tempFile.VerifyFile(download.SHA256Hash, true) ? "s" : "S";
-                                        }
-                                        if (stat == "m" || stat == "s" || stat == "ms" || stat == "sm")
-                                        {
-                                            Log("Verified.");
-                                        }
-                                        else if (string.IsNullOrWhiteSpace(stat))
-                                        {
-                                            Log("Cannot verify package, unknown error occurred.");
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            Log("Cannot verify package, different hash.");
-                                            return;
-                                        }
-                                    }
-                                }
-                                try
-                                {
-                                    Log("Getting a backup...");
-                                    System.IO.Compression.ZipFile.CreateFromDirectory(WorkFolder, backupFile, System.IO.Compression.CompressionLevel.NoCompression, false, System.Text.Encoding.UTF8);
-                                    Log("Backup created. Installing...");
-                                    try
-                                    {
-                                        System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, tempFile, System.Text.Encoding.UTF8);
-                                        Log("Installation finished with no error(s).", LogEventType.Info);
-                                        CurrentVer = LatestVer;
-                                    }
-                                    catch (Exception _ex)
-                                    {
-                                        Log("Error while installing, error caught: " + _ex.ToString(), LogEventType.Info);
-                                        System.IO.Compression.ZipFile.ExtractToDirectory(WorkFolder, backupFile, System.Text.Encoding.UTF8);
-                                        Log("Reverted back to previous state.", LogEventType.Info);
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log("Error while installing, error caught: " + ex.ToString(), LogEventType.Info);
-                                }
-
-                                Log("Finishing update...", LogEventType.Info);
-                                if (OnAfterUpdate != null)
-                                {
-                                    Log("OnAfterUpdate() started...", LogEventType.Info);
-                                    OnAfterUpdate(this, new EventArgs());
-                                    Log("OnAfterUpdate() ended...", LogEventType.Info);
-                                }
-                                Log("Update finished in " + w.ElapsedMilliseconds + " ms.", LogEventType.Info);
-                            }
-                        });
-                        webc.DownloadFileAsync(new Uri(minimal ? download.MinimalUrl : download.DownloadUrl), tempFile);
-                    }
-                    else
-                    {
-                        Log("Cannot find suitable download for this version. Architectures are missing.", LogEventType.Info);
-                    }
-                }
-                else
-                {
-                    Log("Package already up-to-date.", LogEventType.Info);
-                }
+                DoSyncUpdate();
             });
         }
 
-        public void CheckForUpdate()
+        /// <summary>
+        /// Event used for logging.
+        /// </summary>
+        /// <param name="x">Message</param>
+        /// <param name="level"><see cref="LogLevel"/></param>
+        public void Log(string x, LogLevel level = LogLevel.None)
         {
-            Stopwatch w = new Stopwatch();
-            w.Start();
-            Log("Checking for updates...", LogEventType.Info);
-            // TODO
-            Log("Check finished in " + w.ElapsedMilliseconds + " ms.", LogEventType.Info);
+            if (OnLogEntry != null) { OnLogEntry(this, new OnLogEntryEventArgs(x, level)); }
         }
 
-        private void Log(string x, LogEventType type = LogEventType.Nothing)
-        {
-            if (OnLogEntry != null) { OnLogEntry(this, new OnLogEntryEventArgs(x, type)); }
-        }
+        /// <summary>
+        /// Latest Version number.
+        /// </summary>
+        public int LatestVer { get; set; } = 1;
 
-        private int LatestVer { get; set; } = 1;
-        private int LatestLTSVer => LatestLTSVersion.ID;
-        private int CurrentVer { get; set; } = 1;
+        /// <summary>
+        /// Latest LTS version number.
+        /// </summary>
+        public int LatestLTSVer => LatestLTSVersion.ID;
+
+        /// <summary>
+        /// Current version number.
+        /// </summary>
+        public int CurrentVer { get; set; } = 1;
 
         /// <summary>
         /// Folder where HTUPDATE store temporary files such as downloaded packages.
@@ -666,11 +380,6 @@ namespace HTAlt
         /// A list of nodes that are thrown away while gathering information.
         /// </summary>
         public List<XmlNode> ThrownNodes { get; set; } = new List<XmlNode>();
-
-        /// <summary>
-        /// Minimum version ID for minimal updates.
-        /// </summary>
-        public int MinimalUpdateID { get; set; }
 
         /// <summary>
         /// Event raised before updating.
@@ -702,6 +411,11 @@ namespace HTAlt
         /// Returns <c>true</c> if it's currently checking for updates, otherwise <c>false</c>.
         /// </summary>
         public bool isCheckingForUpdates { get; set; }
+
+        /// <summary>
+        /// Checks if the packages are up to date.
+        /// </summary>
+        public bool isUpToDate => LatestLTSVer == CurrentVer || LatestVer == CurrentVer;
 
         /// <summary>
         /// Details of update error.
@@ -763,26 +477,37 @@ namespace HTAlt
         /// Name of your product.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets version by its number.
+        /// </summary>
+        /// <param name="v">Version number.</param>
+        /// <returns><see cref="HTUPDATE_Version"/></returns>
+        public HTUPDATE_Version GetVersion(int v)
+        {
+            HTUPDATE_Version ver = null;
+            for (int i = 0; i < Versions.Count; i++)
+            {
+                if (Versions[i].ID == v)
+                {
+                    ver = Versions[i];
+                    break;
+                }
+            }
+            return ver;
+        }
     }
 
     public class OnLogEntryEventArgs : EventArgs
     {
-        public OnLogEntryEventArgs(string newLog, LogEventType type = LogEventType.Nothing)
+        public OnLogEntryEventArgs(string newLog, LogLevel level = LogLevel.None)
         {
-            Type = type;
+            Level = level;
             LogEntry = newLog;
         }
 
-        public LogEventType Type { get; internal set; }
+        public LogLevel Level { get; internal set; }
         public string LogEntry { get; internal set; }
-    }
-
-    public enum LogEventType
-    {
-        Nothing,
-        Info,
-        Warning,
-        Error
     }
 
     /// <summary>
@@ -821,37 +546,63 @@ namespace HTAlt
                                     Flags = node.InnerXml.XmlToString().Split(';');
                                     break;
 
+                                case "based":
+                                    BasedVersion = HTUPDATE.GetVersion(int.Parse(node.InnerXml.XmlToString()));
+                                    break;
+
                                 case "archs":
                                     for (int _i = 0; i < node.ChildNodes.Count; _i++)
                                     {
                                         XmlNode subnode = node.ChildNodes[_i];
                                         if (subnode.Name.ToLowerEnglish() == "arch")
                                         {
-                                            if (subnode.Attributes["Arch"] != null && subnode.Attributes["Url"] != null)
+                                            HTUPDATE_Arch arch = new HTUPDATE_Arch(this);
+                                            for (int ai = 0; ai < subnode.ChildNodes.Count; ai++)
                                             {
-                                                HTUPDATE_Arch arch = new HTUPDATE_Arch(subnode.Attributes["Arch"].Value.XmlToString().ToLowerEnglish(), subnode.Attributes["Url"].Value.XmlToString(), this);
-                                                if (subnode.Attributes["MD5"] != null)
+                                                XmlNode subsubnode = subnode.ChildNodes[ai];
+                                                switch (subsubnode.Name.ToLowerEnglish())
                                                 {
-                                                    arch.MD5Hash = subnode.Attributes["MD5"].Value.XmlToString();
+                                                    case "hash":
+                                                        if (subsubnode.Attributes["Algorithm"] != null && !string.IsNullOrWhiteSpace(subsubnode.InnerXml))
+                                                        {
+                                                            HTUPDATE_Hash hash = new HTUPDATE_Hash
+                                                            {
+                                                                Hash = subsubnode.InnerXml.XmlToString()
+                                                            };
+                                                            switch (subsubnode.Attributes["Algorithm"].Value.XmlToString().ToLowerEnglish())
+                                                            {
+                                                                case "md5": hash.Algorithm = System.Security.Cryptography.MD5.Create(); break;
+                                                                case "sha256": hash.Algorithm = System.Security.Cryptography.SHA256.Create(); break;
+                                                                case "sha1": hash.Algorithm = System.Security.Cryptography.SHA1.Create(); break;
+                                                                case "sha384": hash.Algorithm = System.Security.Cryptography.SHA384.Create(); break;
+                                                                case "SHA512": hash.Algorithm = System.Security.Cryptography.SHA512.Create(); break;
+                                                                case "hmacmd5": hash.Algorithm = System.Security.Cryptography.HMACMD5.Create(); break;
+                                                                case "hmacsha1": hash.Algorithm = System.Security.Cryptography.HMACSHA1.Create(); break;
+                                                                case "hmacsha256": hash.Algorithm = System.Security.Cryptography.HMACSHA256.Create(); break;
+                                                                case "hmacsha384": hash.Algorithm = System.Security.Cryptography.HMACSHA384.Create(); break;
+                                                                case "hmacsha512": hash.Algorithm = System.Security.Cryptography.HMACSHA512.Create(); break;
+                                                            }
+                                                            arch.Hashes.Add(hash);
+                                                        }
+                                                        break;
+
+                                                    case "arch":
+
+                                                        arch.Arch = subsubnode.Value.XmlToString();
+                                                        break;
+
+                                                    case "delta":
+
+                                                        arch.isDelta = subsubnode.Value.XmlToString() == "true";
+                                                        break;
+
+                                                    case "url":
+
+                                                        arch.Url = subsubnode.InnerXml.XmlToString();
+                                                        break;
                                                 }
-                                                if (subnode.Attributes["SHA256"] != null)
-                                                {
-                                                    arch.SHA256Hash = subnode.Attributes["SHA256"].Value.XmlToString();
-                                                }
-                                                if (subnode.Attributes["MinimalUrl"] != null)
-                                                {
-                                                    arch.MinimalUrl = subnode.Attributes["MinimalUrl"].Value.XmlToString();
-                                                }
-                                                if (subnode.Attributes["MinMD5"] != null)
-                                                {
-                                                    arch.MinimalMD5Hash = subnode.Attributes["MinMD5"].Value.XmlToString();
-                                                }
-                                                if (subnode.Attributes["MinSHA256"] != null)
-                                                {
-                                                    arch.MinimalSHA256Hash = subnode.Attributes["MinSHA256"].Value.XmlToString();
-                                                }
-                                                Archs.Add(arch);
                                             }
+                                            Archs.Add(arch);
                                         }
                                     }
                                     break;
@@ -875,6 +626,11 @@ namespace HTAlt
         /// Creates a new epty version.
         /// </summary>
         public HTUPDATE_Version() { }
+
+        /// <summary>
+        /// The version which this version is based on.
+        /// </summary>
+        public HTUPDATE_Version BasedVersion { get; set; }
 
         /// <summary>
         /// HTUPDATE associated with this version.
@@ -939,18 +695,10 @@ namespace HTAlt
         /// <summary>
         /// Creates a new <see cref="HTUPDATE_Arch"/>.
         /// </summary>
-        /// <param name="arch">Processor architecture.</param>
-        /// <param name="downloadUrl">Location of the package.</param>
-        /// <param name="ver"><see cref="HTUPDATE_Version"/></param>
-        /// <param name="mD5Hash"><see cref="System.Security.Cryptography.MD5"/></param>
-        /// <param name="sHA256Hash"><see cref="System.Security.Cryptography.SHA256"/></param>
-        public HTUPDATE_Arch(string arch, string downloadUrl, HTUPDATE_Version ver, string mD5Hash = "", string sHA256Hash = "")
+        /// <param name="version"><see cref="HTUPDATE_Version"/></param>
+        public HTUPDATE_Arch(HTUPDATE_Version version) : this()
         {
-            Arch = arch;
-            Version = ver;
-            DownloadUrl = downloadUrl;
-            MD5Hash = mD5Hash;
-            SHA256Hash = sHA256Hash;
+            if (version != null) { Version = version; } else { throw new ArgumentNullException(nameof(version)); }
         }
 
         /// <summary>
@@ -973,33 +721,22 @@ namespace HTAlt
         /// <summary>
         /// Download location for the files
         /// </summary>
-        public string DownloadUrl { get; set; }
+        public string Url { get; set; }
 
         /// <summary>
-        /// Location of the minimal upgrade packages.
+        /// Determines if this package hs binary changes or not.
         /// </summary>
-        public string MinimalUrl { get; set; }
+        public bool isDelta { get; set; }
 
         /// <summary>
-        /// <see cref="System.Security.Cryptography.MD5"/>
+        /// A list of file hashes.
         /// </summary>
-        public string MD5Hash { get; set; }
+        public List<HTUPDATE_Hash> Hashes { get; set; } = new List<HTUPDATE_Hash>();
 
         /// <summary>
-        /// <see cref="System.Security.Cryptography.SHA256"/>
+        /// Checks if a version is compatible or not.
         /// </summary>
-        public string SHA256Hash { get; set; }
-
-        /// <summary>
-        /// <see cref="System.Security.Cryptography.MD5"/>
-        /// </summary>
-        public string MinimalMD5Hash { get; set; }
-
-        /// <summary>
-        /// <see cref="System.Security.Cryptography.SHA256"/>
-        /// </summary>
-        public string MinimalSHA256Hash { get; set; }
-
+        /// <returns><see cref="bool"/></returns>
         public bool isCompatible()
         {
             Arch = Arch.ToLowerEnglish();
@@ -1031,6 +768,32 @@ namespace HTAlt
     }
 
     /// <summary>
+    /// File Hash.
+    /// </summary>
+    public class HTUPDATE_Hash
+    {
+        /// <summary>
+        /// Hash of the file.
+        /// </summary>
+        public string Hash { get; set; }
+
+        /// <summary>
+        /// Algorithm of the hash.
+        /// </summary>
+        public System.Security.Cryptography.HashAlgorithm Algorithm { get; set; }
+
+        /// <summary>
+        /// Verifys the file.
+        /// </summary>
+        /// <param name="file"><see cref="string"/></param>
+        /// <returns><see cref="bool"/></returns>
+        public bool Verify(string file)
+        {
+            return Tools.VerifyFile(Algorithm, file, Hash);
+        }
+    }
+
+    /// <summary>
     /// Update status
     /// </summary>
     public enum UpdateStatus
@@ -1054,5 +817,419 @@ namespace HTAlt
         /// Error occurred while checking for updates.
         /// </summary>
         Error
+    }
+
+    public static class HTUPDATE_Default_OS
+    {
+        public class Any : HTUPDATE_OS
+        {
+            public override string Name => "Any OS";
+            public override string Version => "";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return true;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        #region Unix
+
+        public class Unix : Any
+        {
+            public override string Name => "Unix";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Unix;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class BSD : Unix
+        {
+            public override string Name => "BSD";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is BSD;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class FreeBSD : BSD
+        {
+            public override string Name => "FreeBSD";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is FreeBSD;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class macOS : FreeBSD
+        {
+            public override string Name => "macOS";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is macOS && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        #region GNU/Linux
+
+        public class Linux : Unix
+        {
+            public override string Name => "Linux";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Linux && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        #region Arch Family
+
+        public class Arch : Linux
+        {
+            public override string Name => "Arch Linux";
+            public override string[] SupportedArchs => new string[] { "noarch", "x64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Arch;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class Manjaro : Arch
+        {
+            public override string Name => "Manjaro";
+            public override string[] SupportedArchs => new string[] { "noarch", "x64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Arch;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        public class Garuda : Manjaro
+        {
+            public override string Name => "Garuda Linux";
+            public override string[] SupportedArchs => new string[] { "noarch", "x64" };
+        }
+
+        #endregion Arch Family
+
+        #region Red Hat Family
+
+        public class Fedora : Linux
+        {
+            public override string Name => "Fedora";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Fedora && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) <= int.Parse(version.Substring(0, version.IndexOf('.') - 1)) && int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) >= int.Parse(version.Substring(0, version.IndexOf('.') - 1));
+            }
+        }
+
+        public class CentOS : Fedora
+        {
+            public override string Name => "CentOS";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Fedora && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        public class RHEL : Fedora
+        {
+            public override string Name => "Red hat Enterprise Linux";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Fedora && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        #endregion Red Hat Family
+
+        #region Debian Family
+
+        public class Debian : Linux // DO NOT INCLUDE CODENAMES IN VERSION SUCH AS buster, sid etc.
+        {
+            public override string Name => "Debian";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Fedora && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        public class Ubuntu : Debian
+        {
+            public override string Name => "Ubuntu";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Fedora && isCompatibleWithVersion(otherOS.Version);
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
+            }
+        }
+
+        public class
+
+
+        #endregion Debian Family
+
+        #endregion GNU/Linux
+
+        #endregion Unix
+
+        #region Windows
+
+        public class Windows : Any
+        {
+            public override string Name => "Microsoft Windows";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Windows;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class Windows7 : Windows
+        {
+            public override string Name => "Microsoft Windows 7";
+            public override string Version => "6.1";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Windows;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class Windows7SP1 : Windows
+        {
+            public override string Name => "Microsoft Windows 7 SP1";
+            public override string Version => "6.1sp1";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                return otherOS is Windows;
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                return true;
+            }
+        }
+
+        public class Windows8 : Windows
+        {
+            public override string Name => "Microsoft Windows 8";
+            public override string Version => "6.2";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                if (otherOS is Windows)
+                {
+                    return isCompatibleWithVersion(otherOS.Version);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                if (version.Length > 2)
+                {
+                    string ver_mn = version.Substring(2);
+                    if (version.StartsWith("6"))
+                    {
+                        return !ver_mn.StartsWith("0") && !ver_mn.StartsWith("1");
+                    }
+                    else if (version.StartsWith("7"))
+                    {
+                        return false;
+                    }
+                    else if (version.StartsWith("8") || version.StartsWith("10") || version.StartsWith("11"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return version.StartsWith("10") || version.StartsWith("6") || version.StartsWith("7") || version.StartsWith("8") || version.StartsWith("8.1") || version.StartsWith("11");
+                }
+            }
+        }
+
+        public class Windows81 : Windows8
+        {
+            public override string Name => "Microsoft Windows 8.1";
+            public override string Version => "6.2.9200.00";
+        }
+
+        public class Windows10 : Windows
+        {
+            public override string Name => "Microsoft Windows 10";
+            public override string[] SupportedArchs => new string[] { "noarch", "x86", "x64", "arm", "arm64" };
+
+            public string UpdateVersion { get; set; }
+            public override string Version { get => "10." + UpdateVersion; set => UpdateVersion = value.StartsWith("10.") ? value.Substring(3) : value; }
+
+            public override bool isCompatible(HTUPDATE_OS otherOS)
+            {
+                if (otherOS is Windows)
+                {
+                    return isCompatibleWithVersion(otherOS.Version);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public override bool isCompatibleWithVersion(string version)
+            {
+                if (version.Length > 2)
+                {
+                    string ver_mn = version.Substring(3);
+                    if (version.StartsWith("10"))
+                    {
+                        return int.Parse(ver_mn.Replace("H", "0")) >= int.Parse(UpdateVersion.Replace("H", "0"));
+                    }
+                    else if (version.StartsWith("7") || version.StartsWith("6"))
+                    {
+                        return false;
+                    }
+                    else if (version.StartsWith("11"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return version.StartsWith("10") || version.StartsWith("6") || version.StartsWith("7") || version.StartsWith("8") || version.StartsWith("8.1") || version.StartsWith("11");
+                }
+            }
+        }
+
+        #endregion Windows
+    }
+
+    public class HTUPDATE_OS
+    {
+        public virtual string Name { get; set; }
+        public virtual string Version { get; set; }
+        public virtual string[] SupportedArchs { get; set; } = new string[] { "noarch" };
+
+        public virtual bool isCompatible(HTUPDATE_OS otherOS)
+        {
+            return otherOS.Name == Name;
+        }
+
+        public virtual bool isCompatibleWithVersion(string version)
+        {
+            return version == Version;
+        }
     }
 }

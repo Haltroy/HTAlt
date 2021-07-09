@@ -1,6 +1,6 @@
 ﻿/*
 
-Copyright © 2021 Eren "Haltroy" Kanat
+Copyright © 2018 - 2021 haltroy
 
 Use of this source code is governed by an MIT License that can be found in github.com/Haltroy/HTAlt/blob/master/LICENSE
 
@@ -14,21 +14,15 @@ namespace HTAlt
     /// <summary>
     /// This class holds information about this project.
     /// </summary>
-    public class HTInfo
+    public static class HTInfo
     {
-        private static readonly string version = "0.1.7.0";
-        private static readonly string codeName = "Coffee";
-        private static readonly string name = "HTAlt";
-        private static readonly string link = "https://github.com/haltroy/HTAlt";
-        private static readonly string developer = "Haltroy";
-
         /// <summary>
         /// The Project's Name.
         /// </summary>
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's Name.")]
-        public string ProjectName => name;
+        public static string ProjectName { get; } = "HTAlt";
 
         /// <summary>
         /// The Project's Code Name.
@@ -36,7 +30,7 @@ namespace HTAlt
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's Code Name.")]
-        public string ProjectCodeName => codeName;
+        public static string ProjectCodeName { get; } = "Coffee II";
 
         /// <summary>
         /// The Project's version.
@@ -44,7 +38,7 @@ namespace HTAlt
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's version.")]
-        public Version ProjectVersion => new Version(version);
+        public static string ProjectVersion { get; } = "0.1.7.1";
 
         /// <summary>
         /// The Project's developer.
@@ -52,7 +46,7 @@ namespace HTAlt
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's developer.")]
-        public string ProjectDeveloper => developer;
+        public static string ProjectDeveloper { get; } = "Haltroy";
 
         /// <summary>
         /// The Project's website.
@@ -60,6 +54,6 @@ namespace HTAlt
         [Bindable(false)]
         [Category("HTAlt")]
         [Description("The Project's website.")]
-        public Uri ProjectWebsite => new Uri(link);
+        public static Uri ProjectWebsite => new Uri("https://github.com/haltroy/HTAlt");
     }
 }

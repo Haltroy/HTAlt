@@ -1,6 +1,6 @@
 ﻿/*
 
-Copyright © 2021 Eren "Haltroy" Kanat
+Copyright © 2018 - 2021 haltroy
 
 Use of this source code is governed by an MIT License that can be found in github.com/Haltroy/HTAlt/blob/master/LICENSE
 
@@ -1114,97 +1114,48 @@ namespace HTAlt
         /// <summary>
         /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
         /// </summary>
-        /// <param name="file">File location.</param>
-        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
-        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
-        /// <returns><see cref="bool"/></returns>
-        public static bool VerifyFile(string file, string md5, string sha256)
-        {
-            return string.Equals(GetMd5Hash(file), md5) && string.Equals(GetSha256Hash(file), sha256);
-        }
-
-        /// <summary>
-        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
-        /// </summary>
+        /// <param name="algorithm"><see cref="System.Security.Cryptography.HashAlgorithm"/></param>
         /// <param name="file">File location.</param>
         /// <param name="hash">File's supposedly hash.</param>
-        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
         /// <returns><see cref="bool"/></returns>
-        public static bool VerifyFile(string file, string hash, bool preferSha256 = false)
+        public static bool VerifyFile(System.Security.Cryptography.HashAlgorithm algorithm, string file, string hash)
         {
-            return string.Equals(preferSha256 ? GetSha256Hash(file) : GetMd5Hash(file), hash);
+            return string.Equals(GetHash(algorithm, file), hash);
         }
 
         /// <summary>
         /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
         /// </summary>
+        /// <param name="algorithm"><see cref="System.Security.Cryptography.HashAlgorithm"/></param>
         /// <param name="file">File location.</param>
-        /// <param name="md5"><see cref="System.Security.Cryptography.MD5"/></param>
-        /// <param name="sha256"><see cref="System.Security.Cryptography.SHA256"/></param>
+        /// <param name="hash">File's supposedly hash.</param>
         /// <returns><see cref="bool"/></returns>
-        public static bool VerifyFile(string file, byte[] md5, byte[] sha256)
+        public static bool VerifyFile(System.Security.Cryptography.HashAlgorithm algorithm, string file, byte[] hash)
         {
-            return GetMd5Hash(file) == md5 && GetSha256Hash(file) == sha256;
-        }
-
-        /// <summary>
-        /// Verifies a file with <see cref="System.Security.Cryptography.MD5"/> and <seealso cref="System.Security.Cryptography.SHA256"/> methods.
-        /// </summary>
-        /// <param name="file">File location.</param>
-        /// <param name="filehash">File's supposedly hash.</param>
-        /// <param name="preferSha256"><c>true</c> to use SHA256 over MD5, otherwise <c>false</c>.</param>
-        /// <returns><see cref="bool"/></returns>
-        public static bool VerifyFile(string file, byte[] filehash, bool preferSha256 = false)
-        {
-            return preferSha256 ? GetSha256Hash(file) == filehash : GetMd5Hash(file) == filehash;
-        }
-
-        /// <summary>
-        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
-        /// </summary>
-        /// <param name="file">File location.</param>
-        /// <param name="ignored">Ignored value.</param>
-        /// <returns><see cref="string"/></returns>
-        public static string GetMd5Hash(string file, bool ignored = false)
-        {
-            return BytesToString(GetMd5Hash(file));
+            return System.Linq.Enumerable.SequenceEqual(GetHash(algorithm, file), hash);
         }
 
         /// <summary>
         /// Gets <see cref="System.Security.Cryptography.SHA256"/> of <paramref name="file"/>.
         /// </summary>
+        /// <param name="algorithm"><see cref="System.Security.Cryptography.HashAlgorithm"/></param>
         /// <param name="file">File location.</param>
         /// <param name="ignored">Ignored value.</param>
         /// <returns><see cref="string"/></returns>
-        public static string GetSha256Hash(string file, bool ignored = false)
+        public static string GetHash(System.Security.Cryptography.HashAlgorithm algorithm, string file, bool ignored = false)
         {
-            return BytesToString(GetSha256Hash(file));
+            return BytesToString(GetHash(algorithm, file));
         }
 
         /// <summary>
-        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
+        /// Gets the file hash of <paramref name="file"/> with <paramref name="algorithm"/>.
         /// </summary>
-        /// <param name="file">File location.</param>
+        /// <param name="algorithm"><see cref="System.Security.Cryptography.HashAlgorithm"/></param>
+        /// <param name="file"><see cref="string"/></param>
         /// <returns><see cref="byte"/> <seealso cref="Array"/>.</returns>
-        public static byte[] GetMd5Hash(string file)
+        public static byte[] GetHash(System.Security.Cryptography.HashAlgorithm algorithm, string file)
         {
-            using (System.Security.Cryptography.MD5 m = System.Security.Cryptography.MD5.Create())
-            {
-                return m.ComputeHash(ReadFile(file));
-            }
-        }
-
-        /// <summary>
-        /// Gets <see cref="System.Security.Cryptography.MD5"/> of <paramref name="file"/>.
-        /// </summary>
-        /// <param name="file">File location.</param>
-        /// <returns><see cref="byte"/> <seealso cref="Array"/>.</returns>
-        public static byte[] GetSha256Hash(string file)
-        {
-            using (System.Security.Cryptography.SHA256 s = System.Security.Cryptography.SHA256.Create())
-            {
-                return s.ComputeHash(ReadFile(file));
-            }
+            return algorithm.ComputeHash(ReadFile(file));
         }
 
         /// <summary>

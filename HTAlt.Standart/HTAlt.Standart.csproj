@@ -3,19 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon>logo.ico</ApplicationIcon>
-    <Version>0.1.6.4</Version>
+    <Version>0.1.7.1</Version>
     <Authors>Haltroy</Authors>
     <Description>Standart library for HTAlt packages.</Description>
-    <Copyright>Copyright © Haltroy 2021</Copyright>
+    <Copyright>Copyright © Haltroy 2018 - 2021</Copyright>
     <PackageProjectUrl>https://github.com/Haltroy/HTAlt</PackageProjectUrl>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Haltroy/HTAlt</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <PackageTags>haltroy HTAlt haltroyframework hf</PackageTags>
+    <PackageTags>haltroy HTAlt standart standard string file image checksum verification update htupdate haltroyupdate logger output</PackageTags>
     <PackageReleaseNotes>Please go to https://github.com/Haltroy/HTAlt/releases to see the changes.</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>
+    <AssemblyVersion>0.1.7.1</AssemblyVersion>
+    <FileVersion>0.1.7.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
