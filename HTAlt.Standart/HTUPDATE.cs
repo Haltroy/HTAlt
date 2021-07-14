@@ -12,8 +12,6 @@ namespace HTAlt
     public class HTUPDATE
     {
         #region HT Info
-
-        private readonly HTInfo info = new HTInfo();
         private readonly Uri wikiLink = new Uri("https://htalt.haltroy.com/api/HTAlt.Standart/HTUPDATE");
         private readonly Version firstHTAltVersion = new Version("0.1.7.0");
         private readonly string description = "Haltroy UPDATE class.";
@@ -41,15 +39,6 @@ namespace HTAlt
         [Category("HTAlt")]
         [Description("This control's description.")]
         public string Description => description;
-
-        /// <summary>
-        /// Information about this control's project.
-        /// </summary>
-        [Bindable(false)]
-        [Category("HTAlt")]
-        [Description("Information about this control's project.")]
-        [TypeConverter(typeof(ExpandableObjectConverter))]
-        public HTInfo ProjectInfo => info;
 
         #endregion HT Info
 
@@ -99,6 +88,134 @@ namespace HTAlt
             });
         }
 
+        #region Zip 
+
+        private void compressDirectory(string DirectoryPath, string OutputFilePath, int CompressionLevel = 9)
+        {
+            ICSharpCode.SharpZipLib.Zip.ZipStrings.UseUnicode = true;
+            try
+            {
+                // Depending on the directory this could be very large and would require more attention
+                // in a commercial package.
+                string[] filenames = System.IO.Directory.GetFiles(DirectoryPath);
+
+                // 'using' statements guarantee the stream is closed properly which is a big source
+                // of problems otherwise.  Its exception safe as well which is great.
+                using (ICSharpCode.SharpZipLib.Zip.ZipOutputStream OutputStream = new ICSharpCode.SharpZipLib.Zip.ZipOutputStream(System.IO.File.Create(OutputFilePath)))
+                {
+
+                    // Define the compression level
+                    // 0 - store only to 9 - means best compression
+                    OutputStream.SetLevel(CompressionLevel);
+
+                    byte[] buffer = new byte[4096];
+
+                    foreach (string file in filenames)
+                    {
+
+                        // Using GetFileName makes the result compatible with XP
+                        // as the resulting path is not absolute.
+                        ICSharpCode.SharpZipLib.Zip.ZipEntry entry = new ICSharpCode.SharpZipLib.Zip.ZipEntry(System.IO.Path.GetFileName(file));
+
+                        // Setup the entry data as required.
+
+                        // Crc and size are handled by the library for seakable streams
+                        // so no need to do them here.
+
+                        // Could also use the last write time or similar for the file.
+                        entry.DateTime = DateTime.Now;
+                        OutputStream.PutNextEntry(entry);
+
+                        using (System.IO.FileStream fs = System.IO.File.OpenRead(file))
+                        {
+
+                            // Using a fixed size buffer here makes no noticeable difference for output
+                            // but keeps a lid on memory usage.
+                            int sourceBytes;
+
+                            do
+                            {
+                                sourceBytes = fs.Read(buffer, 0, buffer.Length);
+                                OutputStream.Write(buffer, 0, sourceBytes);
+                            } while (sourceBytes > 0);
+                        }
+                    }
+
+                    // Finish/Close arent needed strictly as the using statement does this automatically
+
+                    // Finish is important to ensure trailing information for a Zip file is appended.  Without this
+                    // the created file would be invalid.
+                    OutputStream.Finish();
+
+                    // Close is important to wrap things up and unlock the file.
+                    OutputStream.Close();
+
+                    Console.WriteLine("Files successfully compressed");
+                }
+            }
+            catch (Exception ex)
+            {
+                // No need to rethrow the exception as for our purposes its handled.
+                Console.WriteLine("Exception during processing {0}", ex);
+            }
+        }
+
+        public void ExtractZipContent(string FileZipPath, string OutputFolder)
+        {
+            ICSharpCode.SharpZipLib.Zip.ZipFile file = null;
+            ICSharpCode.SharpZipLib.Zip.ZipStrings.UseUnicode = true;
+            try
+            {
+                System.IO.FileStream fs = System.IO.File.OpenRead(FileZipPath);
+                file = new ICSharpCode.SharpZipLib.Zip.ZipFile(fs);
+
+                foreach (ICSharpCode.SharpZipLib.Zip.ZipEntry zipEntry in file)
+                {
+                    if (!zipEntry.IsFile)
+                    {
+                        // Ignore directories
+                        continue;
+                    }
+
+                    String entryFileName = zipEntry.Name;
+                    // to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
+                    // Optionally match entrynames against a selection list here to skip as desired.
+                    // The unpacked length is available in the zipEntry.Size property.
+
+                    // 4K is optimum
+                    byte[] buffer = new byte[4096];
+                    System.IO.Stream zipStream = file.GetInputStream(zipEntry);
+
+                    // Manipulate the output filename here as desired.
+                    String fullZipToPath = System.IO.Path.Combine(OutputFolder, entryFileName);
+                    string directoryName = System.IO.Path.GetDirectoryName(fullZipToPath);
+
+                    if (directoryName.Length > 0)
+                    {
+                        System.IO.Directory.CreateDirectory(directoryName);
+                    }
+
+                    // Unzip file in buffered chunks. This is just as fast as unpacking to a buffer the full size
+                    // of the file, but does not waste memory.
+                    // The "using" will close the stream even if an exception occurs.
+                    using (System.IO.FileStream streamWriter = System.IO.File.Create(fullZipToPath))
+                    {
+                        ICSharpCode.SharpZipLib.Core.StreamUtils.Copy(zipStream, streamWriter, buffer);
+                    }
+                }
+            }
+            finally
+            {
+                if (file != null)
+                {
+                    file.IsStreamOwner = true; // Makes close also shut the underlying stream
+                    file.Close(); // Ensure we release resources
+                }
+            }
+        }
+
+        #endregion Zip 
+
         /// <summary>
         /// Loads URL with sync.
         /// </summary>
@@ -127,6 +244,7 @@ namespace HTAlt
                 List<string> applied = new List<string>();
                 for (int i = 0; i < rootNode.ChildNodes.Count; i++)
                 {
+                    bool exitLoop = false;
                     XmlNode node = rootNode.ChildNodes[i];
                     switch (node.Name.ToLowerEnglish())
                     {
@@ -143,9 +261,11 @@ namespace HTAlt
                             }
                             else
                             {
-                                URL = node.Attributes["URL"].ToString();
+                                URL = node.Attributes["URL"].Value.XmlToString();
                                 Log("Mirrored to \"" + URL + "\".");
                                 LoadFromUrl();
+                                exitLoop = true;
+                                break;
                             }
                             return;
 
@@ -171,7 +291,7 @@ namespace HTAlt
                             applied.Add(node.Name.ToLowerEnglish());
                             for (int _i = 0; _i < node.ChildNodes.Count; _i++)
                             {
-                                HTUPDATE_Version ver = new HTUPDATE_Version(node.ChildNodes[_i]);
+                                HTUPDATE_Version ver = new HTUPDATE_Version(node.ChildNodes[_i], this);
                                 if (!Versions.Contains(ver))
                                 {
                                     Versions.Add(ver);
@@ -187,6 +307,7 @@ namespace HTAlt
                             }
                             break;
                     }
+                    if (exitLoop) { break; }
                 }
             }
             catch (XmlException xe)
@@ -518,9 +639,11 @@ namespace HTAlt
         /// <summary>
         /// Creates a new version with XML node.
         /// </summary>
-        /// <param name="node">The node that stores information about this version.</param>
-        public HTUPDATE_Version(XmlNode vernode)
+        /// <param name="vernode">The node that stores information about this version.</param>
+        /// <param name="htu"><see cref="HTUPDATE"/></param>
+        public HTUPDATE_Version(XmlNode vernode, HTUPDATE htu)
         {
+            if (htu == null) { throw new ArgumentNullException(nameof(htu)); } HTUPDATE = htu;
             if (vernode != null && vernode.ChildNodes.Count > 0)
             {
                 try
@@ -550,8 +673,9 @@ namespace HTAlt
                                     BasedVersion = HTUPDATE.GetVersion(int.Parse(node.InnerXml.XmlToString()));
                                     break;
 
+                                case "architectures":
                                 case "archs":
-                                    for (int _i = 0; i < node.ChildNodes.Count; _i++)
+                                    for (int _i = 0; _i < node.ChildNodes.Count; _i++)
                                     {
                                         XmlNode subnode = node.ChildNodes[_i];
                                         if (subnode.Name.ToLowerEnglish() == "arch")
@@ -591,17 +715,13 @@ namespace HTAlt
                                                         arch.Arch = subsubnode.Value.XmlToString();
                                                         break;
 
-                                                    case "delta":
-
-                                                        arch.isDelta = subsubnode.Value.XmlToString() == "true";
-                                                        break;
-
                                                     case "url":
 
                                                         arch.Url = subsubnode.InnerXml.XmlToString();
                                                         break;
                                                 }
                                             }
+                                            arch.isDelta = BasedVersion != null;
                                             Archs.Add(arch);
                                         }
                                     }
@@ -1049,9 +1169,6 @@ namespace HTAlt
                 return (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) > int.Parse(version.Substring(0, version.IndexOf('.') - 1))) || (int.Parse(base.Version.Substring(0, base.Version.IndexOf('.') - 1)) < int.Parse(version.Substring(0, version.IndexOf('.') - 1))) ? false : int.Parse((base.Version.Substring(base.Version.IndexOf('.') - 1)).Substring(0, base.Version.Substring(base.Version.IndexOf('.') - 1).IndexOf('.') - 1)) >= int.Parse((version.Substring(version.IndexOf('.') - 1)).Substring(0, version.Substring(version.IndexOf('.') - 1).IndexOf('.') - 1));
             }
         }
-
-        public class
-
 
         #endregion Debian Family
 
